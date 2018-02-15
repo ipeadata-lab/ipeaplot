@@ -5,7 +5,7 @@ Version: 0.1.0
 Authors@R: c(
     person("Daniel","Lima", role=c("aut","cre"), email="daniel.viegas@ipea.gov.br"),
     person("Gustavo","Coelho", role=c("aut","ctb"), email="gustavo.coelho@ipea.gov.br"),
-    person("Lucas","Mation", role=c("aut"), email="lucas.mation@ipea.gov.br"),
+    person("Lucas","Mation", role=c("aut"), email="lucas.mation@ipea.gov.br")
     ) 
 Maintainer: Daniel Lima <daniel.viegas@ipea.gov.br>
 Description: More about what it does (maybe more than one line)
