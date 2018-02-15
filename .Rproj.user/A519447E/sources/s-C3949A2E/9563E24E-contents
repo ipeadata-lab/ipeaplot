@@ -1,0 +1,47 @@
+params <- ls(pattern = '^geom_', env = as.environment('package:ggplot2'))
+geoms <- gsub("geom_", "", params)
+geoms <- geoms[-c(4,8,17,19,21,30,40)]
+
+
+lapply(geoms, update_geom_defaults, list(colour = '#003576'))
+lapply(geoms, update_geom_defaults, list(fill = '#003576', colour = '#003576')) 
+
+cbPalette <- c('#003576','#006EAB','#9CD2EB','#000000','#7D7D7D','#C8C8C8','#003F1F','#009D30','#97BF0D')
+palette_ipea <- list(scale_fill_manual(values=cbPalette),scale_colour_manual(values=cbPalette))
+
+theme_ipea <- theme(panel.background = element_rect(fill = "white",colour = NA),
+		  	panel.border = element_rect(fill = NA,colour = "grey50"), 
+			panel.grid.major = element_line(colour = "grey90",size = 0.2), 
+			panel.grid.minor = element_line(colour = "grey98",size = 0.5)
+		)+ 
+  	   theme(panel.grid.minor.x=element_blank(),panel.grid.major.x=element_blank(),
+	  		panel.border = element_blank(),axis.line = element_line(),	
+			legend.position="bottom",legend.title=element_blank(),
+			legend.key = element_rect(colour = "transparent", fill = "white"),
+        	axis.line.x = element_line(size = 0.5, linetype = "solid", colour = "black"),	
+	  		axis.line.y = element_line(size = 0.5, linetype = "solid", colour = "black"),
+	  		axis.text = element_text(colour = "black"),
+	  		axis.title.y=element_text(vjust=1.5),
+	  		axis.title.x=element_text(vjust=-0.4)
+	 	)
+
+theme_ipea_pie <- theme(panel.background = element_rect(fill = "white",colour = NA),
+		  		panel.border = element_rect(fill = NA,colour = "grey50"), 
+				panel.grid.major = element_line(colour = "grey90",size = 0.2), 
+				panel.grid.minor = element_line(colour = "grey98",size = 0.5)
+			)+ 
+  			theme(panel.grid.minor.x=element_blank(),panel.grid.major.x=element_blank(),
+				panel.grid=element_blank(),axis.ticks =element_blank(),
+				legend.position="bottom",legend.title=element_blank(),
+	 			panel.border = element_blank(),				
+	  			axis.text = element_text(colour = "black"),
+	  			axis.title.y=element_text(vjust=1.5),
+	  			axis.title.x=element_text(vjust=-0.4)
+			)
+			
+				
+	 		
+
+
+
+

@@ -1,0 +1,134 @@
+library(ggplot2)
+
+
+##############################################
+#### GERANDO OS GRAFICOS #####################
+##############################################
+setwd('/\\sbsb2\\DPTI\\Usuarios\\Lucas Mation\\theme_ipea\\dados')
+load('../../padrao_ipea/R_prog/theme_ipea/dados/bases_de_dados.Rdata')
+setwd('/\\sbsb2\\DPTI\\Usuarios\\Lucas Mation\\theme_ipea\\programas')
+source('theme_ipea.R')
+
+
+###########################################
+######### GRAFICO 1 #######################
+###########################################
+graf1 <- ggplot(data=base_graf1, aes(x=Ano, y=Populacao, fill=factor(2))) +
+	geom_text(data=base_graf1,aes(x=Ano,y=Populacao,label=labels),vjust=-0.5, size=4)+	
+    	geom_bar(stat="identity") + 
+	xlab('Ano') + 
+	ylab('População') +
+	scale_y_continuous(breaks=seq(0, 10, 1), limits=c(0,10))+
+	theme(legend.position="none")
+
+graf1 
+ggsave('grafico1_original.pdf')
+
+graf1 + theme_ipea + palette_ipea
+ggsave('grafico1_theme_ipea.pdf')
+
+###########################################
+######### GRAFICO 2 #######################
+###########################################
+y.breaks <- cumsum(base_graf2$Freq) - (base_graf2$Freq)/2
+y.breaks
+
+graf2 <- ggplot(base_graf2, aes(x='', y=Freq, fill=Assunto))+
+	geom_bar(width = 1, stat = "identity", color='black')+coord_polar("y", start=0)+theme_minimal()+
+	theme(panel.grid=element_blank(),
+		legend.position="bottom",
+		axis.ticks = element_blank(),legend.title=element_blank())+
+	xlab('')+
+	ylab('')+
+	guides(fill=guide_legend(override.aes=list(colour=NA),nrow=2,byrow=TRUE))+
+	scale_y_continuous(breaks=y.breaks,labels=base_graf2$percentual)
+
+graf2 
+ggsave('grafico2_original.pdf')
+
+graf2 + theme_ipea_pie + palette_ipea
+ggsave('grafico2_theme_ipea.pdf')
+
+
+
+###########################################
+######### GRAFICO 5 #######################
+###########################################
+graf5 <- ggplot(base_graf5, aes(x=Ano)) + 
+geom_ribbon(aes(ymin=0, ymax=Exabytes, fill=factor(2)))+
+scale_x_continuous(breaks=seq(2009, 2020, 1), limits=c(2009,2020))+
+theme(legend.position="none")
+
+graf5 
+ggsave('grafico5_original.pdf')
+
+graf5 + theme_ipea + palette_ipea
+ggsave('grafico5_theme_ipea.pdf')
+
+###########################################
+######### BASE PARA GRAFICO 6 #############
+###########################################
+graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, colour=variable))+ 
+geom_line(size=1)+
+geom_point(aes(shape=variable),size=3)+
+theme(legend.position="bottom",legend.title=element_blank(),
+legend.key = element_rect(colour = "transparent", fill = "white"))+
+scale_x_continuous(breaks=seq(2004, 2013, 1), limits=c(2004,2013))+
+scale_y_continuous(breaks=seq(-6, 6, 2), limits=c(-6,6))+
+xlab('Ano')+
+ylab('Crescimento Anual')
+
+graf6 
+ggsave('grafico6_original.pdf')
+
+graf6 + theme_ipea + palette_ipea
+ggsave('grafico6_theme_ipea.pdf')
+
+
+###########################################
+######### BASE PARA GRAFICO 7 #############
+###########################################
+graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo, fill=factor(2))) +
+ 	geom_bar(stat="identity") + 
+	coord_flip()+
+	xlab('Pa?s') + 
+	ylab('') +
+	theme(legend.position="none")
+
+graf7 
+
+graf7 + theme_ipea + palette_ipea
+
+
+###########################################
+######### BASE PARA GRAFICO 8 #############
+###########################################
+library(reshape)
+base_graf8<- melt(base_graf8, id=c("pais"))
+
+graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=variable)) +
+ 	geom_bar(position='dodge',stat="identity") + 
+	coord_flip()+
+	xlab('Pa?s') + 
+	ylab('') +
+	theme(legend.position="none")
+
+graf8 + theme_ipea + palette_ipea
+
+
+###########################################
+######### BASE PARA GRAFICO 9 #############
+###########################################
+base_graf9_aux <- base_graf9[,c(1,4)]
+library(reshape)
+base_graf9<- melt(base_graf9[,-4], id=c("pais"))
+
+graf9 <- 
+ggplot() + 	geom_bar(data=base_graf9, aes(x=pais, y=value, group=variable, fill=variable),stat="identity")+
+	xlab('Pa?s') + 
+	geom_point(data=base_graf9_aux, aes(x=pais,y=crescimento.do.PIB..ppc._perct))+
+	geom_line(data=base_graf9_aux, aes(x=as.numeric(pais),y=crescimento.do.PIB..ppc._perct))+
+	ylab('') +theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+	theme(legend.position="bottom",legend.title=element_blank())
+
+

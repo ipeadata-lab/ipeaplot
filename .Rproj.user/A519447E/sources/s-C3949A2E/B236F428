@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517924960856.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1380602419",
+    "id" : "B236F428",
+    "lastKnownWriteTime" : 1518014893,
+    "last_content_update" : 1518014893539,
+    "path" : "~/templatesIpea/R/ipea_palette.R",
+    "project_path" : "R/ipea_palette.R",
+    "properties" : {
+        "cursorPosition" : "19,0",
+        "scrollLine" : "1",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
