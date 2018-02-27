@@ -9,6 +9,7 @@
 #'
 #' @family themes
 #' @import ggplot2
+#' @import extrafont
 #' @export
 
 
@@ -22,6 +23,8 @@ theme_ipea <- function(axis = TRUE, only.color = T) {
     axis.line.y = element_blank()
   }
 
+
+
   theme(panel.background = element_rect(fill = "white",colour = NA),
         panel.border = element_blank(),
         panel.grid.major = element_line(colour = "grey90",size = 0.2),
@@ -34,5 +37,8 @@ theme_ipea <- function(axis = TRUE, only.color = T) {
         axis.line.y = axis.line.y,
         axis.text = element_text(colour = "black"),
         axis.title.y=element_text(vjust=1.5),
-        axis.title.x=element_text(vjust=-0.4))
+        axis.title.x=element_text(vjust=-0.4),
+        plot.title = element_text(size = 16, lineheight = 12, family = "Open Sans"),
+        plot.subtitle = element_text(size = 14, lineheight = 8.4, family = "Open Sans",
+                                     face = "bold"))
 }
