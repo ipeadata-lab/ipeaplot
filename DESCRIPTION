@@ -18,6 +18,6 @@ URL: https://gitlab.com/IpeaDATA-lab/templatesIpea
 BugReports: https://gitlab.com/IpeaDATA-lab/templatesIpea/issues
 Depends: R (>= 3.3.2)
 Imports:
-    ggplot2
+    ggplot2, extrafont
 Suggests: testthat,
     covr

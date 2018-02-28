@@ -4,12 +4,15 @@
 \alias{theme_ipea}
 \title{Ipea Theme}
 \usage{
-theme_ipea(axis = TRUE, only.color = T)
+theme_ipea(axis = TRUE, only.color = T, ...)
 }
 \arguments{
 \item{axis}{logical, whether the plot should keed the axis line or not.}
 
 \item{only.color}{logical, whether there is more than one factor in the plot.}
+
+\item{...}{additional element specifications not part of base ggplot2. If
+supplied \code{validate} needs to be set to \code{FALSE}.}
 }
 \description{
 This theme is designed to fulfill the requisites of Ipea's editorial about plots.

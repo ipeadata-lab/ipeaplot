@@ -9,11 +9,10 @@
 #'
 #' @family themes
 #' @import ggplot2
-#' @import extrafont
 #' @export
 
 
-theme_ipea <- function(axis = TRUE, only.color = T) {
+theme_ipea <- function(axis = TRUE, only.color = T, ...) {
   is.legenda = ifelse(only.color, "none", "bottom")
   if(axis){
     axis.line.x = element_line(size = 0.5, linetype = "solid", colour = "black")
@@ -38,7 +37,9 @@ theme_ipea <- function(axis = TRUE, only.color = T) {
         axis.text = element_text(colour = "black"),
         axis.title.y=element_text(vjust=1.5),
         axis.title.x=element_text(vjust=-0.4),
-        plot.title = element_text(size = 16, lineheight = 12, family = "Open Sans"),
-        plot.subtitle = element_text(size = 14, lineheight = 8.4, family = "Open Sans",
-                                     face = "bold"))
+        plot.title = element_text(size = 16, lineheight = 12,
+                                  family = "Open Sans Condensed", face = "bold"),
+        plot.subtitle = element_text(size = 14, lineheight = 8.4,
+                                     family = "Roboto Light"),
+        ...)
 }
