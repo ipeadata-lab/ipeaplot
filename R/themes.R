@@ -60,7 +60,9 @@ theme_ipea <- function(axis = TRUE, only.color = T, ...) {
 #' @import extrafont
 #' @export
 
-save.eps <- function(gplot, file.name, width = 5, height = 3){
+
+save_eps <- function(gplot, file.name, width = 5, height = 3){
+
   if(!("ggplot" %in% class(gplot))){
     stop("gplot deve ser um gráfico ggplot")
   }
