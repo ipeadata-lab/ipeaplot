@@ -37,9 +37,40 @@ theme_ipea <- function(axis = TRUE, only.color = T, ...) {
         axis.text = element_text(colour = "black"),
         axis.title.y=element_text(vjust=1.5),
         axis.title.x=element_text(vjust=-0.4),
-        plot.title = element_text(size = 16, lineheight = 12,
-                                  family = "Open Sans Condensed", face = "bold"),
-        plot.subtitle = element_text(size = 14, lineheight = 8.4,
-                                     family = "Roboto Light"),
-        ...)
+        plot.title = element_text(size = 9, lineheight = 8.4,
+                                  family = "Roboto Condensed", face = "bold", hjust = 0),
+        plot.subtitle = element_text(size = 9, lineheight = 8.4,
+                                     family = "Roboto Light", hjust = 0),
+        legend.text = element_text(size = 7, family = "Roboto Light"),
+        legend.justification = "left"
+        )
+
+}
+
+#' Save the chart in .Eps
+#'
+#' This function makes easy to save charts in Eps.
+#'
+#' @param gplot ggplot which will be saved.
+#' @param file.name name of the file which will be generated
+#' @param width width of the picture
+#' @param height height of the picture
+#'
+#' @family save
+#' @import extrafont
+#' @export
+
+save.eps <- function(gplot, file.name, width = 5, height = 3){
+  if(!("ggplot" %in% class(gplot))){
+    stop("gplot deve ser um gráfico ggplot")
+  }
+  if(class(file.name) != "character"){
+    stop("O nome do arquivo deve ser uma string")
+  }
+
+  loadfonts("postscript")
+  postscript(file = file.name, width = width, height = height)
+  gplot
+  dev.off()
+
 }
