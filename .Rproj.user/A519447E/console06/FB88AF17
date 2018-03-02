@@ -1,147 +1,0 @@
-[0m[0K]0;:/c/Users/B3830082/Documents/templatesIpea[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0m[0K
-$[0K[3G[?25h[?25l[1A[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0K
-[0m$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0K[?25ln[0K[9G[?25h[10G[?25l$ git conf[0K[?25hi[0Kg[0K[14G[?25l$ git config -[0K[?25h-[0K[?25lg[0K[16G[?25h[17G[?25l$ git config --gl[0K[?25ho[0Kb[0Ka[0Kl[0K[23G[?25l$ git config --global u[0K[?25hs[0Ke[0Kr[0K.[0K[?25ln[0K[28G[?25h[29G[?25l$ git config --global user.na[0K[?25he[0Km[0K[33G[?25l$ git config --global user.naem "[0K[?25h[?25l$ git config --global user.naem[0K[33G[?25h[32G[?25l$ git config --global user.nae[0K[?25h[?25l$ git config --global user.na[0K[?25h[?25l$ git config --global user.n[0K[?25ha[0Km[0Ke[0K[33G[?25l$ git config --global user.name "[0K[?25hD[0Ka[0Knb[0K[?25l$ git config --global user.name "Dan[0K[?25hi[0Ke[0Kl[0K[41G[?25l$ git config --global user.name "Daniel L[0K[?25hiu[0Km[0K[?25l$ git config --global user.name "Daniel Liu[0K[?25h[?25l$ git config --global user.name "Daniel Li[0K[?25hm[0Ka[0K[46G[?25l$ git config --global user.name "Daniel Lima V[0K[?25hi[0Ke[0Kg[0Ka[0Ks[0K"[0K[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Kn[0Kf[0Ki[0Kg[0K[14G[?25l$ git config -[0K[?25h-[0K[17G[16G[?25l$ git config --g[0K[?25hl[0Ko[0Kb[0Ka[0Kl[0K[23G[?25l$ git config --global u[0K[?25hs[0Ke[0Kr[0K.[0Ke[0Km[0Ka[0Ki[0Kl[0K[34G[?25l$ git config --global user.email "[0K[?25hd[0Ka[0Kn[0Ki[0Ke[0Kl[0K.[0Kl[0Ki[0Km[0Ka[0Kv[0Ki[0Ke[0Kg[0Ka[0Ks[0K4[0K5[0K4[0K@[0Kg[0Km[0Ka[0Ki[0Kl[0Kl.[0K[?25l$ git config --global user.email "daniel.limaviegas454@gmaill[0K[?25h[?25l$ git config --global user.email "daniel.limaviegas454@gmail[0K[?25h.[0Kc[0Ko[0Km[0K[?25l
->[0K[3G[?25h[?25l> "[0K[?25h[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0m[0K[20G[?25h[?25l
-$[0K[3G[?25h[?25l$ c[0K[?25hd[0K[6G[?25l$ cd t[0K[?25he[0Km[0Kp[0Kl[0KatesIpea.Rproj[0K[26G[25G[?25l$ cd templatesIpea.Rpro[0K[?25h[?25l$ cd templatesIpea.Rpr[0K[?25h[?25l$ cd templatesIpea.Rp[0K[?25h[?25l$ cd templatesIpea.R[0K[?25h[?25l$ cd templatesIpea.[0K[?25h[?25l$ cd templatesIpea[0K[?25h[?25l$ cd templatesIpe[0K[?25h[?25l$ cd templatesIp[0K[?25h[?25l$ cd templatesI[0K[?25h[?25l$ cd templates[0K[?25h[?25l$ cd templat[0K[14G[?25h[13G[?25l$ cd templa[0K[?25h[?25l$ cd templ[0K[?25h[?25l$ cd temp[0K[?25h[?25l$ cd tem[0K[?25h[?25l$ cd te[0K[?25h[?25l$ cd t[0K[?25h[?25l$ cd[0K[6G[?25h[5G[?25l$ c[0K[?25h[?25l$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git i[0K[?25hn[0Ki[0Kt[0K[?25l
-[0K[?25hInitialized empty Git repository in C:/Users/B3830082/Documents/templatesIpea/.git/[0K[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git r[0K[?25he[0Km[0Ko[0Kt[0Ke[0K[14G[?25l$ git remote a[0K[?25hd[0Kd[0K[18G[?25l$ git remote add o[0K[?25ht[0Kr[0K[?25l$ git remote add ot[0K[?25h[?25l$ git remote add o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K[25G[?25l$ git remote add origin h[0K[?25ht[0Kt[0Kp[0Ks[0K:[0K/[0K/[0Kg[0Ki[0Kt[0Kl[0Ka[0Kb[0K.[0Kc[0Ko[0Km[0K;[0K[?25l$ git remote add origin https://gitlab.com[0K[?25h;[0K[?25l$ git remote add origin https://gitlab.com[0K[?25h/[0KI[0Kp[0Ke[0Ka[0KD[0KA[0KT[0KA[0K-[0Kl[0Ka[0Kb[0K/[0Kt[0Ke[0Km[0Kp[0Kl[0Ka[0K[?25lt[0K[63G[?25h[64G[?25l$ git remote add origin https://gitlab.com/IpeaDATA-lab/template[0K[?25hs[0KI[0Kp[0Ke[0Ka[0K.[0Kg[0Ki[0Kt[0K[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add .[0K[?25h[?25l
-[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/A519447E/cpp-definition-cache.[0K[?25l
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/A519447E/pcs/files-pane.pper.[0K
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/A519447E/pcs/source-pane.pper.[0K
-The file will have its original line endi[0K[1A[29G[?25h[?25l
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/A519447E/pcs/windowlayoutstate.pper.[0K
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/A519447E/pcs/workbench-pane.pper.[0K
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/A519447E/rmd-outputs.[0K
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/A519447E/sources/prop/7B19FE2B.[0K
-The file will have its original line endings in your working directory.[0K
-[0K[?25hwarning: LF will be replaced by CRLF in .Rproj.user/A519447E/sources/prop/87F564DC.[0K[?25l
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/A519447E/sources/prop/INDEX.[0K
-The file will have its original line endings in your working directory.[0K
-warning: LF will be replaced by CRLF in .Rproj.user/shared/notebooks/paths.[0K
-The file will have its original line endings in your working directory.[0K
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[14G[?25l$ git commit -[0K[?25hm[0K[17G[?25l$ git commit -m "[0K[?25hc[0Ko[0Km[0Km[0Ki[0Kt[0K[25G[?25l$ git commit -m "commit i[0K[?25hn[0Ki[0Kc[0Ki[0Ka[0Kl[0K[33G[?25l$ git commit -m "commit inicial p[0K[?25ha[0Kr[0Ka[0K[38G[?25l$ git commit -m "commit inicial para a[0K[?25hd[0Ki[0Kc[0Ki[0Ko[0Kn[0Ka[0Kr[0K[48G[?25l$ git commit -m "commit inicial para adicionar g[0K[?25hi[0Kt[0K[52G[?25l$ git commit -m "commit inicial para adicionar git a[0K[?25ho[0K[55G[?25l$ git commit -m "commit inicial para adicionar git ao p[0K[?25ha[0Kc[0Ko[0Kt[0Ke[0K"[0K[?25l
-[0K[?25h[master (root-commit) 142411e] commit inicial para adicionar git ao pacote[0K[?25l
- 22 files changed, 134 insertions(+)[0K
- create mode 100644 .Rbuildignore[0K
- create mode 100644 .Rhistory[0K
- create mode 100644 .Rproj.user/A519447E/console06/FB88AF17[0K
- create mode 100644 .Rproj.user/A519447E/console06/INDEX001[0K
- create mode 100644 .Rproj.user/A519447E/cpp-definition-cache[0K
- create mode 100644 .Rproj.user/A519447E/pcs/files-pane.pper[0K
- create mode 100644 .Rproj.user/A519447E/pcs/source-pane.pper[0K
- create mode 100644 .Rproj.user/A519447E/pcs/windowlayoutstate.pper[0K
- create mode 100644 .Rproj.user/A519447E/pcs/workbench-pane.pper[0K
- create mode 100644 .Rproj.user/A519447E/rmd-outputs[0K
- create mode 100644 .Rproj.user/A519447E/saved_source_markers[0K
- create mode 100644 .Rproj.user/A519447E/sources/prop/7B19FE2B[0K
- create mode 100644 .Rproj.user/A519447E/sources/prop/87F564DC[0K
- create mode 100644 .Rproj.user/A519447E/sources/prop/INDEX[0K
- create mode 100644 .Rproj.user/A519447E/sources/s-C3949A2E/lock_file[0K
- create mode 100644 .Rproj.user/shared/notebooks/patch-chunk-names[0K
- create mode 100644 .Rproj.user/shared/notebooks/paths[0K
- create mode 100644 DESCRIPTION[0K
- create mode 100644 NAMESPACE[0K
- create mode 100644 R/hello.R[0K
- create mode 100644 man/hello.Rd[0K
- create mode 100644 templatesIpea.Rproj[0K
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git p[0K[?25hu[0Ks[0Kh[0K[12G[?25l$ git push o[0K[?25hr[0Ki[0Kg[0Ki[0Kn[0K[19G[?25l$ git push origin m[0K[?25ha[0Ks[0Kt[0Ke[0Kr[0K[?25l
-[0K[?25hCounting objects: 33, done.[0K[?25l
-Delta compression using up to 4 threads.[0K
-Compressing objects: 100% (21/21), done.[0K
-Writing objects:  33% (11/33)[0K[1G[?25hWriting objects: 100% (33/33), 3.98 KiB | 0 bytes/s, done.[0K[?25l
-Total 33 (delta 0), reused 0 (delta 0)[0K
-[0K[?25hTo https://gitlab.com/IpeaDATA-lab/templatesIpea.git[0K[?25l
-[0K[?25h * [new branch]      master -> master[0K[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ E[0K[?25h[?25l$[0K[3G[?25h[?25l$ r[0K[?25hm[0K[6G[?25l$ rm N[0K[?25ha[0K[?25l$ rm N[0K[?25hA[0KMESPACE[0K[16G[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ r[0K[?25h[?25lm[0K[4G[?25h[5G[6G[?25l$ rm h[0K[?25he[0Kl[0Kl[0Ko[0K.[0KR[0K[?25l
-[0K[?25hrm: cannot remove 'hello.R': No such file or directory[0K[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ rm hello.R[0K[?25h[12G[11G[10G[9G[8G[7G[6G[5G[?25l$ rmR hello.R[0K[6G[?25h[5G[6G[5G[?25l$ rm hello.R[0K[5G[?25h[6G[?25l$ rm Rhello.R[0K[7G[?25h[?25l$ rm R/hello.R[0K[8G[?25h[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-]0;:/c/Users/B3830082/Documents/templatesIpea[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K[?25h[?25l
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K[?25l
-[0K[?25hOn branch master[0K[?25l
-Changes not staged for commit:[0K
-  (use "git add <file>..." to update what will be committed)[0K
-  (use "git checkout -- <file>..." to discard changes in working directory)[0K
-[0K
-        [0;31mmodified:   .Rproj.user/A519447E/console06/FB88AF17[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/console06/INDEX001[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/pcs/source-pane.pper[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/pcs/windowlayoutstate.pper[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/sources/prop/CDABCA3A[0m[0K
-        [0;31mmodified:   R/themes.R[0m[0K
-        [0;31mmodified:   R/zzz.R[0m[0K
-[0K
-no changes added to commit (use "git add" and/or "git commit -a")[0K
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git d[0K[?25hi[0Kf[0Kf[0K[12G[?25l$ git diff R[0K[?25h/[0Kz[0Kz[0Kz[0K.[0KR[0K[?25l
-[0K[?25h[0;1mdiff --git a/R/zzz.R b/R/zzz.R[0m[0K[?25l
-[0;1mindex aec8c4e..4ccea34 100644[0m[0K
-[0;1m--- a/R/zzz.R[0m[0K
-[0;1m+++ b/R/zzz.R[0m[0K
-[0;36m@@ -7,8 +7,8 @@[0m[0K
-   path = file.path(getwd(), "inst")[0K
-   path = ifelse(dir.exists(path), path, find.package("templatesIpea"))[0K
-   #packageStartupMessage(path)[0K
-[0;31m-  extrafont::font_import(path, prompt = F)[0m[0K
-[0;31m-  extrafont::loadfonts("win")[0m[0K
-[0;32m+  font_import(path, prompt = F)[0m[0K
-[0;32m+  loadfonts("win")[0m[0K
-[0K
-[0K
- }[0K
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[10G[?25l$ git ad[0K[?25h[?25l$ git a[0K[?25h[?25l$ git[0K[7G[?25h[6G[?25l$ gi[0K[?25h[?25l$ g[0K[?25h[?25l$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git s[0K[?25ht[0Ka[0Kt[0Ku[0Ks[0K[?25l
-[0K[?25hOn branch master[0K[?25l
-Changes not staged for commit:[0K
-  (use "git add <file>..." to update what will be committed)[0K
-  (use "git checkout -- <file>..." to discard changes in working directory)[0K
-[0K
-        [0;31mmodified:   .Rproj.user/A519447E/console06/FB88AF17[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/console06/INDEX001[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/pcs/source-pane.pper[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/pcs/windowlayoutstate.pper[0m[0K
-        [0;31mmodified:   .Rproj.user/A519447E/sources/prop/CDABCA3A[0m[0K
-        [0;31mmodified:   R/themes.R[0m[0K
-        [0;31mmodified:   R/zzz.R[0m[0K
-[0K
-no changes added to commit (use "git add" and/or "git commit -a")[0K
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git a[0K[?25hd[0Kd[0K[11G[?25l$ git add R[0K[?25h[?25l
-[0K[?25h[?25l
-[0;32mB3830082@EBSB1516 [0;35m [0;33m~/Documents/templatesIpea[0;36m (master)[0m[0K
-$[0K[3G[?25h[?25l$ g[0K[?25hi[0Kt[0K[7G[?25l$ git c[0K[?25ho[0Km[0Km[0Ki[0Kt[0K[14G[?25l$ git commit -[0K[?25ha[0Km[0K[18G[?25l$ git commit -am "[0K[?25hA[0Kd[0Ki[0Kc[0Ki[0Ko[0Kn[0Ka[0Kn[0Kd[0Ko[0K[31G[?25l$ git commit -am "Adicionando f[0K[?25hu[0Kn[0Kç[0Kã[0Ko[0K[38G[?25l$ git commit -am "Adicionando função p[0K[?25ha[0Kr[0Ka[0K[43G[?25l$ git commit -am "Adicionando função para s[0K[?25ha[0Kl[0Kb[0Ka[0K[?25l$ git commit -am "Adicionando função para salb[0K[?25h[?25l$ git commit -am "Adicionando função para sal[0K[?25hv[0Ka[0Kr[0K[50G[?25l$ git commit -am "Adicionando função para salvar i[0K[?25hm[0Ka[0Kg[0Ke[0Kn[0Ks[0K[58G[?25l$ git commit -am "Adicionando função para salvar imagens e[0K[?25hm[0K[61G[?25l$ git commit -am "Adicionando função para salvar imagens em .[0K[?25hE[0Kp[0Ks[0K"[0K[?25l
-[0K[?25h
