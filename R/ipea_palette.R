@@ -107,6 +107,15 @@ ipea_colors <- c(
 
 )
 
+ipea_cols <- function(...) {
+  cols <- c(...)
+
+  if (is.null(cols))
+    return (ipea_colors)
+
+  ipea_colors[cols]
+}
+
 ipea_palettes <- list(
 
   `original`           = base::rev(ipea_cols('beje','laranja','rosa','lilas','roxo','petroleo')),
