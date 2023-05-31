@@ -27,7 +27,7 @@
 #' @return Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
 #'
 #' @export
-source('./R/ipea_pallete.R')
+
 
 #' @rdname scale_ipea
 #' @export
@@ -52,40 +52,11 @@ scale_colour_discrete_ipea <- function(options = c("crimson","orpheu","cartola",
                                                    "post","wrapper","blue_red","ipea1",
                                                    "ipea2",'ipea3'),...){
 
-    # Set options to 'ipea1' if it is missing
+  # Set options to 'ipea1' if it is missing
   options <- ifelse(missing(options), 'ipea1', options)
 
-  if (options == "ipea1") {
-    # Set colours to the ipea1 palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$ipea1))
-  } else if (options == "ipea2") {
-    # Set colours to the ipea2 palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$ipea2))
-  } else if (options == "ipea3") {
-    # Set colours to the ipea3 palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$ipea2))
-  } else if (options == "crimson") {
-    # Set colours to the crimson palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$crimson))
-  } else if (options == "orpheu") {
-    # Set colours to the orpheu palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$orpheu))
-  } else if (options == "cartola") {
-    # Set colours to the cartola palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$cartola))
-  } else if (options == "caqui") {
-    # Set colours to the caqui palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$caqui))
-  } else if (options == "post") {
-    # Set colours to the post palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$post))
-  } else if (options == "wrapper") {
-    # Set colours to the wrapper palette using manual_pal function
-    colours <- scales::manual_pal(c(ipea_palettes$wrapper))
-  } else {
-    # Stop the execution and display an error message if options is none of the specified values
-    stop("Palette options must be 'crimson', 'orpheu', 'top hat', 'khaki', 'post', 'wrapper', 'blue_red', 'ipea1', 'ipea2', 'ipea3'")
-  }
+  # Set pallete option
+  colours <- scales::manual_pal(c(ipea_palette(palette = options)))
 
   # Create a discrete colour scale with the specified palette
   ggplot2::discrete_scale("colour", "ipea", colours, ...)
@@ -142,34 +113,6 @@ scale_colour_continuous_ipea <- function(options = c("crimson","orpheu","cartola
     label.hjust = 0.5  # Set label.hjust to 0.5 if direction is not 'vertical'
   }
 
-  if (options == "ipea1") {
-    # Set colours to the ipea1 palette if options is "ipea1"
-    colours <- ipea_palettes$ipea1
-  } else if (options == "ipea2") {
-    # Set colours to the ipea2 palette if options is "ipea2"
-    colours <- ipea_palettes$ipea2
-  } else if (options == "crimson") {
-    # Set colours to the crimson palette if options is "crimson"
-    colours <- ipea_palettes$crimson
-  } else if (options == "orpheu") {
-    # Set colours to the orpheu palette if options is "orpheu"
-    colours <- ipea_palettes$orpheu
-  } else if (options == "cartola") {
-    # Set colours to the cartola palette if options is "cartola"
-    colours <- ipea_palettes$cartola
-  } else if (options == "caqui") {
-    # Set colours to the caqui palette if options is "caqui"
-    colours <- ipea_palettes$caqui
-  } else if (options == "post") {
-    # Set colours to the post palette if options is "post"
-    colours <- ipea_palettes$post
-  } else if (options == "wrapper") {
-    # Set colours to the wrapper palette if options is "wrapper"
-    colours <- ipea_palettes$wrapper
-  } else {
-    # Stop the execution and display an error message if options is none of the specified values
-    stop("Palette options must be 'crimson', 'orpheu', 'top hat', 'khaki', 'post', 'wrapper', 'blue_red', 'ipea1', 'ipea2', 'ipea3', 'manual'")
-  }
   if(options == "manual"){
 
     if (missing(mid)) {
@@ -202,6 +145,11 @@ scale_colour_continuous_ipea <- function(options = c("crimson","orpheu","cartola
     )
 
   } else {
+
+    # Set pallete option
+    colours <- ipea_palette(palette = options)
+
+    # Graph
     ggplot2::scale_color_gradientn(
         labels = labels,  # Set the labels for the gradient scale
         colours = colours,  # Set the colours for the gradient scale
@@ -239,34 +187,8 @@ scale_fill_discrete_ipea <- function(options = c("crimson","orpheu","cartola","c
   # Set options to 'ipea1' if it is missing
   options <- ifelse(missing(options), 'ipea1', options)
 
-  if (options == "ipea1") {
-    # Set colours to the ipea1 palette if options is "ipea1"
-    colours <- ipea_palettes$ipea1
-  } else if (options == "ipea2") {
-    # Set colours to the ipea2 palette if options is "ipea2"
-    colours <- ipea_palettes$ipea2
-  } else if (options == "crimson") {
-    # Set colours to the crimson palette if options is "crimson"
-    colours <- ipea_palettes$crimson
-  } else if (options == "orpheu") {
-    # Set colours to the orpheu palette if options is "orpheu"
-    colours <- ipea_palettes$orpheu
-  } else if (options == "cartola") {
-    # Set colours to the cartola palette if options is "cartola"
-    colours <- ipea_palettes$cartola
-  } else if (options == "caqui") {
-    # Set colours to the caqui palette if options is "caqui"
-    colours <- ipea_palettes$caqui
-  } else if (options == "post") {
-    # Set colours to the post palette if options is "post"
-    colours <- ipea_palettes$post
-  } else if (options == "wrapper") {
-    # Set colours to the wrapper palette if options is "wrapper"
-    colours <- ipea_palettes$wrapper
-  } else {
-    # Stop the execution and display an error message if options is none of the specified values
-    stop("Palette options must be 'crimson', 'orpheu', 'top hat', 'khaki', 'post', 'wrapper', 'blue_red', 'ipea1', 'ipea2', 'ipea3', 'manual'")
-  }
+  # Set pallete option
+  colours <- scales::manual_pal(c(ipea_palette(palette = options)))
 
   # Create a discrete colour scale with the specified palette
   ggplot2::discrete_scale("fill", "ipea", colours, ...)
@@ -379,6 +301,9 @@ scale_fill_continuous_ipea <- function(options = c("crimson","orpheu","cartola",
     )
 
   } else {
+
+    # Set pallete option
+    colours <- ipea_palette(palette = options)
 
     # Create a gradient scale with predefined colours
     ggplot2::scale_fill_gradientn(
