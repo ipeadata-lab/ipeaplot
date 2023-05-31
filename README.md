@@ -87,19 +87,17 @@ More examples [here](https://github.com/ipea-datalab/templatesIpea/tree/master/p
 
 
 
-# Contributing to templatesIpea
-If you would like to contribute to templatesIpea and add new functions or data sets, please check this [guide](https://github.com/ipea-datalab/templatesIpea/blob/master/CONTRIBUTING.md) to propose your contribution.
 
 
 
 
 -----
 
-# Credits <img align="right" src="https://github.com/ipea-datalab/templatesIpea/blob/master/r-package/man/figures/ipea_logo.png?raw=true" alt="ipea" width="300">
+# Credits <img align="right" src="[https://github.com/ipea-datalab/templatesIpea/blob/master/r-package/man/figures/ipea_logo.png](https://github.com/ipeadata-lab/ipea_templates/blob/master/ipea.png)" alt="ipea" width="300">
 
 The **templatesIpea** package is developed by a team at the Institute for Applied Economic Research (Ipea), Brazil. If you want to cite this package, you can cite it as:
 
-* Pereira, R.H.M.; Mation, L.M.; et. all (2023) **templatesIpea: Standardization of structure and palettes in the text format for IPEA discussion**. GitHub repository - https://github.com/ipea-datalab/templatesIpea.
+* Pereira, R.H.M.; Mation, L.F.; et. all (2023) **templatesIpea: Standardization of structure and palettes in the text format for IPEA discussion**. GitHub repository - https://github.com/ipea-datalab/templatesIpea.
 
 
 
