@@ -49,23 +49,12 @@ mtcars <- mtcars %>%
                 ifelse(carb == 3,"2-3",
                 ifelse(carb == 4,"3-4",NA)))))
 
-ipea_pal <- function() {
-  scales::manual_pal(c('#003576','#006EAB','#9CD2EB','#000000','#7D7D7D',
-                        '#C8C8C8','#003F1F','#009D30','#97BF0D'))
-}
-
-#' @rdname IpeaColor
-#' @export
-scale_colour_ipea <- function(...){
-  discrete_scale("colour", "ipea", ipea_pal(), ...)
-}
-
-# continuous
+# continuous scale
 ggplot() +
   geom_point(data=mtcars, aes(x=mpg , y=cyl, color=cyl)) +
   scale_color_continuous_ipea()
 
-# discrete
+# discrete scale
 ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
   geom_point() +
   scale_colour_discrete_ipea()
