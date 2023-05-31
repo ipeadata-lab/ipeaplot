@@ -63,19 +63,9 @@ ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
 ```
 More examples in the [intro Vignette](https://cran.r-project.org/web/packages/templatesIpea/vignettes/intro_to_templatesIpea.html)
 
-## Python, reading the data as a `geopandas` object
+## Python
 ```python
-from templatesIpea import read_municipality
 
-# Read specific municipality at a given year
-mun = read_municipality(code_muni=1200179, year=2017)
-
-# Read all municipalities of given state at a given year
-mun = read_municipality(code_muni=33, year=2010) # or
-mun = read_municipality(code_muni="RJ", year=2010)
-
-# Read all municipalities in the country at a given year
-mun = read_municipality(code_muni="all", year=2018)
 ```
 More examples [here](https://github.com/ipea-datalab/templatesIpea/tree/master/python-package/examples) 
 
