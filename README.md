@@ -93,7 +93,12 @@ More examples [here](https://github.com/ipea-datalab/templatesIpea/tree/master/p
 
 -----
 
-# Credits <img align="right" src="https://github.com/ipeadata-lab/ipea_templates/blob/master/ipea.png?raw=true" alt="ipea" width="200">
+# Credits <img align="right" src="https://github.com/ipeadata-lab/ipea_templates/blob/master/ipea.png?raw=true" alt="ipea" width="300">
+
+
+
+
+
 
 
 
