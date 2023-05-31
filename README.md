@@ -93,7 +93,7 @@ More examples [here](https://github.com/ipea-datalab/templatesIpea/tree/master/p
 
 -----
 
-# Credits <img align="right" src="https://github.com/ipea-datalab/templatesIpea/blob/master/r-package/man/figures/ipea_logo.png?raw=true" alt="ipea" width="300">
+# Credits <img align="right" src="https://github.com/ipeadata-lab/ipea_templates/blob/master/ipea.png?raw=true" alt="ipea" width="300">
 
 The **templatesIpea** package is developed by a team at the Institute for Applied Economic Research (Ipea), Brazil. If you want to cite this package, you can cite it as:
 
