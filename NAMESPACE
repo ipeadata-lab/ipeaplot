@@ -2,6 +2,7 @@
 
 export(ipea_palette)
 export(save_eps)
+export(scale_ipea)
 export(scale_fill_continuous_ipea)
 export(scale_colour_continuous_ipea)
 export(scale_color_continuous_ipea)
