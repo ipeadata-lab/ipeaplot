@@ -53,7 +53,7 @@ The templatesIpea package covers 27 spatial data sets, including a variety of po
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
 # Available data sets
-head(ipea_palettes)
+head(ipea_palette(palette = 'ipea1'))
 ```
 
 The syntax of all *templatesIpea* functions operate one the same logic, so the code becomes intuitive for the user. Here are a few examples.
