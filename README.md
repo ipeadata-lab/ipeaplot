@@ -1,4 +1,4 @@
-# templatesIpea: Download Official Spatial Data Sets of Brazil 
+# templatesIpea: Color schemes and graphic styles for IPEA submissions
 
 <p align="justify">templatesIpea is a computational package designed to facilitate the standardization of colors and graphic formatting for text submissions for discussion (TD) and articles for the journal of the Institute of Applied Economic Research (IPEA). This package provides users with tools and functions that simplify the process of applying consistent color schemes and graphic styles in their work, ensuring conformity to the requirements and guidelines of the IPEA journal. By using templatesIpea, users can easily achieve visually appealing and professionally formatted text submissions for IPEA. (see detailed information below). </p> 
 
@@ -61,7 +61,8 @@ ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
 
 
 ```
-More examples in the [intro Vignette](https://github.com/ipeadata-lab/ipea_templates/blob/master/R/vignettes/intro_to_templatesIpea.html)
+More examples in the [intro Vignette](https://rpubs.com/Pedrojorge7/templatesIpea)
+ps: Temporary address subject to change in the future
 
 ## Python
 ```python
