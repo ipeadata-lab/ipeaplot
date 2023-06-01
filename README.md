@@ -61,7 +61,7 @@ ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
 
 
 ```
-More examples in the [intro Vignette](https://github.com/ipeadata-lab/ipea_templates/blob/master/R/vignettes/intro_to_templatesIpea.Rmd)
+More examples in the [intro Vignette](https://github.com/ipeadata-lab/ipea_templates/blob/master/R/vignettes/intro_to_templatesIpea.html)
 
 ## Python
 ```python
