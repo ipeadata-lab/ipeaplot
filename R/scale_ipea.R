@@ -238,34 +238,7 @@ scale_fill_continuous_ipea <- function(options = c("crimson","orpheu","cartola",
     label.hjust = 0.5  # Set label.hjust to 0.5 if direction is not 'vertical'
   }
 
-  if (options == "ipea1") {
-    # Set colours to the ipea1 palette if options is "ipea1"
-    colours <- ipea_palettes$ipea1
-  } else if (options == "ipea2") {
-    # Set colours to the ipea2 palette if options is "ipea2"
-    colours <- ipea_palettes$ipea2
-  } else if (options == "crimson") {
-    # Set colours to the crimson palette if options is "crimson"
-    colours <- ipea_palettes$crimson
-  } else if (options == "orpheu") {
-    # Set colours to the orpheu palette if options is "orpheu"
-    colours <- ipea_palettes$orpheu
-  } else if (options == "cartola") {
-    # Set colours to the cartola palette if options is "cartola"
-    colours <- ipea_palettes$cartola
-  } else if (options == "caqui") {
-    # Set colours to the caqui palette if options is "caqui"
-    colours <- ipea_palettes$caqui
-  } else if (options == "post") {
-    # Set colours to the post palette if options is "post"
-    colours <- ipea_palettes$post
-  } else if (options == "wrapper") {
-    # Set colours to the wrapper palette if options is "wrapper"
-    colours <- ipea_palettes$wrapper
-  } else {
-    # Stop the execution and display an error message if options is none of the specified values
-    stop("Palette options must be 'crimson', 'orpheu', 'top hat', 'khaki', 'post', 'wrapper', 'blue_red', 'ipea1', 'ipea2', 'ipea3', 'manual'")
-  }
+
 
 
   if (options == "manual") {
