@@ -36,7 +36,7 @@ theme_ipea <- function(axis = c('none','half','full'),box_option = 1,
     # Define the axis line and panel border for "full" style
     axis.line.x = element_blank()
     axis.line.y = element_blank()
-    panel.border = element_rect(size = 2, colour = "#40c7f4", fill = NA)
+    panel.border = element_rect(size = 2, colour = "black", fill = NA)
 
   } else {
     # Define the axis line and panel border for other styles
@@ -58,13 +58,14 @@ theme_ipea <- function(axis = c('none','half','full'),box_option = 1,
   }
 
   if (box_option == 1) {
-    # Define the strip background and text styles for box option 1
-    strip.background = element_rect(fill = "#003576")
-    strip.text = element_text(colour = 'white')
-  } else {
     # Define the strip background and text styles for other box options
     strip.background = element_rect(fill = "white")
     strip.text = element_text(colour = 'black')
+
+  } else {
+    # Define the strip background and text styles for box option 1
+    strip.background = element_rect(fill = "#003576")
+    strip.text = element_text(colour = 'white')
   }
 
 

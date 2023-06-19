@@ -25,6 +25,7 @@ insert_text <- function(label = NULL, decimals = 0,
     aes(
       label = paste0(gsub("\\.", ",", round(get(label), decimals)))
     ),
+    color = "black",
     position = position_dodge(width = 1),
     inherit.aes = TRUE,
     vjust = position, ...

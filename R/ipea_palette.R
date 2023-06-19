@@ -109,7 +109,7 @@ ipea_palette <- function(palette = c("crimson","orpheu","cartola","caqui",
     `ipea_third7`       = '#C8C8C8',
     `ipea_third8`       = '#003F1F',
     `ipea_third9`       = '#009D30',
-    `ipea_third10`       = '#97BF0D'
+    `ipea_third10`      = '#97BF0D'
 
   )
 
