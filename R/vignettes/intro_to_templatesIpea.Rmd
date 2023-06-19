@@ -388,5 +388,6 @@ graf2 <- ggplot(data = df, aes(fill = e_anosestudo)) +
   scale_fill_continuous_ipea(show.limits = T, name = "Anos de estudo")
 
 graf2
+save_eps(graf2,"graf2.eps")
 ```
 
