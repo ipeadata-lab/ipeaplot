@@ -134,28 +134,28 @@ mtcars <- mtcars %>%
 # Use the 'scale_ipea()' function to apply the IPEA continuous color scale
 ggplot(data = mtcars, aes(x = mpg, y = wt, color = wt)) +
   geom_point() +
-  scale_ipea(type = "continuous", style = "color")
+  theme_ipea(type = "continuous", style = "color")
 
 
 # Create a continuous scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'wt'
 # Use the 'scale_ipea()' function to apply the IPEA continuous fill scale
 ggplot(data = mtcars, aes(x = mpg, y = wt, fill = wt)) +
   geom_bar(stat="identity", position=position_dodge()) +
-  scale_ipea(type = "continuous", style = "fill")
+  theme_ipea(type = "continuous", style = "fill")
 
 
 # Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and color-coded by 'quantile'
 # Use the 'scale_ipea()' function to apply the IPEA discrete color scale
 ggplot(data = mtcars, aes(x = mpg, y = wt, color = quantile)) +
   geom_point() +
-  scale_ipea(type = "discrete", style = "color")
+  theme_ipea(type = "discrete", style = "color")
 
 
 # Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'quantile'
 # Use the 'scale_ipea()' function to apply the IPEA discrete fill scale
 ggplot(data = mtcars, aes(x = mpg, y = wt, fill = quantile)) +
   geom_bar(stat="identity", position=position_dodge()) +
-  scale_ipea(type = "discrete", style = "fill")
+  theme_ipea(type = "discrete", style = "fill")
 
 
 ```
@@ -185,8 +185,8 @@ ggplot(data = cons, aes(x = dec_date, y = tempo, color = assunto, group = assunt
   ggtitle(label = "Tempo", subtitle = "Brasil (%)") +
   # Set the color legend label using 'labs()'
   labs(color = "Assunto") +
-  # Apply the IPEA theme using 'theme_ipea()'
-  theme_ipea(legend.position = "right") +
+  # Apply the IPEA theme using 'ipea_style()'
+  ipea_style(legend.position = "right") +
   # Use the 'scale_color_discrete_ipea()' function to apply the IPEA discrete color scale
   scale_color_discrete_ipea()
 
@@ -200,9 +200,9 @@ ggplot(data = cons, aes(x = dec_date, y = tempo, color = assunto, group = assunt
   ylab('Tempo') +
   # Set the plot title and subtitle using 'ggtitle()'
   ggtitle(label = "Tempo", subtitle = "Brasil (%)") +
-  # Apply the IPEA theme using 'theme_ipea()'
+  # Apply the IPEA theme using 'ipea_style()'
   # Hide the legend using 'legend.position = "none"'
-  theme_ipea(legend.position = "none") +
+  ipea_style(legend.position = "none") +
   # Use the 'scale_color_discrete_ipea()' function to apply the IPEA discrete color scale
   scale_color_discrete_ipea()
 
@@ -233,8 +233,8 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, color = espvida, gr
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +
   # Apply the IPEA continuous color scale using 'scale_color_continuous_ipea()'
   scale_color_continuous_ipea() +
-  # Apply the IPEA theme using 'theme_ipea()'
-  theme_ipea(legend.position = "none")
+  # Apply the IPEA theme using 'ipea_style()'
+  ipea_style(legend.position = "none")
 
 ```
 
@@ -259,8 +259,8 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   # Set the plot title and subtitle using 'ggtitle()'
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +
-  # Apply the IPEA theme using 'theme_ipea()'
-  theme_ipea() +
+  # Apply the IPEA theme using 'ipea_style()'
+  ipea_style() +
   # Apply the IPEA continuous color scale to the fill using 'scale_fill_continuous_ipea()'
   scale_fill_continuous_ipea()
 
@@ -299,7 +299,7 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
    # Set the plot title and subtitle
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") + 
   # Apply the IPEA theme with no box around the plot
-  theme_ipea(box_option = 0) +  
+  ipea_style(box_option = 0) +  
   # Apply the IPEA continuous fill color scale
   scale_fill_continuous_ipea() +  
   # Set the y-axis limits
@@ -322,7 +322,7 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
   # Set the plot title and subtitle
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +  
   # Apply the default IPEA theme
-  theme_ipea() +  
+  ipea_style() +  
   # Apply the IPEA continuous fill color scale
   scale_fill_continuous_ipea() +  
   # Set the y-axis limits
@@ -381,11 +381,11 @@ graf2 <- ggplot(data = df, aes(fill = e_anosestudo)) +
   xlab("") + ylab("") +
 
   # Apply the IPEA theme with full axes and without text elements
-  theme_ipea(axis = "full", text = F) +
-
   # Apply the IPEA continuous fill scale to the 'e_anosestudo' variable,
   # showing the scale limits and providing a custom name for the legend
-  scale_fill_continuous_ipea(show.limits = T, name = "Anos de estudo")
+  theme_ipea(axis = "none", text = F,
+             show.limits = T,name = "Anos de estudo",
+             type = 'continuous', style = 'fill')
 
 graf2
 save_eps(graf2,"graf2.eps")

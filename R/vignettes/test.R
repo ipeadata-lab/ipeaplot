@@ -1,10 +1,15 @@
-library(templatesIpea)
-library(ggplot2)
-library(dplyr)
+
+
 
 
 
 # Exemplo 00: Gráfico   -------------
+remotes::install_github("ipeadata-lab/ipea_templates")
+
+
+library(templatesIpea)
+library(ggplot2)
+library(dplyr)
 data("mtcars")
 
 mtcars <- mtcars %>%
@@ -13,31 +18,18 @@ mtcars <- mtcars %>%
                 ifelse(carb == 3,"2-3",
                 ifelse(carb == 4,"3-4",NA)))))
 
-ipea_pal <- function() {
-  scales::manual_pal(c('#003576','#006EAB','#9CD2EB','#000000','#7D7D7D',
-                        '#C8C8C8','#003F1F','#009D30','#97BF0D'))
-}
 
-#' @rdname IpeaColor
-#' @export
-scale_colour_ipea <- function(...){
-  discrete_scale("colour", "ipea", ipea_pal(), ...)
-}
 
 # continuous
 ggplot() +
-  geom_point(data=mtcars, aes(x=mpg , y=cyl, color=cyl)) +
-  scale_color_continuous_ipea()
+  geom_point(data=mtcars, aes(x=mpg , y=cyl, fill=wt)) +
+  scale_fill_continuous_ipea()
 
 # discrete
 ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
   geom_point() +
   scale_colour_discrete_ipea()
 
-# discrete
-ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
-  geom_point() +
-  scale_colour_discrete_ipea(options = 'wrapper')
 
 # Exemplo 01: Gráfico de pontos  -------------
 
@@ -50,8 +42,51 @@ ggplot(data=cons, aes(x=dec_date, y=tempo, color=assunto, group = assunto)) +
   ylab('Tempo') +
   ggtitle(label = "Tempo", subtitle = "Brasil (%)") +
   labs(color = "Assunto") +
-  theme_ipea(legend.position = "right") +
+  ipea_style(legend.position = "right") +
   scale_color_discrete_ipea()
+
+
+data("mtcars")
+
+# Add a new variable 'quantile' to mtcars dataframe by cutting the 'wt' variable into quantile intervals
+mtcars <- mtcars %>%
+  mutate(
+    quantile = cut(
+      x = wt,
+      breaks = quantile(wt, probs = 0:4/4),
+      type = c('quantile', '(i-1)/(n-1)', 'i/(n+1)', 'i/n'),
+      include = TRUE,
+      labels = FALSE
+    ),
+    quantile = as.character(quantile)
+  )
+
+# Create a continuous scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and color-coded by 'wt'
+# Use the 'scale_ipea()' function to apply the IPEA continuous color scale
+ggplot(data = mtcars, aes(x = mpg, y = wt, color = wt)) +
+  geom_point() +
+  theme_ipea(type = "continuous", style = "color")
+
+
+# Create a continuous scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'wt'
+# Use the 'scale_ipea()' function to apply the IPEA continuous fill scale
+ggplot(data = mtcars, aes(x = mpg, y = wt, fill = wt)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  theme_ipea(type = "continuous", style = "fill")
+
+
+# Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and color-coded by 'quantile'
+# Use the 'scale_ipea()' function to apply the IPEA discrete color scale
+ggplot(data = mtcars, aes(x = mpg, y = wt, color = quantile)) +
+  geom_point() +
+  theme_ipea(type = "discrete", style = "color")
+
+
+# Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'quantile'
+# Use the 'scale_ipea()' function to apply the IPEA discrete fill scale
+ggplot(data = mtcars, aes(x = mpg, y = wt, fill = quantile)) +
+  geom_bar(stat="identity", position=position_dodge()) +
+  theme_ipea(type = "discrete", style = "fill")
 
 # Gráfico simples (sem legenda)
 ggplot(data=cons, aes(x=dec_date, y=tempo, color=assunto, group = assunto)) +
@@ -59,7 +94,7 @@ ggplot(data=cons, aes(x=dec_date, y=tempo, color=assunto, group = assunto)) +
   xlab('Ano') +
   ylab('Tempo') +
   ggtitle(label = "Tempo", subtitle = "Brasil (%)")+
-  theme_ipea(legend.position = "none") +
+  ipea_style(legend.position = "none") +
   scale_color_discrete_ipea()
 
 # Exemplo 02: Gráfico de linha -------------
@@ -73,11 +108,10 @@ ggplot(data=graph, aes(x=as.character(ano), y=espvida, color = espvida, group = 
   geom_point() +
   xlab('Ano') +
   ylab('Expectativa de vida') +
-  insert_text(label = "espvida", decimals = 0) +
-  scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
-  ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +
-  scale_color_continuous_ipea() +
-  theme_ipea(legend.position = "none")
+  theme_ipea(type = 'continuous', style = 'color',
+             label = 'espvida',
+             legend.position = 'none') +
+  ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)")
 
 # Exemplo 03: Gráfico de barras  -------------
 
@@ -94,7 +128,7 @@ ggplot(data=graph, aes(x=as.character(ano), y=espvida, fill=espvida)) +
   insert_text(label = "espvida", decimals = 0) +
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)")+
-  theme_ipea() +
+  ipea_style() +
   scale_fill_continuous_ipea()
 
 # Exemplo 3.1 - Gráfico para cada UF  -------------
@@ -118,7 +152,7 @@ ggplot(data=graph, aes(x=as.character(ano), y=espvida, fill=espvida)) +
   facet_wrap(.~regn) +
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)")+
-  theme_ipea(box_option = 0) +
+  ipea_style(box_option = 0) +
   scale_fill_continuous_ipea() +
   coord_cartesian(ylim = c(min(graph$espvida),max(graph$espvida)+10))
 
@@ -131,7 +165,7 @@ ggplot(data=graph, aes(x=as.character(ano), y=espvida, fill=espvida)) +
   facet_wrap(.~regn) +
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)")+
-  theme_ipea() +
+  ipea_style() +
   scale_fill_continuous_ipea() +
   coord_cartesian(ylim = c(min(graph$espvida),max(graph$espvida)+10))
 
@@ -150,7 +184,7 @@ graf2 <- ggplot(data = a, aes(fill = e_anosestudo)) +
   #geom_sf(data = uf, color = "black", fill = NA) +
   ggtitle("Anos de estudo", "Em anos") +
   xlab("")+ylab("") +
-  theme_ipea(axis = "none", text = F) +
+  ipea_style(axis = "full", text = F) +
   scale_fill_continuous_ipea( options = c("ipea1"))
 
 graf2
@@ -161,7 +195,7 @@ graf2 <- ggplot(data = df, aes(fill = e_anosestudo)) +
   geom_sf(data = uf, color = "black", fill = NA) +
   ggtitle("Anos de estudo", "Em anos") +
   xlab("")+ylab("") +
-  theme_ipea(axis = "full", text = F) +
-  scale_fill_continuous_ipea(show.limits = T,
-                             name = "Anos de estudo")
+  theme_ipea(axis = "none", text = F,
+             show.limits = T,name = "Anos de estudo",
+             type = 'continuous', style = 'fill')
 graf2
