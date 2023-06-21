@@ -31,8 +31,18 @@
 
 #' @rdname scale_ipea
 #' @export
-scale_ipea <- function(type = c('continuous','discrete'),
-                       style = c('colour','color','fill'),...){
+scale_ipea <- function(axis = c('none','half','full'),box_option = 1,
+                       text = T,legend.position,
+                       type = c('continuous','discrete'),
+                       style = c('colour','color','fill'),
+                       label = NULL, decimals = 0,
+                       show_percents = FALSE,
+                       position = c("inside", "outside"),...){
+
+  # Set type and style options if it is missing
+  type <- ifelse(missing(type), 'continuous', type)
+  style <- ifelse(missing(style), 'fill', style)
+
   if(type == 'continuous' & style == 'fill'){
     scale_fill_continuous_ipea()
   } else if(type == 'continuous' & (style == 'colour' | style == 'color')){
