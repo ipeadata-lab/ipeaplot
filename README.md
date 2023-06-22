@@ -1,6 +1,6 @@
 # ipeaplot: ggplot graphics in Ipea standard.
 
-<p align="justify">ipeaplot facilitate graphic formatting and color standardization in ggplot, according to the editorial guidelines of the Institute of Applied Economic Research (IPEA). It provides users with tools and functions that simplify the application of consistent color schemes and graphic styles, ensuring compliance with IPEA's publication standards. </p> 
+<p align="justify">`ipeaplot` facilitate graphic formatting and color standardization in ggplot, according to the editorial guidelines of the Institute of Applied Economic Research (IPEA). It provides users with tools and functions that simplify the application of consistent color schemes and graphic styles, ensuring compliance with IPEA's publication standards. </p> 
 
 ## Installation
 
@@ -13,7 +13,7 @@ library(ipeaplot)
 
 # Basic Usage
 
-The syntax of all `ipeaplot` functions operate on the same logic, making it intuitive to choose palettes or text options for any type of ggplot2 data and graphics using a single line of code. Like this:
+The syntax of all ``ipeaplot`` functions operate on the same logic, making it intuitive to choose palettes or text options for any type of ggplot2 data and graphics using a single line of code. Like this:
 
 ## R
 ```R
