@@ -1,6 +1,6 @@
 # ipeaplot: Creating graphics using Ipea's standard.
 
-<p align="justify">ipeaplot is a computational package designed to facilitate the standardization of colors and graphic formatting for text submissions for discussion (TD) and articles for the journal of the Institute of Applied Economic Research (IPEA). This package provides users with tools and functions that simplify the process of applying consistent color schemes and graphic styles in their work, ensuring conformity to the requirements and guidelines of the IPEA journal. By using ipeaplot, users can easily achieve visually appealing and professionally formatted text submissions for IPEA. (see detailed information below). </p> 
+<p align="justify">ipeaplot is a package designed to streamline graphic formatting and color standardization, in accordance with the editorial guidelines of the Institute of Applied Economic Research (IPEA). It provides users with tools and functions that simplify the application of consistent color schemes and graphic styles, ensuring compliance with IPEA's publication standards. </p> 
 
 The package is currently available in [**R**](https://CRAN.R-project.org/package=ipeaplot) 
 
