@@ -4,10 +4,6 @@
 
 The package is currently available in [**R**](https://CRAN.R-project.org/package=ipeaplot) 
 
-| ***R*** |
-|-----|
-| [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/ipeaplot)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![CRAN/METACRAN Total downloads](http://cranlogs.r-pkg.org/badges/grand-total/ipeaplot?color=blue)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![CRAN/METACRAN downloads per month](http://cranlogs.r-pkg.org/badges/ipeaplot?color=yellow)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![Codecov test coverage](https://codecov.io/gh/ipea-datalab/ipeaplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ipea-datalab/ipeaplot?branch=master)  <br /> [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) |
-
 ## Installation R
 
 ```R
