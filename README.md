@@ -4,9 +4,9 @@
 
 The package is currently available in [**R**](https://CRAN.R-project.org/package=ipeaplot) 
 
-| ***R*** | ***Python*** | ***Repo***|
-|-----|-----|----|
-| [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/ipeaplot)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![CRAN/METACRAN Total downloads](http://cranlogs.r-pkg.org/badges/grand-total/ipeaplot?color=blue)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![CRAN/METACRAN downloads per month](http://cranlogs.r-pkg.org/badges/ipeaplot?color=yellow)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![Codecov test coverage](https://codecov.io/gh/ipea-datalab/ipeaplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ipea-datalab/ipeaplot?branch=master)  <br /> [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) | [![PyPI version](https://badge.fury.io/py/ipeaplot.svg)](https://badge.fury.io/py/ipeaplot) <br />  [![Downloads](https://pepy.tech/badge/ipeaplot)](https://pepy.tech/project/ipeaplot) <br />  [![Downloads](https://pepy.tech/badge/ipeaplot/month)](https://pepy.tech/project/ipeaplot/month)  <br /> [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) |<img alt="GitHub stars" src="https://img.shields.io/github/stars/ipea-datalab/ipeaplot.svg?color=orange"> <br /> [![R build status](https://github.com/ipea-datalab/ipeaplot/workflows/R-CMD-check/badge.svg)](https://github.com/ipea-datalab/ipeaplot/actions) <br />  [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) |
+| ***R*** |
+|-----|
+| [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/ipeaplot)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![CRAN/METACRAN Total downloads](http://cranlogs.r-pkg.org/badges/grand-total/ipeaplot?color=blue)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![CRAN/METACRAN downloads per month](http://cranlogs.r-pkg.org/badges/ipeaplot?color=yellow)](https://CRAN.R-project.org/package=ipeaplot) <br /> [![Codecov test coverage](https://codecov.io/gh/ipea-datalab/ipeaplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ipea-datalab/ipeaplot?branch=master)  <br /> [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable) |
 
 ## Installation R
 
