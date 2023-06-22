@@ -2,9 +2,7 @@
 
 <p align="justify">ipeaplot facilitate graphic formatting and color standardization in ggplot, according to the editorial guidelines of the Institute of Applied Economic Research (IPEA). It provides users with tools and functions that simplify the application of consistent color schemes and graphic styles, ensuring compliance with IPEA's publication standards. </p> 
 
-The package is currently available in [**R**](https://CRAN.R-project.org/package=ipeaplot) 
-
-## Installation R
+## Installation
 
 ```R
 # Development version with latest features
