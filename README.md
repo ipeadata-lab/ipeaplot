@@ -51,8 +51,6 @@ ps: Temporary address subject to change in the future
 |`theme_ipea`| Adjust chart background colors to have IPEA theme and formatting |
 | ... | ... |
 
-## Coming soon:
-
 -----
 
 # Credits <img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/ipea.png?raw=true" alt="ipea" width="300">
