@@ -40,16 +40,7 @@ ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
 
 
 ```
-More examples in the [intro Vignette](https://rpubs.com/Pedrojorge7/templatesIpea)
-ps: Temporary address subject to change in the future
-
-## Other functions:
-
-| Function | Action|
-|-----|-----|
-| `ipea_text` | Insert text inside graphics |
-|`theme_ipea`| Adjust chart background colors to have IPEA theme and formatting |
-| ... | ... |
+More in [intro Vignette](https://rpubs.com/Pedrojorge7/templatesIpea) (temporary url).
 
 -----
 
