@@ -1,6 +1,6 @@
 Package: ipeaplot
 Type: Package
-Title: Creating plot using Ipea's standard.
+Title: ggplot graphics in Ipea standard.
 Version: 0.1.0
 Authors@R: c(
     person("Daniel","Lima", role=c("aut","cre"), email="daniel.viegas@ipea.gov.br"),
