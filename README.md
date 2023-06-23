@@ -13,8 +13,6 @@ library(ipeaplot)
 
 # Basic Usage
 
-The syntax of all ``ipeaplot`` functions operate on the same logic, making it intuitive to choose palettes or text options for any type of ggplot2 data and graphics using a single line of code. Like this:
-
 ## R
 ```R
 library(ipeaplot)
