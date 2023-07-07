@@ -5,7 +5,7 @@
 
 .onLoad <- function(libname, pkgname) {
   path = file.path(getwd(), "inst")
-  path = ifelse(dir.exists(path), path, find.package("templatesIpea"))
+  path = ifelse(dir.exists(path), path, find.package("ipeaplot"))
   #packageStartupMessage(path)
 
   font_import(path, prompt = F)
