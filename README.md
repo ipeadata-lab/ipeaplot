@@ -26,7 +26,9 @@ library(ggplot2)
 data("mtcars")
 ggplot() +
   geom_point(data=mtcars, aes(x=mpg , y=cyl, color=cyl)) +
-  theme_ipea()
+  theme_ipea() +
+  labs(title = "Relationship between Fuel Efficiency and Cylinders",
+       subtitle = "Cars from the mtcars dataset")
 ```
 
 The `theme_ipea` function will automatically apply the graphic settings
