@@ -34,5 +34,5 @@ defined by Ipea to the ggplot-created plot.
 
 ## Contribution
 
-If you encounter any issues or have suggestions for improvements to the
-Ipeaplot package, feel free to open an issue or submit a pull request.
+If you encounter any problem or have suggestions for improvements to the
+``ipeaplot`` package, feel free to open an issue.
