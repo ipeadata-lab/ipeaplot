@@ -4,49 +4,35 @@
 
 ## Installation
 
-```R
-# Development version with latest features
-utils::remove.packages('ipeaplot')
+To install the Ipeaplot package, you can use the following code:
+
+``` r
+# install.packages("devtools")
 devtools::install_github("ipeadata-lab/ipeaplot")
-library(ipeaplot)
 ```
 
-# Basic Usage
+## Usage
 
-## R
-```R
+### `theme_ipea`
+
+The `theme_ipea` function allows you to define graphical attributes such
+as axes, fonts, grid, and legends according to the editorial guidelines
+of Ipea. It can be used as follows:
+
+``` r
 library(ipeaplot)
 library(ggplot2)
 
 data("mtcars")
-
-mtcars <- mtcars %>%
-  mutate(carb = ifelse(carb == 1,"0-1",
-                ifelse(carb == 2,"1-2",
-                ifelse(carb == 3,"2-3",
-                ifelse(carb == 4,"3-4",NA)))))
-
-# continuous scale
 ggplot() +
   geom_point(data=mtcars, aes(x=mpg , y=cyl, color=cyl)) +
-  scale_color_continuous_ipea()
-
-# discrete scale
-ggplot(data=mtcars, aes(x=mpg , y=cyl, color=carb)) +
-  geom_point() +
-  scale_colour_discrete_ipea()
-
-
+  theme_ipea()
 ```
-More in [intro Vignette](https://rpubs.com/Pedrojorge7/templatesIpea) (temporary url).
 
------
+The `theme_ipea` function will automatically apply the graphic settings
+defined by Ipea to the ggplot-created plot.
 
-# Credits <img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/ipea.png?raw=true" alt="ipea" width="300">
+## Contribution
 
-The **ipeaplot** package is developed by a team at the Institute for Applied Economic Research (Ipea), Brazil. If you want to cite this package, you can cite it as:
-
-* Pereira, R.H.M.; Mation, L.F.; et. all (2023) **Creating graphics using Ipea's standard.**. GitHub repository - https://github.com/ipea-datalab/ipeaplot.
-
-
-
+If you encounter any issues or have suggestions for improvements to the
+Ipeaplot package, feel free to open an issue or submit a pull request.
