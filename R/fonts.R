@@ -8,11 +8,11 @@
   path = ifelse(dir.exists(path), path, find.package("ipeaplot"))
   #packageStartupMessage(path)
 
-  font_import(path, prompt = F)
-  loadfonts("win")
+  extrafont::font_import(path, prompt = F)
+  extrafont::loadfonts("win")
 
-  suppressMessages(font_import(path, prompt = F))
-  suppressMessages(loadfonts("win"))
+  suppressMessages(extrafont::font_import(path, prompt = F))
+  suppressMessages(extrafont::loadfonts("win"))
 
 
 

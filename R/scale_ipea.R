@@ -2,15 +2,15 @@
 #'
 #' @description Generate a color palette (continuous or discrete) in the formatting of texts published by the Institute of Applied Economic Research (IPEA)
 #'
-#' @param options A character vector specifying the available options for the color palette. \cr
-#' The default options are "crimson", "orpheu", "cartola", "caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and "manual". \cr
+#' @param palette A character vector specifying the available palette for the color palette. \cr
+#' The default palette are "crimson", "orpheu", "cartola", "caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and "manual". \cr
 #' low, mid, high: Colors to be used for the low, mid, and high values of the gradient, respectively.  \cr
 #' These parameters are used when the "manual" option is selected.
 #'
 #' @param direction A character vector specifying the direction of the color gradient. \cr
-#' The available options are "horizontal" and "vertical". The default value is "horizontal".
+#' The available palette are "horizontal" and "vertical". The default value is "horizontal".
 #'
-#' @param colours A vector of colors to be used for the gradient. This parameter is used when options other than "manual" are selected.
+#' @param colours A vector of colors to be used for the gradient. This parameter is used when palette other than "manual" are selected.
 #'
 #' @param show.limits A logical value indicating whether to display the color gradient limits. The default value is TRUE.
 #'
@@ -28,71 +28,114 @@
 #'
 #' @export
 
-
-#' @rdname scale_ipea
+#' @rdname scale_colour_ipea
 #' @export
-scale_ipea <- function(axis = c('none','half','full'),box_option = 1,
-                       text = T,legend.position,
-                       type = c('continuous','discrete'),
-                       style = c('colour','color','fill'),
-                       label = NULL, decimals = 0,
-                       show_percents = FALSE,
-                       position = c("inside", "outside"),...){
+scale_colour_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
+                              direction = c('horizontal','vertical'),
+                              show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
-  # Set type and style options if it is missing
-  type <- ifelse(missing(type), 'continuous', type)
-  style <- ifelse(missing(style), 'fill', style)
+  # Set direction to 'vertical' if it is not provided, otherwise use the provided value
+  direction <- ifelse(missing(direction), "vertical", direction)
 
-  if(type == 'continuous' & style == 'fill'){
-    scale_fill_continuous_ipea()
-  } else if(type == 'continuous' & (style == 'colour' | style == 'color')){
-    scale_colour_continuous_ipea()
-  } else if(type == 'discrete' & (style == 'colour' | style == 'color')){
-    scale_colour_discrete_ipea()
-  } else if(type == 'discrete' & style == 'fill'){
-    scale_fill_discrete_ipea()
-  } else{
-    stop("Type options must be 'continuous' or 'discrete' and Style options must be 'colour' or 'fill'")
+  # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
+  palette <- ifelse(missing(palette), 'ipeatd', palette)
+
+
+  if (pt_br == T) {
+    # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
+    labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
+  } else {
+    # Use dot as decimal mark and comma as thousand separator for labels (default)
+    labels = scales::label_comma(decimal.mark = ".", big.mark = ",")
+  }
+
+  if (show.limits) {
+    # Set show.limits to TRUE if it is not provided
+    show.limits = T
+  } else {
+    # Set show.limits to FALSE if it is not provided
+    show.limits = F
+  }
+
+  if (direction == 'vertical') {
+    barheight = NULL  # Set barheight to NULL if direction is 'vertical'
+    barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
+    title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
+    label.hjust = NULL  # Set label.hjust to NULL if direction is 'vertical'
+  } else {
+    barheight = unit(2, units = "mm")  # Set barheight to 2mm if direction is not 'vertical'
+    barwidth = unit(50, units = "mm")  # Set barwidth to 50mm if direction is not 'vertical'
+    title.hjust = 0.5  # Set title.hjust to 0.5 if direction is not 'vertical'
+    label.hjust = 0.5  # Set label.hjust to 0.5 if direction is not 'vertical'
+  }
+
+  if(isFALSE(discrete)){
+    if(!palette %in% c('ipeatd','ipea2','ipea3')){
+      graph <- ggplot2::scale_fill_distiller (
+        palette = gsub("ipea","",palette),
+        direction = direction,
+        aesthetics = "colour", ...)
+    } else {
+
+      # Set palette option
+      colours <- ipea_palette(palette = palette)
+
+      # Graph
+      graph <- ggplot2::scale_color_gradientn(
+        labels = labels,  # Set the labels for the gradient scale
+        colours = colours,  # Set the colours for the gradient scale
+        guide = guide_coloursteps(
+          show.limits = show.limits,  # Set whether to show the limits on the colour scale
+          direction = direction,  # Set the direction of the colour scale
+          barheight = barheight,  # Set the height of the colour scale bar
+          barwidth = barwidth,  # Set the width of the colour scale bar
+          draw.ulim = F,  # Set whether to draw the upper limit line
+          title.position = 'top',  # Set the position of the title
+          # some shifting around
+          title.hjust = title.hjust,  # Set the horizontal alignment of the title
+          label.hjust = label.hjust  # Set the horizontal alignment of the labels
+        ),...)
   }
 }
+  if(isTRUE(discrete)){
+    if(!palette %in% c('ipeatd','ipea2','ipea3')){
+      graph <- ggplot2::scale_color_brewer(
+       # type = type,
+        palette = gsub("ipea","",palette),
+        direction = direction,
+        aesthetics = "colour", ...)
+    } else {
 
-#' @rdname scale_colour_discrete_ipea
-#' @export
-scale_colour_discrete_ipea <- function(options = c("crimson","orpheu","cartola","caqui",
-                                                   "post","wrapper","blue_red","ipea1",
-                                                   "ipea2",'ipea3'),...){
+      # Set palette option
+      colours <- scales::manual_pal(c(ipea_palette(palette = palette)))
 
-  # Set options to 'ipea1' if it is missing
-  options <- ifelse(missing(options), 'ipea1', options)
+      # Create a discrete colour scale with the specified palette
+      graph <- ggplot2::discrete_scale("colour", "ipea", colours, ...)
 
-  # Set pallete option
-  colours <- scales::manual_pal(c(ipea_palette(palette = options)))
-
-  # Create a discrete colour scale with the specified palette
-  ggplot2::discrete_scale("colour", "ipea", colours, ...)
-
+    }
+  }
+  return(graph)
 }
 
-#' @rdname scale_color_discrete_ipea
+
+#' @rdname scale_color_ipea
 #' @export
 # Correction of argument if it is written wrong
-scale_color_discrete_ipea <- scale_colour_discrete_ipea
+scale_color_ipea <- scale_colour_ipea
 
 
 
-#' @rdname scale_colour_continuous_ipea
+#' @rdname scale_fill_ipea
 #' @export
-scale_colour_continuous_ipea <- function(options = c("crimson","orpheu","cartola","caqui",
-                                                     "post","wrapper","blue_red","ipea1",
-                                                     "ipea2",'ipea3',"manual"),low = NULL, mid = NULL,  high = NULL,
+scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
                                          direction = c('horizontal','vertical'),colours,
                                          show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value
   direction <- ifelse(missing(direction), "vertical", direction)
 
-  # Set options to 'ipea1' if it is not provided, otherwise use the provided value
-  options <- ifelse(missing(options), 'ipea1', options)
+  # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
+  palette <- ifelse(missing(palette), 'ipeatd', palette)
 
 
   if (pt_br == T) {
@@ -123,190 +166,52 @@ scale_colour_continuous_ipea <- function(options = c("crimson","orpheu","cartola
     label.hjust = 0.5  # Set label.hjust to 0.5 if direction is not 'vertical'
   }
 
-  if(options == "manual"){
-
-    if (missing(mid)) {
-      # Set colours to a vector containing low and high if mid is missing
-      colours = c(low, high)
-      # Set values to a vector containing 0 and 1 if mid is missing
-      values = c(0, 1)
+  if(isFALSE(discrete)){
+    if(!palette %in% c('ipeatd','ipea2','ipea3')){
+      graph <- ggplot2::scale_fill_distiller (
+        palette = gsub("ipea","",palette),
+        direction = direction,
+        aesthetics = "fill", ...)
     } else {
-      # Set colours to a vector containing low, mid, and high if mid is present
-      colours = c(low, mid, high)
-      # Set values to a vector containing 0, 0.5, and 1 if mid is present
-      values = c(0, 0.5, 1)
-    }
 
-    ggplot2::scale_fill_gradientn(
-      labels = labels,  # Set the labels for the gradient scale
-      colours = colours,  # Set the colours for the gradient scale
-      values = values,  # Set the values for the gradient scale
-      guide = guide_coloursteps(
-        show.limits = show.limits,  # Set whether to show the limits on the colour scale
-        direction = direction,  # Set the direction of the colour scale
-        barheight = barheight,  # Set the height of the colour scale bar
-        barwidth = barwidth,  # Set the width of the colour scale bar
-        draw.ulim = F,  # Set whether to draw the upper limit line
-        title.position = 'top',  # Set the position of the title
-        # some shifting around
-        title.hjust = title.hjust,  # Set the horizontal alignment of the title
-        label.hjust = label.hjust  # Set the horizontal alignment of the labels
-      ),...
-    )
+      # Set palette option
+      colours <- ipea_palette(palette = palette)
 
-  } else {
-
-    # Set pallete option
-    colours <- ipea_palette(palette = options)
-
-    # Graph
-    ggplot2::scale_color_gradientn(
+      # Graph
+      graph <- ggplot2::scale_color_gradientn(
         labels = labels,  # Set the labels for the gradient scale
-        colours = colours,  # Set the colours for the gradient scale
+        colours = colours,  # Set the fills for the gradient scale
         guide = guide_coloursteps(
-           show.limits = show.limits,  # Set whether to show the limits on the colour scale
-           direction = direction,  # Set the direction of the colour scale
-           barheight = barheight,  # Set the height of the colour scale bar
-           barwidth = barwidth,  # Set the width of the colour scale bar
-           draw.ulim = F,  # Set whether to draw the upper limit line
-           title.position = 'top',  # Set the position of the title
-           # some shifting around
-           title.hjust = title.hjust,  # Set the horizontal alignment of the title
-           label.hjust = label.hjust  # Set the horizontal alignment of the labels
-                                   ),...)
-  }
-
-
-}
-
-#' @rdname scale_color_continuous_ipea
-#' @export
-# Correction of argument if it is written wrong
-scale_color_continuous_ipea <- scale_colour_continuous_ipea
-
-
-
-
-
-
-#' @rdname scale_fill_discrete_ipea
-#' @export
-scale_fill_discrete_ipea <- function(options = c("crimson","orpheu","cartola","caqui",
-                                                 "post","wrapper","blue_red","ipea1",
-                                                 "ipea2",'ipea3'),...){
-  # Set options to 'ipea1' if it is missing
-  options <- ifelse(missing(options), 'ipea1', options)
-
-  # Set pallete option
-  colours <- scales::manual_pal(c(ipea_palette(palette = options)))
-
-  # Create a discrete colour scale with the specified palette
-  ggplot2::discrete_scale("fill", "ipea", colours, ...)
-
-}
-
-#' @rdname scale_fill_continuous_ipea
-#' @export
-scale_fill_continuous_ipea <- function(options = c("crimson","orpheu","cartola","caqui",
-                                                   "post","wrapper","blue_red","ipea1",
-                                                   "ipea2",'ipea3',"manual"),low = NULL, mid = NULL,  high = NULL,
-                                       direction = c('horizontal','vertical'),colours,
-                                       show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
-
-  # Set direction to 'vertical' if it is not provided, otherwise use the provided value
-  direction <- ifelse(missing(direction), "vertical", direction)
-
-  # Set options to 'ipea1' if it is not provided, otherwise use the provided value
-  options <- ifelse(missing(options), 'ipea1', options)
-
-
-  if (pt_br == T) {
-    # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
-    labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
-  } else {
-    # Use dot as decimal mark and comma as thousand separator for labels (default)
-    labels = scales::label_comma(decimal.mark = ".", big.mark = ",")
-  }
-
-  if (show.limits) {
-    # Set show.limits to TRUE if it is not provided
-    show.limits = T
-  } else {
-    # Set show.limits to FALSE if it is not provided
-    show.limits = F
-  }
-
-  if (direction == 'vertical') {
-    barheight = NULL  # Set barheight to NULL if direction is 'vertical'
-    barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
-    title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
-    label.hjust = NULL  # Set label.hjust to NULL if direction is 'vertical'
-  } else {
-    barheight = unit(2, units = "mm")  # Set barheight to 2mm if direction is not 'vertical'
-    barwidth = unit(50, units = "mm")  # Set barwidth to 50mm if direction is not 'vertical'
-    title.hjust = 0.5  # Set title.hjust to 0.5 if direction is not 'vertical'
-    label.hjust = 0.5  # Set label.hjust to 0.5 if direction is not 'vertical'
-  }
-
-
-
-
-  if (options == "manual") {
-
-    if (missing(mid)) {
-      # Set colours to a vector containing low and high if mid is missing
-      colours = c(low, high)
-      # Set values to a vector containing 0 and 1 if mid is missing
-      values = c(0, 1)
-    } else {
-      # Set colours to a vector containing low, mid, and high if mid is present
-      colours = c(low, mid, high)
-      # Set values to a vector containing 0, 0.5, and 1 if mid is present
-      values = c(0, 0.5, 1)
+          show.limits = show.limits,  # Set whether to show the limits on the fill scale
+          direction = direction,  # Set the direction of the fill scale
+          barheight = barheight,  # Set the height of the fill scale bar
+          barwidth = barwidth,  # Set the width of the fill scale bar
+          draw.ulim = F,  # Set whether to draw the upper limit line
+          title.position = 'top',  # Set the position of the title
+          # some shifting around
+          title.hjust = title.hjust,  # Set the horizontal alignment of the title
+          label.hjust = label.hjust  # Set the horizontal alignment of the labels
+        ),...)
     }
-
-    # Create a gradient scale with custom colours and values
-    ggplot2::scale_fill_gradientn(
-      labels = labels,  # Set the labels for the gradient scale
-      colours = colours,  # Set the colours for the gradient scale
-      values = values,  # Set the values for the gradient scale
-      guide = guide_coloursteps(
-        show.limits = show.limits,  # Set whether to show the limits on the colour scale
-        direction = direction,  # Set the direction of the colour scale
-        barheight = barheight,  # Set the height of the colour scale bar
-        barwidth = barwidth,  # Set the width of the colour scale bar
-        draw.ulim = F,  # Set whether to draw the upper limit line
-        title.position = 'top',  # Set the position of the title
-        # some shifting around
-        title.hjust = title.hjust,  # Set the horizontal alignment of the title
-        label.hjust = label.hjust  # Set the horizontal alignment of the labels
-      ), ...
-    )
-
-  } else {
-
-    # Set pallete option
-    colours <- ipea_palette(palette = options)
-
-    # Create a gradient scale with predefined colours
-    ggplot2::scale_fill_gradientn(
-      labels = labels,  # Set the labels for the gradient scale
-      colours = colours,  # Set the colours for the gradient scale
-      guide = guide_coloursteps(
-        show.limits = show.limits,  # Set whether to show the limits on the colour scale
-        direction = direction,  # Set the direction of the colour scale
-        barheight = barheight,  # Set the height of the colour scale bar
-        barwidth = barwidth,  # Set the width of the colour scale bar
-        draw.ulim = F,  # Set whether to draw the upper limit line
-        title.position = 'top',  # Set the position of the title
-        # some shifting around
-        title.hjust = title.hjust,  # Set the horizontal alignment of the title
-        label.hjust = label.hjust  # Set the horizontal alignment of the labels
-      ), ...
-    )
-
   }
+  if(isTRUE(discrete)){
+    if(!palette %in% c('ipeatd','ipea2','ipea3')){
+      graph <- ggplot2::scale_color_brewer(
+        # type = type,
+        palette = gsub("ipea","",palette),
+        direction = direction,
+        aesthetics = "fill", ...)
+    } else {
+
+      # Set palette option
+      fills <- scales::manual_pal(c(ipea_palette(palette = palette)))
+
+      # Create a discrete fill scale with the specified palette
+      graph <- ggplot2::discrete_scale("fill", "ipea", fills, ...)
+
+    }
+  }
+  return(graph)
 
 }
-
 

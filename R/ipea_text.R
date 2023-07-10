@@ -11,16 +11,7 @@
 #' @return A `geom_text` layer with text labels added to the plot.
 #' @import ggplot2
 #' @export
-insert_text <- function(axis = c('none','half','full'),box_option = 1,
-                        text = T,legend.position,
-                        type = c('continuous','discrete'),
-                        style = c('colour','color','fill'),
-                        options = c("crimson","orpheu","cartola","caqui",
-                                    "post","wrapper","blue_red","ipea1",
-                                    "ipea2",'ipea3',"manual"),low = NULL, mid = NULL,  high = NULL,
-                        direction = c('horizontal','vertical'),colours,
-                        show.limits = T, pt_br = T ,barheight = 2,barwidth = 50,
-                        label = NULL, decimals = 0,
+insert_text <- function(label = NULL, decimals = 0,
                         show_percents = FALSE,
                         position = c("inside", "outside"), ...) {
 
