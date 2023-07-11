@@ -192,6 +192,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
           title.hjust = title.hjust,  # Set the horizontal alignment of the title
           label.hjust = label.hjust  # Set the horizontal alignment of the labels
         ),...)
+
     }
   }
   if(isTRUE(discrete)){
@@ -211,6 +212,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
 
     }
   }
+
   return(graph)
 
 }

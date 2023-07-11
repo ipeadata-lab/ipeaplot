@@ -108,24 +108,29 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.title.x = ggplot2::element_text(vjust = -0.4),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
-      size = 10, lineheight = 12,
-      family = "Frutiger LT Condensed", hjust = 0
+      size = 10, lineheight = 12, hjust = 0
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
-      size = 9, lineheight = 10.8,
-      family = "Frutiger LT Condensed", face = "bold", hjust = 0
+      size = 9, lineheight = 10.8, face = "bold", hjust = 0
     ),
     # Sets the appearance of the legend text
-    legend.text = ggplot2::element_text(size = 7, family = "Frutiger LT Condensed"),
+    legend.text = ggplot2::element_text(size = 7),
     # Set caption position
     plot.caption = element_text(hjust = 0),
     # Sets the horizontal alignment of the legend to center
     legend.justification = "center",
+    # Sets legend spacing
+    legend.spacing.x = unit(5, 'mm'),
+    #
+    legend.key.size = unit(5,"mm","line"),
+    # Adjust haste length
+    axis.ticks.length = unit(2, "mm"),
     ...
   ),
   annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',
-           x = Inf, xend = Inf, size = 1))
+           x = Inf, xend = Inf, size = 1),
+  scale_y_continuous(expand = c(0, 0), breaks = scales::pretty_breaks(n = 10)))
 
 }
 
