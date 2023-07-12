@@ -73,7 +73,7 @@ theme_ipea <- function(axis = c('none','half','full'),
 
 
 
-    list(ggplot2::theme_gray(base_family = "Frutiger LT Condensed"),
+    list(ggplot2::theme_gray(base_family = "Frutiger LT Light Cond"),
          ggplot2::theme(
     # Sets the background color of the panel to white
     panel.background = ggplot2::element_rect(fill = "white", colour = NA),
