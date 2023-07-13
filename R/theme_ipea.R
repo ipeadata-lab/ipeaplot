@@ -108,11 +108,13 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.title.x = ggplot2::element_text(vjust = -0.4),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
-      size = 10, lineheight = 12, hjust = 0
+      size = 10, lineheight = 12, hjust = 0,
+      margin = margin(0,0,0,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
-      size = 9, lineheight = 10.8, face = "bold", hjust = 0
+      size = 9, lineheight = 10.8, face = "bold", hjust = 0,
+      margin = margin(0,0,3,0, unit = 'mm'),
     ),
     # Sets the appearance of the legend text
     legend.text = ggplot2::element_text(size = 7),
@@ -121,7 +123,11 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Sets the horizontal alignment of the legend to center
     legend.justification = "center",
     # Sets legend spacing
-    legend.spacing.x = unit(5, 'mm'),
+    legend.spacing.x = unit(2, 'mm'),
+    #
+    legend.spacing.y = unit(2, 'mm'),
+    #
+    legend.margin= margin(t= unit(8, 'mm')),
     #
     legend.key.size = unit(5,"mm","line"),
     # Adjust haste length
