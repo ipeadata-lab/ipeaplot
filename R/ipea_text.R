@@ -13,7 +13,7 @@
 #' @export
 insert_text <- function(label = NULL, decimals = 0,
                         show_percents = FALSE,
-                        position = c("inside", "outside"), ...) {
+                        vertical = TRUE, ...){
 
 
 
@@ -21,41 +21,49 @@ insert_text <- function(label = NULL, decimals = 0,
 
   } else {
 
-    # Set the default position to "outside" if not provided by the user
-    position <- ifelse(missing(position), 'outside', position)
-
     # Convert the position to numeric values based on "inside" or "outside"
-    position <- ifelse(position == "outside", -0.5, 1.5)
+    vjust <- ifelse(vertical == TRUE, -0.5, 0.2)
+
+    # Horizontal position have different position
+    hjust <- ifelse(vertical == TRUE, 0.5, -0.1)
 
 
 
     if (show_percents) {
       # Add text labels to the plot using the `geom_text` function
-      ggplot2::geom_text(
+      text <- ggplot2::geom_text(
         aes(
           label = paste0(gsub("\\.", ",", round(get(label), decimals)), "%")
         ),
         color = "black",
         position = position_dodge(width = 1),
         inherit.aes = TRUE,
-        vjust = position, ...
+        vjust = vjust,
+        hjust = hjust, ...
       )
     } else {
       # Add text labels to the plot using the `geom_text` function
-      ggplot2::geom_text(
+      text <- ggplot2::geom_text(
         aes(
           label = paste0(gsub("\\.", ",", round(get(label), decimals)))
         ),
         color = "black",
         position = position_dodge(width = 1),
         inherit.aes = TRUE,
-        vjust = position, ...
+        vjust = vjust,
+        hjust = hjust, ...
       )
     }
-
-
   }
 
+
+    if(vertical){
+
+    } else{
+      text <- list(text,ggplot2::coord_flip())
+    }
+
+  return(text)
 
 }
 

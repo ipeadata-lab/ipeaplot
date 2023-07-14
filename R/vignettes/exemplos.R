@@ -50,18 +50,69 @@ pie <- bp + coord_polar("y",start=0) +
   theme_ipea(legend.position = 'bottom', axis = 'none')
 pie
 
-# Get the positions
-df2 <- df %>%
-  mutate(csum = rev(cumsum(rev(value))),
-         pos = value/2 + lead(csum, 1),
-         pos = if_else(is.na(pos), value/2, pos))
+# Exemplo 3
+graph <- abjData::pnud_uf %>% filter(ano == 2010)
 
-ggplot(df, aes(x = "" , y = value, fill = fct_inorder(group))) +
-  geom_col(width = 1, color = 1) +
-  coord_polar(theta = "y") +
-  scale_fill_brewer(palette = "Pastel1") +
-  geom_label_repel(data = df2,
-                   aes(y = pos, label = paste0(value, "%")),
-                   size = 4.5, nudge_x = 1, show.legend = FALSE) +
-  guides(fill = guide_legend(title = "Group")) +
-  theme_void()
+ggplot(graph, aes(x = ufn, y = rdpc))+
+  geom_bar(stat = "identity", fill = 'blue') +
+  insert_text(label = "rdpc", vertical = F) +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 5",
+       subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
+       caption = 'Fonte: ipea') +
+  theme_ipea(legend.position = 'bottom')
+
+
+
+# Exemplo 4
+# populacao
+pop <- sidrar::get_sidra(6579, period = c(paste0(2000:2020)), geo = "Brazil")
+pop <- janitor::clean_names(pop)
+pop <- dplyr::select(pop, ano , pop = valor)
+
+
+
+ggplot(pop, aes(x = ano, y = pop))+
+  geom_bar(stat = "identity", fill = 'blue') +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 5",
+       subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
+       caption = 'Fonte: ipea') +
+  theme_ipea(legend.position = 'bottom')
+
+
+# Exemplo 5
+set.seed(123)
+df <- expand.grid(ufn = distinct(abjData::pnud_uf, ufn)$ufn,
+                  situacao = c('muito ruim','ruim','mediano','bom','muito bom'))
+df$num <- runif(nrow(df))
+df <- df %>%
+  group_by(ufn) %>%
+  mutate(prop = round((num/sum(num))*100,0))
+
+graph <- arrange(transform(df,
+                              Categoria =
+                                factor(df$situacao,
+                                       levels=c('muito ruim','ruim','mediano','bom','muito bom'))),
+                    df$situacao)
+
+graph <- graph %>% mutate(label = paste(prop,"%"),
+                          label = ifelse(prop < 5,"",label))
+
+ggplot(graph, aes(x = ufn, y = prop, fill = situacao))+
+  geom_bar(stat = "identity")+
+  geom_text(aes(label = label, y = prop),size = 4,
+            position = position_stack(vjust = 0.5))+
+  coord_flip() +
+  scale_fill_ipea(discrete = T) +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 5",
+       subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
+       caption = 'Fonte: ipea') +
+  theme_ipea(legend.position = 'bottom')
