@@ -3,7 +3,7 @@
 # https://www.ipea.gov.br/sites/manualeditorial/padroes-editoriais/padroes-grafico-visuais/ilustracoes/graficos
 #remotes::install_github("ipeadata-lab/ipeaplot")
 
-# library(ipeaplot)
+library(ipeaplot)
 library(ggplot2)
 library(dplyr)
 ## Exemplo 1
@@ -33,13 +33,11 @@ graph <- abjData::pnud_uf %>%
   select(1:3,pop) %>%
   mutate(share = (pop/sum(pop))*100)
 
-library(ggplot2)
-# Barplot
-bp<- ggplot(graph, aes(x="", y=share, fill=ufn))+
-  geom_bar(width = 1, stat = "identity")
-bp
 
-pie <- bp + coord_polar("y",start=0) +
+# Barplot
+bp <- ggplot(graph, aes(x="", y=share, fill=ufn))+
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y",start=0) +
   scale_fill_ipea(discrete = T, palette = 'Blues') +
   labs(x="",
        y="",
@@ -48,7 +46,7 @@ pie <- bp + coord_polar("y",start=0) +
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
   theme_ipea(legend.position = 'bottom', axis = 'none')
-pie
+bp
 
 # Exemplo 3
 graph <- abjData::pnud_uf %>% filter(ano == 2010)
@@ -68,6 +66,7 @@ ggplot(graph, aes(x = ufn, y = rdpc))+
 
 # Exemplo 4
 # populacao
+options(scipen = 999)
 pop <- sidrar::get_sidra(6579, period = c(paste0(2000:2020)), geo = "Brazil")
 pop <- janitor::clean_names(pop)
 pop <- dplyr::select(pop, ano , pop = valor)
@@ -86,6 +85,34 @@ ggplot(pop, aes(x = ano, y = pop))+
 
 
 # Exemplo 5
+# populacao
+options(scipen = 999)
+pop <- sidrar::get_sidra(6579, period = c(paste0(2000:2020)), geo = "Brazil")
+pop <- janitor::clean_names(pop)
+pop <- dplyr::select(pop, ano , pop = valor)
+
+pib <- sidrar::get_sidra(5938, period = c(paste0(2000:2020)), geo = "Brazil")
+pib <- janitor::clean_names(pib)
+pib <- subset(pib, variavel == "Produto Interno Bruto a preços correntes")
+pib <- dplyr::select(pib, ano , pib = valor)
+
+pib_pc <- left_join(pib,pop) %>% mutate(pib_pc = pib/pop) %>% filter(!is.na(pib_pc))
+
+ggplot(pib_pc, aes(x = ano, y = pib_pc))+
+  geom_line(fill = 'blue', group = 1) +
+  geom_point() +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 5",
+       subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
+       caption = 'Fonte: ipea') +
+  insert_text() +
+  theme_ipea(legend.position = 'bottom')
+
+
+
+# Exemplo 6
 set.seed(123)
 df <- expand.grid(ufn = distinct(abjData::pnud_uf, ufn)$ufn,
                   situacao = c('muito ruim','ruim','mediano','bom','muito bom'))
