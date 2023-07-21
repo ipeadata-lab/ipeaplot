@@ -1,22 +1,24 @@
 
 ## Exemplos de acordo com site
 # https://www.ipea.gov.br/sites/manualeditorial/padroes-editoriais/padroes-grafico-visuais/ilustracoes/graficos
-#remotes::install_github("ipeadata-lab/ipeaplot")
+remotes::install_github("ipeadata-lab/ipeaplot")
 
 library(ipeaplot)
 library(ggplot2)
 library(dplyr)
+extrafont::fonttable()
 ## Exemplo 1
 graph <- abjData::pnud_uf %>%
   filter(substr(uf,1,1) == "3") %>%
   select(1:4)
+
 
 # Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'quantile'
 # Use the 'scale_ipea()' function to apply the IPEA discrete fill scale
 ggplot(data = graph, aes(x = ufn,
                          y = espvida,
                          fill = as.character(ano))) +
-  geom_bar(stat="identity", position=position_dodge()) +
+  geom_bar(stat="identity", width= 0.5) +
   scale_fill_ipea(discrete = T) +
   labs(x="",
        y="",
@@ -24,7 +26,7 @@ ggplot(data = graph, aes(x = ufn,
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  theme_ipea(legend.position = 'bottom')
+  theme_ipea(legend.position = 'bottom', geom = 'bar')
 
 
 # Exemplo 2
@@ -52,7 +54,7 @@ bp
 graph <- abjData::pnud_uf %>% filter(ano == 2010)
 
 ggplot(graph, aes(x = ufn, y = rdpc))+
-  geom_bar(stat = "identity", fill = 'blue') +
+  geom_bar(stat = "identity", fill = 'blue', width= 0.5) +
   insert_text(label = "rdpc", vertical = F) +
   labs(x="",
        y="",
@@ -60,7 +62,7 @@ ggplot(graph, aes(x = ufn, y = rdpc))+
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  theme_ipea(legend.position = 'bottom')
+  theme_ipea(legend.position = 'bottom', geom = 'bar')
 
 
 
@@ -73,15 +75,15 @@ pop <- dplyr::select(pop, ano , pop = valor)
 
 
 
-ggplot(pop, aes(x = ano, y = pop))+
-  geom_bar(stat = "identity", fill = 'blue') +
+ggplot(pop, aes(x = ano, y = pop/1000000))+
+  geom_bar(stat = "identity", fill = 'blue', width= 0.5) +
   labs(x="",
        y="",
        fill = "",
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  theme_ipea(legend.position = 'bottom')
+  theme_ipea(legend.position = 'bottom', geom = 'bar')
 
 
 # Exemplo 5
@@ -107,19 +109,38 @@ ggplot(pib_pc, aes(x = ano, y = pib_pc))+
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  insert_text() +
+  insert_text(label = 'pib_pc') +
   theme_ipea(legend.position = 'bottom')
 
-
-
 # Exemplo 6
+graph <- abjData::pnud_uf %>%
+  mutate(reg = ifelse(substr(uf,1,1) == 1,'A - Norte',
+               ifelse(substr(uf,1,1) == 2,'B - Nordeste',
+               ifelse(substr(uf,1,1) == 3,'C - Sudeste',
+               ifelse(substr(uf,1,1) == 4,'D - Sul','E  Centro-Oeste'))))) %>%
+  group_by(reg,ano) %>% dplyr::summarise(rdpc = weighted.mean(rdpc, w = pop))
+
+ggplot(graph, aes(x = as.character(ano), y = rdpc))+
+  geom_bar(stat = "identity", fill = 'blue', width= 0.5) +
+  insert_text(label = "rdpc", vertical = T) +
+  facet_wrap(.~reg, scales = 'free') +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 5",
+       subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
+       caption = 'Fonte: ipea') +
+  theme_ipea(legend.position = 'bottom', geom = 'bar')
+
+# Exemplo 7
 set.seed(123)
 df <- expand.grid(ufn = distinct(abjData::pnud_uf, ufn)$ufn,
                   situacao = c('muito ruim','ruim','mediano','bom','muito bom'))
 df$num <- runif(nrow(df))
 df <- df %>%
   group_by(ufn) %>%
-  mutate(prop = round((num/sum(num))*100,0))
+  mutate(prop = (num/sum(num))*100,
+         total = sum(prop))
 
 graph <- arrange(transform(df,
                               Categoria =
@@ -127,14 +148,11 @@ graph <- arrange(transform(df,
                                        levels=c('muito ruim','ruim','mediano','bom','muito bom'))),
                     df$situacao)
 
-graph <- graph %>% mutate(label = paste(prop,"%"),
-                          label = ifelse(prop < 5,"",label))
+graph <- graph %>% mutate(label = paste(round(prop,0)))
 
 ggplot(graph, aes(x = ufn, y = prop, fill = situacao))+
-  geom_bar(stat = "identity")+
-  geom_text(aes(label = label, y = prop),size = 4,
-            position = position_stack(vjust = 0.5))+
-  coord_flip() +
+  geom_bar(stat = "identity") +
+  insert_text(label = 'label', vertical = F, show_percents = T) +
   scale_fill_ipea(discrete = T) +
   labs(x="",
        y="",
@@ -142,4 +160,25 @@ ggplot(graph, aes(x = ufn, y = prop, fill = situacao))+
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  theme_ipea(legend.position = 'bottom')
+  theme_ipea(legend.position = 'bottom', geom = 'bar')
+
+
+# Exemplo 8
+graph <- abjData::pnud_muni %>%
+  filter(substr(codmun6 ,1,2) == "27", ano == 2010) %>%
+  select(code_muni = codmun7, espvida)
+
+mun <- geobr::read_municipality(code_muni = 'AL') %>% left_join(graph)
+
+# Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'quantile'
+# Use the 'scale_ipea()' function to apply the IPEA discrete fill scale
+ggplot(data = mun, aes(fill = espvida)) +
+  geom_sf() +
+  scale_fill_ipea(direction = 'horizontal') +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 5",
+       subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
+       caption = 'Fonte: ipea') +
+  theme_ipea(legend.position = 'bottom', axis = 'none', text = F)

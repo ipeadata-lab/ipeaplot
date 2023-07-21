@@ -18,6 +18,7 @@
 #' @export
 
 theme_ipea <- function(axis = c('none','half','full'),
+                       geom = c('bar','line','point','sf'),
                        text = T,legend.position,
                        direction = c('horizontal','vertical'),colours,
                        ...){
@@ -27,7 +28,7 @@ theme_ipea <- function(axis = c('none','half','full'),
   } else {
 
   }
-
+  geom <- ifelse(missing(geom), 'line', geom)
 
   # Set the default axis style to "half" if not provided by the user
   axis <- ifelse(missing(axis), 'half', axis)
@@ -40,18 +41,34 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.line.x = ggplot2::element_line(size = 0.5, linetype = "solid", colour = "black")
     axis.line.y = ggplot2::element_line(size = 0.5, linetype = "solid", colour = "black")
     panel.border = ggplot2::element_blank()
+    axis.text.x  = element_text()
+    axis.ticks.x = element_line()
+    axis.text.y  = element_text()
+    axis.ticks.y = element_line()
+    # Define the axis text and ticks styles when text is displayed
+    axis.text = ggplot2::element_text(colour = "black")
+    axis.ticks = ggplot2::element_line(colour = "black")
 
   } else if (axis == "full") {
     # Define the axis line and panel border for "full" style
-    axis.line.x = ggplot2::element_blank()
-    axis.line.y = ggplot2::element_blank()
+    axis.line.x  = ggplot2::element_blank()
+    axis.line.y  = ggplot2::element_blank()
+    axis.text.x  = element_blank()
+    axis.ticks.x = element_blank()
+    axis.text.y  = element_blank()
+    axis.ticks.y = element_blank()
     panel.border = ggplot2::element_rect(size = 0.5, colour = "black", fill = NA)
 
   } else {
     # Define the axis line and panel border for other styles
     element_blank = ggplot2::element_blank()
-    axis.line.x = ggplot2::element_blank()
-    axis.line.y = ggplot2::element_blank()
+    axis.line.x  = ggplot2::element_blank()
+    axis.line.y  = ggplot2::element_blank()
+    axis.text.x  = element_blank()
+    axis.ticks.x = element_blank()
+    axis.text.y  = element_blank()
+    axis.ticks.y = element_blank()
+    axis.text    = element_blank()
     panel.border = ggplot2::element_blank()
 
   }
@@ -73,8 +90,7 @@ theme_ipea <- function(axis = c('none','half','full'),
 
 
 
-    list(ggplot2::theme_gray(base_family = "Frutiger LT Light Cond"),
-         ggplot2::theme(
+    theme <- ggplot2::theme(
     # Sets the background color of the panel to white
     panel.background = ggplot2::element_rect(fill = "white", colour = NA),
     # Sets the panel border based on the previous assignment
@@ -100,43 +116,69 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.line.y.right = ggplot2::element_line(colour = "#F4F5F6", size = 1),
     # Sets the appearance of the axis text based on the previous assignment
     axis.text = axis.text,
+    axis.ticks.x = axis.ticks.x,
+    axis.ticks.y = axis.ticks.y,
     # Sets the appearance of the axis ticks based on the previous assignment
     axis.ticks = axis.ticks,
     # Adjusts the vertical alignment of the y-axis title
-    axis.title.y = ggplot2::element_text(vjust = 1.5),
+    axis.title.y = ggplot2::element_text(family = "Frutiger LT 47 LightCn",vjust = 1.5, size = 8, lineheight = 9.6),
     # Adjusts the vertical alignment of the x-axis title
-    axis.title.x = ggplot2::element_text(vjust = -0.4),
+    axis.title.x = ggplot2::element_text(family = "Frutiger LT 47 LightCn",vjust = -0.4, size = 8, lineheight = 9.6),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
+      # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
+      family = "Frutiger LT 47 LightCn",
       size = 10, lineheight = 12, hjust = 0,
       margin = margin(0,0,0,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
+      # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
+      family = "Frutiger LT Std",
       size = 9, lineheight = 10.8, face = "bold", hjust = 0,
       margin = margin(0,0,3,0, unit = 'mm'),
     ),
+    # Spacing between faceted plots
+    panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text
     legend.text = ggplot2::element_text(size = 7),
     # Set caption position
     plot.caption = element_text(hjust = 0),
-    # Sets the horizontal alignment of the legend to center
+    # Set the horizontal alignment of the legend to center
     legend.justification = "center",
-    # Sets legend spacing
-    legend.spacing.x = unit(2, 'mm'),
-    #
-    legend.spacing.y = unit(2, 'mm'),
-    #
-    legend.margin= margin(t= unit(8, 'mm')),
-    #
+    # Set legend spacing y
+    #legend.spacing.y = unit(2, 'mm'),
+    # Set horizontal and vertical spacing between legend keys (2 right,2 bottom,1 left)
+    legend.spacing = margin(0,2,2,1, unit = 'mm'),
+    # Set Margin spacing
+    legend.margin= margin(t= unit(3, 'mm')),
+    #change legend key size
+    #legend.key.size = unit(2, 'mm'),
+    # Set key size
     legend.key.size = unit(5,"mm","line"),
     # Adjust haste length
     axis.ticks.length = unit(2, "mm"),
     ...
-  ),
-  annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',
-           x = Inf, xend = Inf, size = 1),
-  scale_y_continuous(expand = c(0, 0), breaks = scales::pretty_breaks(n = 10)))
+  )
+
+    if(axis %in% c('none','full')){
+      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Roman"),
+           theme,
+           annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
+
+    } else if(axis == 'half' & geom == 'bar') {
+      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Romand"),
+           theme,
+           scale_y_continuous(expand = expansion(mult = c(0, .1)), breaks = scales::pretty_breaks(n = 10)),
+           annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
+    } else {
+      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Roman"),
+           theme,
+           scale_y_continuous(breaks = scales::pretty_breaks(n = 10)),
+           annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
+    }
+
+
 
 }
 

@@ -178,7 +178,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
       colours <- ipea_palette(palette = palette)
 
       # Graph
-      graph <- ggplot2::scale_color_gradientn(
+      graph <- ggplot2::scale_fill_gradientn(
         labels = labels,  # Set the labels for the gradient scale
         colours = colours,  # Set the fills for the gradient scale
         guide = guide_coloursteps(
