@@ -167,7 +167,7 @@ theme_ipea <- function(axis = c('none','half','full'),
            annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
 
     } else if(axis == 'half' & geom == 'bar') {
-      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Romand"),
+      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Roman"),
            theme,
            scale_y_continuous(expand = expansion(mult = c(0, .1)), breaks = scales::pretty_breaks(n = 10)),
            annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
