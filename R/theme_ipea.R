@@ -153,9 +153,9 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Set Margin spacing
     legend.margin= margin(t= unit(3, 'mm')),
     #change legend key size
-    legend.key.size = unit(2, 'mm'),
+    #legend.key.size = unit(2, 'mm'),
     # Set key size
-    #legend.key.size = unit(5,"mm","line"),
+    legend.key.size = unit(2,"mm","line"),
     # Adjust haste length
     axis.ticks.length = unit(2, "mm"),
     ...
