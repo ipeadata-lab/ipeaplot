@@ -4,8 +4,8 @@
 #'
 #' @param label The label variable indicating the text to be displayed.
 #' @param decimals The number of decimal places to round the label values.
-#' @param position A character vector specifying the position of the text. Valid options are "inside"
-#'   (default) and "outside".
+#' @param show_percents Logical.
+#' @param vertical Logical.
 #' @param ... Additional arguments to be passed to the `geom_text` function from the `ggplot2` package.
 #'
 #' @return A `geom_text` layer with text labels added to the plot.

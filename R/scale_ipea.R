@@ -1,9 +1,13 @@
-#' @title Scale colour IPEA
+#' @title Scale color IPEA
 #'
-#' @description Generate a color palette (continuous or discrete) in the formatting of texts published by the Institute of Applied Economic Research (IPEA)
+#' @description Generate a color palette (continuous or discrete) in the
+#'              formatting of texts published by the Institute for Applied
+#'              Economic Research (IPEA)
 #'
-#' @param palette A character vector specifying the available palette for the color palette. \cr
-#' The default palette are "crimson", "orpheu", "cartola", "caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and "manual". \cr
+#' @param palette A character vector specifying the available palette for the
+#'                color palette. The default palette are "crimson", "orpheu",
+#'                "cartola", "caqui", "post", "wrapper", "blue_red", "ipea1",
+#'                "ipea2", "ipea3", and "manual".
 #' low, mid, high: Colors to be used for the low, mid, and high values of the gradient, respectively.  \cr
 #' These parameters are used when the "manual" option is selected.
 #'
@@ -27,10 +31,7 @@
 #' @return Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
 #'
 #' @export
-
-#' @rdname scale_colour_ipea
-#' @export
-scale_colour_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
+scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
                               direction = c('horizontal','vertical'),
                               show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
@@ -118,14 +119,39 @@ scale_colour_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3'
 }
 
 
-#' @rdname scale_color_ipea
-#' @export
-# Correction of argument if it is written wrong
-scale_color_ipea <- scale_colour_ipea
 
 
-
-#' @rdname scale_fill_ipea
+#' @title Scale fill IPEA
+#'
+#' @description Generate a fill palette (continuous or discrete) in the
+#'              formatting of texts published by the Institute for Applied
+#'              Economic Research (IPEA)
+#' @param palette A character vector specifying the available palette for the
+#'                color palette. The default palette are "crimson", "orpheu",
+#'                "cartola", "caqui", "post", "wrapper", "blue_red", "ipea1",
+#'                "ipea2", "ipea3", and "manual".
+#' low, mid, high: Colors to be used for the low, mid, and high values of the gradient, respectively.  \cr
+#' These parameters are used when the "manual" option is selected.
+#'
+#' @param direction A character vector specifying the direction of the color gradient. \cr
+#' The available palette are "horizontal" and "vertical". The default value is "horizontal".
+#'
+#' @param colours A vector of colors to be used for the gradient. This parameter is used when palette other than "manual" are selected.
+#'
+#' @param show.limits A logical value indicating whether to display the color gradient limits. The default value is TRUE.
+#'
+#' @param pt_br A logical value indicating whether to use Brazilian Portuguese formatting for labels. \cr
+#' If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.
+#'
+#' @param barheight The height of the color gradient bar. This parameter is used when the direction is set to "vertical". The default value is 2.
+#'
+#' @param barwidth The width of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.
+#'
+#' @param ... Additional arguments to be passed to the scale_fill_gradientn or scale_color_gradientn function from the ggplot2 package.
+#'
+#'
+#' @return Graph fill and formatting within the standard of Texts for Discussion (TD) of IPEA.
+#'
 #' @export
 scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
                                          direction = c('horizontal','vertical'),colours,

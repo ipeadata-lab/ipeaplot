@@ -1,7 +1,7 @@
 #' Ipea Color Palette and Scales
 #'
 #' A 9-color Ipea palette.
-#'
+#' @param palette A character vector specifying color/fill palette.
 #' @importFrom scales manual_pal
 #' @export
 #' @rdname IpeaColor

@@ -1,4 +1,4 @@
-#' Theme for IPEA graphics
+#' Ggplot theme for IPEA graphics
 #'
 #' This function defines a custom theme for IPEA graphics, which provides standardized formatting
 #' options for axis lines, text, legends, and panel borders.
