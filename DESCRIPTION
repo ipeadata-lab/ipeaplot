@@ -25,6 +25,7 @@ Imports:
     grDevices,
     scales
 Suggests: 
+    abjData,
     covr,
     data.table,
     dplyr,

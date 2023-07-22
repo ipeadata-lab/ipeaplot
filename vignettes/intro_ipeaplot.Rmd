@@ -1,8 +1,10 @@
 ---
-title: "Introduction to templatesIpea (R)"
+title: "Introduction to ipeaplot"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+urlcolor: blue
 vignette: >
-  %\VignetteIndexEntry{Introduction to templatesIpea (R)}
+  %\VignetteIndexEntry{Introduction to ipeaplot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,27 +19,24 @@ knitr::opts_chunk$set(
 ```
 
 
-The [**templatesIpea**](https://github.com/ipea-datalab/templatesIpea) is a computational package designed to facilitate the standardization of colors and graphic formatting for text submissions for discussion (TD) and articles for the journal of the Institute of Applied Economic Research (IPEA). This package provides users with tools and functions that simplify the process of applying consistent color schemes and graphic styles in their work, ensuring conformity to the requirements and guidelines of the IPEA journal. By using **templatesIpea**, users can easily achieve visually appealing and professionally formatted text submissions for IPEA. (see detailed information below).. This vignette presents a quick intro to **templatesIpea**.
+The [**ipeaplot**](https://github.com/ipea-datalab/ipeaplot) is a computational package designed to facilitate the standardization of colors and graphic formatting for text submissions for discussion (TD) and articles for the journal of the Institute of Applied Economic Research (IPEA). This package provides users with tools and functions that simplify the process of applying consistent color schemes and graphic styles in their work, ensuring conformity to the requirements and guidelines of the IPEA journal. By using **ipeaplot**, users can easily achieve visually appealing and professionally formatted text submissions for IPEA. (see detailed information below).. This vignette presents a quick intro to **ipeaplot**.
 
 
 ## Installation
 
-You can install templatesIpea from CRAN or the development version to use the latest features.
+You can install the development version of ipeaplot from github:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
-# From CRAN
-install.packages("templatesIpea")
-
 # Development version
-utils::remove.packages('templatesIpea')
-devtools::install_github("ipea-datalab/templatesIpea", subdir = "r-package")
+utils::remove.packages('ipeaplot')
+devtools::install_github("ipea-datalab/ipeaplot")
 
 ```
 
 Now let's load the libraries we'll use in this vignette.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
-library(templatesIpea)
+library(ipeaplot)
 library(ggplot2)
 library(dplyr)
 library(abjData)
@@ -45,18 +44,16 @@ library(abjData)
 
 
 
-## General usage
-
-### Available data sets
-
-The templatesIpea package covers 27 spatial data sets, including a variety of political-administrative and statistical areas used in Brazil. You can view what data sets are available using the `ipea_palettes` function.
-
+ load data
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-# Available data sets
-head(ipea_palette(palette = 'ipea1'))
+
+ graph <- abjData::pnud_uf %>%
+  filter(substr(uf,1,1) == "3") %>%
+  select(1:4)
 ```
 
-The syntax of all *templatesIpea* functions operate one the same logic, so the code becomes intuitive for the user. Here are a few examples.
+
+
 
 Scale Continuous
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
@@ -164,7 +161,7 @@ ggplot(data = mtcars, aes(x = mpg, y = wt, fill = quantile)) +
 ## Change theme and text
 
 
-The next step is to combine the ***templatesIpea*** package with other data sets to create thematic graphs In this example, we will be using data from the (Atlas of Human Development (by Ipea/FJP and UNPD) to create a graphs showing the variation of Life Expectancy at birth across Brasil countriy.
+The next step is to combine the ***ipeaplot*** package with other data sets to create thematic graphs In this example, we will be using data from the (Atlas of Human Development (by Ipea/FJP and UNPD) to create a graphs showing the variation of Life Expectancy at birth across Brasil countriy.
 
 Once you've downloaded the data, it is really simple to plot maps using `ggplot2`.
 
@@ -337,7 +334,7 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
 
 ## Thematic maps
 
-The next step is to combine the ***templatesIpea*** package with other data sets to create thematic maps. In this example, we will be using data from the (Atlas of Human Development (by Ipea/FJP and UNPD) to create a choropleth map using geobr package showing the spatial variation of Average years of study across Brazilian municipalities.
+The next step is to combine the ***ipeaplot*** package with other data sets to create thematic maps. In this example, we will be using data from the (Atlas of Human Development (by Ipea/FJP and UNPD) to create a choropleth map using geobr package showing the spatial variation of Average years of study across Brazilian municipalities.
 
 #### Merge external data
 
