@@ -1,6 +1,6 @@
 Package: ipeaplot
 Type: Package
-Title: Ggplot Graphics in Ipea Standard.
+Title: Ggplot Graphics in Ipea Standard
 Version: 0.0.1
 Authors@R: c(
     person("Pedro","Jorge", role=c("aut","cre"), email="pedro.alves@ipea.gov.br"),
