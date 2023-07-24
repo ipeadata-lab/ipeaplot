@@ -16,29 +16,24 @@ scale_color_ipea(
 )
 }
 \arguments{
-\item{palette}{A character vector specifying the available palette for the
-color palette. The default palette are "crimson", "orpheu",
-"cartola", "caqui", "post", "wrapper", "blue_red", "ipea1",
-"ipea2", "ipea3", and "manual".
-low, mid, high: Colors to be used for the low, mid, and high values of the gradient, respectively.  \cr
-These parameters are used when the "manual" option is selected.}
+
+\item{discrete}{A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.}
+
+\item{palette}{A character vector specifying the available palette for the color palette. The default palette are "ipeatd", but we can also change to "ipea2", "ipea3", or other default ggplot2 options.
 
 \item{direction}{A character vector specifying the direction of the color gradient. \cr
 The available palette are "horizontal" and "vertical". The default value is "horizontal".}
 
-\item{show.limits}{A logical value indicating whether to display the color gradient limits. The default value is TRUE.}
+\item{show}{imits A logical value indicating whether to display the color gradient limits. The default value is TRUE.}
 
-\item{pt_br}{A logical value indicating whether to use Brazilian Portuguese formatting for labels. \cr
-If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.}
+\item{pt_br}{A logical value indicating whether to use Brazilian Portuguese formatting for labels. If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.}
 
-\item{barheight}{The height of the color gradient bar. This parameter is used when the direction is set to "vertical". The default value is 2.}
+\item{barheight}{The height of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 2.}
 
 \item{barwidth}{The width of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.}
 
-\item{...}{Additional arguments to be passed to the scale_fill_gradientn or scale_color_gradientn function from the ggplot2 package.}
+\item{...}{Additional arguments to be passed to the scale_color_gradientn or scale_color_distiller function from the ggplot2 package.}
 
-\item{colours}{A vector of colors to be used for the gradient. This parameter is used when palette other than "manual" are selected.}
-}
 \value{
 Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
 }
@@ -47,3 +42,24 @@ Generate a color palette (continuous or discrete) in the
 formatting of texts published by the Institute for Applied
 Economic Research (IPEA)
 }
+\examples{
+\dontrun{ if (interactive()) {
+library(ggplot2)
+library(ipeaplot)
+
+# Generating default plot
+plot <- ggplot(data=mtcars, aes(x =  mpg, y = hp, color = am)) +
+  geom_bar(stat="identity") +
+  scale_color_ipea()
+
+
+# Generating default plot for discrete option
+plot <- ggplot(data = mtcars, aes(x = mpg,
+                         y = hp,
+                         color = am)) +
+  geom_point() +
+  scale_color_ipea(discrete = T)
+
+}}
+}
+

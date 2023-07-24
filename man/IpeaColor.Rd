@@ -10,5 +10,11 @@ ipea_palette(palette = c("ipeatd", "ipea2", "ipea3"))
 \item{palette}{A character vector specifying color/fill palette.}
 }
 \description{
-A 9-color Ipea palette.
+Creation of manual palettes for Ipea publication.
+}
+\examples{
+\dontrun{ if (interactive()) {
+# Set palette option
+colours <- ipea_palette(palette = 'ipeatd')
+}}
 }

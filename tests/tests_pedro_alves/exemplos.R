@@ -3,6 +3,8 @@
 # https://www.ipea.gov.br/sites/manualeditorial/padroes-editoriais/padroes-grafico-visuais/ilustracoes/graficos
 remotes::install_github("ipeadata-lab/ipeaplot")
 
+
+
 library(ipeaplot)
 library(ggplot2)
 library(dplyr)

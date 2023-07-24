@@ -4,28 +4,25 @@
 #'              formatting of texts published by the Institute for Applied
 #'              Economic Research (IPEA)
 #'
+#' @param discrete A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.
+#'
 #' @param palette A character vector specifying the available palette for the
-#'                color palette. The default palette are "crimson", "orpheu",
-#'                "cartola", "caqui", "post", "wrapper", "blue_red", "ipea1",
-#'                "ipea2", "ipea3", and "manual".
-#' low, mid, high: Colors to be used for the low, mid, and high values of the gradient, respectively.  \cr
-#' These parameters are used when the "manual" option is selected.
+#'                color palette. The default palette are "ipeatd",
+#'                but we can also change to "ipea2", "ipea3", or other default ggplot2 options.
 #'
 #' @param direction A character vector specifying the direction of the color gradient. \cr
 #' The available palette are "horizontal" and "vertical". The default value is "horizontal".
-#'
-#' @param colours A vector of colors to be used for the gradient. This parameter is used when palette other than "manual" are selected.
 #'
 #' @param show.limits A logical value indicating whether to display the color gradient limits. The default value is TRUE.
 #'
 #' @param pt_br A logical value indicating whether to use Brazilian Portuguese formatting for labels. \cr
 #' If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.
 #'
-#' @param barheight The height of the color gradient bar. This parameter is used when the direction is set to "vertical". The default value is 2.
+#' @param barheight The height of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 2.
 #'
 #' @param barwidth The width of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.
 #'
-#' @param ... Additional arguments to be passed to the scale_fill_gradientn or scale_color_gradientn function from the ggplot2 package.
+#' @param ... Additional arguments to be passed to the scale_fill_gradientn, scale_color_gradientn, scale_fill_distiller or scale_color_distiller function from the ggplot2 package.
 #'
 #'
 #' @return Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.

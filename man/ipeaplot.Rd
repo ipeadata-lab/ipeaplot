@@ -13,7 +13,7 @@ guidelines of the  Institute for Applied Economic Research (IPEA).
 \section{Usage}{
 
 Please check the vignettes and data documentation on the
-\href{https://ipeagit.github.io/flightsbr/}{website}.
+\href{https://ipeagit.github.io//}{website}.
 }
 
 \seealso{
@@ -25,7 +25,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Pedro Jorge \email{pedro.alves@ipea.gov.br}
+\strong{Maintainer}: Pedro Jorge \email{pedro.alves@ipea.gov.br} (\href{http://orcid.org/0000-0001-9340-030X}{ORCID})
 
 Authors:
 \itemize{

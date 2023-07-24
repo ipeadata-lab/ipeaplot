@@ -8,7 +8,6 @@ scale_fill_ipea(
   discrete = F,
   palette = c("ipeatd", "ipea2", "ipea3", ...),
   direction = c("horizontal", "vertical"),
-  colours,
   show.limits = T,
   pt_br = T,
   barheight = 2,
@@ -17,34 +16,80 @@ scale_fill_ipea(
 )
 }
 \arguments{
-\item{palette}{A character vector specifying the available palette for the
-color palette. The default palette are "crimson", "orpheu",
-"cartola", "caqui", "post", "wrapper", "blue_red", "ipea1",
-"ipea2", "ipea3", and "manual".
-low, mid, high: Colors to be used for the low, mid, and high values of the gradient, respectively.  \cr
-These parameters are used when the "manual" option is selected.}
 
-\item{direction}{A character vector specifying the direction of the color gradient. \cr
+\item{discrete}{A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.}
+
+\item{palette}{A character vector specifying the available palette for the fill palette. The default palette are "ipeatd", but we can also change to "ipea2", "ipea3", or other default ggplot2 options.
+
+\item{direction}{A character vector specifying the direction of the fill gradient. \cr
 The available palette are "horizontal" and "vertical". The default value is "horizontal".}
 
-\item{colours}{A vector of colors to be used for the gradient. This parameter is used when palette other than "manual" are selected.}
+\item{show}{imits A logical value indicating whether to display the fill gradient limits. The default value is TRUE.}
 
-\item{show.limits}{A logical value indicating whether to display the color gradient limits. The default value is TRUE.}
+\item{pt_br}{A logical value indicating whether to use Brazilian Portuguese formatting for labels. If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.}
 
-\item{pt_br}{A logical value indicating whether to use Brazilian Portuguese formatting for labels. \cr
-If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.}
+\item{barheight}{The height of the fill gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 2.}
 
-\item{barheight}{The height of the color gradient bar. This parameter is used when the direction is set to "vertical". The default value is 2.}
+\item{barwidth}{The width of the fill gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.}
 
-\item{barwidth}{The width of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.}
+\item{...}{Additional arguments to be passed to the scale_fill_gradientn or scale_fill_distiller function from the ggplot2 package.}
 
-\item{...}{Additional arguments to be passed to the scale_fill_gradientn or scale_color_gradientn function from the ggplot2 package.}
-}
 \value{
-Graph fill and formatting within the standard of Texts for Discussion (TD) of IPEA.
+Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
 }
 \description{
-Generate a fill palette (continuous or discrete) in the
+Generate a color palette (continuous or discrete) in the
 formatting of texts published by the Institute for Applied
 Economic Research (IPEA)
 }
+
+
+\examples{
+\dontrun{ if (interactive()) {
+library(ggplot2)
+library(ipeaplot)
+library(abjData)
+library(geobr)
+
+# Generating default plot
+plot <- ggplot(data=mtcars, aes(x =  mpg, y = hp, fill = am)) +
+  geom_bar(stat="identity") +
+  scale_fill_ipea()
+
+
+# Generating default plot for discrete option
+graph <- abjData::pnud_uf %>%
+  filter(substr(uf,1,1) == "3") %>%
+  select(1:4)
+
+plot <- ggplot(data = graph, aes(x = ufn,
+                         y = espvida,
+                         fill = as.character(ano))) +
+  geom_bar(stat="identity", width= 0.5) +
+  scale_fill_ipea(discrete = T)
+
+# Generating default plot using ggplot pallete option
+graph <- abjData::pnud_uf %>%
+  filter(substr(uf,1,1) == "2", ano == 2010) %>%
+  select(1:3,pop) %>%
+  mutate(share = (pop/sum(pop))*100)
+
+plot <- ggplot(graph, aes(x="", y=share, fill=ufn))+
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y",start=0) +
+  scale_fill_ipea(discrete = T, palette = 'Blues')
+
+# Generating plot using horizontal legend
+graph <- abjData::pnud_muni %>%
+  filter(substr(codmun6 ,1,2) == "27", ano == 2010) %>%
+  select(code_muni = codmun7, espvida)
+
+mun <- read_municipality(code_muni = 'AL')
+
+ggplot(data = mun, aes(fill = espvida)) +
+  geom_sf() +
+  scale_fill_ipea(direction = 'horizontal')
+
+}}
+}
+

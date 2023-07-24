@@ -5,12 +5,12 @@
 #'
 #' @param axis A character vector specifying the axis style. Valid options are "none" (no axis lines),
 #'   "half" (half-length axis lines), and "full" (full-length axis lines).
-#' @param box_option An integer indicating the box style. Use 1 for a dark background with white text
-#'   (default), and any other value for a white background with black text.
+#' @param geom A character vector specifying some particularities of geom plot. Valid options are "bar","line", "point", "sf".
 #' @param text Logical value indicating whether to show text elements. If TRUE, axis text and ticks
 #'   will be displayed in black; otherwise, they will be hidden.
 #' @param legend.position A character vector specifying the position of the legend. Valid options are
 #'   "right" (default), "left", "top", and "bottom".
+#' @param direction Argument that defines whether the graphic specifications will be in the standard horizontal or vertical legend
 #' @param ... Additional arguments to be passed to the `theme` function from the `ggplot2` package.
 #'
 #' @return A custom theme for IPEA graphics.
@@ -20,7 +20,7 @@
 theme_ipea <- function(axis = c('none','half','full'),
                        geom = c('bar','line','point','sf'),
                        text = T,legend.position,
-                       direction = c('horizontal','vertical'),colours,
+                       direction = c('horizontal','vertical'),
                        ...){
 
   if(length(extrafont::fonts()) == 0){
@@ -155,7 +155,7 @@ theme_ipea <- function(axis = c('none','half','full'),
     #change legend key size
     #legend.key.size = unit(2, 'mm'),
     # Set key size
-    legend.key.size = unit(5,"mm","line"),
+    legend.key.size = unit(5,"mm","linewidth"),
     # Adjust haste length
     axis.ticks.length = unit(2, "mm"),
     ...
