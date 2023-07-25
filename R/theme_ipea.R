@@ -143,7 +143,7 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Sets the appearance of the legend text
     legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = element_text(hjust = 0),
+    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y

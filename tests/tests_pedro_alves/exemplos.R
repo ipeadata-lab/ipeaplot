@@ -9,10 +9,17 @@ library(ipeaplot)
 library(ggplot2)
 library(dplyr)
 extrafont::fonttable()
+
+
+library(showtext)
+
+
 ## Exemplo 1
 graph <- abjData::pnud_uf %>%
   filter(substr(uf,1,1) == "3") %>%
   select(1:4)
+
+
 
 
 # Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'quantile'

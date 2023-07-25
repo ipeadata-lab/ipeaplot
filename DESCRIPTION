@@ -23,8 +23,13 @@ Imports:
     extrafont,
     ggplot2,
     grDevices,
+<<<<<<< HEAD
     showtext,
     scales
+=======
+    scales,
+    showtext
+>>>>>>> refs/remotes/origin/master
 Suggests: 
     abjData,
     covr,
