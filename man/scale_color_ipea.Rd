@@ -19,10 +19,9 @@ scale_color_ipea(
 
 \item{discrete}{A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.}
 
-\item{palette}{A character vector specifying the available palette for the color palette. The default palette are "ipeatd", but we can also change to "ipea2", "ipea3", or other default ggplot2 options.
+\item{palette}{A character vector specifying the available palette for the color palette. The default palette are "ipeatd", but we can also change to "ipea2", "ipea3", or other default ggplot2 options.}
 
-\item{direction}{A character vector specifying the direction of the color gradient. \cr
-The available palette are "horizontal" and "vertical". The default value is "horizontal".}
+\item{direction}{A character vector specifying the direction of the color gradient. The available palette are "horizontal" and "vertical". The default value is "horizontal".}
 
 \item{show}{imits A logical value indicating whether to display the color gradient limits. The default value is TRUE.}
 
@@ -33,6 +32,7 @@ The available palette are "horizontal" and "vertical". The default value is "hor
 \item{barwidth}{The width of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.}
 
 \item{...}{Additional arguments to be passed to the scale_color_gradientn or scale_color_distiller function from the ggplot2 package.}
+}
 
 \value{
 Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
