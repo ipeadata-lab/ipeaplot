@@ -134,7 +134,7 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
-      family = "Frutiger-LT-67-Bold-Condensed",
+      family = "Frutiger-LT-Std",
       size = 9, lineheight = 10.8, face = "bold", hjust = 0,
       margin = margin(0,0,3,0, unit = 'mm'),
     ),
@@ -143,7 +143,7 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Sets the appearance of the legend text
     legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = element_text(family = "Frutiger-LT-67-Bold-Condensed", hjust = 0),
+    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y
