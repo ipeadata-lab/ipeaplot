@@ -1,4 +1,15 @@
 library(ipeaplot)
+library(ggplot2)
+
+data(mtcars)
+
+ggplot() +
+  geom_point(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
+  ipeaplot::scale_color_ipea(discrete = F) +
+  ipeaplot::theme_ipea()
+
+
+
 
 ##### Coverage ------------------------
 library(covr)
