@@ -121,20 +121,20 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Sets the appearance of the axis ticks based on the previous assignment
     axis.ticks = axis.ticks,
     # Adjusts the vertical alignment of the y-axis title
-    axis.title.y = ggplot2::element_text(family = "Frutiger LT 47 LightCn",vjust = 1.5, size = 8, lineheight = 9.6),
+    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5, size = 8, lineheight = 9.6),
     # Adjusts the vertical alignment of the x-axis title
-    axis.title.x = ggplot2::element_text(family = "Frutiger LT 47 LightCn",vjust = -0.4, size = 8, lineheight = 9.6),
+    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4, size = 8, lineheight = 9.6),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
-      family = "Frutiger LT 47 LightCn",
+      family = "Frutiger-LT-47-LightCn",
       size = 10, lineheight = 12, hjust = 0,
       margin = margin(0,0,0,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
-      family = "Frutiger LT Std",
+      family = "Frutiger-LT-Std",
       size = 9, lineheight = 10.8, face = "bold", hjust = 0,
       margin = margin(0,0,3,0, unit = 'mm'),
     ),
@@ -162,17 +162,17 @@ theme_ipea <- function(axis = c('none','half','full'),
   )
 
     if(axis %in% c('none','full')){
-      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Roman"),
+      list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
            annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
 
     } else if(axis == 'half' & geom == 'bar') {
-      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Roman"),
+      list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
            scale_y_continuous(expand = expansion(mult = c(0, .1)), breaks = scales::pretty_breaks(n = 10)),
            annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
     } else {
-      list(ggplot2::theme_gray(base_family = "Frutiger LT 55 Roman"),
+      list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
            scale_y_continuous(breaks = scales::pretty_breaks(n = 10)),
            annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, size = 1))
