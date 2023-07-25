@@ -9,17 +9,18 @@
 #'
 #' @family save
 #' @export
-#'
+
+
 save_eps <- function(gplot, file.name, width = 5, height = 3){
 
   if(!("ggplot" %in% class(gplot))){
     stop("gplot deve ser um grafico ggplot")
   }
-  if(!inherits(a, 'character')){
+  if(!inherits(file.name, 'character')){
     stop("O nome do arquivo deve ser uma 'string'")
   }
 
-  loadfonts("postscript")
+  extrafont::loadfonts("postscript")
   grDevices::postscript(file = file.name, width = width, height = height)
   gplot
   grDevices::dev.off()

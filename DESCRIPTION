@@ -23,6 +23,7 @@ Imports:
     extrafont,
     ggplot2,
     grDevices,
+    showtext,
     scales
 Suggests: 
     abjData,
