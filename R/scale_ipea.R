@@ -151,7 +151,7 @@ scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',
 #'
 #' @export
 scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
-                                         direction = c('horizontal','vertical'),colours,
+                                         direction = c('horizontal','vertical'),
                                          show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value

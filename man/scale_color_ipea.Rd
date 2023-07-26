@@ -23,7 +23,7 @@ scale_color_ipea(
 
 \item{direction}{A character vector specifying the direction of the color gradient. The available palette are "horizontal" and "vertical". The default value is "horizontal".}
 
-\item{show}{imits A logical value indicating whether to display the color gradient limits. The default value is TRUE.}
+\item{show.limits}{ A logical value indicating whether to display the color gradient limits. The default value is TRUE.}
 
 \item{pt_br}{A logical value indicating whether to use Brazilian Portuguese formatting for labels. If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.}
 

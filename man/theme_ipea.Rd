@@ -10,7 +10,6 @@ theme_ipea(
   text = T,
   legend.position,
   direction = c("horizontal", "vertical"),
-  colours,
   ...
 )
 }
