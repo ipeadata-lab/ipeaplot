@@ -18,7 +18,7 @@ insert_text <- function(label = NULL, decimals = 0,
 
 
   if(is.null(label)){
-
+    stop("The label argument needs to indicate the variable where the text will be inserted")
   } else {
 
     # Convert the position to numeric values based on "inside" or "outside"
