@@ -71,7 +71,7 @@ ggplot(graph, aes(x = ufn, y = rdpc))+
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  theme_ipea(legend.position = 'bottom', geom = 'bar')
+  theme_ipea(legend.position = 'bottom', geom = 'bar', direction = 'horizontal')
 
 
 

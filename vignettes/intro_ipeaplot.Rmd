@@ -40,6 +40,7 @@ library(ipeaplot)
 library(ggplot2)
 library(dplyr)
 library(abjData)
+library(geobr)
 ```
 
 
