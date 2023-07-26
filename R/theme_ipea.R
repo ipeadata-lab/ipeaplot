@@ -23,11 +23,8 @@ theme_ipea <- function(axis = c('none','half','full'),
                        direction = c('horizontal','vertical'),
                        ...){
 
-  if(length(extrafont::fonts()) == 0){
-    .onLoad()
-  } else {
+  .onLoad()
 
-  }
   geom <- ifelse(missing(geom), 'line', geom)
 
   # Set the default axis style to "half" if not provided by the user
