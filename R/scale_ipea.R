@@ -69,9 +69,18 @@ scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',
 
   if(isFALSE(discrete)){
     if(!palette %in% c('ipeatd','ipea2','ipea3')){
-      graph <- ggplot2::scale_fill_distiller (
+      graph <- ggplot2::scale_color_distiller (
         palette = gsub("ipea","",palette),
-        direction = direction,
+        guide = guide_coloursteps(
+          barheight = barheight,  # Set the height of the fill scale bar
+          barwidth = barwidth,  # Set the width of the fill scale bar
+          draw.ulim = F,  # Set whether to draw the upper limit line
+          title.position = 'top',  # Set the position of the title
+          even.steps = F, # Legend formation to not look like it's discrete scaling
+          # some shifting around
+          title.hjust = title.hjust,  # Set the horizontal alignment of the title
+          label.hjust = label.hjust  # Set the horizontal alignment of the labels
+        ),
         aesthetics = "colour", ...)
     } else {
 
@@ -83,12 +92,13 @@ scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',
         labels = labels,  # Set the labels for the gradient scale
         colours = colours,  # Set the colours for the gradient scale
         guide = guide_coloursteps(
-          show.limits = show.limits,  # Set whether to show the limits on the colour scale
+          #show.limits = show.limits,  # Set whether to show the limits on the colour scale
           direction = direction,  # Set the direction of the colour scale
           barheight = barheight,  # Set the height of the colour scale bar
           barwidth = barwidth,  # Set the width of the colour scale bar
           draw.ulim = F,  # Set whether to draw the upper limit line
           title.position = 'top',  # Set the position of the title
+          even.steps = F,
           # some shifting around
           title.hjust = title.hjust,  # Set the horizontal alignment of the title
           label.hjust = label.hjust  # Set the horizontal alignment of the labels
@@ -194,7 +204,16 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
       graph <- ggplot2::scale_fill_distiller (
         palette = gsub("ipea","",palette),
         direction = direction,
-        aesthetics = "fill", ...)
+        guide = guide_coloursteps(
+          barheight = barheight,  # Set the height of the fill scale bar
+          barwidth = barwidth,  # Set the width of the fill scale bar
+          draw.ulim = F,  # Set whether to draw the upper limit line
+          title.position = 'top',  # Set the position of the title
+          even.steps = F, # Legend formation to not look like it's discrete scaling
+          # some shifting around
+          title.hjust = title.hjust,  # Set the horizontal alignment of the title
+          label.hjust = label.hjust  # Set the horizontal alignment of the labels
+        ),aesthetics = "fill", ...)
     } else {
 
       # Set palette option
@@ -205,12 +224,13 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
         labels = labels,  # Set the labels for the gradient scale
         colours = colours,  # Set the fills for the gradient scale
         guide = guide_coloursteps(
-          show.limits = show.limits,  # Set whether to show the limits on the fill scale
+          #show.limits = show.limits,  # Set whether to show the limits on the fill scale
           direction = direction,  # Set the direction of the fill scale
           barheight = barheight,  # Set the height of the fill scale bar
           barwidth = barwidth,  # Set the width of the fill scale bar
           draw.ulim = F,  # Set whether to draw the upper limit line
           title.position = 'top',  # Set the position of the title
+          even.steps = F, # Legend formation to not look like it's discrete scaling
           # some shifting around
           title.hjust = title.hjust,  # Set the horizontal alignment of the title
           label.hjust = label.hjust  # Set the horizontal alignment of the labels
