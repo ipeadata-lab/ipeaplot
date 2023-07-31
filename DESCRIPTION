@@ -33,6 +33,8 @@ Suggests:
     knitr,
     rmarkdown,
     sf,
+    purrr,
+    sysfonts,
     testthat
 VignetteBuilder: 
     knitr
