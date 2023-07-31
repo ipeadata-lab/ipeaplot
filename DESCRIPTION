@@ -27,7 +27,7 @@ Imports:
     showtext
 Suggests: 
     abjData,
-    covr,
+    geobr,
     data.table,
     dplyr,
     knitr,
