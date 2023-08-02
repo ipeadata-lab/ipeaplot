@@ -10,6 +10,20 @@ library(ggplot2)
 library(dplyr)
 extrafont::fonttable()
 
+# Teste paleta
+Green       = paletteer::paletteer_d("ggsci::green_material")
+Orange      = paletteer::paletteer_d("ggsci::orange_material")
+Blue        = paletteer::paletteer_d("ggsci::blue_material")
+Pink        = paletteer::paletteer_d("ggsci::pink_material")
+Green_Blue  = paletteer::paletteer_c("ggthemes::Classic Green-Blue", 10)
+Orange_Blue = paletteer::paletteer_c("ggthemes::Classic Orange-Blue", 10)
+Red_Blue    = paletteer::paletteer_c("ggthemes::Classic Red-Blue", 10)
+
+library(colorblindcheck)
+palette_dist(Green_Blue)
+palette_check(Green_Blue, plot = TRUE)
+palette_check(Orange_Blue, plot = TRUE)
+palette_check(Red_Blue, plot = TRUE)
 
 library(showtext)
 

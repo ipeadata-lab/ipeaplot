@@ -28,7 +28,8 @@
 #' @return Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
 #'
 #' @export
-scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
+scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
+                                                       'Red-Blue','Orange-Blue'),
                               direction = c('horizontal','vertical'),
                               show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
@@ -36,7 +37,8 @@ scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',
   direction <- ifelse(missing(direction), "vertical", direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
-  palette <- ifelse(missing(palette), 'ipeatd', palette)
+  n       <-  ifelse(missing(n),10,n)
+  palette <-  ifelse(missing(palette),'Blue',palette)
 
 
   if (pt_br == T) {
@@ -68,29 +70,13 @@ scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',
   }
 
   if(isFALSE(discrete)){
-    if(!palette %in% c('ipeatd','ipea2','ipea3')){
-      graph <- ggplot2::scale_color_distiller (
-        palette = gsub("ipea","",palette),
-        guide = guide_coloursteps(
-          barheight = barheight,  # Set the height of the fill scale bar
-          barwidth = barwidth,  # Set the width of the fill scale bar
-          draw.ulim = F,  # Set whether to draw the upper limit line
-          title.position = 'top',  # Set the position of the title
-          even.steps = F, # Legend formation to not look like it's discrete scaling
-          # some shifting around
-          title.hjust = title.hjust,  # Set the horizontal alignment of the title
-          label.hjust = label.hjust  # Set the horizontal alignment of the labels
-        ),
-        aesthetics = "colour", ...)
-    } else {
-
       # Set palette option
-      colours <- ipea_palette(palette = palette)
+    scale_manual_pal <- ipea_palette(palette = palette, n = n)
 
       # Graph
       graph <- ggplot2::scale_color_gradientn(
         labels = labels,  # Set the labels for the gradient scale
-        colours = colours,  # Set the colours for the gradient scale
+        colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
           #show.limits = show.limits,  # Set whether to show the limits on the colour scale
           direction = direction,  # Set the direction of the colour scale
@@ -103,25 +89,15 @@ scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',
           title.hjust = title.hjust,  # Set the horizontal alignment of the title
           label.hjust = label.hjust  # Set the horizontal alignment of the labels
         ),...)
-  }
-}
+      }
   if(isTRUE(discrete)){
-    if(!palette %in% c('ipeatd','ipea2','ipea3')){
-      graph <- ggplot2::scale_color_brewer(
-       # type = type,
-        palette = gsub("ipea","",palette),
-        direction = direction,
-        aesthetics = "colour", ...)
-    } else {
-
       # Set palette option
-      colours <- scales::manual_pal(c(ipea_palette(palette = palette)))
+    scale_manual_pal <- scales::manual_pal(c(ipea_palette(palette = palette, n = n)))
 
       # Create a discrete colour scale with the specified palette
-      graph <- ggplot2::discrete_scale("colour", "ipea", colours, ...)
-
-    }
+      graph <- ggplot2::discrete_scale("colour", "ipea", scale_manual_pal, ...)
   }
+
   return(graph)
 }
 
@@ -160,7 +136,8 @@ scale_color_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',
 #' @return Graph fill and formatting within the standard of Texts for Discussion (TD) of IPEA.
 #'
 #' @export
-scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',...),
+scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
+                                                      'Red-Blue','Orange-Blue'),
                                          direction = c('horizontal','vertical'),
                                          show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
@@ -168,7 +145,8 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
   direction <- ifelse(missing(direction), "vertical", direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
-  palette <- ifelse(missing(palette), 'ipeatd', palette)
+  n       <-  ifelse(missing(n),10,n)
+  palette <-  ifelse(missing(palette),'Blue',palette)
 
 
   if (pt_br == T) {
@@ -200,29 +178,14 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
   }
 
   if(isFALSE(discrete)){
-    if(!palette %in% c('ipeatd','ipea2','ipea3')){
-      graph <- ggplot2::scale_fill_distiller (
-        palette = gsub("ipea","",palette),
-        direction = direction,
-        guide = guide_coloursteps(
-          barheight = barheight,  # Set the height of the fill scale bar
-          barwidth = barwidth,  # Set the width of the fill scale bar
-          draw.ulim = F,  # Set whether to draw the upper limit line
-          title.position = 'top',  # Set the position of the title
-          even.steps = F, # Legend formation to not look like it's discrete scaling
-          # some shifting around
-          title.hjust = title.hjust,  # Set the horizontal alignment of the title
-          label.hjust = label.hjust  # Set the horizontal alignment of the labels
-        ),aesthetics = "fill", ...)
-    } else {
 
-      # Set palette option
-      colours <- ipea_palette(palette = palette)
+      # Set palette palette
+      scale_manual_pal <- ipea_palette(n = 10, palette = palette)
 
       # Graph
       graph <- ggplot2::scale_fill_gradientn(
         labels = labels,  # Set the labels for the gradient scale
-        colours = colours,  # Set the fills for the gradient scale
+        colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
           #show.limits = show.limits,  # Set whether to show the limits on the fill scale
           direction = direction,  # Set the direction of the fill scale
@@ -237,23 +200,14 @@ scale_fill_ipea <- function(discrete = F, palette = c('ipeatd','ipea2','ipea3',.
         ),...)
 
     }
-  }
-  if(isTRUE(discrete)){
-    if(!palette %in% c('ipeatd','ipea2','ipea3')){
-      graph <- ggplot2::scale_color_brewer(
-        # type = type,
-        palette = gsub("ipea","",palette),
-        direction = direction,
-        aesthetics = "fill", ...)
-    } else {
 
-      # Set palette option
-      fills <- scales::manual_pal(c(ipea_palette(palette = palette)))
+  if(isTRUE(discrete)){
+
 
       # Create a discrete fill scale with the specified palette
-      graph <- ggplot2::discrete_scale("fill", "ipea", fills, ...)
+      graph <- ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette), ...)
 
-    }
+
   }
 
   return(graph)
