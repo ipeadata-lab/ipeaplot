@@ -7,8 +7,8 @@
 #' @param discrete A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.
 #'
 #' @param palette A character vector specifying the available palette for the
-#'                color palette. The default palette are "ipeatd",
-#'                but we can also change to "ipea2", "ipea3", or other default ggplot2 options.
+#'                color palette. The default palette are "Blue",
+#'                but we can also change to 'Green','Orange','Pink','Red-Blue','Orange-Blue'.
 #'
 #' @param direction A character vector specifying the direction of the color gradient. \cr
 #' The available palette are "horizontal" and "vertical". The default value is "horizontal".
@@ -37,7 +37,6 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
   direction <- ifelse(missing(direction), "vertical", direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
-  n       <-  ifelse(missing(n),10,n)
   palette <-  ifelse(missing(palette),'Blue',palette)
 
 
@@ -71,7 +70,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 
   if(isFALSE(discrete)){
       # Set palette option
-    scale_manual_pal <- ipea_palette(palette = palette, n = n)
+    scale_manual_pal <- ipea_palette(palette = palette, n = 10)
 
       # Graph
       graph <- ggplot2::scale_color_gradientn(
@@ -91,11 +90,8 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
         ),...)
       }
   if(isTRUE(discrete)){
-      # Set palette option
-    scale_manual_pal <- scales::manual_pal(c(ipea_palette(palette = palette, n = n)))
-
-      # Create a discrete colour scale with the specified palette
-      graph <- ggplot2::discrete_scale("colour", "ipea", scale_manual_pal, ...)
+    # Create a discrete fill scale with the specified palette
+    graph <- ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette), ...)
   }
 
   return(graph)
@@ -145,7 +141,6 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
   direction <- ifelse(missing(direction), "vertical", direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
-  n       <-  ifelse(missing(n),10,n)
   palette <-  ifelse(missing(palette),'Blue',palette)
 
 

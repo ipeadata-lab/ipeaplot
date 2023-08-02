@@ -63,7 +63,7 @@ graph <- abjData::pnud_uf %>%
 bp <- ggplot(graph, aes(x="", y=share, fill=ufn))+
   geom_bar(width = 1, stat = "identity") +
   coord_polar("y",start=0) +
-  scale_fill_ipea(discrete = T, palette = 'Blues') +
+  scale_fill_ipea(discrete = T, palette = 'Blue') +
   labs(x="",
        y="",
        fill = "",

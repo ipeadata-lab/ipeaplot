@@ -6,7 +6,7 @@
 \usage{
 scale_fill_ipea(
   discrete = F,
-  palette = c("ipeatd", "ipea2", "ipea3", ...),
+  palette = c('Blue','Green','Orange','Pink','Red-Blue','Orange-Blue'),
   direction = c("horizontal", "vertical"),
   show.limits = T,
   pt_br = T,
@@ -19,7 +19,7 @@ scale_fill_ipea(
 
 \item{discrete}{A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.}
 
-\item{palette}{A character vector specifying the available palette for the fill palette. The default palette are "ipeatd", but we can also change to "ipea2", "ipea3", or other default ggplot2 options.}
+\item{palette}{A character vector specifying the available palette for the color palette. The default palette are "Blue", but we can also change to 'Green','Orange','Pink','Red-Blue','Orange-Blue'.}
 
 \item{direction}{A character vector specifying the direction of the fill gradient. The available palette are "horizontal" and "vertical". The default value is "horizontal".}
 
