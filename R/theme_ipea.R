@@ -21,9 +21,17 @@ theme_ipea <- function(axis = c('none','half','full'),
                        geom = c('bar','line','point','sf'),
                        text = T,legend.position,
                        direction = c('horizontal','vertical'),
+                       x, y, yend,xend, bar_adjust = F,angle,
                        ...){
 
-  .onLoad()
+  y <- ifelse(missing(y), -Inf, y)
+  x <- ifelse(missing(x), Inf, x)
+  yend <- ifelse(missing(yend), Inf, yend)
+  xend <- ifelse(missing(xend), Inf, xend)
+  bar_adjust <- ifelse(bar_adjust == T,.1,Inf)
+
+  angle <- ifelse(missing(angle),0, angle)
+
 
   geom <- ifelse(missing(geom), 'line', geom)
 
@@ -38,37 +46,43 @@ theme_ipea <- function(axis = c('none','half','full'),
 
   if (axis == "half") {
     # Define the axis line and panel border for "half" style
-    axis.line.x = ggplot2::element_line(linewidth = 0.5, linetype = "solid", colour = "black")
-    axis.line.y = ggplot2::element_line(linewidth = 0.5, linetype = "solid", colour = "black")
+    axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
+    axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     panel.border = ggplot2::element_blank()
-    axis.text.x  = element_text()
-    axis.ticks.x = element_line()
-    axis.text.y  = element_text()
-    axis.ticks.y = element_line()
+    axis.text.x  = ggplot2::element_text(angle = angle,  vjust = 0.5, hjust=1)
+    axis.ticks.x = ggplot2::element_line()
+    axis.text.y  = ggplot2::element_text()
+    axis.ticks.y = ggplot2::element_line()
+    axis.ticks =   ggplot2::element_line()
+    panel.grid   = ggplot2::element_line()
     # Define the axis text and ticks styles when text is displayed
     axis.text = ggplot2::element_text(colour = "black")
-    axis.ticks = ggplot2::element_line(colour = "black")
+    axis.ticks = ggplot2::element_line(colour = "black", linewidth = 0.25)
 
   } else if (axis == "full") {
     # Define the axis line and panel border for "full" style
     axis.line.x  = ggplot2::element_blank()
     axis.line.y  = ggplot2::element_blank()
-    axis.text.x  = element_blank()
-    axis.ticks.x = element_blank()
-    axis.text.y  = element_blank()
-    axis.ticks.y = element_blank()
-    panel.border = ggplot2::element_rect(linewidth = 0.5, colour = "black", fill = NA)
+    axis.text.x  = ggplot2::element_blank()
+    axis.ticks.x = ggplot2::element_blank()
+    axis.text.y  = ggplot2::element_blank()
+    axis.ticks.y = ggplot2::element_blank()
+    axis.ticks =   ggplot2::element_line()
+    panel.grid   = ggplot2::element_line()
+    panel.border = ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA)
 
-  } else {
+  } else if (axis == "none") {
     # Define the axis line and panel border for other styles
     element_blank = ggplot2::element_blank()
     axis.line.x  = ggplot2::element_blank()
     axis.line.y  = ggplot2::element_blank()
-    axis.text.x  = element_blank()
-    axis.ticks.x = element_blank()
-    axis.text.y  = element_blank()
-    axis.ticks.y = element_blank()
-    axis.text    = element_blank()
+    axis.ticks.x = ggplot2::element_blank()
+    axis.ticks.y = ggplot2::element_blank()
+    axis.ticks   = ggplot2::element_blank()
+    axis.text.x  = ggplot2::element_blank()
+    axis.text.y  = ggplot2::element_blank()
+    axis.text    = ggplot2::element_blank()
+    panel.grid   = ggplot2::element_blank()
     panel.border = ggplot2::element_blank()
 
   }
@@ -76,7 +90,7 @@ theme_ipea <- function(axis = c('none','half','full'),
   if (text) {
     # Define the axis text and ticks styles when text is displayed
     axis.text = ggplot2::element_text(colour = "black")
-    axis.ticks = ggplot2::element_line(colour = "black")
+    axis.ticks = ggplot2::element_line(colour = "black", linewidth = 0.25)
   } else {
     # Hide axis text and ticks when text is not displayed
     axis.text = ggplot2::element_blank()
@@ -90,9 +104,9 @@ theme_ipea <- function(axis = c('none','half','full'),
 
     if(direction == 'vertical'){
       panel.grid.major.x = ggplot2::element_blank()
-      panel.grid.major.y = ggplot2::element_line(colour = "#F4F5F6", linewidth = 1)
+      panel.grid.major.y = ggplot2::element_line(colour = "#b7bdb7", linewidth = 0.25)
     }else if (direction == 'horizontal'){
-      panel.grid.major.x = ggplot2::element_line(colour = "#F4F5F6", linewidth = 1)
+      panel.grid.major.x = ggplot2::element_line(colour = "#b7bdb7", linewidth = 0.25)
       panel.grid.major.y = ggplot2::element_blank()
     }
 
@@ -103,13 +117,15 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Sets the panel border based on the previous assignment
     panel.border = panel.border,
     # Sets the major grid lines color and size
-    panel.grid.major = ggplot2::element_line(colour = "#F4F5F6", linewidth = 1),
+    panel.grid.major = ggplot2::element_line(colour = "#b7bdb7", linewidth = 0.25),
     # Sets the minor grid lines color and size
     panel.grid.minor = ggplot2::element_line(colour = "white", linewidth = 1),
     # Hides the major grid lines on the x-axis
     panel.grid.major.x = panel.grid.major.x,
     # Hides the major grid lines on the x-axis
     panel.grid.major.y = panel.grid.major.y,
+    #
+    panel.grid = panel.grid,
     # Sets the position of the legend based on the previous assignment
     legend.position = legend.position,
     # Sets the appearance of the legend key
@@ -122,9 +138,11 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.line.x = axis.line.x,
     # Sets the appearance of the y-axis line based on the previous assignment
     axis.line.y = axis.line.y,
-    axis.line.y.right = ggplot2::element_line(colour = "#F4F5F6", linewidth = 1),
+    axis.line.y.right = ggplot2::element_line(colour = "#b7bdb7", linewidth = 0.25),
     # Sets the appearance of the axis text based on the previous assignment
     axis.text = axis.text,
+    axis.text.x = axis.text.x,
+    axis.text.y = axis.text.y,
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
     # Sets the appearance of the axis ticks based on the previous assignment
@@ -173,18 +191,18 @@ theme_ipea <- function(axis = c('none','half','full'),
     if(axis %in% c('none','full')){
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
-           annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, linewidth = 1))
+           annotate(geom = 'segment', y = y, yend = yend, color = '#b7bdb7',x = x, xend = xend, linewidth = 0.25))
 
     } else if(axis == 'half' & geom == 'bar') {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
-           scale_y_continuous(expand = expansion(mult = c(0, .1)), breaks = scales::pretty_breaks(n = 10)),
-           annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, linewidth = 1))
+           scale_y_continuous(expand = expansion(mult = c(0, bar_adjust)), breaks = scales::pretty_breaks(n = 10), ...),
+           annotate(geom = 'segment', y = y, yend = yend, color = '#b7bdb7',x = x, xend = xend, linewidth = 0.25),...)
     } else {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
            scale_y_continuous(breaks = scales::pretty_breaks(n = 10)),
-           annotate(geom = 'segment', y = -Inf, yend = Inf, color = '#F4F5F6',x = Inf, xend = Inf, linewidth = 1))
+           annotate(geom = 'segment', y = y, yend = yend, color = '#b7bdb7',x = x, xend = xend, linewidth = 0.25))
     }
 
 
