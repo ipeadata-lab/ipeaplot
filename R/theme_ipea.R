@@ -214,20 +214,20 @@ theme_ipea <- function(axis = c('none','half','full'),
     if(axis %in% c('none','full')){
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
-           scale_y_continuous(breaks = scales::pretty_breaks(n = y_breaks)),
+           scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks)),
            scale_x,
            annotate(geom = 'segment', y = y, yend = yend, color = color,x = x, xend = xend, linewidth = 0.25))
 
     } else if(axis == 'half' & geom == 'bar') {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
-           scale_y_continuous(expand = expansion(mult = c(0, bar_adjust)), breaks = scales::pretty_breaks(n = y_breaks), ...),
+           scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = "."), expand = expansion(mult = c(0, bar_adjust)), breaks = scales::pretty_breaks(n = y_breaks), ...),
            scale_x,
            annotate(geom = 'segment', y = y, yend = yend, color = color,x = x, xend = xend, linewidth = 0.25),...)
     } else {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
-           scale_y_continuous(breaks = scales::pretty_breaks(n = y_breaks), expand = expansion(mult = c(0, 0))),
+           scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks), expand = expansion(mult = c(0, 0))),
            scale_x,
            annotate(geom = 'segment', y = y, yend = yend, color = color,x = x, xend = xend, linewidth = 0.25))
     }

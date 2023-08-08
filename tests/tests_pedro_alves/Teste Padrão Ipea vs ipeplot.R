@@ -139,6 +139,7 @@ graf2_orig <- ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
 graf2_orig
 
 ######## GRAFICO 3
+base_graf3$Ano <- as.numeric(as.character(base_graf3$Ano))
 graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
   geom_line(color = '#015f96') +
   labs(x="",
@@ -147,7 +148,7 @@ graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
        title="GRÁFICO 2",
        subtitle="Taxa de crescimento da população mundial (Em %)",
        caption = 'Elaboração dos autores.') +
-  theme_ipea(yend = 2.5)
+  theme_ipea(y = 1 , yend = 2.6, x_breaks = 16)
 
 
 graf3_orig
@@ -162,7 +163,7 @@ graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais))+
        subtitle="Gastos com defesa (Em bilhões de dólares)",
        caption = 'Fonte: Peter G. Peterson Foundation (2013).\nTradução dos autores.') +
   scale_fill_ipea(discrete = T) +
-#  insert_text(label = "Pais") +
+  insert_text(label = "Pais") +
   theme_ipea(legend.position="none",geom = 'bar',
              yend = 700)
 graf4

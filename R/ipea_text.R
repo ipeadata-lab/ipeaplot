@@ -28,6 +28,8 @@ insert_text <- function(label = NULL, decimals = 0,
     stop("Error: argument 'label' is missing, with no default")
   } else {
 
+    if(is.numeric(get(label))){
+
     # Convert the position to numeric values based on "inside" or "outside"
     vjust <- ifelse(vertical == TRUE, -0.5, 0.2)
 
@@ -60,9 +62,26 @@ insert_text <- function(label = NULL, decimals = 0,
         vjust = vjust,
         hjust = hjust, ...
       )
-    }
-  }
+      }
+    } else {
+      # Convert the position to numeric values based on "inside" or "outside"
+      vjust <- ifelse(vertical == TRUE, -0.5, 0.2)
 
+      # Horizontal position have different position
+      hjust <- ifelse(vertical == TRUE, 0.5, -0.1)
+
+      # Add text labels to the plot using the `geom_text` function
+      text <- ggplot2::geom_text(
+        aes(y = Gasto,
+            label = paste0(get(label))),
+        color = "black",
+        position = position,
+        inherit.aes = TRUE,
+        vjust = vjust,
+        hjust = hjust, ...
+        )
+      }
+    }
 
     if(vertical){
 
