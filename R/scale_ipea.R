@@ -31,13 +31,28 @@
 scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
                                                        'Red-Blue','Orange-Blue'),
                               direction = c('horizontal','vertical'),
-                              show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
+                              palette_direction = 1,
+                              show.limits = T, pt_br = T ,
+                              hline,vline,
+                              barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value
   direction <- ifelse(missing(direction), "vertical", direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
+
+  if(missing(hline)){
+    hline <- NULL
+  } else{
+    hline <- geom_hline(yintercept = hline, size = 0.25)
+  }
+
+  if(missing(vline)){
+    vline <- NULL
+  } else{
+    vline <- geom_vline(xintercept = vline, size = 0.25)
+  }
 
 
   if (pt_br == T) {
@@ -70,10 +85,11 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 
   if(isFALSE(discrete)){
       # Set palette option
-    scale_manual_pal <- ipea_palette(palette = palette, n = 10)
+    scale_manual_pal <- ipea_palette(palette = palette, n = 10, direction = palette_direction)
 
       # Graph
-      graph <- ggplot2::scale_color_gradientn(
+      graph <- list(hline,vline,
+                    ggplot2::scale_color_gradientn(
         labels = labels,  # Set the labels for the gradient scale
         colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
@@ -87,11 +103,13 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
           # some shifting around
           title.hjust = title.hjust,  # Set the horizontal alignment of the title
           label.hjust = label.hjust  # Set the horizontal alignment of the labels
-        ),...)
+        ),...))
       }
   if(isTRUE(discrete)){
-    # Create a discrete fill scale with the specified palette
-    graph <- ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette), ...)
+    # Create a discrete color scale with the specified palette
+    graph <- list(hline,vline,
+                  ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, direction = palette_direction), ...),
+                  ggplot2::guides(color=guide_legend(ncol = 3, byrow = TRUE)))
   }
 
   return(graph)
@@ -135,6 +153,8 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
                                                       'Red-Blue','Orange-Blue'),
                                          direction = c('horizontal','vertical'),
+                                         palette_direction = 1,
+                                         hline,vline,
                                          show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value
@@ -143,6 +163,17 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
 
+  if(missing(hline)){
+    hline <- NULL
+  } else{
+    hline <- geom_hline(yintercept = hline, size = 0.25)
+  }
+
+  if(missing(vline)){
+    vline <- NULL
+  } else{
+    vline <- geom_vline(xintercept = vline, size = 0.25)
+  }
 
   if (pt_br == T) {
     # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
@@ -175,10 +206,11 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
   if(isFALSE(discrete)){
 
       # Set palette palette
-      scale_manual_pal <- ipea_palette(n = 10, palette = palette)
+      scale_manual_pal <- ipea_palette(n = 10, palette = palette, direction = palette_direction)
 
       # Graph
-      graph <- ggplot2::scale_fill_gradientn(
+      graph <- list(hline,vline,
+                    ggplot2::scale_fill_gradientn(
         labels = labels,  # Set the labels for the gradient scale
         colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
@@ -192,7 +224,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
           # some shifting around
           title.hjust = title.hjust,  # Set the horizontal alignment of the title
           label.hjust = label.hjust  # Set the horizontal alignment of the labels
-        ),...)
+        ),...))
 
     }
 
@@ -200,7 +232,9 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
 
 
       # Create a discrete fill scale with the specified palette
-      graph <- ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette), ...)
+      graph <- list(hline,vline,
+                    ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, direction = palette_direction), ...),
+                    ggplot2::guides(fill=guide_legend(ncol = 3, byrow = TRUE)))
 
 
   }

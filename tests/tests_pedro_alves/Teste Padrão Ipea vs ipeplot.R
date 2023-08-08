@@ -123,7 +123,7 @@ graf2_orig <- ggplot(base_graf2, aes(x='', y=Freq, fill=Assunto))+
 
 
 graf2_orig <- ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
-  geom_bar(width = 1, stat = "identity", color= NA)+
+  geom_bar(width = 1, stat = "identity", color= 'black')+
   coord_polar("y", start=0) +
   labs(x="",
        y="",
@@ -131,7 +131,7 @@ graf2_orig <- ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
        title="GRÁFICO 2",
        subtitle="Assuntos das manifestações recebidas pela Ouvidoria do Ipea (2004-2014) (Em %)",
        caption = 'Elaboração dos autores.') +
-  theme_ipea(legend.position="bottom", axis = 'none', text = F) +
+  theme_ipea(legend.position="bottom", axis = 'none', text = F, geom = 'pie') +
   scale_fill_ipea(discrete = T,palette = 'Orange-Blue') +
   insert_text(label = 'percentual', show_percents = T, pie_plot = T)
 
@@ -177,27 +177,35 @@ graf5 <- ggplot(base_graf5, aes(x=Ano)) +
        subtitle="Evolução do volume de informação digital até 2020",
        caption = 'Fonte: IDC’s Digital Universe Study (Gantz e Reinsel, 2012).') +
   theme_ipea(legend.position="none",geom = 'bar',
-             yend = 40000)
+             x_breaks = 10, y_breaks = 4)
 graf5
 
+
+
 ######## GRAFICO 6
-graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, colour=variable))+
+graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
   geom_line(size=1)+
-  geom_point(aes(shape=variable),size=3)+
+  geom_point(aes(shape=variable, fill = variable),
+             size=3, stroke=1.5, show.legend = F)+
   labs(x="",
        y="",
-       fill = "",
+       color = "",
        title="GRÁFICO 6",
        subtitle="Crescimento anual do PIB da União Europeia (2004-2013) (Em %)",
        caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial. Disponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
-  theme_ipea(yend = 6, legend.position = 'bottom') +
-  scale_color_ipea(discrete = T) +
-  scale_shape_manual(values = c(21,19))
+  theme_ipea(y = -6,yend = 6,
+             x_breaks = 8, y_breaks = 10, legend.position = 'bottom') +
+  scale_color_ipea(palette_direction = -1, discrete = T, hline = 0) +
+  scale_shape_manual(values = c(19, 21)) +
+  scale_fill_manual(values = c(NA,"white"))
 
 graf6
 
 
 ######## GRAFICO 7
+#sort x-axis variable in alphabetical order
+base_graf7$pais<- factor(base_graf7$pais, levels=rev(sort(base_graf7$pais)))
+
 graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
   geom_bar(stat="identity", fill = '#015f96') +
   coord_flip() +
@@ -246,6 +254,7 @@ graf9 <-
        subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
        caption = 'Fonte: PwC (2014).\nTradução dos autores') +
   geom_line(data=base_graf9_aux, aes(x=pais ,y=`crescimento do PIB (ppc)_perct`, group = 1), color = 'gray') +
+  scale_fill_ipea(discrete = T) +
   theme_ipea(legend.position = 'bottom',y = -2, yend = 8, angle = 90)
 
 graf9
