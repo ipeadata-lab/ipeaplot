@@ -35,6 +35,11 @@ Gasto <- c(40,50,50,60,70,40,90,207,640)
 base_graf4<- data.frame(Pais,Gasto)
 base_graf4$pos <- ifelse(base_graf4$Pais == 'Estados Unidos',2,1)
 
+library(dplyr)
+base_graf4 <- base_graf4 %>%
+  group_by(pos) %>%
+  mutate(total = sum(Gasto))
+
 ######## GRAFICO 5
 Ano <- seq(2009,2020,1)
 Exabytes <- c(130,360,750,1400,3100,6000,10000,14000,19000,25000,31500,40000)
@@ -154,7 +159,9 @@ graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
 graf3_orig
 
 ######## GRAFICO 4
-graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais))+
+temp <- base_graf4 %>% distinct(pos, .keep_all = T)
+graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais,
+                                label = total))+
   geom_bar(width = 0.5, stat = "identity", color= NA) +
   labs(x="",
        y="Gastos com defesa",
@@ -163,9 +170,11 @@ graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais))+
        subtitle="Gastos com defesa (Em bilhões de dólares)",
        caption = 'Fonte: Peter G. Peterson Foundation (2013).\nTradução dos autores.') +
   scale_fill_ipea(discrete = T) +
-  insert_text(label = "Pais") +
+  insert_text(label = "Pais", color = 'white') +
+  geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -1) +
   theme_ipea(legend.position="none",geom = 'bar',
              yend = 700)
+
 graf4
 
 ######## GRAFICO 5
@@ -270,14 +279,29 @@ base_graf10 <- base_graf10 %>%
   mutate(media_variacao = mean(variacao_PIB, na.rm = T)) %>%
   filter(Data >= 1950)
 
+text <- base_graf10 %>%
+  arrange(-Data) %>%
+  group_by(decada) %>% slice(1)
+
+geom_segment <- base_graf10 %>%
+  group_by(decada) %>%
+  filter(Data == min(Data) | Data == max(Data)) %>%
+  mutate(intervals = ifelse(Data == min(Data),'start_dates','end_dates')) %>%
+  ungroup() %>%
+  select(c(Data,intervals,media_variacao)) %>%
+  tidyr::pivot_wider(names_from = 'intervals', values_from = 'Data')
+
 graf10 <-
   ggplot() +
   geom_line(data=base_graf10, aes(x = Data, y= variacao_PIB,
                                 group=1),
             color = '#015f96') +
-  geom_line(data=base_graf10, aes(x = Data, y= media_variacao,
-                                  group=1),
-            color = 'cyan', linetype = 'dashed') +
+  geom_segment(data = geom_segment,
+               aes(x = start_dates, xend = end_dates,
+                   y =media_variacao, yend = media_variacao),
+               color = 'cyan', linetype = 'dashed')  +
+  geom_text(data = text, aes(x = Data+2,
+                             y= media_variacao, label = round(media_variacao,0))) +
   labs(x="",
        y="",
        fill = "",

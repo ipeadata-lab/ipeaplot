@@ -12,9 +12,12 @@
 #' @import ggplot2
 #' @export
 insert_text <- function(label = NULL, decimals = 0,
+                        color,
                         show_percents = FALSE,
                         pie_plot = FALSE,
                         vertical = TRUE, ...){
+
+  color <- ifelse(missing(color),'black',color)
 
   if(pie_plot == F){
     x = NULL
@@ -44,7 +47,7 @@ insert_text <- function(label = NULL, decimals = 0,
         aes(x = x,
           label = paste0(gsub("\\.", ",", round(get(label), decimals)), "%")
         ),
-        color = "black",
+        color = color,
         position = position,
         inherit.aes = TRUE,
         vjust = vjust,
@@ -56,7 +59,7 @@ insert_text <- function(label = NULL, decimals = 0,
         aes(
           label = paste0(gsub("\\.", ",", round(get(label), decimals)))
         ),
-        color = "black",
+        color = color,
         position = position_dodge(width = 1),
         inherit.aes = TRUE,
         vjust = vjust,
@@ -72,10 +75,9 @@ insert_text <- function(label = NULL, decimals = 0,
 
       # Add text labels to the plot using the `geom_text` function
       text <- ggplot2::geom_text(
-        aes(y = Gasto,
-            label = paste0(get(label))),
-        color = "black",
-        position = position,
+        aes(label = paste0(get(label))),
+        color = color,
+        position = position_stack(vjust = .5),
         inherit.aes = TRUE,
         vjust = vjust,
         hjust = hjust, ...
