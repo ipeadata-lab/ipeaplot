@@ -35,6 +35,7 @@ theme_ipea <- function(axis = c('none','half','full'),
 
   angle <- ifelse(missing(angle),0, angle)
   hjust <- ifelse(angle == 0,0.5, 1)
+  vjust <- ifelse(angle == 0,0, 0.5)
 
 
 
@@ -60,7 +61,7 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     panel.border = ggplot2::element_blank()
-    axis.text.x  = ggplot2::element_text(angle = angle,  vjust = 0, hjust= hjust)
+    axis.text.x  = ggplot2::element_text(angle = angle,  vjust = vjust, hjust= hjust)
     axis.ticks.x = ggplot2::element_line()
     axis.text.y  = ggplot2::element_text()
     axis.ticks.y = ggplot2::element_line()

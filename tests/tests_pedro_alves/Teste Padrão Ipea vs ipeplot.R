@@ -100,17 +100,21 @@ graf1_orig <- ggplot(data=base_graf1, aes(x=Ano, y=Populacao, fill=factor(2))) +
   scale_y_continuous(breaks=seq(0, 10, 1), limits=c(0,10))+
   theme(legend.position="none")
 
-graf1 <- ggplot(data=base_graf1, aes(x=Ano, y=Populacao)) +
-  geom_bar(stat="identity", fill = '#015f96', width=.5) +
+graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
+  geom_bar(stat="identity", fill = '#015f96', width=2) +
+  geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
+           outside = TRUE, sides = "b", length = unit(5, "mm")) +
+  coord_cartesian(expand = FALSE, clip = "off") +
   labs(x="",
        y="",
        fill = "",
        title="GRÁFICO 1",
        subtitle="Evolução do crescimento da população mundial 2000-2050 (Em bilhões)",
        caption = 'Fonte: United Nations (2012a).\nTradução dos autores.') +
-  theme_ipea(geom = 'bar', yend = 10) +
+  theme_ipea(geom = 'bar', yend = 10, xend = 2052, x_breaks = 16) +
   insert_text(label = 'Populacao', decimals = 1)
 graf1
+
 
 ######## GRAFICO 2
 y.breaks <- cumsum(base_graf2$percentual) - (base_graf2$percentual)/2
@@ -145,6 +149,8 @@ graf2_orig
 
 ######## GRAFICO 3
 base_graf3$Ano <- as.numeric(as.character(base_graf3$Ano))
+ref <- (subset(base_graf3,substr(Ano,4,4) %in% c('5','0')))
+
 graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
   geom_line(color = '#015f96') +
   labs(x="",
@@ -153,8 +159,10 @@ graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
        title="GRÁFICO 2",
        subtitle="Taxa de crescimento da população mundial (Em %)",
        caption = 'Elaboração dos autores.') +
-  theme_ipea(y = 1 , yend = 2.6, x_breaks = 16)
-
+  theme_ipea(y = 1 , yend = 2.6, x_breaks = 16, angle = 90) +
+  geom_rug(data = ref, aes(x = Ano+2.5),inherit.aes = FALSE,
+           outside = TRUE, sides = "b", length = unit(5, "mm")) +
+  coord_cartesian(clip = "off")
 
 graf3_orig
 
@@ -248,24 +256,39 @@ graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=varia
 graf8
 
 ######## GRAFICO 9
-base_graf9_aux <- base_graf9[,c(1,4)]
+
 library(reshape)
+base_graf9_aux <- base_graf9[,c(1,4)]
+base_graf9_aux$n <- 1:nrow(base_graf9_aux)
 base_graf9<- melt(base_graf9[,-4], id=c("pais"))
+
+base_graf9 <- base_graf9 %>%
+  group_by(variable) %>%
+  mutate(n = 1:n())
+
+
+
+
+label <- (base_graf9 %>% ungroup() %>% distinct(pais))$pais
 
 graf9 <-
   ggplot() +
-  geom_bar(data=base_graf9, aes(x=forcats::fct_reorder(pais,-value), y=value,
+  geom_bar(data=base_graf9, aes(x=n, y=value,
                                 group=variable, fill=variable),
-           stat="identity") +
+           stat="identity", width = 0.5) +
   labs(x="",
        y="",
        fill = "",
        title="GRÁFICO 9",
        subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
        caption = 'Fonte: PwC (2014).\nTradução dos autores') +
-  geom_line(data=base_graf9_aux, aes(x=pais ,y=`crescimento do PIB (ppc)_perct`, group = 1), color = 'gray') +
+  geom_line(data=base_graf9_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1), color = 'gray') +
+  scale_x_continuous(breaks = 1:max(base_graf9$n), labels = label) +
   scale_fill_ipea(discrete = T) +
-  theme_ipea(legend.position = 'bottom',y = -2, yend = 8, angle = 90)
+  theme_ipea(legend.position = 'bottom',y = -2, yend = 8, angle = 90) +
+  geom_rug(data=base_graf9, aes(x = n-0.5),
+           outside = TRUE, sides = "b", length = unit(5, "mm")) +
+  coord_cartesian(expand = FALSE, clip = "off")
 
 graf9
 
