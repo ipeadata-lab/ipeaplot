@@ -24,6 +24,7 @@ theme_ipea <- function(axis = c('none','half','full'),
                        x, y, yend,xend,
                        x_breaks , y_breaks,
                        bar_adjust = F,angle,
+                       adjust_ticks = F,
                        ...){
 
   y <- ifelse(missing(y), -Inf, y)
@@ -107,6 +108,10 @@ theme_ipea <- function(axis = c('none','half','full'),
     # Hide axis text and ticks when text is not displayed
     axis.text = ggplot2::element_blank()
     axis.ticks = ggplot2::element_blank()
+  }
+
+  if(adjust_ticks == T){
+    axis.ticks.x = ggplot2::element_blank()
   }
 
 

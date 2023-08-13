@@ -103,7 +103,7 @@ graf1_orig <- ggplot(data=base_graf1, aes(x=Ano, y=Populacao, fill=factor(2))) +
 graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
   geom_bar(stat="identity", fill = '#015f96', width=2) +
   geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
-           outside = TRUE, sides = "b", length = unit(5, "mm")) +
+           outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off") +
   labs(x="",
        y="",
@@ -161,7 +161,7 @@ graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
        caption = 'Elaboração dos autores.') +
   theme_ipea(y = 1 , yend = 2.6, x_breaks = 16, angle = 90) +
   geom_rug(data = ref, aes(x = Ano+2.5),inherit.aes = FALSE,
-           outside = TRUE, sides = "b", length = unit(5, "mm")) +
+           outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
 
 graf3_orig
@@ -287,7 +287,7 @@ graf9 <-
   scale_fill_ipea(discrete = T) +
   theme_ipea(legend.position = 'bottom',y = -2, yend = 8, angle = 90) +
   geom_rug(data=base_graf9, aes(x = n-0.5),
-           outside = TRUE, sides = "b", length = unit(5, "mm")) +
+           outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off")
 
 graf9
