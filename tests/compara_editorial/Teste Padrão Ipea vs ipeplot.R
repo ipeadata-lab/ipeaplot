@@ -103,7 +103,7 @@ graf1_orig <- ggplot(data=base_graf1, aes(x=Ano, y=Populacao, fill=factor(2))) +
 graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
   geom_bar(stat="identity", fill = '#015f96', width=2) +
   geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
-           outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
+           outside = TRUE, sides = "b", length = unit(3, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off") +
   labs(x="",
        y="",
@@ -111,9 +111,12 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
        title="GRÁFICO 1",
        subtitle="Evolução do crescimento da população mundial 2000-2050 (Em bilhões)",
        caption = 'Fonte: United Nations (2012a).\nTradução dos autores.') +
-  theme_ipea(geom = 'bar', yend = 10, xend = 2052, x_breaks = 16) +
+  theme_ipea(geom = 'bar', yend = 10, xend = 2052, x_breaks = 16, adjust_ticks = T) +
   insert_text(label = 'Populacao', decimals = 1)
+
 graf1
+ggsave(graf1, filename = "./tests/compara_editorial/prints_ipea_theme/Grafico 1.pdf",
+       width = 20, height = 20, units = "cm")
 
 
 ######## GRAFICO 2
@@ -146,6 +149,9 @@ graf2_orig <- ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
 
 
 graf2_orig
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 2.pdf",
+       width = 20, height = 20, units = "cm")
+
 
 ######## GRAFICO 3
 base_graf3$Ano <- as.numeric(as.character(base_graf3$Ano))
@@ -156,15 +162,18 @@ graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
   labs(x="",
        y="",
        fill = "",
-       title="GRÁFICO 2",
+       title="GRÁFICO 3",
        subtitle="Taxa de crescimento da população mundial (Em %)",
        caption = 'Elaboração dos autores.') +
-  theme_ipea(y = 1 , yend = 2.6, x_breaks = 16, angle = 90) +
+  theme_ipea(y = 1 , yend = 2.6, x_breaks = 16, angle = 90, adjust_ticks = T) +
   geom_rug(data = ref, aes(x = Ano+2.5),inherit.aes = FALSE,
-           outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
+           outside = TRUE, sides = "b", length = unit(9, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
 
 graf3_orig
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 3.pdf",
+       width = 20, height = 20, units = "cm")
+
 
 ######## GRAFICO 4
 temp <- base_graf4 %>% distinct(pos, .keep_all = T)
@@ -181,9 +190,12 @@ graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais,
   insert_text(label = "Pais", color = 'white') +
   geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -1) +
   theme_ipea(legend.position="none",geom = 'bar',
-             yend = 700)
+             yend = 700, adjust_ticks = T)
 
 graf4
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 4.pdf",
+       width = 20, height = 20, units = "cm")
+
 
 ######## GRAFICO 5
 graf5 <- ggplot(base_graf5, aes(x=Ano)) +
@@ -197,6 +209,8 @@ graf5 <- ggplot(base_graf5, aes(x=Ano)) +
   theme_ipea(legend.position="none",geom = 'bar',
              x_breaks = 10, y_breaks = 4)
 graf5
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 5.pdf",
+       width = 20, height = 20, units = "cm")
 
 
 
@@ -218,6 +232,9 @@ graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
   scale_fill_manual(values = c(NA,"white"))
 
 graf6
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 6.pdf",
+       width = 20, height = 20, units = "cm")
+
 
 
 ######## GRAFICO 7
@@ -236,6 +253,9 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
   theme_ipea(legend.position = 'none', geom = 'bar', direction = 'horizontal',
              y = -80, yend = 120)
 graf7
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 7.pdf",
+       width = 20, height = 20, units = "cm")
+
 
 ######## GRAFICO 8
 library(reshape)
@@ -248,12 +268,15 @@ graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=varia
        y="",
        fill = "",
        title="GRÁFICO 8",
-       subtitle="Mudanças nos níveis de desigualdade do BRICS, calculadas pelo coeficiente Gini, entre o início da década de 1990 e o final da década de 2000",
+       subtitle="Mudanças nos níveis de desigualdade do BRICS, calculadas pelo coeficiente Gini,\n entre o início da década de 1990 e o final da década de 2000",
        caption = '') +
   theme_ipea(legend.position = 'bottom', geom = 'bar',
              direction = 'horizontal', yend = 0.7) +
   scale_fill_ipea(discrete = T)
 graf8
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 8.pdf",
+       width = 20, height = 20, units = "cm")
+
 
 ######## GRAFICO 9
 
@@ -291,6 +314,9 @@ graf9 <-
   coord_cartesian(expand = FALSE, clip = "off")
 
 graf9
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 9.pdf",
+       width = 20, height = 20, units = "cm")
+
 
 
 ######## GRAFICO 10
@@ -334,3 +360,6 @@ graf10 <-
   theme_ipea(legend.position = 'bottom', yend = 4000)
 
 graf10
+ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 10.pdf",
+       width = 20, height = 20, units = "cm")
+

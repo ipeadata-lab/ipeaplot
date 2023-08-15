@@ -112,6 +112,9 @@ theme_ipea <- function(axis = c('none','half','full'),
 
   if(adjust_ticks == T){
     axis.ticks.x = ggplot2::element_blank()
+    hjust <- ifelse(angle == 0,0.5, -4)
+    vjust <- ifelse(angle == 0,4, 0.5)
+    axis.text.x  = ggplot2::element_text(angle = angle,  vjust = vjust, hjust= hjust)
   }
 
 
