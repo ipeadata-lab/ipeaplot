@@ -3,6 +3,13 @@ library(ggplot2)
 
 data(mtcars)
 
+# escala continua default do ggplot
+ggplot() +
+  geom_point(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
+  ipeaplot::theme_ipea()
+
+
+# escala continua do ipeaplot
 ggplot() +
   geom_point(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
   ipeaplot::scale_color_ipea(discrete = F) +
