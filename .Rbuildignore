@@ -3,6 +3,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^tests_rafa$
+^compara_editorial$
 ^tests_pedro_alves$
 ^doc$
 ^Meta$

@@ -1,5 +1,5 @@
-Package: ipeaplot
 Type: Package
+Package: ipeaplot
 Title: Ggplot Graphics in Ipea Standard
 Version: 0.0.1
 Authors@R: c(
@@ -18,10 +18,12 @@ Description: Convenient functions to create ggplot graphics following the
 License: MIT + file LICENSE
 URL: https://github.com/ipeadata-lab/ipeaplot
 BugReports: https://github.com/ipeadata-lab/ipeaplot/issues
-Depends: R (>= 3.3.2)
+Depends: 
+    R (>= 3.3.2)
 Imports:
     extrafont,
     ggplot2,
+    ggthemes,
     grDevices,
     scales,
     paletteer,
