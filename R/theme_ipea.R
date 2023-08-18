@@ -1,17 +1,24 @@
-#' Ggplot theme for IPEA graphics
+#' Ggplot theme for Ipea charts and figures
 #'
-#' This function defines a custom theme for IPEA graphics, which provides standardized formatting
-#' options for axis lines, text, legends, and panel borders.
+#' @description Applies a custom theme for ggplot figures following the editorial
+#' guidelines used by the Institute for Applied Economic Research - Ipea. The
+#' function includes standardized formatting of options for axis lines, text,
 #'
-#' @param axis A character vector specifying the axis style. Valid options are "none" (no axis lines),
-#'   "half" (half-length axis lines), and "full" (full-length axis lines).
-#' @param geom A character vector specifying some particularities of geom plot. Valid options are "bar","line", "point", "sf".
-#' @param text Logical value indicating whether to show text elements. If TRUE, axis text and ticks
-#'   will be displayed in black; otherwise, they will be hidden.
-#' @param legend.position A character vector specifying the position of the legend. Valid options are
-#'   "right" (default), "left", "top", and "bottom".
-#' @param direction Argument that defines whether the graphic specifications will be in the standard horizontal or vertical legend
-#' @param ... Additional arguments to be passed to the `theme` function from the `ggplot2` package.
+#' @param axis A character vector specifying the axis style. Valid options are
+#'        `"none"` (no axis lines), `"half"` (half-length axis lines), and
+#'        `"full"` (full-length axis lines).
+#' @param geom A character vector specifying some particularities of geom plot.
+#'        Valid options are `"bar"`,`"line"`, `"point"`, `"sf"`.
+#' @param text Logical value indicating whether to show text elements. If `TRUE`,
+#'        axis text and ticks will be displayed in black; otherwise, they will
+#'        be hidden.
+#' @param legend.position A character vector specifying the position of the
+#'        legend. Valid options are `"right"` (default), `"left"`, `"top"`, and
+#'        `"bottom"`.
+#' @param direction Argument that defines whether the graphic specifications
+#'        will be in the standard horizontal or vertical legend.
+#' @param ... Additional arguments to be passed to the `theme` function from the
+#'        `ggplot2` package.
 #'
 #' @return A custom theme for IPEA graphics.
 #' @import ggplot2

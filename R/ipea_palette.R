@@ -1,6 +1,7 @@
 #' Ipea Color Palette and Scales
 #'
 #' A 9-color Ipea palette.
+#'
 #' @param palette A character vector specifying color/fill palette.
 #' @importFrom scales manual_pal
 #' @export
@@ -9,20 +10,15 @@
 #' @title Ipea Color Palettes
 #'
 #' @description This function creates a vector of n equally spaced colors
-#'  along the selected color map.
+#'               along the selected color map.
 #'
 #' @param n The number of colors (\eqn{\ge 1}) to be in the palette.
-#'
 #' @param alpha	The alpha transparency, a number in [0,1]
-#'
 #' @param begin The (corrected) hue in [0,1] at which the color map begins.
-#'
 #' @param end The (corrected) hue in [0,1] at which the color map ends.
-#'
 #' @param direction Sets the order of colors in the scale. If 1, the default,
-#'  colors are ordered from darkest to lightest. If -1, the order of colors is
-#'  reversed.
-#'
+#'        colors are ordered from darkest to lightest. If -1, the order of
+#'        colors is reversed.
 #' @param option A character string indicating the color map option to use.
 #'  Eight options are available:
 #'  \itemize{
@@ -96,15 +92,14 @@ force_all <- function(...) list(...)
 #'
 #' @inheritParams ipeaplot::ipea_pal
 #' @param begin,end The (corrected) hue in `[0,1]` at which the color map
-#'   begins and ends.
+#'        begins and ends.
 #' @references
 #' @export
 #' @examples
-#' show_col(ipea_pal()(10))
-#' show_col(ipea_pal(direction = -1)(6))
-#' show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
-#' show_col(ipea_pal(option = "Green")(6))
-
+#' scales::show_col(ipea_pal()(10))
+#' scales::show_col(ipea_pal(direction = -1)(6))
+#' scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
+#' scales::show_col(ipea_pal(palette = "Green")(6))
 
 ipea_pal <- function(alpha = 1, begin = 0, end = 1, direction = 1,
                     palette = c('Blue','Green','Orange','Pink',
