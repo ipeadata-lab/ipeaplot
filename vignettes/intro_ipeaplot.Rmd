@@ -19,21 +19,34 @@ knitr::opts_chunk$set(
 ```
 
 
-The [**ipeaplot**](https://github.com/ipea-datalab/ipeaplot) is a computational package designed to facilitate the standardization of colors and graphic formatting for text submissions for discussion (TD) and articles for the journal of the Institute of Applied Economic Research (IPEA). This package provides users with tools and functions that simplify the process of applying consistent color schemes and graphic styles in their work, ensuring conformity to the requirements and guidelines of the IPEA journal. By using **ipeaplot**, users can easily achieve visually appealing and professionally formatted text submissions for IPEA. (see detailed information below).. This vignette presents a quick intro to **ipeaplot**.
+[**ipeaplot**](https://github.com/ipeadata-lab/ipeaplot) is a computational package designed to help researchers create charts and maps following the editorial guidelines used by the Institute for Applied Economic Research - Ipea. The package provides users with tools and functions that simplify the process of consistently using the color schemes and graphic styles used in Ipea's Texto para Discussão (TD). By using **ipeaplot**, users can easily achieve visually appealing and professionally formatted studies. This vignette presents a quick intro to **ipeaplot**.
 
 
-## Installation
+# Installation
 
 You can install the development version of ipeaplot from github:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 # Development version
 utils::remove.packages('ipeaplot')
-devtools::install_github("ipea-datalab/ipeaplot")
+devtools::install_github("ipeadata-lab/ipeaplot")
 
 ```
 
-Now let's load the libraries we'll use in this vignette.
+# Overview of the package
+
+The ipeaplot package is meant be used together with `ggplot2`, the most popular data visualization library in R. Currently, ipeaplot includes four main functions to help you change the style of your figures:
+
+1. `theme_ipea()` - changes layout of figure elements (axis, title, subtitle, fonts etc) following Ipea's editorial guidelines;
+2. `scale_color_ipea()` - selects a color palette from a range of options following Ipea's editorial guidelines;
+3. `scale_fill_ipea()`- selects a color palette from a range of options following Ipea's editorial guidelines;
+4. `save_eps()` - saves figures in `.eps` file extesion to be used by Ipea's editing team.
+
+
+
+# Demonstration on sample data
+
+First, let's load the libraries and sample data we'll be using to demonstrate ipeaplot in this vignette. In these first examples below, we'll be using the `mtcats` data set from R.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 library(ipeaplot)
@@ -41,25 +54,22 @@ library(ggplot2)
 library(dplyr)
 library(abjData)
 library(geobr)
+
+# Load mtcars dataset
+data(mtcats)
 ```
 
+This is how
 
+## Color palletes
 
- load data
-```{r eval=TRUE, message=FALSE, warning=FALSE}
-
- graph <- abjData::pnud_uf %>%
-  filter(substr(uf,1,1) == "3") %>%
-  select(1:4)
-```
+There are two core functions to select color palettes: `scale_color_ipea()` and `scale_fill_ipea()`. These two function work exactly in the same way but,  the following parameters:
 
 
 
 
 Scale Continuous
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-# Load the mtcars dataset
-data("mtcars")
 
 # Create a scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and color-coded by 'wt'
 # Use the 'scale_color_ipea()' function to apply the IPEA continuous color scale

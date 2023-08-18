@@ -8,12 +8,12 @@
 \title{ipeaplot: ggplot Graphics in Ipea Standard}
 \description{
 Convenient functions to create ggplot graphics following the editorial
-guidelines of the  Institute for Applied Economic Research (IPEA).
+guidelines of the  Institute for Applied Economic Research - Ipea.
 }
 \section{Usage}{
 
 Please check the vignettes and data documentation on the
-\href{https://ipeagit.github.io//}{website}.
+\href{https://github.com/ipeadata-lab/ipeaplot}{website}.
 }
 
 \seealso{
@@ -25,11 +25,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Pedro Jorge \email{pedro.alves@ipea.gov.br} (\href{http://orcid.org/0000-0001-9340-030X}{ORCID})
+\strong{Maintainer}: Pedro Jorge \email{pedro.alves@ipea.gov.br}
 
 Authors:
 \itemize{
-  \item Pedro Cavalcanti Gonçalves Ferreira \email{pedro.concalves@ipea.gov.br}
+  \item Pedro Cavalcanti Gonçalves Ferreira \email{pedro.ferreira2@ipea.gov.br}
   \item Daniel Lima \email{daniel.viegas@ipea.gov.br}
   \item Gustavo Coelho \email{gustavo.coelho@ipea.gov.br}
   \item Rafael H. M. Pereira \email{rafa.pereira.br@gmail.com} (\href{https://orcid.org/0000-0003-2125-7465}{ORCID})

@@ -2,13 +2,6 @@
 #'
 #' A 9-color Ipea palette.
 #'
-#' @param palette A character vector specifying color/fill palette.
-#' @importFrom scales manual_pal
-#' @export
-#' @rdname IpeaColor
-
-#' @title Ipea Color Palettes
-#'
 #' @description This function creates a vector of n equally spaced colors
 #'               along the selected color map.
 #'
@@ -30,7 +23,6 @@
 #'  \item{}{'Orange-Blue}
 #'  }
 #'
-
 ipea_palette <- function(n, alpha = 1, begin = 0, end = 1,
                      direction = 1, palette = c('Blue','Green','Orange','Pink',
                                                'Red-Blue','Orange-Blue')) {
@@ -90,9 +82,14 @@ force_all <- function(...) list(...)
 
 #' Ipea palette
 #'
-#' @inheritParams ipeaplot::ipea_pal
-#' @param begin,end The (corrected) hue in `[0,1]` at which the color map
-#'        begins and ends.
+#' @param n The number of colors (\eqn{\ge 1}) to be in the palette.
+#' @param alpha	The alpha transparency, a number in [0,1]
+#' @param begin The (corrected) hue in [0,1] at which the color map begins.
+#' @param end The (corrected) hue in [0,1] at which the color map ends.
+#' @param direction Sets the order of colors in the scale. If 1, the default,
+#'        colors are ordered from darkest to lightest. If -1, the order of
+#'        colors is reversed.
+#' @param option A character string indicating the color map option to use.
 #' @references
 #' @export
 #' @examples

@@ -6,60 +6,52 @@
 \usage{
 scale_color_ipea(
   discrete = F,
-  palette = c('Blue','Green','Orange','Pink','Red-Blue','Orange-Blue'),
+  palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue"),
   direction = c("horizontal", "vertical"),
+  palette_direction = 1,
   show.limits = T,
   pt_br = T,
+  hline,
+  vline,
   barheight = 2,
   barwidth = 50,
   ...
 )
 }
 \arguments{
+\item{discrete}{A logical value indicating whether to use discrete or
+continuous scale bar. The default value is continuous.}
 
-\item{discrete}{A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.}
+\item{palette}{A character vector specifying the available palette for the
+color palette. The default palette are "Blue", but we can also change
+to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'}.}
 
-\item{palette}{A character vector specifying the available palette for the color palette. The default palette are "Blue", but we can also change to 'Green','Orange','Pink','Red-Blue','Orange-Blue'.}
+\item{direction}{A character vector specifying the direction of the color
+gradient. \cr The available palette are "horizontal" and "vertical".
+The default value is "horizontal".}
 
-\item{direction}{A character vector specifying the direction of the color gradient. The available palette are "horizontal" and "vertical". The default value is "horizontal".}
+\item{show.limits}{A logical value indicating whether to display the color
+gradient limits. The default value is TRUE.}
 
-\item{show.limits}{ A logical value indicating whether to display the color gradient limits. The default value is TRUE.}
+\item{pt_br}{A logical value indicating whether to use Brazilian Portuguese
+formatting for labels. \cr If TRUE, decimal marks are set to ",", and
+big marks are set to ".". The default value is TRUE.}
 
-\item{pt_br}{A logical value indicating whether to use Brazilian Portuguese formatting for labels. If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.}
+\item{barheight}{The height of the color gradient bar. This parameter is used
+when the direction is set to "horizontal". The default value is 2.}
 
-\item{barheight}{The height of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 2.}
+\item{barwidth}{The width of the color gradient bar. This parameter is used
+when the direction is set to "horizontal". The default value is 50.}
 
-\item{barwidth}{The width of the color gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.}
-
-\item{...}{Additional arguments to be passed to the scale_color_gradientn or scale_color_distiller function from the ggplot2 package.}
+\item{...}{Additional arguments to be passed to the scale_fill_gradientn,
+scale_color_gradientn, scale_fill_distiller or scale_color_distiller
+function from the ggplot2 package.}
 }
-
 \value{
-Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
+A list object be added to a ggplot object to change color pallete.
 }
 \description{
-Generate a color palette (continuous or discrete) in the
-formatting of texts published by the Institute for Applied
-Economic Research (IPEA)
+Generate a color palette (continuous or discrete) following the
+editorial guidelines used by the Institute for Applied Economic
+Research - Ipea.
 }
-\examples{
-\dontrun{ if (interactive()) {
-library(ggplot2)
-library(ipeaplot)
-
-# Generating default plot
-plot <- ggplot(data=mtcars, aes(x =  mpg, y = hp, color = am)) +
-  geom_bar(stat="identity") +
-  scale_color_ipea()
-
-
-# Generating default plot for discrete option
-plot <- ggplot(data = mtcars, aes(x = mpg,
-                         y = hp,
-                         color = am)) +
-  geom_point() +
-  scale_color_ipea(discrete = T)
-
-}}
-}
-

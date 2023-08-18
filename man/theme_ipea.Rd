@@ -2,55 +2,53 @@
 % Please edit documentation in R/theme_ipea.R
 \name{theme_ipea}
 \alias{theme_ipea}
-\title{Ggplot theme for IPEA graphics}
+\title{Ggplot theme for Ipea charts and figures}
 \usage{
 theme_ipea(
   axis = c("none", "half", "full"),
-  geom = c("bar", "line", "point", "sf"),
+  geom = c("bar", "line", "point", "sf", "pie"),
   text = T,
   legend.position,
   direction = c("horizontal", "vertical"),
+  x,
+  y,
+  yend,
+  xend,
+  x_breaks,
+  y_breaks,
+  bar_adjust = F,
+  angle,
+  adjust_ticks = F,
   ...
 )
 }
 \arguments{
-\item{axis}{A character vector specifying the axis style. Valid options are "none" (no axis lines), "half" (half-length axis lines), and "full" (full-length axis lines).}
+\item{axis}{A character vector specifying the axis style. Valid options are
+\code{"none"} (no axis lines), \code{"half"} (half-length axis lines), and
+\code{"full"} (full-length axis lines).}
 
-\item{geom}{A character vector specifying some particularities of geom plot. Valid options are "bar","line", "point", "sf".}
+\item{geom}{A character vector specifying some particularities of geom plot.
+Valid options are \code{"bar"},\code{"line"}, \code{"point"}, \code{"sf"}.}
 
-\item{text}{Logical value indicating whether to show text elements. If TRUE, axis text and ticks will be displayed in black; otherwise, they will be hidden.}
+\item{text}{Logical value indicating whether to show text elements. If \code{TRUE},
+axis text and ticks will be displayed in black; otherwise, they will
+be hidden.}
 
-\item{legend.position}{A character vector specifying the position of the legend. Valid options are "right" (default), "left", "top", and "bottom".}
+\item{legend.position}{A character vector specifying the position of the
+legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"}, and
+\code{"bottom"}.}
 
-\item{direction}{Argument that defines whether the graphic specifications will be in the standard horizontal or vertical legend}
-\item{...}{Additional arguments to be passed to the \code{theme} function from the \code{ggplot2} package.}
+\item{direction}{Argument that defines whether the graphic specifications
+will be in the standard horizontal or vertical legend.}
+
+\item{...}{Additional arguments to be passed to the \code{theme} function from the
+\code{ggplot2} package.}
 }
-
 \value{
 A custom theme for IPEA graphics.
 }
 \description{
-This function defines a custom theme for IPEA graphics, which provides standardized formatting
-options for axis lines, text, legends, and panel borders.
-}
-\examples{
-\dontrun{ if (interactive()) {
-library(ggplot2)
-library(ipeaplot)
-
-# Theme customization for a specific plot type, legend position and axis type
-plot <- ggplot(data=mtcars, aes(x =  mpg, y = hp, fill = am)) +
-  geom_bar(stat="identity") +
-  theme_ipea(legend.position = 'bottom', geom = 'bar', axis = 'none')
-
-# Theme customization for a specific plot type
-plot <- ggplot(data=mtcars, aes(x =  mpg, y = hp, fill = am)) +
-        geom_bar(stat="identity") +
-        theme_ipea(geom = 'bar')
-
-# Theme customization for all plot
-plot <- ggplot(data=mtcars, aes(x =  mpg, y = hp, fill = am)) +
-  geom_line() +
-  theme_ipea()
-}}
+Applies a custom theme for ggplot figures following the editorial
+guidelines used by the Institute for Applied Economic Research - Ipea. The
+function includes standardized formatting of options for axis lines, text,
 }
