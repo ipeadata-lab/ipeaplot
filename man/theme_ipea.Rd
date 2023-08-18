@@ -10,24 +10,21 @@ theme_ipea(
   text = T,
   legend.position,
   direction = c("horizontal", "vertical"),
-  colours,
   ...
 )
 }
 \arguments{
-\item{axis}{A character vector specifying the axis style. Valid options are "none" (no axis lines),
-"half" (half-length axis lines), and "full" (full-length axis lines).}
+\item{axis}{A character vector specifying the axis style. Valid options are "none" (no axis lines), "half" (half-length axis lines), and "full" (full-length axis lines).}
 
 \item{geom}{A character vector specifying some particularities of geom plot. Valid options are "bar","line", "point", "sf".}
 
-\item{text}{Logical value indicating whether to show text elements. If TRUE, axis text and ticks
-will be displayed in black; otherwise, they will be hidden.}
+\item{text}{Logical value indicating whether to show text elements. If TRUE, axis text and ticks will be displayed in black; otherwise, they will be hidden.}
 
-\item{legend.position}{A character vector specifying the position of the legend. Valid options are
-"right" (default), "left", "top", and "bottom".}
+\item{legend.position}{A character vector specifying the position of the legend. Valid options are "right" (default), "left", "top", and "bottom".}
 
 \item{direction}{Argument that defines whether the graphic specifications will be in the standard horizontal or vertical legend}
 \item{...}{Additional arguments to be passed to the \code{theme} function from the \code{ggplot2} package.}
+}
 
 \value{
 A custom theme for IPEA graphics.

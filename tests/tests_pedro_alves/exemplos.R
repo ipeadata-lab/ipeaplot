@@ -3,13 +3,27 @@
 # https://www.ipea.gov.br/sites/manualeditorial/padroes-editoriais/padroes-grafico-visuais/ilustracoes/graficos
 remotes::install_github("ipeadata-lab/ipeaplot")
 
-
+devtools::check(pkg = ".",  cran = FALSE, env_vars = c(NOT_CRAN = "true"))
 
 library(ipeaplot)
 library(ggplot2)
 library(dplyr)
 extrafont::fonttable()
 
+# Teste paleta
+Green       = paletteer::paletteer_d("ggsci::green_material")
+Orange      = paletteer::paletteer_d("ggsci::orange_material")
+Blue        = paletteer::paletteer_d("ggsci::blue_material")
+Pink        = paletteer::paletteer_d("ggsci::pink_material")
+Green_Blue  = paletteer::paletteer_c("ggthemes::Classic Green-Blue", 10)
+Orange_Blue = paletteer::paletteer_c("ggthemes::Classic Orange-Blue", 10)
+Red_Blue    = paletteer::paletteer_c("ggthemes::Classic Red-Blue", 10)
+
+library(colorblindcheck)
+palette_dist(Green_Blue)
+palette_check(Green_Blue, plot = TRUE)
+palette_check(Orange_Blue, plot = TRUE)
+palette_check(Red_Blue, plot = TRUE)
 
 library(showtext)
 
@@ -49,7 +63,7 @@ graph <- abjData::pnud_uf %>%
 bp <- ggplot(graph, aes(x="", y=share, fill=ufn))+
   geom_bar(width = 1, stat = "identity") +
   coord_polar("y",start=0) +
-  scale_fill_ipea(discrete = T, palette = 'Blues') +
+  scale_fill_ipea(discrete = T, palette = 'Blue') +
   labs(x="",
        y="",
        fill = "",
@@ -71,7 +85,7 @@ ggplot(graph, aes(x = ufn, y = rdpc))+
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  theme_ipea(legend.position = 'bottom', geom = 'bar')
+  theme_ipea(legend.position = 'bottom', geom = 'bar', direction = 'horizontal')
 
 
 

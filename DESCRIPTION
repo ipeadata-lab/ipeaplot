@@ -24,15 +24,18 @@ Imports:
     ggplot2,
     grDevices,
     scales,
+    paletteer,
     showtext
 Suggests: 
     abjData,
-    covr,
+    geobr,
     data.table,
     dplyr,
     knitr,
     rmarkdown,
     sf,
+    purrr,
+    sysfonts,
     testthat
 VignetteBuilder: 
     knitr

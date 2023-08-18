@@ -12,14 +12,26 @@
 #' @import ggplot2
 #' @export
 insert_text <- function(label = NULL, decimals = 0,
+                        color,
                         show_percents = FALSE,
+                        pie_plot = FALSE,
                         vertical = TRUE, ...){
 
+  color <- ifelse(missing(color),'black',color)
 
+  if(pie_plot == F){
+    x = NULL
+    position = position_dodge(width = 1)
+  } else {
+    position = position_stack(vjust = .5)
+    x = 1.6
+  }
 
   if(is.null(label)){
-
+    stop("Error: argument 'label' is missing, with no default")
   } else {
+
+    if(is.numeric(get(label))){
 
     # Convert the position to numeric values based on "inside" or "outside"
     vjust <- ifelse(vertical == TRUE, -0.5, 0.2)
@@ -32,11 +44,11 @@ insert_text <- function(label = NULL, decimals = 0,
     if (show_percents) {
       # Add text labels to the plot using the `geom_text` function
       text <- ggplot2::geom_text(
-        aes(
+        aes(x = x,
           label = paste0(gsub("\\.", ",", round(get(label), decimals)), "%")
         ),
-        color = "black",
-        position = position_dodge(width = 1),
+        color = color,
+        position = position,
         inherit.aes = TRUE,
         vjust = vjust,
         hjust = hjust, ...
@@ -47,15 +59,31 @@ insert_text <- function(label = NULL, decimals = 0,
         aes(
           label = paste0(gsub("\\.", ",", round(get(label), decimals)))
         ),
-        color = "black",
+        color = color,
         position = position_dodge(width = 1),
         inherit.aes = TRUE,
         vjust = vjust,
         hjust = hjust, ...
       )
-    }
-  }
+      }
+    } else {
+      # Convert the position to numeric values based on "inside" or "outside"
+      vjust <- ifelse(vertical == TRUE, -0.5, 0.2)
 
+      # Horizontal position have different position
+      hjust <- ifelse(vertical == TRUE, 0.5, -0.1)
+
+      # Add text labels to the plot using the `geom_text` function
+      text <- ggplot2::geom_text(
+        aes(label = paste0(get(label))),
+        color = color,
+        position = position_stack(vjust = .5),
+        inherit.aes = TRUE,
+        vjust = vjust,
+        hjust = hjust, ...
+        )
+      }
+    }
 
     if(vertical){
 

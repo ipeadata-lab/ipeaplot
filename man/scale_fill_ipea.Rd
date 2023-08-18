@@ -6,7 +6,7 @@
 \usage{
 scale_fill_ipea(
   discrete = F,
-  palette = c("ipeatd", "ipea2", "ipea3", ...),
+  palette = c('Blue','Green','Orange','Pink','Red-Blue','Orange-Blue'),
   direction = c("horizontal", "vertical"),
   show.limits = T,
   pt_br = T,
@@ -19,12 +19,11 @@ scale_fill_ipea(
 
 \item{discrete}{A logical value indicating whether to use discrete or continuous scale bar. The default value is continuous.}
 
-\item{palette}{A character vector specifying the available palette for the fill palette. The default palette are "ipeatd", but we can also change to "ipea2", "ipea3", or other default ggplot2 options.
+\item{palette}{A character vector specifying the available palette for the color palette. The default palette are "Blue", but we can also change to 'Green','Orange','Pink','Red-Blue','Orange-Blue'.}
 
-\item{direction}{A character vector specifying the direction of the fill gradient. \cr
-The available palette are "horizontal" and "vertical". The default value is "horizontal".}
+\item{direction}{A character vector specifying the direction of the fill gradient. The available palette are "horizontal" and "vertical". The default value is "horizontal".}
 
-\item{show}{imits A logical value indicating whether to display the fill gradient limits. The default value is TRUE.}
+\item{show.limits}{A logical value indicating whether to display the fill gradient limits. The default value is TRUE.}
 
 \item{pt_br}{A logical value indicating whether to use Brazilian Portuguese formatting for labels. If TRUE, decimal marks are set to ",", and big marks are set to ".". The default value is TRUE.}
 
@@ -33,6 +32,7 @@ The available palette are "horizontal" and "vertical". The default value is "hor
 \item{barwidth}{The width of the fill gradient bar. This parameter is used when the direction is set to "horizontal". The default value is 50.}
 
 \item{...}{Additional arguments to be passed to the scale_fill_gradientn or scale_fill_distiller function from the ggplot2 package.}
+}
 
 \value{
 Graph colors and formatting within the standard of Texts for Discussion (TD) of IPEA.
