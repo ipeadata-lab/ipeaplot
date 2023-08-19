@@ -1,6 +1,4 @@
-[![rcmdcheck](https://github.com/ipeadata-lab/ipeaplot/workflows/rcmdcheck/badge.svg)](https://github.com/ipeadata-lab/ipeaplot/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/ipeadata-lab/ipeaplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ipeadata-lab/ipeaplot?branch=main)
+[![rcmdcheck](https://github.com/ipeadata-lab/ipeaplot/workflows/R-CMD-check/badge.svg)](https://github.com/ipeadata-lab/ipeaplot/actions)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
