@@ -161,17 +161,18 @@ diversas outras opções. Isso incluir tanto paletas
 <code>c("Blue", "Green", "Orange", "Pink")</code> como paletes de cores
 divergentes <code>c("Red-Blue", "Orange-Blue")</code>.</p>
 <p><strong>Cores sequenciais:</strong>
-<img src="intro_ipeaplot_files/figure-html/unnamed-chunk-5-1.png" width="100%"><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-6-1.png" width="100%"><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-7-1.png" width="100%"><strong>Cores divergentes:</strong>
-<img src="intro_ipeaplot_files/figure-html/unnamed-chunk-8-1.png" width="100%"><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
+<img src="intro_ipeaplot_files/figure-html/unnamed-chunk-5-1.png" width="100%"><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-5-2.png" width="100%"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-6-1.png" width="100%"><strong>Cores divergentes:</strong>
+<img src="intro_ipeaplot_files/figure-html/unnamed-chunk-7-1.png" width="100%"><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># paleta sequencial verde</span></span>
 <span><span class="va">fig_base</span> <span class="op">+</span> <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Green"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="co"># paleta divergente laranja</span></span>
+<span><span class="co"># paleta divergente de laranja a azul</span></span>
 <span><span class="va">fig_base</span> <span class="op">+</span> <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Orange-Blue"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-10-2.png" width="100%"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-9-2.png" width="100%"></p>
 <p>Por padrão, as funções <code><a href="../reference/scale_color_ipea.html">scale_color_ipea()</a></code> e
 <code><a href="../reference/scale_fill_ipea.html">scale_fill_ipea()</a></code> geram escalas de cores para variáveis
 <strong>contínuas</strong>. Para utilizar uma escala de core para
@@ -185,7 +186,7 @@ variáveis discretas, basta passar o parâmetro
 <span>       color<span class="op">=</span><span class="st">'Cilindradas'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Orange"</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
 <p>Além de seleciona a paleta de cores, as funções
 <code><a href="../reference/scale_color_ipea.html">scale_color_ipea()</a></code> e <code><a href="../reference/scale_fill_ipea.html">scale_fill_ipea()</a></code> trazem
 ainda outros parâmetros que permitem escolher o separador de casa
@@ -230,7 +231,7 @@ using <code>ggplot2</code>.</p>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Use the 'scale_color_ipea(discrete = T)' function to apply the IPEA discrete color scale</span></span>
 <span>  <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Create a simple scatter plot with 'dec_date' on the x-axis, 'tempo' on the y-axis, color-coded by 'assunto', and grouped by 'assunto'</span></span>
@@ -248,7 +249,7 @@ using <code>ggplot2</code>.</p>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Use the 'scale_color_ipea(discrete = T)' function to apply the IPEA discrete color scale</span></span>
 <span>  <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-12-2.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-11-2.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate the mean values of 'espvida' and 'rdpc' grouped by 'ano' using the 'pnud_muni' dataset</span></span>
 <span><span class="va">graph</span> <span class="op">&lt;-</span> <span class="fu">abjData</span><span class="fu">::</span><span class="va"><a href="https://abjur.github.io/abjData/reference/pnud_muni.html" class="external-link">pnud_muni</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -276,7 +277,7 @@ using <code>ggplot2</code>.</p>
 <span>  <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Apply the IPEA theme using 'theme_ipea()'</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Calculate the mean values of 'espvida' and 'rdpc' grouped by 'ano' using the 'pnud_muni' dataset</span></span>
 <span><span class="va">graph</span> <span class="op">&lt;-</span> <span class="fu">abjData</span><span class="fu">::</span><span class="va"><a href="https://abjur.github.io/abjData/reference/pnud_muni.html" class="external-link">pnud_muni</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -302,7 +303,7 @@ using <code>ggplot2</code>.</p>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Apply the IPEA continuous color scale to the fill using 'scale_fill_ipea()'</span></span>
 <span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Calculate the mean values of 'espvida' and 'rdpc' grouped by 'regn' and 'ano' using the 'pnud_muni' dataset</span></span>
@@ -338,7 +339,7 @@ using <code>ggplot2</code>.</p>
 <span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>  </span>
 <span>  <span class="co"># Set the y-axis limits</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">graph</span><span class="op">$</span><span class="va">espvida</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">graph</span><span class="op">$</span><span class="va">espvida</span><span class="op">)</span> <span class="op">+</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>  </span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="thematic-maps">Thematic maps<a class="anchor" aria-label="anchor" href="#thematic-maps"></a>
@@ -385,7 +386,7 @@ municipality code is our key column to join these two databases.</p>
 <span>          <span class="co"># theme_ipea()</span></span>
 <span></span>
 <span><span class="va">fig2</span></span></code></pre></div>
-<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;">
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;">
 ## Salvando figura</p>
 <p>Finalmente, o pacote <strong>ipeaplot</strong> traz a função
 <code><a href="../reference/save_eps.html">save_eps()</a></code> para facilitar a exportação da figura para um
