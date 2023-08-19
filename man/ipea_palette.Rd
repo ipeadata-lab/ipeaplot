@@ -4,24 +4,43 @@
 \alias{ipea_palette}
 \title{Ipea Color Palette and Scales}
 \usage{
-ipea_palette(n, alpha = 1, begin = 0, end = 1,
-             direction = 1, palette = c('Blue','Green','Orange','Pink',
-                                        'Red-Blue','Orange-Blue'))
+ipea_palette(
+  n,
+  alpha = 1,
+  begin = 0,
+  end = 1,
+  direction = 1,
+  palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue")
+)
 }
 \arguments{
-\item{n}{Number of color pallete.}
-\item{alpha}{The alpha transparency, a number in [0,1].}
-\item{begin}{The (corrected) hue in [0,1] at which the color map begins.}
-\item{end}{The (corrected) hue in [0,1] at which the color map ends.}
-\item{direction}{Sets the order of colors in the scale. If 1, the default, colors are ordered from darkest to lightest. If -1, the order of colors is reversed..}
-\item{palette}{A character vector specifying color/fill palette.}
+\item{n}{The number of colors (\eqn{\ge 1}) to be in the palette.}
+
+\item{alpha}{The alpha transparency, a number in \link{0,1}}
+
+\item{begin}{The (corrected) hue in \link{0,1} at which the color map begins.}
+
+\item{end}{The (corrected) hue in \link{0,1} at which the color map ends.}
+
+\item{direction}{Sets the order of colors in the scale. If 1, the default,
+colors are ordered from darkest to lightest. If -1, the order of
+colors is reversed.}
+
+\item{option}{A character string indicating the color map option to use.
+Eight options are available:
+\itemize{
+\item{}{'Blue'}
+\item{}{'Green'}
+\item{}{'Orange'}
+\item{}{'Pink'}
+\item{}{'Red-Blue'}
+\item{}{'Orange-Blue}
+}}
 }
 \description{
-Creation of manual palettes for Ipea publication.
+This function creates a vector of n equally spaced colors
+along the selected color map.
 }
-\examples{
-\dontrun{ if (interactive()) {
-# Set palette option
-colours <- ipea_palette(palette = 'Blue')
-}}
+\details{
+A 9-color Ipea palette.
 }

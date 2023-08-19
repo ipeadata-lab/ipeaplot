@@ -7,7 +7,9 @@
 insert_text(
   label = NULL,
   decimals = 0,
+  color,
   show_percents = FALSE,
+  pie_plot = FALSE,
   vertical = TRUE,
   ...
 )
@@ -28,28 +30,4 @@ A \code{geom_text} layer with text labels added to the plot.
 }
 \description{
 This function adds text labels to a plot at specified positions.
-}
-\examples{
-\dontrun{ if (interactive()) {
-library(ggplot2)
-library(ipeaplot)
-
-graph <- subset(abjData::pnud_uf, ano == 2010)
-
-# Standard plot adding percentage notation
-graph$perc <- (graph$rdpc/sum(graph$rdpc))*100
-ggplot(graph, aes(x = ufn, y = perc))+
-  geom_bar(stat = "identity", fill = 'blue', width= 0.5) +
-  insert_text(label = "perc", show_percents = T)
-
-# Default plot and changing to horizontal
-plot <- ggplot(graph, aes(x = ufn, y = rdpc))+
-  geom_bar(stat = "identity", fill = 'blue', width= 0.5) +
-  insert_text(label = "rdpc", vertical = F)
-
-# Default plot
-plot <- ggplot(graph, aes(x = ufn, y = rdpc))+
-  geom_bar(stat = "identity", fill = 'blue', width= 0.5) +
-  insert_text(label = "rdpc")
-}}
 }

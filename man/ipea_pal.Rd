@@ -2,25 +2,37 @@
 % Please edit documentation in R/ipea_palette.R
 \name{ipea_pal}
 \alias{ipea_pal}
-\title{Ipea Color Palette and Scales}
+\title{Ipea palette}
 \usage{
-ipea_pal(alpha = 1, begin = 0, end = 1, direction = 1,
-                    palette = c('Blue','Green','Orange','Pink',
-                                'Red-Blue','Orange-Blue'))
+ipea_pal(
+  alpha = 1,
+  begin = 0,
+  end = 1,
+  direction = 1,
+  palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue")
+)
 }
 \arguments{
-\item{alpha}{The alpha transparency, a number in [0,1].}
-\item{begin}{The (corrected) hue in [0,1] at which the color map begins.}
-\item{end}{The (corrected) hue in [0,1] at which the color map ends.}
-\item{direction}{Sets the order of colors in the scale. If 1, the default, colors are ordered from darkest to lightest. If -1, the order of colors is reversed..}
-\item{palette}{A character vector specifying color/fill palette.}
+\item{alpha}{The alpha transparency, a number in \link{0,1}}
+
+\item{begin}{The (corrected) hue in \link{0,1} at which the color map begins.}
+
+\item{end}{The (corrected) hue in \link{0,1} at which the color map ends.}
+
+\item{direction}{Sets the order of colors in the scale. If 1, the default,
+colors are ordered from darkest to lightest. If -1, the order of
+colors is reversed.}
+
+\item{n}{The number of colors (\eqn{\ge 1}) to be in the palette.}
+
+\item{option}{A character string indicating the color map option to use.}
 }
 \description{
-Creation of manual palettes for Ipea publication.
+Ipea palette
 }
 \examples{
-\dontrun{ if (interactive()) {
-# Set palette option
-colours <- ipea_pal(palette = 'ipeatd')
-}}
+scales::show_col(ipea_pal()(10))
+scales::show_col(ipea_pal(direction = -1)(6))
+scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
+scales::show_col(ipea_pal(palette = "Green")(6))
 }
