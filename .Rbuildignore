@@ -17,5 +17,4 @@
 ^inst/img
 ^man/figures
 ^cran-comments\.md$
-*.Rdata
 ^docs$
