@@ -1,3 +1,9 @@
+[![rcmdcheck](https://github.com/ipeadata-lab/ipeaplot/workflows/rcmdcheck/badge.svg)](https://github.com/ipeadata-lab/ipeaplot/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/ipeadata-lab/ipeaplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ipeadata-lab/ipeaplot?branch=main)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
 # ipeaplot: ggplot graphics in Ipea standard.
 
  ``ipeaplot`` creates ggplot graphics following the editorial guidelines of the Institute of Applied Economic Research (IPEA). It provides users with tools and functions that simplify the application of consistent color schemes and graphic styles, ensuring compliance with IPEA's publication standards.
