@@ -59,70 +59,78 @@ library(geobr)
 data(mtcats)
 ```
 
-This is how
-
-## Color palletes
-
-There are two core functions to select color palettes: `scale_color_ipea()` and `scale_fill_ipea()`. These two function work exactly in the same way but,  the following parameters:
+Here is a general example of how a chart used in Ipea's Discussion Papers look like. In the next sections of this vignette we'll explore how to make changes to the plot while still abiding to Ipea's editorial guidelines.
 
 
-
-
-Scale Continuous
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
+fig_base <- ggplot() +
+              geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
+              labs(y='Consumo de Combustível\n(milhas por galão)',
+                   x ='Potência (Número de cavalos)',
+                   color='Cilindradas') +
+              scale_color_ipea() +
+              theme_ipea()
+fig_base
+```
 
-# Create a scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and color-coded by 'wt'
-# Use the 'scale_color_ipea()' function to apply the IPEA continuous color scale
+## Paleta de cores
+
+Existem duas funções básicas para seleciona a paleta de cores da figura: `scale_color_ipea()` e `scale_fill_ipea()`. O funcionamento de ambas funções seguem a mesma lógica e parâmetros.
+
+O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso incluir tanto paletas `c("Blue", "Green", "Orange", "Pink")` como paletes de cores divergentes `c("Red-Blue", "Orange-Blue")`.
+
+**Cores sequenciais:**
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+scales::show_col(ipea_pal(palette = "Blue")(9), labels = F, ncol = 9, borders = F)
+```
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+scales::show_col(ipea_pal(palette = "Green")(9), labels = F, ncol = 9, borders = F)
+```
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+scales::show_col(ipea_pal(palette = "Orange")(9), labels = F, ncol = 9, borders = F)
+```
+**Cores divergentes:**
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+scales::show_col(ipea_pal(palette = "Red-Blue")(9), labels = F, ncol = 9, borders = T)
+```
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+scales::show_col(ipea_pal(palette = "Orange-Blue")(9), labels = F, ncol = 9, borders = T)
+```
+
+
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
+# paleta sequencial verde
+fig_base + scale_color_ipea(palette = "Green")
+
+# paleta divergente laranja
+fig_base + scale_color_ipea(palette = "Orange-Blue")
+
+```
+
+Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
+
+```{r eval=TRUE, message=FALSE, warning=FALSE}
 ggplot() +
-  geom_point(data = mtcars, aes(x = mpg, y = wt, color = wt)) +
-  scale_color_ipea()
-
-# Create a scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'wt'
-# Use the 'scale_fill_ipea()' function to apply the IPEA continuous fill scale
-ggplot(data = mtcars, aes(x = mpg, y = wt, fill = wt)) +
-  geom_bar(stat="identity", position=position_dodge()) +
-  scale_fill_ipea()
-
-
-```
-
-
-Scale Discrete
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
-# Load the mtcars dataset
-data("mtcars")
-
-# Add a new variable 'quantile' to mtcars based on the weight 'wt' values
-# The 'quantile' variable is created by dividing the weight values into quantiles
-# The 'type' argument determines the method used to calculate quantiles
-# The 'include' argument determines whether the intervals are left-closed and right-open or closed
-# The 'labels' argument is set to FALSE to keep the quantile values as numeric
-mtcars <- mtcars %>% 
-  mutate(
-    quantile = cut(x = wt, breaks = quantile(wt, probs = 0:4/4),
-                   type = c('quantile','(i-1)/(n-1)','i/(n+1)','i/n'), include = T, labels = F),
-    quantile = as.character(quantile)
-  )
-
-# Create a scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and color-coded by 'quantile'
-# Use the 'scale_color_ipea(discrete = T)' function to apply the IPEA discrete color scale
-ggplot(data = mtcars, aes(x = mpg, y = wt, color = quantile)) +
-  geom_point() +
-  scale_color_ipea(discrete = T)
-
-
-# Create a scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'quantile'
-# Use the 'scale_fill_ipea(discrete = T)' function to apply the IPEA discrete fill scale
-ggplot(data = mtcars, aes(x = mpg, y = wt, fill = quantile)) +
-  geom_bar(stat="identity", position=position_dodge()) +
-  scale_fill_ipea(discrete = T)
+  geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
+  labs(y='Consumo de Combustível\n(milhas por galão)',
+       x ='Potência (Número de cavalos)',
+       color='Cilindradas') +
+  scale_color_ipea(palette = "Orange", discrete = TRUE ) +
+  theme_ipea()
 
 ```
 
 
 
+Além de seleciona a paleta de cores, as funções `scale_color_ipea()` e `scale_fill_ipea()` trazem ainda outros parâmetros que permitem escolher o separador de casa decimal (ponto ou vírgula), ajustar o tamanho da legenda etc. A lista completa de parâmetros está disponível na documentação da função `?scale_color_ipea()`.
 
-## Change theme and text
+
+## Ajustando o `theme` das figuras
+
+A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo editorial do Ipea nas publicações de Texto para Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
+
+
 
 
 The next step is to combine the ***ipeaplot*** package with other data sets to create thematic graphs In this example, we will be using data from the (Atlas of Human Development (by Ipea/FJP and UNPD) to create a graphs showing the variation of Life Expectancy at birth across Brasil country.
@@ -188,7 +196,7 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, color = espvida, gr
   # Set the y-axis label using 'ylab()'
   ylab('Expectativa de vida') +
   # Add a custom text label for 'espvida' using 'insert_text()'
-  insert_text(label = "espvida", decimals = 0) +
+  #insert_text(label = "espvida", decimals = 0) +
   # Apply a custom format to the y-axis labels using 'scale_y_continuous()'
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   # Set the plot title and subtitle using 'ggtitle()'
@@ -216,7 +224,7 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
   # Set the y-axis label using 'ylab()'
   ylab('Expectativa de vida') +
   # Add a custom text label for 'espvida' using 'insert_text()'
-  insert_text(label = "espvida", decimals = 0) +
+#  insert_text(label = "espvida", decimals = 0) +
   # Apply a custom format to the y-axis labels using 'scale_y_continuous()'
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   # Set the plot title and subtitle using 'ggtitle()'
@@ -252,7 +260,7 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
   # Set the y-axis label
   ylab('Expectativa de vida') + 
   # Add value labels to the plot
-  insert_text(label = "espvida", decimals = 0) +  
+#  insert_text(label = "espvida", decimals = 0) +  
   # Create separate panels for each 'regn'
   facet_wrap(. ~ regn) +  
   # Set the plot title and subtitle
@@ -302,27 +310,28 @@ df = left_join(mun, pnud)
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, fig.align = "center" }
 
 # Create a ggplot object 'graf2' using the 'df' dataset, mapping the 'e_anosestudo' variable to the fill aesthetic
-graf2 <- ggplot(data = df, aes(fill = e_anosestudo)) +
+fig2 <- ggplot(data = df, aes(fill = e_anosestudo)) +
+           geom_sf(color = NA) +
+           geom_sf(data = uf, color = "black", fill = NA) +
+           ggtitle("Média de anos de estudo") +
+           xlab("") + ylab("") +
+           scale_fill_ipea(name='Anos de\nestudo')  
+          # theme_ipea()
 
-  # Add a layer of spatial polygons without borders (color = NA)
-  geom_sf(color = NA) +
-
-  # Add a layer of state boundaries from the 'uf' dataset, with black borders and no fill
-  geom_sf(data = uf, color = "black", fill = NA) +
-
-  # Set the main title and subtitle of the plot
-  ggtitle("Anos de estudo", "Em anos") +
-
-  # Remove the x-axis and y-axis labels
-  xlab("") + ylab("") +
-
-  # Apply the IPEA theme with full axes and without text elements
-  theme_ipea(axis = "none") +
-  
-  # showing the scale limits and providing a custom name for the legend
-  scale_fill_ipea()
-
-graf2
-save_eps(graf2,"graf2.eps")
+fig2
 ```
+## Salvando figura
 
+Finalmente, o pacote **ipeaplot** traz a função `save_eps()` para facilitar a exportação da figura para um arquivo em formato `.eps`, um formato de imagem vetorial de alta resolução.
+
+Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `file.name` e as dimensões da figura `width` e `height` em centímetros:
+
+
+
+```{r eval=FALSE}
+save_eps(fig2, 
+         file.name = "figura_2.eps",
+         width = 15,
+         height = 15)
+
+```
