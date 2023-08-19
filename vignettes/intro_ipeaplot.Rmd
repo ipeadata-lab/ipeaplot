@@ -80,20 +80,20 @@ Existem duas funções básicas para seleciona a paleta de cores da figura: `sca
 O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso incluir tanto paletas `c("Blue", "Green", "Orange", "Pink")` como paletes de cores divergentes `c("Red-Blue", "Orange-Blue")`.
 
 **Cores sequenciais:**
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, echo=FALSE}
 scales::show_col(ipea_pal(palette = "Blue")(9), labels = F, ncol = 9, borders = F)
 ```
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, echo=FALSE}
 scales::show_col(ipea_pal(palette = "Green")(9), labels = F, ncol = 9, borders = F)
 ```
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, echo=FALSE}
 scales::show_col(ipea_pal(palette = "Orange")(9), labels = F, ncol = 9, borders = F)
 ```
 **Cores divergentes:**
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, echo=FALSE}
 scales::show_col(ipea_pal(palette = "Red-Blue")(9), labels = F, ncol = 9, borders = T)
 ```
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, echo=FALSE}
 scales::show_col(ipea_pal(palette = "Orange-Blue")(9), labels = F, ncol = 9, borders = T)
 ```
 
