@@ -5,6 +5,7 @@
 #' @param label The label variable indicating the text to be displayed.
 #' @param decimals The number of decimal places to round the label values.
 #' @param show_percents Logical.
+#' @param pie_plot Logical.
 #' @param vertical Logical.
 #' @param ... Additional arguments to be passed to the `geom_text` function from the `ggplot2` package.
 #'

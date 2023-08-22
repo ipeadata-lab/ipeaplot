@@ -15,8 +15,17 @@
 #' @param legend.position A character vector specifying the position of the
 #'        legend. Valid options are `"right"` (default), `"left"`, `"top"`, and
 #'        `"bottom"`.
-#' @param direction Argument that defines whether the graphic specifications
+#' @param grid.adjust Argument that defines whether the graphic specifications
 #'        will be in the standard horizontal or vertical legend.
+#' @param x Manually set the initial x-axis value
+#' @param y Manually set the initial y-axis value
+#' @param yend Manually set the y-axis threshold value
+#' @param xend Manually set the x-axis threshold value
+#' @param x_breaks Specify values break amounts on the x-axis
+#' @param y_breaks Specify values break amounts on the y-axis
+#' @param bar_adjust Specific x-axis tweak for bar charts that should stick to the border.
+#' @param angle Arrange x-axis angle
+#' @param adjust_ticks Option to remove ticks and adjust chart.
 #' @param ... Additional arguments to be passed to the `theme` function from the
 #'        `ggplot2` package.
 #'
@@ -27,7 +36,7 @@
 theme_ipea <- function(axis = c('none','half','full'),
                        geom = c('bar','line','point','sf','pie'),
                        text = T,legend.position,
-                       direction = c('horizontal','vertical'),
+                       grid.adjust = c('horizontal','vertical'),
                        x, y, yend,xend,
                        x_breaks , y_breaks,
                        bar_adjust = F,angle,
@@ -52,8 +61,8 @@ theme_ipea <- function(axis = c('none','half','full'),
   # Set the default axis style to "half" if not provided by the user
   axis <- ifelse(missing(axis), 'half', axis)
 
-  # Set the default direction style to "vertical" if not provided by the user
-  direction <- ifelse(missing(direction), 'vertical', direction)
+  # Set the default grid.adjust style to "vertical" if not provided by the user
+  grid.adjust <- ifelse(missing(grid.adjust), 'vertical', grid.adjust)
 
   # Set the default legend position to "right" if not provided by the user
   legend.position <- ifelse(missing(legend.position), 'right', legend.position)
@@ -129,10 +138,10 @@ theme_ipea <- function(axis = c('none','half','full'),
     strip.background = ggplot2::element_rect(fill = "white")
     strip.text = ggplot2::element_text(colour = 'black',hjust=0)
 
-    if(direction == 'vertical'){
+    if(grid.adjust == 'vertical'){
       panel.grid.major.x = ggplot2::element_blank()
       panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
-    }else if (direction == 'horizontal'){
+    }else if (grid.adjust == 'horizontal'){
       panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
       panel.grid.major.y = ggplot2::element_blank()
     }

@@ -8,14 +8,21 @@
 #' @param palette A character vector specifying the available palette for the
 #'        color palette. The default palette are "Blue", but we can also change
 #'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`.
-#' @param direction A character vector specifying the direction of the color
+#' @param legend.direction A character vector specifying the direction of the color
 #'        gradient. \cr The available palette are "horizontal" and "vertical".
 #'        The default value is "horizontal".
+#' @param palette.direction A logical argument specifying if the ordering of the colors
+#'        will follow the default of the palette (when the argument is 1) or if it will
+#'        have an inverted ordering (for cases where it is 0).
 #' @param show.limits A logical value indicating whether to display the color
 #'        gradient limits. The default value is TRUE.
-#' @param pt_br A logical value indicating whether to use Brazilian Portuguese
-#'        formatting for labels. \cr If TRUE, decimal marks are set to ",", and
-#'        big marks are set to ".". The default value is TRUE.
+#' @param decimal A string indicating whether the decimal separator should be a
+#'        `","` or a `"."`. By default, the function uses a comma `","`, following
+#'        the format used in Brazilian Portuguese.
+#' @param hline Adjustment of the horizontal position of the extreme line of the graph axis.
+#'        The default option is not to change the position.
+#' @param vline Adjustment of the vertical position of the extreme line of the graph axis.
+#'        The default option is not to change the position.
 #' @param barheight The height of the color gradient bar. This parameter is used
 #'        when the direction is set to "horizontal". The default value is 2.
 #' @param barwidth The width of the color gradient bar. This parameter is used
@@ -29,8 +36,8 @@
 #' @export
 scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
                                                        'Red-Blue','Orange-Blue'),
-                              direction = c('horizontal','vertical'),
-                              palette_direction = 1,
+                              legend.direction = c('horizontal','vertical'),
+                              palette.direction = 1,
                               show.limits = T, pt_br = T ,
                               hline,vline,
                               barheight = 2,barwidth = 50, ...){
@@ -84,7 +91,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 
   if(isFALSE(discrete)){
       # Set palette option
-    scale_manual_pal <- ipea_palette(palette = palette, n = 10, direction = palette_direction)
+    scale_manual_pal <- ipea_palette(palette = palette, n = 10, direction = palette.direction)
 
       # Graph
       graph <- list(hline,vline,
@@ -93,7 +100,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
         colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
           #show.limits = show.limits,  # Set whether to show the limits on the colour scale
-          direction = direction,  # Set the direction of the colour scale
+          direction = legend.direction,  # Set the direction of the colour scale
           barheight = barheight,  # Set the height of the colour scale bar
           barwidth = barwidth,  # Set the width of the colour scale bar
           draw.ulim = F,  # Set whether to draw the upper limit line
@@ -107,7 +114,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
   if(isTRUE(discrete)){
     # Create a discrete color scale with the specified palette
     graph <- list(hline,vline,
-                  ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, direction = palette_direction), ...),
+                  ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, direction = palette.direction), ...),
                   ggplot2::guides(color=guide_legend(ncol = 3, byrow = TRUE)))
   }
 
@@ -128,16 +135,23 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #'        "manual".#' low, mid, high: Colors to be used for the low, mid, and
 #'        high values of the gradient, respectively.  \cr These parameters are
 #'        used when the "manual" option is selected.
-#' @param direction A character vector specifying the direction of the color
+#' @param legend.direction A character vector specifying the direction of the color
 #'        gradient. \cr The available palette are "horizontal" and "vertical".
 #'        The default value is "horizontal".
+#' @param palette.direction A logical argument specifying if the ordering of the colors
+#'        will follow the default of the palette (when the argument is 1) or if it will
+#'        have an inverted ordering (for cases where it is 0).
 #' @param colours A vector of colors to be used for the gradient. This parameter
-#'         is used when palette other than "manual" are selected.
+#'        is used when palette other than "manual" are selected.
 #' @param show.limits A logical value indicating whether to display the color
 #'        gradient limits. The default value is TRUE.
-#' @param pt_br A logical value indicating whether to use Brazilian Portuguese
-#'        formatting for labels. \cr If TRUE, decimal marks are set to ",", and
-#'        big marks are set to ".". The default value is TRUE.
+#' @param decimal A string indicating whether the decimal separator should be a
+#'        `","` or a `"."`. By default, the function uses a comma `","`, following
+#'        the format used in Brazilian Portuguese.
+#' @param hline Adjustment of the horizontal position of the extreme line of the graph axis.
+#'        The default option is not to change the position.
+#' @param vline Adjustment of the vertical position of the extreme line of the graph axis.
+#'        The default option is not to change the position.
 #' @param barheight The height of the color gradient bar. This parameter is used
 #'        when the direction is set to "vertical". The default value is 2.
 #' @param barwidth The width of the color gradient bar. This parameter is used
@@ -151,8 +165,8 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #' @export
 scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
                                                       'Red-Blue','Orange-Blue'),
-                                         direction = c('horizontal','vertical'),
-                                         palette_direction = 1,
+                                         legend.direction = c('horizontal','vertical'),
+                                         palette.direction = 1,
                                          hline,vline,
                                          show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
@@ -205,7 +219,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
   if(isFALSE(discrete)){
 
       # Set palette palette
-      scale_manual_pal <- ipea_palette(n = 10, palette = palette, direction = palette_direction)
+      scale_manual_pal <- ipea_palette(n = 10, palette = palette, direction = palette.direction)
 
       # Graph
       graph <- list(hline,vline,
@@ -214,7 +228,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
         colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
           #show.limits = show.limits,  # Set whether to show the limits on the fill scale
-          direction = direction,  # Set the direction of the fill scale
+          direction = legend.direction,  # Set the direction of the fill scale
           barheight = barheight,  # Set the height of the fill scale bar
           barwidth = barwidth,  # Set the width of the fill scale bar
           draw.ulim = F,  # Set whether to draw the upper limit line
@@ -232,7 +246,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
 
       # Create a discrete fill scale with the specified palette
       graph <- list(hline,vline,
-                    ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, direction = palette_direction), ...),
+                    ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, direction = palette.direction), ...),
                     ggplot2::guides(fill=guide_legend(ncol = 3, byrow = TRUE)))
 
 

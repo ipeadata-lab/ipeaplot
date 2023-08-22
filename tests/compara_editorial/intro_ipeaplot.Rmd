@@ -267,7 +267,7 @@ graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
        caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial. Disponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
   theme_ipea(y = -6,yend = 6,
              x_breaks = 8, y_breaks = 10, legend.position = 'bottom') +
-  scale_color_ipea(palette_direction = -1, discrete = T, hline = 0) +
+  scale_color_ipea(palette.direction = -1, discrete = T, hline = 0) +
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
 
@@ -293,7 +293,7 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
        title="GRÁFICO 7",
        subtitle="Importações de energia em termos do consumo total de energia dos países da União Europeia",
        caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
-  theme_ipea(legend.position = 'none', geom = 'bar', direction = 'horizontal',
+  theme_ipea(legend.position = 'none', geom = 'bar', legend.direction = 'horizontal',
              y = -80, yend = 120)
 graf7
 ```
@@ -318,7 +318,7 @@ graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=varia
        subtitle="Mudanças nos níveis de desigualdade do BRICS, calculadas pelo coeficiente Gini, entre o início da década de 1990 e o final da década de 2000",
        caption = '') +
   theme_ipea(legend.position = 'bottom', geom = 'bar',
-             direction = 'horizontal', yend = 0.7) +
+             legend.direction = 'horizontal', yend = 0.7) +
   scale_fill_ipea(discrete = T)
 graf8
 ```

@@ -9,7 +9,7 @@ theme_ipea(
   geom = c("bar", "line", "point", "sf", "pie"),
   text = T,
   legend.position,
-  direction = c("horizontal", "vertical"),
+  grid.adjust = c("horizontal", "vertical"),
   x,
   y,
   yend,
@@ -38,8 +38,7 @@ be hidden.}
 legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"}, and
 \code{"bottom"}.}
 
-\item{direction}{Argument that defines whether the graphic specifications
-will be in the standard horizontal or vertical legend.}
+\item{grid.adjust}{Argument that defines whether the graphic grid specifications will be in the standard horizontal or vertical legend.}
 
 \item{x}{Manually set the initial x-axis value}
 

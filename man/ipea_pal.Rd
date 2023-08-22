@@ -36,6 +36,7 @@ Eight options are available:
 \item{}{'Red-Blue'}
 \item{}{'Orange-Blue}
 }}
+}
 
 \description{
 Ipea palette

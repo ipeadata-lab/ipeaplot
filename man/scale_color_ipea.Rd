@@ -7,8 +7,8 @@
 scale_color_ipea(
   discrete = F,
   palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue"),
-  direction = c("horizontal", "vertical"),
-  palette_direction = 1,
+  legend.direction = c("horizontal", "vertical"),
+  palette.direction = 1,
   show.limits = T,
   pt_br = T,
   hline,
@@ -26,17 +26,15 @@ continuous scale bar. The default value is continuous.}
 color palette. The default palette are "Blue", but we can also change
 to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'}.}
 
-\item{direction}{A character vector specifying the legend ordering. \cr The available palette are "horizontal" and "vertical".
+\item{legend.direction}{A character vector specifying the legend ordering. \cr The available palette are "horizontal" and "vertical".
 The default value is "horizontal".}
 
-\item{palette_direction}{A logical argument specifying the direction of the color gradient.}
+\item{palette.direction}{A logical argument specifying if the ordering of the colors will follow the default of the palette (when the argument is 1) or if it will have an inverted ordering (for cases where it is 0).}
 
 \item{show.limits}{A logical value indicating whether to display the color
 gradient limits. The default value is TRUE.}
 
-\item{pt_br}{A logical value indicating whether to use Brazilian Portuguese
-formatting for labels. \cr If TRUE, decimal marks are set to ",", and
-big marks are set to ".". The default value is TRUE.}
+\item{pt_br}{A string indicating whether the decimal separator should be a "," or a ".". By default, the function uses a comma ",", following the format used in Brazilian Portuguese.}
 
 \item{hline}{Adjustment of the horizontal position of the extreme line of the graph axis. The default option is not to change the position.}
 
