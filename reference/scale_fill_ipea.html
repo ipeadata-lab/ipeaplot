@@ -77,12 +77,7 @@ Economic Research (IPEA)</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>discrete</dt>
-<dd><p>A logical value indicating whether to use discrete or
-continuous scale bar. The default value is continuous.</p></dd>
-
-
-<dt>palette</dt>
+    <dl><dt>palette</dt>
 <dd><p>A character vector specifying the available palette for the
 color palette. The default palette are "crimson", "orpheu", "cartola",
 "caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and
@@ -92,29 +87,30 @@ used when the "manual" option is selected.</p></dd>
 
 
 <dt>legend.direction</dt>
-<dd><p>A character vector specifying the legend ordering. <br> The available palette are "horizontal" and "vertical".
+<dd><p>A character vector specifying the direction of the color
+gradient. <br> The available palette are "horizontal" and "vertical".
 The default value is "horizontal".</p></dd>
 
 
 <dt>palette.direction</dt>
-<dd><p>A logical argument specifying if the ordering of the colors will follow the default of the palette (when the argument is 1) or if it will have an inverted ordering (for cases where it is 0).</p></dd>
+<dd><p>A logical argument specifying if the ordering of the colors
+will follow the default of the palette (when the argument is 1) or if it will
+have an inverted ordering (for cases where it is 0).</p></dd>
+
+
+<dt>hline</dt>
+<dd><p>Adjustment of the horizontal position of the extreme line of the graph axis.
+The default option is not to change the position.</p></dd>
+
+
+<dt>vline</dt>
+<dd><p>Adjustment of the vertical position of the extreme line of the graph axis.
+The default option is not to change the position.</p></dd>
 
 
 <dt>show.limits</dt>
 <dd><p>A logical value indicating whether to display the color
 gradient limits. The default value is TRUE.</p></dd>
-
-
-<dt>pt_br</dt>
-<dd><p>A string indicating whether the decimal separator should be a "," or a ".". By default, the function uses a comma ",", following the format used in Brazilian Portuguese.</p></dd>
-
-
-<dt>hline</dt>
-<dd><p>Adjustment of the horizontal position of the extreme line of the graph axis. The default option is not to change the position.</p></dd>
-
-
-<dt>vline</dt>
-<dd><p>Adjustment of the vertical position of the extreme line of the graph axis. The default option is not to change the position.</p></dd>
 
 
 <dt>barheight</dt>
@@ -131,6 +127,16 @@ when the direction is set to "horizontal". The default value is 50.</p></dd>
 <dd><p>Additional arguments to be passed to the scale_fill_gradientn or
 scale_color_gradientn function from the ggplot2 package.</p></dd>
 
+
+<dt>colours</dt>
+<dd><p>A vector of colors to be used for the gradient. This parameter
+is used when palette other than "manual" are selected.</p></dd>
+
+
+<dt>decimal</dt>
+<dd><p>A string indicating whether the decimal separator should be a
+<code>","</code> or a <code>"."</code>. By default, the function uses a comma <code>","</code>, following
+the format used in Brazilian Portuguese.</p></dd>
 
 </dl></div>
     <div class="section level2">
