@@ -23,7 +23,6 @@ Depends:
 Imports:
     extrafont,
     ggplot2,
-    ggthemes,
     grDevices,
     scales,
     paletteer,

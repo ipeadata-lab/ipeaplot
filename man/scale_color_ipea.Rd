@@ -26,19 +26,22 @@ continuous scale bar. The default value is continuous.}
 color palette. The default palette are "Blue", but we can also change
 to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'}.}
 
-\item{legend.direction}{A character vector specifying the legend ordering. \cr The available palette are "horizontal" and "vertical".
+\item{legend.direction}{A character vector specifying the direction of the color
+gradient. \cr The available palette are "horizontal" and "vertical".
 The default value is "horizontal".}
 
-\item{palette.direction}{A logical argument specifying if the ordering of the colors will follow the default of the palette (when the argument is 1) or if it will have an inverted ordering (for cases where it is 0).}
+\item{palette.direction}{A logical argument specifying if the ordering of the colors
+will follow the default of the palette (when the argument is 1) or if it will
+have an inverted ordering (for cases where it is 0).}
 
 \item{show.limits}{A logical value indicating whether to display the color
 gradient limits. The default value is TRUE.}
 
-\item{pt_br}{A string indicating whether the decimal separator should be a "," or a ".". By default, the function uses a comma ",", following the format used in Brazilian Portuguese.}
+\item{hline}{Adjustment of the horizontal position of the extreme line of the graph axis.
+The default option is not to change the position.}
 
-\item{hline}{Adjustment of the horizontal position of the extreme line of the graph axis. The default option is not to change the position.}
-
-\item{vline}{Adjustment of the vertical position of the extreme line of the graph axis. The default option is not to change the position.}
+\item{vline}{Adjustment of the vertical position of the extreme line of the graph axis.
+The default option is not to change the position.}
 
 \item{barheight}{The height of the color gradient bar. This parameter is used
 when the direction is set to "horizontal". The default value is 2.}
@@ -49,6 +52,10 @@ when the direction is set to "horizontal". The default value is 50.}
 \item{...}{Additional arguments to be passed to the scale_fill_gradientn,
 scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 function from the ggplot2 package.}
+
+\item{decimal}{A string indicating whether the decimal separator should be a
+\code{","} or a \code{"."}. By default, the function uses a comma \code{","}, following
+the format used in Brazilian Portuguese.}
 }
 \value{
 A list object be added to a ggplot object to change color pallete.

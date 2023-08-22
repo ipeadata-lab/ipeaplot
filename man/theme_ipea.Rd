@@ -38,7 +38,8 @@ be hidden.}
 legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"}, and
 \code{"bottom"}.}
 
-\item{grid.adjust}{Argument that defines whether the graphic grid specifications will be in the standard horizontal or vertical legend.}
+\item{grid.adjust}{Argument that defines whether the graphic specifications
+will be in the standard horizontal or vertical legend.}
 
 \item{x}{Manually set the initial x-axis value}
 

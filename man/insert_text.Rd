@@ -19,8 +19,6 @@ insert_text(
 
 \item{decimals}{The number of decimal places to round the label values.}
 
-\item{color}{Color option for text. The default option is black}
-
 \item{show_percents}{Logical.}
 
 \item{pie_plot}{Logical.}
