@@ -77,7 +77,12 @@ Economic Research (IPEA)</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>palette</dt>
+    <dl><dt>discrete</dt>
+<dd><p>A logical value indicating whether to use discrete or
+continuous scale bar. The default value is continuous.</p></dd>
+
+
+<dt>palette</dt>
 <dd><p>A character vector specifying the available palette for the
 color palette. The default palette are "crimson", "orpheu", "cartola",
 "caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and
@@ -87,9 +92,12 @@ used when the "manual" option is selected.</p></dd>
 
 
 <dt>direction</dt>
-<dd><p>A character vector specifying the direction of the color
-gradient. <br> The available palette are "horizontal" and "vertical".
+<dd><p>A character vector specifying the legend ordering. <br> The available palette are "horizontal" and "vertical".
 The default value is "horizontal".</p></dd>
+
+
+<dt>palette_direction</dt>
+<dd><p>A logical argument specifying the direction of the color gradient.</p></dd>
 
 
 <dt>show.limits</dt>
@@ -101,6 +109,14 @@ gradient limits. The default value is TRUE.</p></dd>
 <dd><p>A logical value indicating whether to use Brazilian Portuguese
 formatting for labels. <br> If TRUE, decimal marks are set to ",", and
 big marks are set to ".". The default value is TRUE.</p></dd>
+
+
+<dt>hline</dt>
+<dd><p>Adjustment of the horizontal position of the extreme line of the graph axis. The default option is not to change the position.</p></dd>
+
+
+<dt>vline</dt>
+<dd><p>Adjustment of the vertical position of the extreme line of the graph axis. The default option is not to change the position.</p></dd>
 
 
 <dt>barheight</dt>
