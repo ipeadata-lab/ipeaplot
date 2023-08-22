@@ -43,7 +43,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
                               barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value
-  direction <- ifelse(missing(direction), "vertical", direction)
+  legend.direction <- ifelse(missing(legend.direction), "vertical", legend.direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
@@ -77,7 +77,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
     show.limits = F
   }
 
-  if (direction == 'vertical') {
+  if (legend.direction == 'vertical') {
     barheight = NULL  # Set barheight to NULL if direction is 'vertical'
     barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
     title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
@@ -171,7 +171,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
                                          show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value
-  direction <- ifelse(missing(direction), "vertical", direction)
+  legend.direction <- ifelse(missing(legend.direction), "vertical", legend.direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
@@ -204,7 +204,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
     show.limits = F
   }
 
-  if (direction == 'vertical') {
+  if (legend.direction == 'vertical') {
     barheight = NULL  # Set barheight to NULL if direction is 'vertical'
     barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
     title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
