@@ -2,7 +2,6 @@
 ## Exemplos de acordo com site
 # https://www.ipea.gov.br/sites/manualeditorial/padroes-editoriais/padroes-grafico-visuais/ilustracoes/graficos
 remotes::install_github("ipeadata-lab/ipeaplot")
-
 devtools::check(pkg = ".",  cran = FALSE, env_vars = c(NOT_CRAN = "true"))
 
 library(ipeaplot)

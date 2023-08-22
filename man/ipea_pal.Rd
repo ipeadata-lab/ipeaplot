@@ -23,8 +23,6 @@ ipea_pal(
 colors are ordered from darkest to lightest. If -1, the order of
 colors is reversed.}
 
-\item{n}{The number of colors (\eqn{\ge 1}) to be in the palette.}
-
 \item{palette}{A character string indicating the color map option to use.
 Eight options are available:
 \itemize{
