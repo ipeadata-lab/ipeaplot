@@ -5,11 +5,11 @@
 \title{Ggplot theme for Ipea charts and figures}
 \usage{
 theme_ipea(
-  axis = c("none", "half", "full"),
+  axis = "half",
   geom = c("bar", "line", "point", "sf", "pie"),
   text = T,
   legend.position,
-  grid.adjust = c("horizontal", "vertical"),
+  grid.adjust = "horizontal",
   x,
   y,
   yend,
@@ -17,15 +17,15 @@ theme_ipea(
   x_breaks,
   y_breaks,
   bar_adjust = F,
-  angle,
+  x_text_angle,
   include_ticks = T,
   ...
 )
 }
 \arguments{
 \item{axis}{A character vector specifying the axis style. Valid options are
-\code{"none"} (no axis lines), \code{"half"} (half-length axis lines), and
-\code{"full"} (full-length axis lines).}
+\code{"none"} (no axis lines), \code{"full"} (full-length axis lines), and
+\code{"half"} (half-length axis lines), the default.}
 
 \item{geom}{A character vector specifying some particularities of geom plot.
 Valid options are \code{"bar"},\code{"line"}, \code{"point"}, \code{"sf"}.}
@@ -38,8 +38,8 @@ be hidden.}
 legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"}, and
 \code{"bottom"}.}
 
-\item{grid.adjust}{Argument that defines whether the graphic specifications
-will be in the standard horizontal or vertical legend.}
+\item{grid.adjust}{Defines whether the grid lines should be \code{"horizontal"}
+(default) or \code{"vertical"}.}
 
 \item{x}{Manually set the initial x-axis value}
 
@@ -49,15 +49,15 @@ will be in the standard horizontal or vertical legend.}
 
 \item{xend}{Manually set the x-axis threshold value}
 
-\item{x_breaks}{Specify values break amounts on the x-axis}
+\item{x_breaks}{Numeric. The number of breaks on the x-axis}
 
-\item{y_breaks}{Specify values break amounts on the y-axis}
+\item{y_breaks}{Numeric. The number of breaks on the y-axis}
 
 \item{bar_adjust}{Specific x-axis tweak for bar charts that should stick to the border.}
 
-\item{angle}{Arrange x-axis angle}
+\item{x_text_angle}{Numeric. Angle of the text in the x-axis.}
 
-\item{include_ticks}{Option to remove ticks and adjust chart.}
+\item{include_ticks}{Logical. Whether to include ticks. Defaults to \code{TRUE}.}
 
 \item{...}{Additional arguments to be passed to the \code{theme} function from the
 \code{ggplot2} package.}

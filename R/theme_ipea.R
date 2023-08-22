@@ -5,8 +5,8 @@
 #' function includes standardized formatting of options for axis lines, text,
 #'
 #' @param axis A character vector specifying the axis style. Valid options are
-#'        `"none"` (no axis lines), `"half"` (half-length axis lines), and
-#'        `"full"` (full-length axis lines).
+#'        `"none"` (no axis lines), `"full"` (full-length axis lines), and
+#'        `"half"` (half-length axis lines), the default.
 #' @param geom A character vector specifying some particularities of geom plot.
 #'        Valid options are `"bar"`,`"line"`, `"point"`, `"sf"`.
 #' @param text Logical value indicating whether to show text elements. If `TRUE`,
@@ -15,17 +15,17 @@
 #' @param legend.position A character vector specifying the position of the
 #'        legend. Valid options are `"right"` (default), `"left"`, `"top"`, and
 #'        `"bottom"`.
-#' @param grid.adjust Argument that defines whether the graphic specifications
-#'        will be in the standard horizontal or vertical legend.
+#' @param grid.adjust Defines whether the grid lines should be `"horizontal"`
+#'       (default) or `"vertical"`.
 #' @param x Manually set the initial x-axis value
 #' @param y Manually set the initial y-axis value
 #' @param yend Manually set the y-axis threshold value
 #' @param xend Manually set the x-axis threshold value
-#' @param x_breaks Specify values break amounts on the x-axis
-#' @param y_breaks Specify values break amounts on the y-axis
+#' @param x_breaks Numeric. The number of breaks on the x-axis
+#' @param y_breaks Numeric. The number of breaks on the y-axis
 #' @param bar_adjust Specific x-axis tweak for bar charts that should stick to the border.
-#' @param angle Arrange x-axis angle
-#' @param include_ticks Option to remove ticks and adjust chart.
+#' @param x_text_angle Numeric. Angle of the text in the x-axis.
+#' @param include_ticks Logical. Whether to include ticks. Defaults to `TRUE`.
 #' @param ... Additional arguments to be passed to the `theme` function from the
 #'        `ggplot2` package.
 #'
@@ -33,13 +33,14 @@
 #' @import ggplot2
 #' @export
 
-theme_ipea <- function(axis = c('none','half','full'),
+theme_ipea <- function(axis = 'half',
                        geom = c('bar','line','point','sf','pie'),
                        text = T,legend.position,
-                       grid.adjust = c('horizontal','vertical'),
+                       grid.adjust = 'horizontal',
                        x, y, yend,xend,
                        x_breaks , y_breaks,
-                       bar_adjust = F,angle,
+                       bar_adjust = F,
+                       x_text_angle,
                        include_ticks = T,
                        ...){
 
@@ -50,19 +51,19 @@ theme_ipea <- function(axis = c('none','half','full'),
   y_breaks <- ifelse(missing(y_breaks), 10, y_breaks)
   bar_adjust <- ifelse(bar_adjust == TRUE,.1,Inf)
 
-  angle <- ifelse(missing(angle),0, angle)
-  hjust <- ifelse(angle == 0,0.5, 1)
-  vjust <- ifelse(angle == 0,0, 0.5)
+  x_text_angle <- ifelse(missing(x_text_angle),0, x_text_angle)
+  hjust <- ifelse(x_text_angle == 0,0.5, 1)
+  vjust <- ifelse(x_text_angle == 0,0, 0.5)
 
 
+  ### check inputs
+  checkmate::assert_string(x = axis, pattern = c('none|half|full'))
+  checkmate::assert_string(x = grid.adjust, pattern = c('vertical|horizontal'))
 
   geom <- ifelse(missing(geom), 'line', geom)
 
   # Set the default axis style to "half" if not provided by the user
   axis <- ifelse(missing(axis), 'half', axis)
-
-  # Set the default grid.adjust style to "vertical" if not provided by the user
-  grid.adjust <- ifelse(missing(grid.adjust), 'vertical', grid.adjust)
 
   # Set the default legend position to "right" if not provided by the user
   legend.position <- ifelse(missing(legend.position), 'right', legend.position)
@@ -78,7 +79,7 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     panel.border = ggplot2::element_blank()
-    axis.text.x  = ggplot2::element_text(angle = angle,  vjust = vjust, hjust= hjust)
+    axis.text.x  = ggplot2::element_text(x_text_angle = x_text_angle,  vjust = vjust, hjust= hjust)
     axis.ticks.x = ggplot2::element_line()
     axis.text.y  = ggplot2::element_text()
     axis.ticks.y = ggplot2::element_line()
@@ -128,9 +129,9 @@ theme_ipea <- function(axis = c('none','half','full'),
 
   if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
-    hjust <- ifelse(angle == 0,0.5, -4)
-    vjust <- ifelse(angle == 0,4, 0.5)
-    axis.text.x  = ggplot2::element_text(angle = angle,  vjust = vjust, hjust= hjust)
+    hjust <- ifelse(x_text_angle == 0,0.5, -4)
+    vjust <- ifelse(x_text_angle == 0,4, 0.5)
+    axis.text.x  = ggplot2::element_text(x_text_angle = x_text_angle,  vjust = vjust, hjust= hjust)
   }
 
 
@@ -138,10 +139,10 @@ theme_ipea <- function(axis = c('none','half','full'),
     strip.background = ggplot2::element_rect(fill = "white")
     strip.text = ggplot2::element_text(colour = 'black',hjust=0)
 
-    if(grid.adjust == 'vertical'){
+    if(grid.adjust == 'horizontal'){
       panel.grid.major.x = ggplot2::element_blank()
       panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
-    }else if (grid.adjust == 'horizontal'){
+    }else if (grid.adjust == 'vertical'){
       panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
       panel.grid.major.y = ggplot2::element_blank()
     }

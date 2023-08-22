@@ -5,7 +5,7 @@
 #' @description This function creates a vector of n equally spaced colors
 #'               along the selected color map.
 #'
-#' @param n The number of colors (\eqn{\ge 1}) to be in the palette.
+#' @param n The number of colors (\eqn{\ge 1}) used in the palette.
 #' @param alpha The alpha transparency in a number between `0` and `1`.
 #' @param begin The (corrected) hue in a number between `0` and `1` at which the
 #'        color map begins.

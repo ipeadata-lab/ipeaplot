@@ -14,7 +14,7 @@ ipea_palette(
 )
 }
 \arguments{
-\item{n}{The number of colors (\eqn{\ge 1}) to be in the palette.}
+\item{n}{The number of colors (\eqn{\ge 1}) used in the palette.}
 
 \item{alpha}{The alpha transparency in a number between \code{0} and \code{1}.}
 
