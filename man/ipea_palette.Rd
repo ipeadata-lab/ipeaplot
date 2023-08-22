@@ -26,7 +26,7 @@ ipea_palette(
 colors are ordered from darkest to lightest. If -1, the order of
 colors is reversed.}
 
-\item{option}{A character string indicating the color map option to use.
+\item{palette}{A character string indicating the color map option to use.
 Eight options are available:
 \itemize{
 \item{}{'Blue'}

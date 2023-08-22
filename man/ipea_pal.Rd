@@ -5,6 +5,7 @@
 \title{Ipea palette}
 \usage{
 ipea_pal(
+  n,
   alpha = 1,
   begin = 0,
   end = 1,
@@ -25,8 +26,17 @@ colors is reversed.}
 
 \item{n}{The number of colors (\eqn{\ge 1}) to be in the palette.}
 
-\item{option}{A character string indicating the color map option to use.}
-}
+\item{palette}{A character string indicating the color map option to use.
+Eight options are available:
+\itemize{
+\item{}{'Blue'}
+\item{}{'Green'}
+\item{}{'Orange'}
+\item{}{'Pink'}
+\item{}{'Red-Blue'}
+\item{}{'Orange-Blue}
+}}
+
 \description{
 Ipea palette
 }

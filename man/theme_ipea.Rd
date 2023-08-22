@@ -41,6 +41,24 @@ legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"},
 \item{direction}{Argument that defines whether the graphic specifications
 will be in the standard horizontal or vertical legend.}
 
+\item{x}{Manually set the initial x-axis value}
+
+\item{y}{Manually set the initial y-axis value}
+
+\item{yend}{Manually set the y-axis threshold value}
+
+\item{xend}{Manually set the x-axis threshold value}
+
+\item{x_breaks}{Specify values break amounts on the x-axis}
+
+\item{y_breaks}{Specify values break amounts on the y-axis}
+
+\item{bar_adjust}{Specific x-axis tweak for bar charts that should stick to the border.}
+
+\item{angle}{Arrange x-axis angle}
+
+\item{adjust_ticks}{Option to remove ticks and adjust chart.}
+
 \item{...}{Additional arguments to be passed to the \code{theme} function from the
 \code{ggplot2} package.}
 }

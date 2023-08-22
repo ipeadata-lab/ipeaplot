@@ -115,7 +115,7 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
   insert_text(label = 'Populacao', decimals = 1)
 
 graf1
-ggsave(graf1, filename = "./tests/compara_editorial/prints_ipea_theme/Grafico 1.pdf",
+ggsave(graf1, filename = "./tests/compara_editorial/prints_ipea_theme/grafico_1.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -149,7 +149,7 @@ graf2_orig <- ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
 
 
 graf2_orig
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 2.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_2.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -171,7 +171,7 @@ graf3_orig <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
   coord_cartesian(clip = "off")
 
 graf3_orig
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 3.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_3.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -193,7 +193,7 @@ graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais,
              yend = 700, adjust_ticks = T)
 
 graf4
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 4.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_4.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -209,7 +209,7 @@ graf5 <- ggplot(base_graf5, aes(x=Ano)) +
   theme_ipea(legend.position="none",geom = 'bar',
              x_breaks = 10, y_breaks = 4)
 graf5
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 5.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_5.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -232,7 +232,7 @@ graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
   scale_fill_manual(values = c(NA,"white"))
 
 graf6
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 6.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_6.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -253,7 +253,7 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
   theme_ipea(legend.position = 'none', geom = 'bar', direction = 'horizontal',
              y = -80, yend = 120)
 graf7
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 7.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_7.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -274,7 +274,7 @@ graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=varia
              direction = 'horizontal', yend = 0.7) +
   scale_fill_ipea(discrete = T)
 graf8
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 8.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_8.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -314,7 +314,7 @@ graf9 <-
   coord_cartesian(expand = FALSE, clip = "off")
 
 graf9
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 9.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_9.pdf",
        width = 20, height = 20, units = "cm")
 
 
@@ -360,6 +360,6 @@ graf10 <-
   theme_ipea(legend.position = 'bottom', yend = 4000)
 
 graf10
-ggsave("./tests/compara_editorial/prints_ipea_theme/Grafico 10.pdf",
+ggsave("./tests/compara_editorial/prints_ipea_theme/grafico_10.pdf",
        width = 20, height = 20, units = "cm")
 

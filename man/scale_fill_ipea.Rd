@@ -19,6 +19,10 @@ scale_fill_ipea(
 )
 }
 \arguments{
+
+\item{discrete}{A logical value indicating whether to use discrete or
+continuous scale bar. The default value is continuous.}
+
 \item{palette}{A character vector specifying the available palette for the
 color palette. The default palette are "crimson", "orpheu", "cartola",
 "caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and
@@ -26,9 +30,10 @@ color palette. The default palette are "crimson", "orpheu", "cartola",
 high values of the gradient, respectively.  \cr These parameters are
 used when the "manual" option is selected.}
 
-\item{direction}{A character vector specifying the direction of the color
-gradient. \cr The available palette are "horizontal" and "vertical".
+\item{direction}{A character vector specifying the legend ordering. \cr The available palette are "horizontal" and "vertical".
 The default value is "horizontal".}
+
+\item{palette_direction}{A logical argument specifying the direction of the color gradient.}
 
 \item{show.limits}{A logical value indicating whether to display the color
 gradient limits. The default value is TRUE.}
@@ -36,6 +41,10 @@ gradient limits. The default value is TRUE.}
 \item{pt_br}{A logical value indicating whether to use Brazilian Portuguese
 formatting for labels. \cr If TRUE, decimal marks are set to ",", and
 big marks are set to ".". The default value is TRUE.}
+
+\item{hline}{Adjustment of the horizontal position of the extreme line of the graph axis. The default option is not to change the position.}
+
+\item{vline}{Adjustment of the vertical position of the extreme line of the graph axis. The default option is not to change the position.}
 
 \item{barheight}{The height of the color gradient bar. This parameter is used
 when the direction is set to "vertical". The default value is 2.}

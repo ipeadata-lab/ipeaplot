@@ -26,9 +26,10 @@ continuous scale bar. The default value is continuous.}
 color palette. The default palette are "Blue", but we can also change
 to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'}.}
 
-\item{direction}{A character vector specifying the direction of the color
-gradient. \cr The available palette are "horizontal" and "vertical".
+\item{direction}{A character vector specifying the legend ordering. \cr The available palette are "horizontal" and "vertical".
 The default value is "horizontal".}
+
+\item{palette_direction}{A logical argument specifying the direction of the color gradient.}
 
 \item{show.limits}{A logical value indicating whether to display the color
 gradient limits. The default value is TRUE.}
@@ -36,6 +37,10 @@ gradient limits. The default value is TRUE.}
 \item{pt_br}{A logical value indicating whether to use Brazilian Portuguese
 formatting for labels. \cr If TRUE, decimal marks are set to ",", and
 big marks are set to ".". The default value is TRUE.}
+
+\item{hline}{Adjustment of the horizontal position of the extreme line of the graph axis. The default option is not to change the position.}
+
+\item{vline}{Adjustment of the vertical position of the extreme line of the graph axis. The default option is not to change the position.}
 
 \item{barheight}{The height of the color gradient bar. This parameter is used
 when the direction is set to "horizontal". The default value is 2.}
