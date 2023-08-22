@@ -6,9 +6,9 @@
 #'               along the selected color map.
 #'
 #' @param n The number of colors (\eqn{\ge 1}) to be in the palette.
-#' @param alpha	The alpha transparency, a number in [0,1]
-#' @param begin The (corrected) hue in [0,1] at which the color map begins.
-#' @param end The (corrected) hue in [0,1] at which the color map ends.
+#' @param alpha	The alpha transparency in a number between `0` and `1`.
+#' @param begin The (corrected) hue in in a number between `0` and `1` at which the color map begins.
+#' @param end The (corrected) hue in in a number between `0` and `1` at which the color map ends.
 #' @param direction Sets the order of colors in the scale. If 1, the default,
 #'        colors are ordered from darkest to lightest. If -1, the order of
 #'        colors is reversed.
@@ -83,9 +83,9 @@ force_all <- function(...) list(...)
 #' Ipea palette
 #'
 #' @param n The number of colors (\eqn{\ge 1}) to be in the palette.
-#' @param alpha	The alpha transparency, a number in [0,1]
-#' @param begin The (corrected) hue in [0,1] at which the color map begins.
-#' @param end The (corrected) hue in [0,1] at which the color map ends.
+#' @param alpha	The alpha transparency in a number between `0` and `1`.
+#' @param begin The (corrected) hue in in a number between `0` and `1` at which the color map begins.
+#' @param end The (corrected) hue in in a number between `0` and `1` at which the color map ends.
 #' @param direction Sets the order of colors in the scale. If 1, the default,
 #'        colors are ordered from darkest to lightest. If -1, the order of
 #'        colors is reversed.
