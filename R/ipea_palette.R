@@ -30,7 +30,7 @@ ipea_palette <- function(n, alpha = 1, begin = 0, end = 1,
   palette <-  ifelse(missing(palette),'Blue',palette)
 
    if (begin < 0 | begin > 1 | end < 0 | end > 1) {
-     stop("begin and end must be in [0,1]")
+     stop("begin and end must be in a number between `0` and `1`")
    }
 
    if (abs(direction) != 1) {
