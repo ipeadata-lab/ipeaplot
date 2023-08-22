@@ -25,7 +25,7 @@
 #' @param y_breaks Specify values break amounts on the y-axis
 #' @param bar_adjust Specific x-axis tweak for bar charts that should stick to the border.
 #' @param angle Arrange x-axis angle
-#' @param adjust_ticks Option to remove ticks and adjust chart.
+#' @param include_ticks Option to remove ticks and adjust chart.
 #' @param ... Additional arguments to be passed to the `theme` function from the
 #'        `ggplot2` package.
 #'
@@ -40,7 +40,7 @@ theme_ipea <- function(axis = c('none','half','full'),
                        x, y, yend,xend,
                        x_breaks , y_breaks,
                        bar_adjust = F,angle,
-                       adjust_ticks = F,
+                       include_ticks = T,
                        ...){
 
   y <- ifelse(missing(y), -Inf, y)
@@ -48,7 +48,7 @@ theme_ipea <- function(axis = c('none','half','full'),
   yend <- ifelse(missing(yend), Inf, yend)
   xend <- ifelse(missing(xend), Inf, xend)
   y_breaks <- ifelse(missing(y_breaks), 10, y_breaks)
-  bar_adjust <- ifelse(bar_adjust == T,.1,Inf)
+  bar_adjust <- ifelse(bar_adjust == TRUE,.1,Inf)
 
   angle <- ifelse(missing(angle),0, angle)
   hjust <- ifelse(angle == 0,0.5, 1)
@@ -126,7 +126,7 @@ theme_ipea <- function(axis = c('none','half','full'),
     axis.ticks = ggplot2::element_blank()
   }
 
-  if(adjust_ticks == T){
+  if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
     hjust <- ifelse(angle == 0,0.5, -4)
     vjust <- ifelse(angle == 0,4, 0.5)

@@ -68,6 +68,7 @@ lapply(X=docs, FUN = tools::showNonASCIIfile)
 library(tictoc)
 library(beepr)
 
+devtools::document()
 
 # LOCAL
 tictoc::tic()

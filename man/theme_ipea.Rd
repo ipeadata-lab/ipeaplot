@@ -18,7 +18,7 @@ theme_ipea(
   y_breaks,
   bar_adjust = F,
   angle,
-  adjust_ticks = F,
+  include_ticks = T,
   ...
 )
 }
@@ -57,7 +57,7 @@ will be in the standard horizontal or vertical legend.}
 
 \item{angle}{Arrange x-axis angle}
 
-\item{adjust_ticks}{Option to remove ticks and adjust chart.}
+\item{include_ticks}{Option to remove ticks and adjust chart.}
 
 \item{...}{Additional arguments to be passed to the \code{theme} function from the
 \code{ggplot2} package.}

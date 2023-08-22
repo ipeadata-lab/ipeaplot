@@ -15,9 +15,9 @@ ipea_pal(
 \arguments{
 \item{alpha}{The alpha transparency in a number between \code{0} and \code{1}.}
 
-\item{begin}{The (corrected) hue in in a number between \code{0} and \code{1} at which the color map begins.}
+\item{begin}{The (corrected) hue in a number between \code{0} and \code{1} at which the color map begins.}
 
-\item{end}{The (corrected) hue in in a number between \code{0} and \code{1} at which the color map ends.}
+\item{end}{The (corrected) hue in a number between \code{0} and \code{1} at which the color map ends.}
 
 \item{direction}{Sets the order of colors in the scale. If 1, the default,
 colors are ordered from darkest to lightest. If -1, the order of

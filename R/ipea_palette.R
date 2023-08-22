@@ -6,11 +6,13 @@
 #'               along the selected color map.
 #'
 #' @param n The number of colors (\eqn{\ge 1}) to be in the palette.
-#' @param alpha	The alpha transparency in a number between `0` and `1`.
-#' @param begin The (corrected) hue in in a number between `0` and `1` at which the color map begins.
-#' @param end The (corrected) hue in in a number between `0` and `1` at which the color map ends.
-#' @param direction Sets the order of colors in the scale. If 1, the default,
-#'        colors are ordered from darkest to lightest. If -1, the order of
+#' @param alpha The alpha transparency in a number between `0` and `1`.
+#' @param begin The (corrected) hue in a number between `0` and `1` at which the
+#'        color map begins.
+#' @param end The (corrected) hue in a number between `0` and `1` at which the
+#'        color map ends.
+#' @param direction Sets the order of colors in the scale. If `1`, the default,
+#'        colors are ordered from darkest to lightest. If `-1`, the order of
 #'        colors is reversed.
 #' @param option A character string indicating the color map option to use.
 #'  Eight options are available:
@@ -23,9 +25,13 @@
 #'  \item{}{'Orange-Blue}
 #'  }
 #'
-ipea_palette <- function(n, alpha = 1, begin = 0, end = 1,
-                     direction = 1, palette = c('Blue','Green','Orange','Pink',
-                                               'Red-Blue','Orange-Blue')) {
+ipea_palette <- function(n,
+                         alpha = 1,
+                         begin = 0,
+                         end = 1,
+                         direction = 1,
+                         palette = c('Blue','Green','Orange','Pink',
+                                     'Red-Blue','Orange-Blue')) {
 
   palette <-  ifelse(missing(palette),'Blue',palette)
 
@@ -84,13 +90,12 @@ force_all <- function(...) list(...)
 #'
 #' @param n The number of colors (\eqn{\ge 1}) to be in the palette.
 #' @param alpha	The alpha transparency in a number between `0` and `1`.
-#' @param begin The (corrected) hue in in a number between `0` and `1` at which the color map begins.
-#' @param end The (corrected) hue in in a number between `0` and `1` at which the color map ends.
+#' @param begin The (corrected) hue in a number between `0` and `1` at which the color map begins.
+#' @param end The (corrected) hue in a number between `0` and `1` at which the color map ends.
 #' @param direction Sets the order of colors in the scale. If 1, the default,
 #'        colors are ordered from darkest to lightest. If -1, the order of
 #'        colors is reversed.
 #' @param option A character string indicating the color map option to use.
-#' @references
 #' @export
 #' @examples
 #' scales::show_col(ipea_pal()(10))
