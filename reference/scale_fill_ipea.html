@@ -63,8 +63,8 @@ Economic Research (IPEA)</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scale_fill_ipea</span><span class="op">(</span></span>
 <span>  discrete <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Blue"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Pink"</span>, <span class="st">"Red-Blue"</span>, <span class="st">"Orange-Blue"</span><span class="op">)</span>,</span>
-<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"horizontal"</span>, <span class="st">"vertical"</span><span class="op">)</span>,</span>
-<span>  palette_direction <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  legend.direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"horizontal"</span>, <span class="st">"vertical"</span><span class="op">)</span>,</span>
+<span>  palette.direction <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  <span class="va">hline</span>,</span>
 <span>  <span class="va">vline</span>,</span>
 <span>  show.limits <span class="op">=</span> <span class="cn">T</span>,</span>
@@ -91,13 +91,13 @@ high values of the gradient, respectively.  <br> These parameters are
 used when the "manual" option is selected.</p></dd>
 
 
-<dt>direction</dt>
+<dt>legend.direction</dt>
 <dd><p>A character vector specifying the legend ordering. <br> The available palette are "horizontal" and "vertical".
 The default value is "horizontal".</p></dd>
 
 
-<dt>palette_direction</dt>
-<dd><p>A logical argument specifying the direction of the color gradient.</p></dd>
+<dt>palette.direction</dt>
+<dd><p>A logical argument specifying if the ordering of the colors will follow the default of the palette (when the argument is 1) or if it will have an inverted ordering (for cases where it is 0).</p></dd>
 
 
 <dt>show.limits</dt>
@@ -106,9 +106,7 @@ gradient limits. The default value is TRUE.</p></dd>
 
 
 <dt>pt_br</dt>
-<dd><p>A logical value indicating whether to use Brazilian Portuguese
-formatting for labels. <br> If TRUE, decimal marks are set to ",", and
-big marks are set to ".". The default value is TRUE.</p></dd>
+<dd><p>A string indicating whether the decimal separator should be a "," or a ".". By default, the function uses a comma ",", following the format used in Brazilian Portuguese.</p></dd>
 
 
 <dt>hline</dt>
