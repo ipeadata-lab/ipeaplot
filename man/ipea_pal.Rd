@@ -5,7 +5,6 @@
 \title{Ipea palette}
 \usage{
 ipea_pal(
-  n,
   alpha = 1,
   begin = 0,
   end = 1,
@@ -14,11 +13,11 @@ ipea_pal(
 )
 }
 \arguments{
-\item{alpha}{The alpha transparency, a number in \link{0,1}}
+\item{alpha}{The alpha transparency, a number in \code{\link{0,1}}}
 
-\item{begin}{The (corrected) hue in \link{0,1} at which the color map begins.}
+\item{begin}{The (corrected) hue in \code{\link{0,1}} at which the color map begins.}
 
-\item{end}{The (corrected) hue in \link{0,1} at which the color map ends.}
+\item{end}{The (corrected) hue in \code{\link{0,1}} at which the color map ends.}
 
 \item{direction}{Sets the order of colors in the scale. If 1, the default,
 colors are ordered from darkest to lightest. If -1, the order of

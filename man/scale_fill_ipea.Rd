@@ -53,8 +53,6 @@ when the direction is set to "horizontal". The default value is 50.}
 \item{...}{Additional arguments to be passed to the scale_fill_gradientn or
 scale_color_gradientn function from the ggplot2 package.}
 
-\item{colours}{A vector of colors to be used for the gradient. This parameter
-is used when palette other than "manual" are selected.}
 }
 \value{
 A list object be added to a ggplot object to change color pallete.
