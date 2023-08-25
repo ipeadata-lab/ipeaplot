@@ -4,27 +4,21 @@
 #' guidelines used by the Institute for Applied Economic Research - Ipea. The
 #' function includes standardized formatting of options for axis lines, text,
 #'
-#' @param axis A character vector specifying the axis style. Valid options are
+#' @param axis_lines A character vector specifying the axis style. Valid options are
 #'        `"none"` (no axis lines), `"full"` (full-length axis lines), and
 #'        `"half"` (half-length axis lines), the default.
-#' @param geom A character vector specifying some particularities of geom plot.
-#'        Valid options are `"bar"`,`"line"`, `"point"`, `"sf"`.
-#' @param text Logical value indicating whether to show text elements. If `TRUE`,
-#'        axis text and ticks will be displayed in black; otherwise, they will
+#' @param axis_values Logical value indicating whether to show text elements. If `TRUE`,
+#'        axis text will be displayed in black; otherwise, they will
 #'        be hidden.
+#' @param pie.adjust A character vector specifying some particularities of geom `"pie"`.
 #' @param legend.position A character vector specifying the position of the
 #'        legend. Valid options are `"right"` (default), `"left"`, `"top"`, and
 #'        `"bottom"`.
 #' @param grid.adjust Defines whether the grid lines should be `"horizontal"`
 #'       (default) or `"vertical"`.
-#' @param x Manually set the initial x-axis value
-#' @param y Manually set the initial y-axis value
-#' @param yend Manually set the y-axis threshold value
-#' @param xend Manually set the x-axis threshold value
 #' @param x_breaks Numeric. The number of breaks on the x-axis
 #' @param y_breaks Numeric. The number of breaks on the y-axis
-#' @param bar_adjust Specific x-axis tweak for bar charts that should stick to the border.
-#' @param x_text_angle Numeric. Angle of the text in the x-axis.
+#' @param x_text_angle Numeric. Angle in degrees of the text in the x-axis.
 #' @param include_ticks Logical. Whether to include ticks. Defaults to `TRUE`.
 #' @param ... Additional arguments to be passed to the `theme` function from the
 #'        `ggplot2` package.
@@ -33,105 +27,79 @@
 #' @import ggplot2
 #' @export
 
-theme_ipea <- function(axis = 'half',
-                       geom = c('bar','line','point','sf','pie'),
-                       text = T,legend.position,
+theme_ipea <- function(axis_lines = 'half',
+                       axis_values = T,
+                       pie.adjust = F,
+                       legend.position = 'right',
                        grid.adjust = 'horizontal',
-                       x, y, yend,xend,
                        x_breaks , y_breaks,
-                       bar_adjust = F,
-                       x_text_angle,
+                       x_text_angle = 0,
                        include_ticks = T,
                        ...){
 
-  y <- ifelse(missing(y), -Inf, y)
-  x <- ifelse(missing(x), Inf, x)
-  yend <- ifelse(missing(yend), Inf, yend)
-  xend <- ifelse(missing(xend), Inf, xend)
-  y_breaks <- ifelse(missing(y_breaks), 10, y_breaks)
-  bar_adjust <- ifelse(bar_adjust == TRUE,.1,Inf)
-
-  x_text_angle <- ifelse(missing(x_text_angle),0, x_text_angle)
   hjust <- ifelse(x_text_angle == 0,0.5, 1)
   vjust <- ifelse(x_text_angle == 0,0, 0.5)
 
 
   ### check inputs
-  checkmate::assert_string(x = axis, pattern = c('none|half|full'))
+  checkmate::assert_number(x = x_text_angle)
+  checkmate::assert_string(x = axis_lines, pattern = c('none|half|full'))
   checkmate::assert_string(x = grid.adjust, pattern = c('vertical|horizontal'))
+  checkmate::assert_string(x = legend.position, pattern = c('right|left|bottom|top|none'))
 
-  geom <- ifelse(missing(geom), 'line', geom)
 
-  # Set the default axis style to "half" if not provided by the user
-  axis <- ifelse(missing(axis), 'half', axis)
-
-  # Set the default legend position to "right" if not provided by the user
-  legend.position <- ifelse(missing(legend.position), 'right', legend.position)
-
-  if(geom == 'pie'){
-    color = NA
-  } else {
+  if(isFALSE(pie.adjust)){
     color = "#b7bdb7"
+  } else {
+    color = NA
   }
 
-  if (axis == "half") {
+
+
+  if (axis_lines == "half") {
     # Define the axis line and panel border for "half" style
     axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
+    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
+    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
     panel.border = ggplot2::element_blank()
-    axis.text.x  = ggplot2::element_text(x_text_angle = x_text_angle,  vjust = vjust, hjust= hjust)
-    axis.ticks.x = ggplot2::element_line()
-    axis.text.y  = ggplot2::element_text()
-    axis.ticks.y = ggplot2::element_line()
-    axis.ticks =   ggplot2::element_line()
     panel.grid   = ggplot2::element_line()
-    # Define the axis text and ticks styles when text is displayed
-    axis.text = ggplot2::element_text(colour = "black")
-    axis.ticks = ggplot2::element_line(colour = "black", linewidth = 0.25)
 
-  } else if (axis == "full") {
+  } else if (axis_lines == "full") {
     # Define the axis line and panel border for "full" style
-    axis.line.x  = ggplot2::element_blank()
-    axis.line.y  = ggplot2::element_blank()
-    axis.text.x  = ggplot2::element_blank()
-    axis.ticks.x = ggplot2::element_blank()
-    axis.text.y  = ggplot2::element_blank()
-    axis.ticks.y = ggplot2::element_blank()
-    axis.ticks =   ggplot2::element_line()
+    axis.line.x  = ggplot2::element_blank(linewidth = 0.25, linetype = "solid", colour = "black")
+    axis.line.y  = ggplot2::element_blank(linewidth = 0.25, linetype = "solid", colour = "black")
+    axis.ticks.x = ggplot2::element_blank(colour = "black", linewidth = 0.25)
+    axis.ticks.y = ggplot2::element_blank(colour = "black", linewidth = 0.25)
     panel.grid   = ggplot2::element_line()
     panel.border = ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA)
 
-  } else if (axis == "none") {
+  } else {
     # Define the axis line and panel border for other styles
-    element_blank = ggplot2::element_blank()
     axis.line.x  = ggplot2::element_blank()
     axis.line.y  = ggplot2::element_blank()
     axis.ticks.x = ggplot2::element_blank()
     axis.ticks.y = ggplot2::element_blank()
-    axis.ticks   = ggplot2::element_blank()
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()
-    axis.text    = ggplot2::element_blank()
     panel.grid   = ggplot2::element_blank()
     panel.border = ggplot2::element_blank()
 
   }
 
-  if (text) {
-    # Define the axis text and ticks styles when text is displayed
-    axis.text = ggplot2::element_text(colour = "black")
-    axis.ticks = ggplot2::element_line(colour = "black", linewidth = 0.25)
-  } else {
-    # Hide axis text and ticks when text is not displayed
-    axis.text = ggplot2::element_blank()
-    axis.ticks = ggplot2::element_blank()
-  }
 
   if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
     hjust <- ifelse(x_text_angle == 0,0.5, -4)
     vjust <- ifelse(x_text_angle == 0,4, 0.5)
-    axis.text.x  = ggplot2::element_text(x_text_angle = x_text_angle,  vjust = vjust, hjust= hjust)
+  }
+
+  if(axis_values == T){
+    axis.text.y  = ggplot2::element_text()
+    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  vjust = vjust, hjust= hjust)
+  } else {
+    axis.text.x  = ggplot2::element_blank()
+    axis.text.y  = ggplot2::element_blank()
   }
 
 
@@ -142,7 +110,7 @@ theme_ipea <- function(axis = 'half',
     if(grid.adjust == 'horizontal'){
       panel.grid.major.x = ggplot2::element_blank()
       panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
-    }else if (grid.adjust == 'vertical'){
+    } else if (grid.adjust == 'vertical'){
       panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
       panel.grid.major.y = ggplot2::element_blank()
     }
@@ -177,13 +145,11 @@ theme_ipea <- function(axis = 'half',
     axis.line.y = axis.line.y,
     axis.line.y.right = ggplot2::element_line(colour = color, linewidth = 0.25),
     # Sets the appearance of the axis text based on the previous assignment
-    axis.text = axis.text,
     axis.text.x = axis.text.x,
     axis.text.y = axis.text.y,
+    # Sets the appearance of the axis ticks based on the previous assignment
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
-    # Sets the appearance of the axis ticks based on the previous assignment
-    axis.ticks = axis.ticks,
     # Adjusts the vertical alignment of the y-axis title
     axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5, size = 8, lineheight = 9.6),
     # Adjusts the vertical alignment of the x-axis title
@@ -225,37 +191,40 @@ theme_ipea <- function(axis = 'half',
     ...
   )
 
+    nicelimits <- function(x) {
+      range(scales::extended_breaks(only.loose = TRUE)(x))
+    }
+
+    breaksFUN <- function(x){
+      round(seq(min(x), max(x), length.out = x_breaks), 0)
+    }
+
+
     if(missing(x_breaks)){
       scale_x = NULL
     } else {
-      if(axis %in% c('none','full')){
-        scale_x = scale_x_continuous(breaks = scales::pretty_breaks(n = x_breaks))
-        } else if(axis == 'half' & geom == 'bar'){
-          scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0)), breaks = scales::pretty_breaks(n = x_breaks))
-          } else{
-            scale_x = scale_x_continuous(breaks = scales::pretty_breaks(n = x_breaks))
-          }
-      }
+      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0)), breaks = scales::pretty_breaks(n = x_breaks))
+    }
 
-    if(axis %in% c('none','full')){
+    if(missing(y_breaks)){
+      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::extended_breaks( only.loose = TRUE ))
+    } else {
+      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks))
+    }
+
+    if(axis_lines %in% c('none','full')){
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
-           scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks)),
+           scale_y,
            scale_x,
-           annotate(geom = 'segment', y = y, yend = yend, color = color,x = x, xend = xend, linewidth = 0.25))
+           annotate(geom = 'segment', y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25))
 
-    } else if(axis == 'half' & geom == 'bar') {
-      list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
-           theme,
-           scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = "."), expand = expansion(mult = c(0, bar_adjust)), breaks = scales::pretty_breaks(n = y_breaks), ...),
-           scale_x,
-           annotate(geom = 'segment', y = y, yend = yend, color = color,x = x, xend = xend, linewidth = 0.25),...)
     } else {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
-           scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks), expand = expansion(mult = c(0, 0))),
+           scale_y,
            scale_x,
-           annotate(geom = 'segment', y = y, yend = yend, color = color,x = x, xend = xend, linewidth = 0.25))
+           annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25))
     }
 
 

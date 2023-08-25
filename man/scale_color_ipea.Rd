@@ -7,8 +7,8 @@
 scale_color_ipea(
   discrete = F,
   palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue"),
-  legend.direction = c("horizontal", "vertical"),
-  palette.direction = 1,
+  legend_direction = c("horizontal", "vertical"),
+  palette_direction = 1,
   show.limits = T,
   pt_br = T,
   hline,
@@ -26,11 +26,11 @@ continuous scale bar. The default value is continuous.}
 color palette. The default palette are "Blue", but we can also change
 to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'}.}
 
-\item{legend.direction}{A character vector specifying the direction of the color
+\item{legend_direction}{A character vector specifying the direction of the color
 gradient. \cr The available palette are "horizontal" and "vertical".
 The default value is "horizontal".}
 
-\item{palette.direction}{A logical argument specifying if the ordering of the colors
+\item{palette_direction}{A logical argument specifying if the ordering of the colors
 will follow the default of the palette (when the argument is 1) or if it will
 have an inverted ordering (for cases where it is 0).}
 

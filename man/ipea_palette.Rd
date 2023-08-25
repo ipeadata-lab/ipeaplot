@@ -5,12 +5,12 @@
 \title{Ipea Color Palette and Scales}
 \usage{
 ipea_palette(
+  palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue"),
   n,
   alpha = 1,
   begin = 0,
   end = 1,
-  direction = 1,
-  palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue")
+  palette_direction = 1
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ color map begins.}
 \item{end}{The (corrected) hue in a number between \code{0} and \code{1} at which the
 color map ends.}
 
-\item{direction}{Sets the order of colors in the scale. If \code{1}, the default,
+\item{palette_direction}{Sets the order of colors in the scale. If \code{1}, the default,
 colors are ordered from darkest to lightest. If \code{-1}, the order of
 colors is reversed.}
 

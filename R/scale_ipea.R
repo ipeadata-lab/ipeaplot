@@ -8,10 +8,10 @@
 #' @param palette A character vector specifying the available palette for the
 #'        color palette. The default palette are "Blue", but we can also change
 #'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`.
-#' @param legend.direction A character vector specifying the direction of the color
+#' @param legend_direction A character vector specifying the direction of the color
 #'        gradient. \cr The available palette are "horizontal" and "vertical".
 #'        The default value is "horizontal".
-#' @param palette.direction A logical argument specifying if the ordering of the colors
+#' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is 0).
 #' @param show.limits A logical value indicating whether to display the color
@@ -36,14 +36,14 @@
 #' @export
 scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
                                                        'Red-Blue','Orange-Blue'),
-                              legend.direction = c('horizontal','vertical'),
-                              palette.direction = 1,
+                              legend_direction = c('horizontal','vertical'),
+                              palette_direction = 1,
                               show.limits = T, pt_br = T ,
                               hline,vline,
                               barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value
-  legend.direction <- ifelse(missing(legend.direction), "vertical", legend.direction)
+  legend_direction <- ifelse(missing(legend_direction), "vertical", legend_direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
@@ -77,7 +77,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
     show.limits = F
   }
 
-  if (legend.direction == 'vertical') {
+  if (legend_direction == 'vertical') {
     barheight = NULL  # Set barheight to NULL if direction is 'vertical'
     barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
     title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
@@ -91,7 +91,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 
   if(isFALSE(discrete)){
       # Set palette option
-    scale_manual_pal <- ipea_palette(palette = palette, n = 10, direction = palette.direction)
+    scale_manual_pal <- ipea_palette(palette = palette, n = 10, palette_direction = palette_direction)
 
       # Graph
       graph <- list(hline,vline,
@@ -100,7 +100,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
         colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
           #show.limits = show.limits,  # Set whether to show the limits on the colour scale
-          direction = legend.direction,  # Set the direction of the colour scale
+          direction = legend_direction,  # Set the direction of the colour scale
           barheight = barheight,  # Set the height of the colour scale bar
           barwidth = barwidth,  # Set the width of the colour scale bar
           draw.ulim = F,  # Set whether to draw the upper limit line
@@ -114,7 +114,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
   if(isTRUE(discrete)){
     # Create a discrete color scale with the specified palette
     graph <- list(hline,vline,
-                  ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, direction = palette.direction), ...),
+                  ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
                   ggplot2::guides(color=guide_legend(ncol = 3, byrow = TRUE)))
   }
 
@@ -135,10 +135,10 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #'        "manual".#' low, mid, high: Colors to be used for the low, mid, and
 #'        high values of the gradient, respectively.  \cr These parameters are
 #'        used when the "manual" option is selected.
-#' @param legend.direction A character vector specifying the direction of the color
+#' @param legend_direction A character vector specifying the direction of the color
 #'        gradient. \cr The available palette are "horizontal" and "vertical".
 #'        The default value is "horizontal".
-#' @param palette.direction A logical argument specifying if the ordering of the colors
+#' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is 0).
 #' @param colours A vector of colors to be used for the gradient. This parameter
@@ -165,13 +165,13 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #' @export
 scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
                                                       'Red-Blue','Orange-Blue'),
-                                         legend.direction = c('horizontal','vertical'),
-                                         palette.direction = 1,
+                                         legend_direction = c('horizontal','vertical'),
+                                         palette_direction = 1,
                                          hline,vline,
                                          show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
 
   # Set direction to 'vertical' if it is not provided, otherwise use the provided value
-  legend.direction <- ifelse(missing(legend.direction), "vertical", legend.direction)
+  legend_direction <- ifelse(missing(legend_direction), "vertical", legend_direction)
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
@@ -204,7 +204,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
     show.limits = F
   }
 
-  if (legend.direction == 'vertical') {
+  if (legend_direction == 'vertical') {
     barheight = NULL  # Set barheight to NULL if direction is 'vertical'
     barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
     title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
@@ -219,7 +219,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
   if(isFALSE(discrete)){
 
       # Set palette palette
-      scale_manual_pal <- ipea_palette(n = 10, palette = palette, direction = palette.direction)
+      scale_manual_pal <- ipea_palette(n = 10, palette = palette, palette_direction = palette_direction)
 
       # Graph
       graph <- list(hline,vline,
@@ -228,7 +228,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
         colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
         guide = guide_coloursteps(
           #show.limits = show.limits,  # Set whether to show the limits on the fill scale
-          direction = legend.direction,  # Set the direction of the fill scale
+          direction = legend_direction,  # Set the direction of the fill scale
           barheight = barheight,  # Set the height of the fill scale bar
           barwidth = barwidth,  # Set the width of the fill scale bar
           draw.ulim = F,  # Set whether to draw the upper limit line
@@ -246,7 +246,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
 
       # Create a discrete fill scale with the specified palette
       graph <- list(hline,vline,
-                    ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, direction = palette.direction), ...),
+                    ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
                     ggplot2::guides(fill=guide_legend(ncol = 3, byrow = TRUE)))
 
 

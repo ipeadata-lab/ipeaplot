@@ -5,34 +5,28 @@
 \title{Ggplot theme for Ipea charts and figures}
 \usage{
 theme_ipea(
-  axis = "half",
-  geom = c("bar", "line", "point", "sf", "pie"),
-  text = T,
-  legend.position,
+  axis_lines = "half",
+  axis_values = T,
+  pie.adjust = F,
+  legend.position = "right",
   grid.adjust = "horizontal",
-  x,
-  y,
-  yend,
-  xend,
   x_breaks,
   y_breaks,
-  bar_adjust = F,
-  x_text_angle,
+  x_text_angle = 0,
   include_ticks = T,
   ...
 )
 }
 \arguments{
-\item{axis}{A character vector specifying the axis style. Valid options are
+\item{axis_lines}{A character vector specifying the axis style. Valid options are
 \code{"none"} (no axis lines), \code{"full"} (full-length axis lines), and
 \code{"half"} (half-length axis lines), the default.}
 
-\item{geom}{A character vector specifying some particularities of geom plot.
-Valid options are \code{"bar"},\code{"line"}, \code{"point"}, \code{"sf"}.}
-
-\item{text}{Logical value indicating whether to show text elements. If \code{TRUE},
-axis text and ticks will be displayed in black; otherwise, they will
+\item{axis_values}{Logical value indicating whether to show text elements. If \code{TRUE},
+axis text will be displayed in black; otherwise, they will
 be hidden.}
+
+\item{pie.adjust}{A character vector specifying some particularities of geom \code{"pie"}.}
 
 \item{legend.position}{A character vector specifying the position of the
 legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"}, and
@@ -41,21 +35,11 @@ legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"},
 \item{grid.adjust}{Defines whether the grid lines should be \code{"horizontal"}
 (default) or \code{"vertical"}.}
 
-\item{x}{Manually set the initial x-axis value}
-
-\item{y}{Manually set the initial y-axis value}
-
-\item{yend}{Manually set the y-axis threshold value}
-
-\item{xend}{Manually set the x-axis threshold value}
-
 \item{x_breaks}{Numeric. The number of breaks on the x-axis}
 
 \item{y_breaks}{Numeric. The number of breaks on the y-axis}
 
-\item{bar_adjust}{Specific x-axis tweak for bar charts that should stick to the border.}
-
-\item{x_text_angle}{Numeric. Angle of the text in the x-axis.}
+\item{x_text_angle}{Numeric. Angle in degrees of the text in the x-axis.}
 
 \item{include_ticks}{Logical. Whether to include ticks. Defaults to \code{TRUE}.}
 
