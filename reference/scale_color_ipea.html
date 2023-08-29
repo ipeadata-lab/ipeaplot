@@ -28,6 +28,7 @@ Research - Ipea."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/cookbook.html">Comparativo ipeaplot</a>
     <a class="dropdown-item" href="../articles/intro_ipeaplot.html">Introduction to ipeaplot</a>
   </div>
 </li>
@@ -62,15 +63,14 @@ Research - Ipea.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scale_color_ipea</span><span class="op">(</span></span>
 <span>  discrete <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Blue"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Pink"</span>, <span class="st">"Red-Blue"</span>, <span class="st">"Orange-Blue"</span><span class="op">)</span>,</span>
-<span>  legend.direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"horizontal"</span>, <span class="st">"vertical"</span><span class="op">)</span>,</span>
-<span>  palette.direction <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  show.limits <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Blue"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Pink"</span>, <span class="st">"Green-Blue"</span>, <span class="st">"Red-Blue"</span>, <span class="st">"Blue-Green"</span>,</span>
+<span>    <span class="st">"Orange-Blue"</span>, <span class="st">"Viridis"</span>, <span class="st">"Inferno"</span>, <span class="st">"Magma"</span>, <span class="st">"Plasma"</span>, <span class="st">"Cividis"</span><span class="op">)</span>,</span>
+<span>  palette_direction <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  pt_br <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  <span class="va">hline</span>,</span>
-<span>  <span class="va">vline</span>,</span>
-<span>  barheight <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  barwidth <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  <span class="va">barheight</span>,</span>
+<span>  <span class="va">barwidth</span>,</span>
+<span>  <span class="va">title.hjust</span>,</span>
+<span>  <span class="va">label.hjust</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -84,45 +84,35 @@ continuous scale bar. The default value is continuous.</p></dd>
 
 <dt>palette</dt>
 <dd><p>A character vector specifying the available palette for the
-color palette. The default palette are "Blue", but we can also change
-to <code>'Green'</code>, <code>'Orange'</code>, <code>'Pink'</code>, <code>'Red-Blue'</code>, <code>'Orange-Blue'</code>.</p></dd>
+color palette. The default palette are <code>"Blue"</code>, but we can also change
+to <code>'Green'</code>, <code>'Orange'</code>, <code>'Pink'</code>, <code>'Red-Blue'</code>, <code>'Orange-Blue'</code>, <code>'Blue-Green'</code>,
+<code>'Viridis'</code>, <code>'Inferno'</code>, <code>'Magma'</code>, <code>'Plasma'</code>, <code>'Cividis'</code>.</p></dd>
 
 
-<dt>legend.direction</dt>
-<dd><p>A character vector specifying the direction of the color
-gradient. <br> The available palette are "horizontal" and "vertical".
-The default value is "horizontal".</p></dd>
-
-
-<dt>palette.direction</dt>
+<dt>palette_direction</dt>
 <dd><p>A logical argument specifying if the ordering of the colors
 will follow the default of the palette (when the argument is 1) or if it will
 have an inverted ordering (for cases where it is 0).</p></dd>
 
 
-<dt>show.limits</dt>
-<dd><p>A logical value indicating whether to display the color
-gradient limits. The default value is TRUE.</p></dd>
-
-
-<dt>hline</dt>
-<dd><p>Adjustment of the horizontal position of the extreme line of the graph axis.
-The default option is not to change the position.</p></dd>
-
-
-<dt>vline</dt>
-<dd><p>Adjustment of the vertical position of the extreme line of the graph axis.
-The default option is not to change the position.</p></dd>
+<dt>pt_br</dt>
+<dd><p>A string indicating whether the decimal separator should be a
+<code>","</code> or a <code>"."</code>. By default, the function uses a comma <code>","</code>, following
+the format used in Brazilian Portuguese.</p></dd>
 
 
 <dt>barheight</dt>
 <dd><p>The height of the color gradient bar. This parameter is used
-when the direction is set to "horizontal". The default value is 2.</p></dd>
+when the direction is set to "horizontal".</p></dd>
 
 
 <dt>barwidth</dt>
 <dd><p>The width of the color gradient bar. This parameter is used
-when the direction is set to "horizontal". The default value is 50.</p></dd>
+when the direction is set to "horizontal".</p></dd>
+
+
+<dt>title.hjust</dt>
+<dd><p>A number specifying horizontal justification of the title text.</p></dd>
 
 
 <dt>...</dt>
@@ -131,10 +121,8 @@ scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 function from the ggplot2 package.</p></dd>
 
 
-<dt>decimal</dt>
-<dd><p>A string indicating whether the decimal separator should be a
-<code>","</code> or a <code>"."</code>. By default, the function uses a comma <code>","</code>, following
-the format used in Brazilian Portuguese.</p></dd>
+<dt>title.vjust</dt>
+<dd><p>A number specifying vertical justification of the title text.</p></dd>
 
 </dl></div>
     <div class="section level2">
