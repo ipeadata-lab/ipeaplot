@@ -11,7 +11,7 @@
 #' @export
 
 
-save_eps <- function(gplot, file.name, width = 5, height = 3){
+save_eps <- function(gplot, file.name){
 
   if(!("ggplot" %in% class(gplot))){
     stop("gplot deve ser um grafico ggplot")
@@ -20,8 +20,13 @@ save_eps <- function(gplot, file.name, width = 5, height = 3){
     stop("O nome do arquivo deve ser uma 'string'")
   }
 
-  extrafont::loadfonts("postscript")
-  grDevices::postscript(file = file.name, width = width, height = height)
+  if(!grepl(".eps",file.name)){
+    # forçar que sempre seja terminado com '.eps'
+    file.name <- paste0(gsub("\\.[^.]+$", "", file.name),".eps")
+    warning("O formato do arquivo deve ser '.eps'")
+  }
+
+  grDevices::postscript(file = file.name, family = "Frutiger-LT-47-LightCn")
   gplot
   grDevices::dev.off()
 

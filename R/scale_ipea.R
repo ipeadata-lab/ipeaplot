@@ -6,27 +6,21 @@
 #' @param discrete A logical value indicating whether to use discrete or
 #'        continuous scale bar. The default value is continuous.
 #' @param palette A character vector specifying the available palette for the
-#'        color palette. The default palette are "Blue", but we can also change
-#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`.
-#' @param legend_direction A character vector specifying the direction of the color
-#'        gradient. \cr The available palette are "horizontal" and "vertical".
-#'        The default value is "horizontal".
+#'        color palette. The default palette are `"Blue"`, but we can also change
+#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`, `'Blue-Green'`,
+#'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is 0).
-#' @param show.limits A logical value indicating whether to display the color
-#'        gradient limits. The default value is TRUE.
-#' @param decimal A string indicating whether the decimal separator should be a
+#' @param pt_br A string indicating whether the decimal separator should be a
 #'        `","` or a `"."`. By default, the function uses a comma `","`, following
 #'        the format used in Brazilian Portuguese.
-#' @param hline Adjustment of the horizontal position of the extreme line of the graph axis.
-#'        The default option is not to change the position.
-#' @param vline Adjustment of the vertical position of the extreme line of the graph axis.
-#'        The default option is not to change the position.
 #' @param barheight The height of the color gradient bar. This parameter is used
-#'        when the direction is set to "horizontal". The default value is 2.
+#'        when the direction is set to "horizontal".
 #' @param barwidth The width of the color gradient bar. This parameter is used
-#'        when the direction is set to "horizontal". The default value is 50.
+#'        when the direction is set to "horizontal".
+#' @param title.hjust A number specifying horizontal justification of the title text.
+#' @param title.vjust A number specifying vertical justification of the title text.
 #' @param ... Additional arguments to be passed to the scale_fill_gradientn,
 #'        scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 #'        function from the ggplot2 package.
@@ -34,87 +28,68 @@
 #' @return A list object be added to a ggplot object to change color pallete.
 #'
 #' @export
-scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
-                                                       'Red-Blue','Orange-Blue'),
-                              legend_direction = c('horizontal','vertical'),
+scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink','Green-Blue',
+                                                       'Red-Blue','Blue-Green','Orange-Blue', 'Viridis',
+                                                       'Inferno','Magma','Plasma','Cividis'),
                               palette_direction = 1,
-                              show.limits = T, pt_br = T ,
-                              hline,vline,
-                              barheight = 2,barwidth = 50, ...){
+                              pt_br = T,
+                              barheight, barwidth,
+                              title.hjust, label.hjust,
+                               ...){
 
-  # Set direction to 'vertical' if it is not provided, otherwise use the provided value
-  legend_direction <- ifelse(missing(legend_direction), "vertical", legend_direction)
+
+
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
 
-  if(missing(hline)){
-    hline <- NULL
-  } else{
-    hline <- geom_hline(yintercept = hline, size = 0.25)
-  }
-
-  if(missing(vline)){
-    vline <- NULL
-  } else{
-    vline <- geom_vline(xintercept = vline, size = 0.25)
-  }
-
 
   if (pt_br == T) {
     # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
-    labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
+    labels = scales::label_comma(decimal.mark = ",", big.mark = ".", accuracy = 0.1)
   } else {
     # Use dot as decimal mark and comma as thousand separator for labels (default)
-    labels = scales::label_comma(decimal.mark = ".", big.mark = ",")
+    labels = scales::label_comma(decimal.mark = ".", big.mark = ",", accuracy = 0.1)
   }
 
-  if (show.limits) {
-    # Set show.limits to TRUE if it is not provided
-    show.limits = T
-  } else {
-    # Set show.limits to FALSE if it is not provided
-    show.limits = F
+
+  label.hjust = ifelse(missing(label.hjust),0.5,label.hjust)
+  title.hjust = ifelse(missing(title.hjust),0.5,title.hjust)
+
+  if(missing(barheight)){
+    barheight = NULL
+  } else{
+    barheight = unit(barheight, units = "mm")
   }
 
-  if (legend_direction == 'vertical') {
-    barheight = NULL  # Set barheight to NULL if direction is 'vertical'
-    barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
-    title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
-    label.hjust = NULL  # Set label.hjust to NULL if direction is 'vertical'
-  } else {
-    barheight = unit(2, units = "mm")  # Set barheight to 2mm if direction is not 'vertical'
-    barwidth = unit(50, units = "mm")  # Set barwidth to 50mm if direction is not 'vertical'
-    title.hjust = 0.5  # Set title.hjust to 0.5 if direction is not 'vertical'
-    label.hjust = 0.5  # Set label.hjust to 0.5 if direction is not 'vertical'
+  if(missing(barwidth)){
+    barwidth = NULL
+  } else{
+    barwidth = unit(barwidth, units = "mm")
   }
+
+
 
   if(isFALSE(discrete)){
       # Set palette option
     scale_manual_pal <- ipea_palette(palette = palette, n = 10, palette_direction = palette_direction)
 
       # Graph
-      graph <- list(hline,vline,
-                    ggplot2::scale_color_gradientn(
+      graph <- list(ggplot2::scale_color_gradientn(
         labels = labels,  # Set the labels for the gradient scale
         colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
-        guide = guide_coloursteps(
-          #show.limits = show.limits,  # Set whether to show the limits on the colour scale
-          direction = legend_direction,  # Set the direction of the colour scale
-          barheight = barheight,  # Set the height of the colour scale bar
-          barwidth = barwidth,  # Set the width of the colour scale bar
-          draw.ulim = F,  # Set whether to draw the upper limit line
-          title.position = 'top',  # Set the position of the title
-          even.steps = F,
-          # some shifting around
-          title.hjust = title.hjust,  # Set the horizontal alignment of the title
-          label.hjust = label.hjust  # Set the horizontal alignment of the labels
-        ),...))
+        ...),
+        guides(color =   guide_coloursteps(
+          label.hjust = label.hjust,
+          title.hjust = title.hjust,
+          barheight = barheight,
+          barwidth = barwidth,
+          title.position = 'top',
+          even.steps = F,...)))
       }
   if(isTRUE(discrete)){
     # Create a discrete color scale with the specified palette
-    graph <- list(hline,vline,
-                  ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
+    graph <- list(ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
                   ggplot2::guides(color=guide_legend(ncol = 3, byrow = TRUE)))
   }
 
@@ -129,64 +104,44 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #' @description Generate a fill palette (continuous or discrete) in the
 #'              formatting of texts published by the Institute for Applied
 #'              Economic Research (IPEA)
+#' @param discrete A logical value indicating whether to use discrete or
+#'        continuous scale bar. The default value is continuous.
 #' @param palette A character vector specifying the available palette for the
-#'        color palette. The default palette are "crimson", "orpheu", "cartola",
-#'        "caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and
-#'        "manual".#' low, mid, high: Colors to be used for the low, mid, and
-#'        high values of the gradient, respectively.  \cr These parameters are
-#'        used when the "manual" option is selected.
-#' @param legend_direction A character vector specifying the direction of the color
-#'        gradient. \cr The available palette are "horizontal" and "vertical".
-#'        The default value is "horizontal".
+#'        fill palette. The default palette are `"Blue"`, but we can also change
+#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`,`'Blue-Green'`,
+#'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is 0).
-#' @param colours A vector of colors to be used for the gradient. This parameter
-#'        is used when palette other than "manual" are selected.
-#' @param show.limits A logical value indicating whether to display the color
-#'        gradient limits. The default value is TRUE.
-#' @param decimal A string indicating whether the decimal separator should be a
+#' @param pt_br A string indicating whether the decimal separator should be a
 #'        `","` or a `"."`. By default, the function uses a comma `","`, following
 #'        the format used in Brazilian Portuguese.
-#' @param hline Adjustment of the horizontal position of the extreme line of the graph axis.
-#'        The default option is not to change the position.
-#' @param vline Adjustment of the vertical position of the extreme line of the graph axis.
-#'        The default option is not to change the position.
 #' @param barheight The height of the color gradient bar. This parameter is used
-#'        when the direction is set to "vertical". The default value is 2.
+#'        when the direction is set to "horizontal".
 #' @param barwidth The width of the color gradient bar. This parameter is used
-#'        when the direction is set to "horizontal". The default value is 50.
-#' @param ... Additional arguments to be passed to the scale_fill_gradientn or
-#'        scale_color_gradientn function from the ggplot2 package.
+#'        when the direction is set to "horizontal".
+#' @param title.hjust A number specifying horizontal justification of the title text.
+#' @param title.vjust A number specifying vertical justification of the title text.
+#' @param ... Additional arguments to be passed to the scale_fill_gradientn,
+#'        scale_color_gradientn, scale_fill_distiller or scale_color_distiller
+#'        function from the ggplot2 package
 #'
 #'
 #' @return A list object be added to a ggplot object to change color pallete.
 #'
 #' @export
-scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink',
-                                                      'Red-Blue','Orange-Blue'),
-                                         legend_direction = c('horizontal','vertical'),
-                                         palette_direction = 1,
-                                         hline,vline,
-                                         show.limits = T, pt_br = T ,barheight = 2,barwidth = 50, ...){
-
-  # Set direction to 'vertical' if it is not provided, otherwise use the provided value
-  legend_direction <- ifelse(missing(legend_direction), "vertical", legend_direction)
+scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink','Green-Blue',
+                                                      'Red-Blue','Blue-Green','Orange-Blue', 'Viridis',
+                                                      'Inferno','Magma','Plasma','Cividis'),
+                            palette_direction = 1,
+                            pt_br = T,
+                            barheight, barwidth,
+                            title.hjust, label.hjust,
+                            ...){
 
   # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
   palette <-  ifelse(missing(palette),'Blue',palette)
 
-  if(missing(hline)){
-    hline <- NULL
-  } else{
-    hline <- geom_hline(yintercept = hline, size = 0.25)
-  }
-
-  if(missing(vline)){
-    vline <- NULL
-  } else{
-    vline <- geom_vline(xintercept = vline, size = 0.25)
-  }
 
   if (pt_br == T) {
     # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
@@ -196,24 +151,20 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
     labels = scales::label_comma(decimal.mark = ".", big.mark = ",")
   }
 
-  if (show.limits) {
-    # Set show.limits to TRUE if it is not provided
-    show.limits = T
-  } else {
-    # Set show.limits to FALSE if it is not provided
-    show.limits = F
+
+  label.hjust = ifelse(missing(label.hjust),0.5,label.hjust)
+  title.hjust = ifelse(missing(title.hjust),0.5,title.hjust)
+
+  if(missing(barheight)){
+    barheight = NULL
+  } else{
+    barheight = unit(barheight, units = "mm")
   }
 
-  if (legend_direction == 'vertical') {
-    barheight = NULL  # Set barheight to NULL if direction is 'vertical'
-    barwidth = NULL  # Set barwidth to NULL if direction is 'vertical'
-    title.hjust = NULL  # Set title.hjust to NULL if direction is 'vertical'
-    label.hjust = NULL  # Set label.hjust to NULL if direction is 'vertical'
-  } else {
-    barheight = unit(2, units = "mm")  # Set barheight to 2mm if direction is not 'vertical'
-    barwidth = unit(50, units = "mm")  # Set barwidth to 50mm if direction is not 'vertical'
-    title.hjust = 0.5  # Set title.hjust to 0.5 if direction is not 'vertical'
-    label.hjust = 0.5  # Set label.hjust to 0.5 if direction is not 'vertical'
+  if(missing(barwidth)){
+    barwidth = NULL
+  } else{
+    barwidth = unit(barwidth, units = "mm")
   }
 
   if(isFALSE(discrete)){
@@ -222,24 +173,18 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
       scale_manual_pal <- ipea_palette(n = 10, palette = palette, palette_direction = palette_direction)
 
       # Graph
-      graph <- list(hline,vline,
-                    ggplot2::scale_fill_gradientn(
+      graph <- list(
+        ggplot2::scale_fill_gradientn(
         labels = labels,  # Set the labels for the gradient scale
-        colours = scale_manual_pal,  # Set the scale_manual_pal for the gradient scale
-        guide = guide_coloursteps(
-          #show.limits = show.limits,  # Set whether to show the limits on the fill scale
-          direction = legend_direction,  # Set the direction of the fill scale
-          barheight = barheight,  # Set the height of the fill scale bar
-          barwidth = barwidth,  # Set the width of the fill scale bar
-          draw.ulim = F,  # Set whether to draw the upper limit line
-          title.position = 'top',  # Set the position of the title
-          even.steps = F, # Legend formation to not look like it's discrete scaling
-          # some shifting around
-          title.hjust = title.hjust,  # Set the horizontal alignment of the title
-          label.hjust = label.hjust  # Set the horizontal alignment of the labels
-        ),...))
-
-    }
+        colours = scale_manual_pal),
+        guides(color =   guide_coloursteps(
+          label.hjust = label.hjust,
+          title.hjust = title.hjust,
+          barheight = barheight,
+          barwidth = barwidth,
+          title.position = 'top',
+          even.steps = F,...)))
+  }
 
   if(isTRUE(discrete)){
 

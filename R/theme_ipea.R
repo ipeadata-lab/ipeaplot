@@ -195,21 +195,21 @@ theme_ipea <- function(axis_lines = 'half',
       range(scales::extended_breaks(only.loose = TRUE)(x))
     }
 
-    breaksFUN <- function(x){
-      round(seq(min(x), max(x), length.out = x_breaks), 0)
-    }
+    # breaksFUN <- function(x){
+    #   round(seq(min(x), max(x), length.out = x_breaks), 0)
+    # }
 
 
     if(missing(x_breaks)){
       scale_x = NULL
     } else {
-      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0)), breaks = scales::pretty_breaks(n = x_breaks))
+      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0.1)), breaks = scales::pretty_breaks(n = x_breaks))
     }
 
     if(missing(y_breaks)){
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::extended_breaks( only.loose = TRUE ))
+      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::extended_breaks( only.loose = TRUE ), ...)
     } else {
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks))
+      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks), ...)
     }
 
     if(axis_lines %in% c('none','full')){

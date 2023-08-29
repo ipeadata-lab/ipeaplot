@@ -4,7 +4,7 @@
 \alias{save_eps}
 \title{Save the chart in Eps format}
 \usage{
-save_eps(gplot, file.name, width = 5, height = 3)
+save_eps(gplot, file.name)
 }
 \arguments{
 \item{gplot}{ggplot which will be saved.}

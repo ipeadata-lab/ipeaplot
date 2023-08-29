@@ -6,58 +6,47 @@
 \usage{
 scale_fill_ipea(
   discrete = F,
-  palette = c("Blue", "Green", "Orange", "Pink", "Red-Blue", "Orange-Blue"),
-  legend_direction = c("horizontal", "vertical"),
+  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Blue-Green",
+    "Orange-Blue", "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
   palette_direction = 1,
-  hline,
-  vline,
-  show.limits = T,
   pt_br = T,
-  barheight = 2,
-  barwidth = 50,
+  barheight,
+  barwidth,
+  title.hjust,
+  label.hjust,
   ...
 )
 }
 \arguments{
-\item{palette}{A character vector specifying the available palette for the
-color palette. The default palette are "crimson", "orpheu", "cartola",
-"caqui", "post", "wrapper", "blue_red", "ipea1", "ipea2", "ipea3", and
-"manual".#' low, mid, high: Colors to be used for the low, mid, and
-high values of the gradient, respectively.  \cr These parameters are
-used when the "manual" option is selected.}
+\item{discrete}{A logical value indicating whether to use discrete or
+continuous scale bar. The default value is continuous.}
 
-\item{legend_direction}{A character vector specifying the direction of the color
-gradient. \cr The available palette are "horizontal" and "vertical".
-The default value is "horizontal".}
+\item{palette}{A character vector specifying the available palette for the
+fill palette. The default palette are \code{"Blue"}, but we can also change
+to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'},\code{'Blue-Green'},
+\code{'Viridis'}, \code{'Inferno'}, \code{'Magma'}, \code{'Plasma'}, \code{'Cividis'}.}
 
 \item{palette_direction}{A logical argument specifying if the ordering of the colors
 will follow the default of the palette (when the argument is 1) or if it will
 have an inverted ordering (for cases where it is 0).}
 
-\item{hline}{Adjustment of the horizontal position of the extreme line of the graph axis.
-The default option is not to change the position.}
-
-\item{vline}{Adjustment of the vertical position of the extreme line of the graph axis.
-The default option is not to change the position.}
-
-\item{show.limits}{A logical value indicating whether to display the color
-gradient limits. The default value is TRUE.}
-
-\item{barheight}{The height of the color gradient bar. This parameter is used
-when the direction is set to "vertical". The default value is 2.}
-
-\item{barwidth}{The width of the color gradient bar. This parameter is used
-when the direction is set to "horizontal". The default value is 50.}
-
-\item{...}{Additional arguments to be passed to the scale_fill_gradientn or
-scale_color_gradientn function from the ggplot2 package.}
-
-\item{colours}{A vector of colors to be used for the gradient. This parameter
-is used when palette other than "manual" are selected.}
-
-\item{decimal}{A string indicating whether the decimal separator should be a
+\item{pt_br}{A string indicating whether the decimal separator should be a
 \code{","} or a \code{"."}. By default, the function uses a comma \code{","}, following
 the format used in Brazilian Portuguese.}
+
+\item{barheight}{The height of the color gradient bar. This parameter is used
+when the direction is set to "horizontal".}
+
+\item{barwidth}{The width of the color gradient bar. This parameter is used
+when the direction is set to "horizontal".}
+
+\item{title.hjust}{A number specifying horizontal justification of the title text.}
+
+\item{...}{Additional arguments to be passed to the scale_fill_gradientn,
+scale_color_gradientn, scale_fill_distiller or scale_color_distiller
+function from the ggplot2 package}
+
+\item{title.vjust}{A number specifying vertical justification of the title text.}
 }
 \value{
 A list object be added to a ggplot object to change color pallete.
