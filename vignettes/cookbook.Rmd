@@ -4,7 +4,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 urlcolor: blue
 vignette: >
-  %\VignetteIndexEntry{Introduction to ipeaplot}
+  %\VignetteIndexEntry{Cookbook ipeaplot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -191,7 +191,7 @@ graf3 <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
        title="GRÁFICO 2",
        subtitle="Taxa de crescimento da população mundial (Em %)",
        caption = 'Elaboração dos autores.') +
-  theme_ipea(x_breaks = 16, angle = 90, adjust_ticks = T) +
+  theme_ipea(x_breaks = 16, x_text_angle = 90, include_ticks = F) +
   geom_rug(data = ref, aes(x = Ano+2.5),inherit.aes = FALSE,
            outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
@@ -241,7 +241,7 @@ graf5 <- ggplot(base_graf5, aes(x=Ano)) +
        title="GRÁFICO 5",
        subtitle="Evolução do volume de informação digital até 2020",
        caption = 'Fonte: IDC’s Digital Universe Study (Gantz e Reinsel, 2012).') +
-  theme_ipea(legend.position="none",geom = 'bar',
+  theme_ipea(legend.position="none",
              x_breaks = 10, y_breaks = 4)
 graf5
 ```
@@ -265,7 +265,7 @@ graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
        subtitle="Crescimento anual do PIB da União Europeia (2004-2013) (Em %)",
        caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial. Disponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
   theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom') +
-  scale_color_ipea(palette.direction = -1, discrete = T, hline = 0) +
+  scale_color_ipea(palette_direction = -1, discrete = T) +
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
 
@@ -291,7 +291,7 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
        title="GRÁFICO 7",
        subtitle="Importações de energia em termos do consumo total de energia dos países da União Europeia",
        caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
-  theme_ipea(legend.position = 'none', geom = 'bar', legend.direction = 'horizontal')
+  theme_ipea(legend.position = 'none')
 graf7
 ```
 
@@ -352,7 +352,7 @@ graf9 <-
   geom_line(data=base_graf9_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1), color = 'gray') +
   scale_x_continuous(breaks = 1:max(base_graf9$n), labels = label) +
   scale_fill_ipea(discrete = T) +
-  theme_ipea(legend.position = 'bottom', x_text_angle = 90, adjust_ticks = T) +
+  theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F) +
   geom_rug(data=base_graf9, aes(x = n-0.5),
            outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off")

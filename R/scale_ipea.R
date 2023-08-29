@@ -190,8 +190,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
 
 
       # Create a discrete fill scale with the specified palette
-      graph <- list(hline,vline,
-                    ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
+      graph <- list(ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
                     ggplot2::guides(fill=guide_legend(ncol = 3, byrow = TRUE)))
 
 

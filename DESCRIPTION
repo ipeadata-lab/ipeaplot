@@ -31,13 +31,16 @@ Suggests:
     abjData,
     geobr,
     data.table,
+    checkmate,
     dplyr,
+    tidyr,
     knitr,
     rmarkdown,
     sf,
     purrr,
     sysfonts,
-    testthat
+    testthat,
+    reshape
 VignetteBuilder: 
     knitr
 LazyData: true
