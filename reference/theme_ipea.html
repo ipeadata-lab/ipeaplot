@@ -69,6 +69,7 @@ function includes standardized formatting of options for axis lines, text,</p>
 <span>  grid.adjust <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
 <span>  <span class="va">x_breaks</span>,</span>
 <span>  <span class="va">y_breaks</span>,</span>
+<span>  expand_x_limit <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  x_text_angle <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  include_ticks <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -110,6 +111,12 @@ legend. Valid options are <code>"right"</code> (default), <code>"left"</code>, <
 
 <dt>y_breaks</dt>
 <dd><p>Numeric. The number of breaks on the y-axis</p></dd>
+
+
+<dt>expand_x_limit</dt>
+<dd><p>Logical value that indicates whether the x-axis
+boundary should be expanded. If <code>TRUE</code>, the x-axis text will be
+expanded; otherwise there will be no change.</p></dd>
 
 
 <dt>x_text_angle</dt>
