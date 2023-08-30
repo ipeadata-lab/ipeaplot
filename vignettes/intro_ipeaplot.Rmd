@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```
 
 
-[**ipeaplot**](https://github.com/ipeadata-lab/ipeaplot) is a computational package designed to help researchers create charts and maps following the editorial guidelines used by the Institute for Applied Economic Research - Ipea. The package provides users with tools and functions that simplify the process of consistently using the color schemes and graphic styles used in Ipea's Texto para Discussão (TD). By using **ipeaplot**, users can easily achieve visually appealing and professionally formatted studies. This vignette presents a quick intro to **ipeaplot**.
+[**ipeaplot**](https://github.com/ipeadata-lab/ipeaplot) is package designed to help researchers create charts and maps following the editorial guidelines used by the Institute for Applied Economic Research - Ipea. The package provides users with tools and functions that simplify the process of consistently using the color schemes and graphic styles used in Ipea's publications. By using **ipeaplot**, users can easily achieve visually appealing and professionally formatted studies. This vignette presents a quick intro to **ipeaplot**.
 
 
 # Installation
