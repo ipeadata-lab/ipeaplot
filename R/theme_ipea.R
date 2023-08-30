@@ -18,6 +18,9 @@
 #'       (default) or `"vertical"`.
 #' @param x_breaks Numeric. The number of breaks on the x-axis
 #' @param y_breaks Numeric. The number of breaks on the y-axis
+#' @param expand_x_limit Logical value that indicates whether the x-axis
+#'        boundary should be expanded. If `TRUE`, the x-axis text will be
+#'        expanded; otherwise there will be no change.
 #' @param x_text_angle Numeric. Angle in degrees of the text in the x-axis.
 #' @param include_ticks Logical. Whether to include ticks. Defaults to `TRUE`.
 #' @param ... Additional arguments to be passed to the `theme` function from the
@@ -33,6 +36,7 @@ theme_ipea <- function(axis_lines = 'half',
                        legend.position = 'right',
                        grid.adjust = 'horizontal',
                        x_breaks , y_breaks,
+                       expand_x_limit = T,
                        x_text_angle = 0,
                        include_ticks = T,
                        ...){
@@ -110,9 +114,12 @@ theme_ipea <- function(axis_lines = 'half',
     if(grid.adjust == 'horizontal'){
       panel.grid.major.x = ggplot2::element_blank()
       panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
+      geom_segment = annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25)
+
     } else if (grid.adjust == 'vertical'){
       panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
       panel.grid.major.y = ggplot2::element_blank()
+      geom_segment = annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25)
     }
 
 
@@ -199,12 +206,18 @@ theme_ipea <- function(axis_lines = 'half',
     #   round(seq(min(x), max(x), length.out = x_breaks), 0)
     # }
 
-
-    if(missing(x_breaks)){
-      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0.03)))
-    } else {
-      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0.03)), breaks = scales::pretty_breaks(n = x_breaks))
+    if(isTRUE(expand_x_limit)){
+      limit = 0.03
+    } else{
+      limit = 0
     }
+
+      if(missing(x_breaks)){
+        scale_x = NULL
+      } else {
+        scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0.03)), breaks = scales::pretty_breaks(n = x_breaks))
+      }
+
 
     if(missing(y_breaks)){
       scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::extended_breaks( only.loose = TRUE ), ...)
@@ -217,14 +230,16 @@ theme_ipea <- function(axis_lines = 'half',
            theme,
            scale_y,
            scale_x,
-           annotate(geom = 'segment', y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25))
+           annotate(geom = 'segment', y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25),
+           annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = color, linewidth = 0.25))
 
     } else {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
            scale_y,
            scale_x,
-           annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25))
+           annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25),
+           annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = color, linewidth = 0.25))
     }
 
 
