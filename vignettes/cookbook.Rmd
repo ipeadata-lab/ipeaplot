@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```
 
 
-O [**ipeaplot**](https://github.com/ipea-datalab/ipeaplot) é um pacote computacional desenvolvido para facilitar a padronização de cores e formatação gráfica para submissões de textos para discussão (TD) e artigos para a revista do Instituto de Pesquisa Econômica Aplicada (IPEA). Este pacote fornece aos usuários ferramentas e funções que simplificam o processo de aplicação de esquemas de cores e estilos gráficos consistentes em seu trabalho, garantindo a conformidade com os requisitos e diretrizes da revista IPEA. Ao usar o **ipeaplot**, os usuários podem facilmente obter envios de texto visualmente atraentes e formatados profissionalmente para o IPEA. (veja informações detalhadas abaixo).. Esta vinheta apresenta uma introdução rápida ao **ipeaplot**.
+O [**ipeaplot**](https://github.com/ipea-datalab/ipeaplot) é um pacote computacional desenvolvido para facilitar a padronização de cores e formatação gráfica para submissões de textos para discussão (TD) e outras publicações do Instituto de Pesquisa Econômica Aplicada (IPEA). Este pacote fornece aos usuários ferramentas e funções que simplificam o processo de aplicação de esquemas de cores e estilos gráficos consistentes em seu trabalho, garantindo a conformidade com os requisitos e diretrizesdo Editorial do Ipea. Esta vinheta apresenta introdução rápida ao **ipeaplot**.
 
 
 ## Instalação
