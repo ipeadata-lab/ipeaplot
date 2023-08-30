@@ -192,7 +192,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 ```
 
 Gráfico 2 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 y.breaks <- cumsum(base_graf2$percentual) - (base_graf2$percentual)/2
 y.breaks
 
@@ -220,7 +220,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 ```
 
 Gráfico 3 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 base_graf3$Ano <- as.numeric(as.character(base_graf3$Ano))
 ref <- (subset(base_graf3,substr(Ano,4,4) %in% c('5','0')))
 
@@ -247,7 +247,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 
 
 Gráfico 4 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 temp <- base_graf4 %>% distinct(pos, .keep_all = T)
 base_graf4 <- base_graf4 %>% group_by(pos) %>% mutate(cum_sum = cumsum(Gasto))
 base_graf4$Pais <- forcats::fct_reorder(base_graf4$Pais, desc(base_graf4$Gasto))
@@ -278,7 +278,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 
 
 Gráfico 5 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 graf5 <- ggplot(base_graf5, aes(x=Ano)) +
   geom_ribbon(aes(ymin=0, ymax=Exabytes), fill = "#015f96")+
   labs(x="",
@@ -299,7 +299,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 
 
 Gráfico 6 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
   geom_line(size=1)+
   geom_point(aes(shape=variable, fill = variable),
@@ -326,7 +326,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 
 
 Gráfico 7 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 base_graf7$pais<- factor(base_graf7$pais, levels=rev(sort(base_graf7$pais)))
 graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
   geom_bar(stat="identity", fill = '#015f96') +
@@ -348,7 +348,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 
 
 Gráfico 8 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 base_graf8<- melt(base_graf8, id=c("pais"))
 
 graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=variable)) +
@@ -372,7 +372,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 
 
 Gráfico 9 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 ######## GRAFICO 9
 base_graf9_aux <- base_graf9[,c(1,4)]
 base_graf9_aux$n <- 1:nrow(base_graf9_aux)
@@ -412,7 +412,7 @@ knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/i
 ```
 
 Gráfico 10 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 base_graf10 <- base_graf10 %>%
   mutate(PIB = as.numeric(PIB),
          variacao_PIB = ((PIB/lag(PIB,1)) - 1)*100,
