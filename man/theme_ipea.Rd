@@ -12,6 +12,7 @@ theme_ipea(
   grid.adjust = "horizontal",
   x_breaks,
   y_breaks,
+  expand_x_limit = T,
   x_text_angle = 0,
   include_ticks = T,
   ...
@@ -38,6 +39,10 @@ legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"},
 \item{x_breaks}{Numeric. The number of breaks on the x-axis}
 
 \item{y_breaks}{Numeric. The number of breaks on the y-axis}
+
+\item{expand_x_limit}{Logical value that indicates whether the x-axis
+boundary should be expanded. If \code{TRUE}, the x-axis text will be
+expanded; otherwise there will be no change.}
 
 \item{x_text_angle}{Numeric. Angle in degrees of the text in the x-axis.}
 
