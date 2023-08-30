@@ -20,7 +20,7 @@
 #' @param barwidth The width of the color gradient bar. This parameter is used
 #'        when the direction is set to "horizontal".
 #' @param title.hjust A number specifying horizontal justification of the title text.
-#' @param title.vjust A number specifying vertical justification of the title text.
+#' @param label.hjust A number specifying vertical justification of the title text.
 #' @param ... Additional arguments to be passed to the scale_fill_gradientn,
 #'        scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 #'        function from the ggplot2 package.
@@ -113,15 +113,16 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is 0).
-#' @param pt_br A string indicating whether the decimal separator should be a
-#'        `","` or a `"."`. By default, the function uses a comma `","`, following
+#' @param decimal.mark The character to be used to indicate the numeric decimal point and
+#'        Character used between every 3 digits to separate thousands.
+#'        By default, the function uses a comma `","`, following
 #'        the format used in Brazilian Portuguese.
 #' @param barheight The height of the color gradient bar. This parameter is used
 #'        when the direction is set to "horizontal".
 #' @param barwidth The width of the color gradient bar. This parameter is used
 #'        when the direction is set to "horizontal".
 #' @param title.hjust A number specifying horizontal justification of the title text.
-#' @param title.vjust A number specifying vertical justification of the title text.
+#' @param label.hjust A number specifying vertical justification of the title text.
 #' @param ... Additional arguments to be passed to the scale_fill_gradientn,
 #'        scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 #'        function from the ggplot2 package
@@ -134,7 +135,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
                                                       'Red-Blue','Blue-Green','Orange-Blue', 'Viridis',
                                                       'Inferno','Magma','Plasma','Cividis'),
                             palette_direction = 1,
-                            pt_br = T,
+                            decimal.mark = ",",
                             barheight, barwidth,
                             title.hjust, label.hjust,
                             ...){
@@ -143,12 +144,14 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
   palette <-  ifelse(missing(palette),'Blue',palette)
 
 
-  if (pt_br == T) {
+  if (decimal.mark == ",") {
     # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
     labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
-  } else {
+  } else if (decimal.mark == "."){
     # Use dot as decimal mark and comma as thousand separator for labels (default)
     labels = scales::label_comma(decimal.mark = ".", big.mark = ",")
+  } else{
+    stop("Decimal.mark argument must be '.' or ','.")
   }
 
 

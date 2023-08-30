@@ -91,7 +91,7 @@ theme_ipea <- function(axis_lines = 'half',
   if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
     hjust <- ifelse(x_text_angle == 0,0.5, -4)
-    vjust <- ifelse(x_text_angle == 0,4, 0.5)
+    vjust <- ifelse(x_text_angle == 0,3, 0.5)
   }
 
   if(axis_values == T){
@@ -201,9 +201,9 @@ theme_ipea <- function(axis_lines = 'half',
 
 
     if(missing(x_breaks)){
-      scale_x = NULL
+      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0.03)))
     } else {
-      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0.1)), breaks = scales::pretty_breaks(n = x_breaks))
+      scale_x = scale_x_continuous(expand = expansion(mult = c(0, 0.03)), breaks = scales::pretty_breaks(n = x_breaks))
     }
 
     if(missing(y_breaks)){

@@ -4,8 +4,6 @@
 #'
 #' @param gplot ggplot which will be saved.
 #' @param file.name Character. Name of the file which will be generated
-#' @param width Numeric. Width of the picture in centimeters
-#' @param height Numeric. Height of the picture in centimeters
 #'
 #' @family save
 #' @export

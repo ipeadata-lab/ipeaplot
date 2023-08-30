@@ -14,6 +14,23 @@ ipea_pal(
 )
 }
 \arguments{
+\item{palette}{A character string indicating the color map option to use.
+These options are available:
+\itemize{
+\item{}{'Blue'}
+\item{}{'Green'}
+\item{}{'Orange'}
+\item{}{'Pink'}
+\item{}{'Red-Blue'}
+\item{}{'Orange-Blue'}
+\item{}{'Blue-Green'}
+\item{}{'Viridis'}
+\item{}{'Inferno'}
+\item{}{'Magma'}
+\item{}{'Plasma'}
+\item{}{'Cividis'}
+}}
+
 \item{alpha}{The alpha transparency in a number between \code{0} and \code{1}.}
 
 \item{begin}{The (corrected) hue in a number between \code{0} and \code{1} at which the color map begins.}
@@ -23,10 +40,6 @@ ipea_pal(
 \item{palette_direction}{Sets the order of colors in the scale. If 1, the default,
 colors are ordered from darkest to lightest. If -1, the order of
 colors is reversed.}
-
-\item{n}{The number of colors (\eqn{\ge 1}) to be in the palette.}
-
-\item{option}{A character string indicating the color map option to use.}
 }
 \description{
 Ipea palette

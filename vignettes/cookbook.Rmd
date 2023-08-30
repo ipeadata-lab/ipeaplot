@@ -1,7 +1,7 @@
 ---
 title: "Comparativo ipeaplot"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: pdf_document
 urlcolor: blue
 vignette: >
   %\VignetteIndexEntry{Cookbook ipeaplot}
@@ -136,18 +136,32 @@ save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf
 
 Gráfico 1 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico1.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico1.png?raw=true")
 ```
 
 
 Gráfico 1 - Padrão ipea
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_ipea_theme/grafico_1.pdf")
+graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
+  geom_bar(stat="identity", fill = '#015f96', width=2) +
+  geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
+           outside = TRUE, sides = "b", length = unit(3, "mm"), linewidth = 0.25) +
+  coord_cartesian(expand = TRUE, clip = "off") +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 1",
+       subtitle="Evolução do crescimento da população mundial 2000-2050 (Em bilhões)",
+       caption = 'Fonte: United Nations (2012a).\nTradução dos autores.') +
+  theme_ipea(x_breaks = 10,include_ticks = F) +
+  geom_text(aes(label = gsub("\\.", ",",round(Populacao,1))), hjust = 0.5, vjust = -0.5)
+
+graf1
 ```
 
 Gráfico 2 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico2.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico2.png?raw=true")
 ```
 
 Gráfico 2 - Padrão Ipea
@@ -166,7 +180,7 @@ graf2 <- ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
        caption = 'Elaboração dos autores.') +
   theme_ipea(legend.position="bottom", axis = 'none', axis_values = F, pie.adjust = 'pie') +
   scale_fill_ipea(discrete = T,palette = 'Orange-Blue') +
-  insert_text(label = 'percentual', show_percents = T, pie_plot = T)
+  geom_text(aes(x = 1.6, label = paste0(percentual,"%")), position = position_stack(vjust = .5))
 
 
 graf2
@@ -175,7 +189,7 @@ graf2
 
 Gráfico 3 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico3.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico3.png?raw=true")
 ```
 
 Gráfico 3 - Padrão Ipea
@@ -201,13 +215,18 @@ graf3
 
 Gráfico 4 - Padrão Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico4.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico4.png?raw=true")
 ```
 
 
 Gráfico 4 - Padrão Ipea
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=5}
 temp <- base_graf4 %>% distinct(pos, .keep_all = T)
+base_graf4 <- base_graf4 %>% group_by(pos) %>% mutate(cum_sum = cumsum(Gasto))
+base_graf4$Pais <- forcats::fct_reorder(base_graf4$Pais, desc(base_graf4$Gasto))
+base_graf4$cum_sum2 <- ifelse(base_graf4$cum_sum == min(base_graf4$cum_sum) | Pais == 'Estados Unidos',base_graf4$cum_sum/2,(base_graf4$cum_sum+lag(base_graf4$cum_sum,1))/2)
+
+
 graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais,
                                 label = total))+
   geom_bar(width = 0.5, stat = "identity", color= NA) +
@@ -217,8 +236,8 @@ graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais,
        title="GRÁFICO 4",
        subtitle="Gastos com defesa (Em bilhões de dólares)",
        caption = 'Fonte: Peter G. Peterson Foundation (2013).\nTradução dos autores.') +
-  scale_fill_ipea(discrete = T) +
-  insert_text(label = "Pais", color = 'white') +
+  scale_fill_ipea(discrete = T, palette = 'Viridis') +
+  geom_text(aes(y = cum_sum, label = Pais), color = 'white',  vjust = 1) +
   geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -1) +
   theme_ipea(legend.position="none")
 
@@ -227,7 +246,7 @@ graf4
 
 Gráfico 5 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico5.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico5.png?raw=true")
 ```
 
 
@@ -248,7 +267,7 @@ graf5
 
 Gráfico 6 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico6.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico6.png?raw=true")
 ```
 
 
@@ -275,7 +294,7 @@ graf6
 
 Gráfico 7 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico7.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico7.png?raw=true")
 ```
 
 
@@ -297,7 +316,7 @@ graf7
 
 Gráfico 8 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico8.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico8.png?raw=true")
 ```
 
 
@@ -321,7 +340,7 @@ graf8
 
 Gráfico 9 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico9.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico9.png?raw=true")
 ```
 
 
@@ -362,7 +381,7 @@ graf9
 
 Gráfico 10 - Original
 ```{r}
-knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/tests/compara_editorial/prints_original/grafico10.png?raw=true")
+knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico10.png?raw=true")
 ```
 
 Gráfico 10 - Padrão Ipea

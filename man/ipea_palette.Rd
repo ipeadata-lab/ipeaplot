@@ -15,6 +15,23 @@ ipea_palette(
 )
 }
 \arguments{
+\item{palette}{A character string indicating the color map option to use.
+These options are available:
+\itemize{
+\item{}{'Blue'}
+\item{}{'Green'}
+\item{}{'Orange'}
+\item{}{'Pink'}
+\item{}{'Red-Blue'}
+\item{}{'Orange-Blue'}
+\item{}{'Blue-Green'}
+\item{}{'Viridis'}
+\item{}{'Inferno'}
+\item{}{'Magma'}
+\item{}{'Plasma'}
+\item{}{'Cividis'}
+}}
+
 \item{n}{The number of colors (\eqn{\ge 1}) used in the palette.}
 
 \item{alpha}{The alpha transparency in a number between \code{0} and \code{1}.}
@@ -28,17 +45,6 @@ color map ends.}
 \item{palette_direction}{Sets the order of colors in the scale. If \code{1}, the default,
 colors are ordered from darkest to lightest. If \code{-1}, the order of
 colors is reversed.}
-
-\item{option}{A character string indicating the color map option to use.
-Eight options are available:
-\itemize{
-\item{}{'Blue'}
-\item{}{'Green'}
-\item{}{'Orange'}
-\item{}{'Pink'}
-\item{}{'Red-Blue'}
-\item{}{'Orange-Blue}
-}}
 }
 \description{
 This function creates a vector of n equally spaced colors

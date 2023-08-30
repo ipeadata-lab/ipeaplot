@@ -34,15 +34,31 @@ graph <- abjData::pnud_uf %>%
   select(1:4)
 
 
-
+ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
+  geom_bar(width = 1, stat = "identity", color= 'black')+
+  coord_polar("y", start=0) +
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 2",
+       subtitle="Assuntos das manifestações recebidas pela Ouvidoria do Ipea (2004-2014) (Em %)",
+       caption = 'Elaboração dos autores.') +
+  theme_ipea(legend.position="bottom", axis = 'none', axis_values = F, pie.adjust = 'pie') +
+  scale_fill_ipea(discrete = T,palette = 'Orange-Blue') +
+  insert_text(label = 'percentual', show_percents = T, pie_plot = T)
 
 # Create a discrete scatter plot with 'mpg' on the x-axis, 'wt' on the y-axis, and filled by 'quantile'
 # Use the 'scale_ipea()' function to apply the IPEA discrete fill scale
 ggplot(data = graph, aes(x = ufn,
                          y = espvida,
-                         fill = as.character(ano))) +
+                         fill = ano)) +
   geom_bar(stat="identity", width= 0.5) +
-  scale_fill_ipea(discrete = T) +
+  scale_fill_ipea(discrete = F) +
+  ggplot2::geom_text(
+    aes(label = paste0(gsub("\\.", ",", round(get(label), decimals)))
+    ))
+
+  insert_text(label = 'espvida')
   labs(x="",
        y="",
        fill = "",

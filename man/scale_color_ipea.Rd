@@ -42,11 +42,11 @@ when the direction is set to "horizontal".}
 
 \item{title.hjust}{A number specifying horizontal justification of the title text.}
 
+\item{label.hjust}{A number specifying vertical justification of the title text.}
+
 \item{...}{Additional arguments to be passed to the scale_fill_gradientn,
 scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 function from the ggplot2 package.}
-
-\item{title.vjust}{A number specifying vertical justification of the title text.}
 }
 \value{
 A list object be added to a ggplot object to change color pallete.

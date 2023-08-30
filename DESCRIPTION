@@ -32,6 +32,7 @@ Suggests:
     geobr,
     data.table,
     checkmate,
+    forcats,
     dplyr,
     tidyr,
     knitr,
