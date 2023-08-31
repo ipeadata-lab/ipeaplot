@@ -42,7 +42,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/cookbook.html">Comparativo ipeaplot</a>
-    <a class="dropdown-item" href="../articles/intro_ipeaplot.html">Introduction to ipeaplot</a>
+    <a class="dropdown-item" href="../articles/intro_ipeaplot.html">Introdução ao ipeaplot</a>
   </div>
 </li>
       </ul>
@@ -79,26 +79,18 @@
 
     
     
-<p>O <a href="https://github.com/ipea-datalab/ipeaplot" class="external-link"><strong>ipeaplot</strong></a>
-é um pacote computacional desenvolvido para facilitar a padronização de
-cores e formatação gráfica para submissões de textos para discussão (TD)
-e outras publicações do Instituto de Pesquisa Econômica Aplicada (IPEA).
-Este pacote fornece aos usuários ferramentas e funções que simplificam o
-processo de aplicação de esquemas de cores e estilos gráficos
-consistentes em seu trabalho, garantindo a conformidade com os
-requisitos e diretrizesdo Editorial do Ipea. Esta vinheta apresenta
-introdução rápida ao <strong>ipeaplot</strong>.</p>
-<div class="section level2">
-<h2 id="instalação">Instalação<a class="anchor" aria-label="anchor" href="#instala%C3%A7%C3%A3o"></a>
-</h2>
-<p>Você pode instalar a versão de desenvolvimento do ipeaplot no
-github:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Development version</span></span>
-<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html" class="external-link">remove.packages</a></span><span class="op">(</span><span class="st">'ipeaplot'</span><span class="op">)</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ipeadata-lab/ipeaplot"</span><span class="op">)</span></span></code></pre></div>
+<p>O <strong>ipeaplot</strong> é um pacote em R desenvolvido para
+facilitar a padronização de gráficos e figuras seguindo a política
+editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote
+traz algumas funções que facilitam o ajuste de formatação e de cores de
+gráficos criados com o pacote <code>ggplot2</code>, garantindo a
+conformidade com as diretrizes editoriais para a publicação de Textos
+para Discussão (TD) do Ipea.</p>
+<p>Esta vinheta apresenta alguns exemplos de como algumas figuras ficam
+após aplicarmos as diretrizes editoriais do Ipea usando o
+<strong>ipeaplot</strong>.</p>
 <p>Leitura de bibliotecas</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeadata-lab/ipeaplot" class="external-link">ipeaplot</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -107,7 +99,7 @@ github:</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://had.co.nz/reshape" class="external-link">reshape</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span></code></pre></div>
 <p>Leitura dos dados</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">######## GRAFICO 1</span></span>
 <span><span class="va">Ano</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2000</span>,<span class="fl">2005</span>,<span class="fl">2010</span>,<span class="fl">2015</span>,<span class="fl">2020</span>,<span class="fl">2025</span>,<span class="fl">2030</span>,<span class="fl">2035</span>,<span class="fl">2040</span>,<span class="fl">2045</span>,<span class="fl">2050</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">Populacao</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6.1</span>,<span class="fl">6.5</span>,<span class="fl">6.9</span>,<span class="fl">7.3</span>,<span class="fl">7.7</span>,<span class="fl">8.0</span>,<span class="fl">8.3</span>,<span class="fl">8.6</span>,<span class="fl">8.9</span>,<span class="fl">9.1</span>,<span class="fl">9.3</span><span class="op">)</span></span>
@@ -218,7 +210,7 @@ github:</p>
 <p>Gráfico 1 - Original
 <img src="prints_original/grafico1.png" width="100%"></p>
 <p>Gráfico 1 - Padrão ipea</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">graf1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">base_graf1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">Ano</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span><span class="va">Populacao</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span>, fill <span class="op">=</span> <span class="st">'#015f96'</span>, width<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">Ano</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fl">2.5</span><span class="op">)</span>,</span>
@@ -234,11 +226,11 @@ github:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\."</span>, <span class="st">","</span>,<span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">Populacao</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, hjust <span class="op">=</span> <span class="fl">0.5</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">graf1</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-5-1.png" width="100%"></p>
 <p>Gráfico 2 - Original
 <img src="prints_original/grafico2.png" width="100%"></p>
 <p>Gráfico 2 - Padrão Ipea</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">y.breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="va">base_graf2</span><span class="op">$</span><span class="va">percentual</span><span class="op">)</span> <span class="op">-</span> <span class="op">(</span><span class="va">base_graf2</span><span class="op">$</span><span class="va">percentual</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span></span>
 <span><span class="va">y.breaks</span></span>
 <span><span class="co">#&gt; [1] 12.5 39.0 62.0 77.0 91.5</span></span>
@@ -258,11 +250,11 @@ github:</p>
 <span></span>
 <span></span>
 <span><span class="va">graf2</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
 <p>Gráfico 3 - Original
 <img src="prints_original/grafico3.png" width="100%"></p>
 <p>Gráfico 3 - Padrão Ipea</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_graf3</span><span class="op">$</span><span class="va">Ano</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">base_graf3</span><span class="op">$</span><span class="va">Ano</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ref</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">base_graf3</span>,<span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">Ano</span>,<span class="fl">4</span>,<span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'5'</span>,<span class="st">'0'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -280,11 +272,11 @@ github:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">graf3</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 <p>Gráfico 4 - Padrão Original
 <img src="prints_original/grafico4.png" width="100%"></p>
 <p>Gráfico 4 - Padrão Ipea</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="va">base_graf4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">pos</span>, .keep_all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="va">base_graf4</span> <span class="op">&lt;-</span> <span class="va">base_graf4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">pos</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cum_sum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="va">Gasto</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">base_graf4</span><span class="op">$</span><span class="va">Pais</span> <span class="op">&lt;-</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">base_graf4</span><span class="op">$</span><span class="va">Pais</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">base_graf4</span><span class="op">$</span><span class="va">Gasto</span><span class="op">)</span><span class="op">)</span></span>
@@ -306,11 +298,11 @@ github:</p>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">graf4</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-12-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>
 <p>Gráfico 5 - Original
 <img src="prints_original/grafico5.png" width="100%"></p>
 <p>Gráfico 5 - Padrão Ipea</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">graf5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">base_graf5</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">Ano</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_ribbon.html" class="external-link">geom_ribbon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin<span class="op">=</span><span class="fl">0</span>, ymax<span class="op">=</span><span class="va">Exabytes</span><span class="op">)</span>, fill <span class="op">=</span> <span class="st">"#015f96"</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>,</span>
@@ -322,11 +314,11 @@ github:</p>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span>,expand_x_limit <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>             x_breaks <span class="op">=</span> <span class="fl">10</span>, y_breaks <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">graf5</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-14-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-13-1.png" width="100%"></p>
 <p>Gráfico 6 - Original
 <img src="prints_original/grafico6.png" width="100%"></p>
 <p>Gráfico 6 - Padrão Ipea</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">graf6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">base_graf6</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Ano</span>, <span class="va">value</span>, group<span class="op">=</span><span class="va">variable</span>, color<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>shape<span class="op">=</span><span class="va">variable</span>, fill <span class="op">=</span> <span class="va">variable</span><span class="op">)</span>,</span>
@@ -345,11 +337,11 @@ github:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">graf6</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-16-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-15-1.png" width="100%"></p>
 <p>Gráfico 7 - Original
 <img src="prints_original/grafico7.png" width="100%"></p>
 <p>Gráfico 7 - Padrão Ipea</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_graf7</span><span class="op">$</span><span class="va">pais</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">base_graf7</span><span class="op">$</span><span class="va">pais</span>, levels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rev.html" class="external-link">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">base_graf7</span><span class="op">$</span><span class="va">pais</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">graf7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">base_graf7</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pais</span>, y<span class="op">=</span><span class="va">petroleo</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span>, fill <span class="op">=</span> <span class="st">'#015f96'</span><span class="op">)</span> <span class="op">+</span></span>
@@ -362,11 +354,11 @@ github:</p>
 <span>       caption <span class="op">=</span> <span class="st">'Fonte: Eurostat (2014).\nTradução dos autores.'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'none'</span>, expand_x_limit <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="va">graf7</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-18-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-17-1.png" width="100%"></p>
 <p>Gráfico 8 - Original
 <img src="prints_original/grafico8.png" width="100%"></p>
 <p>Gráfico 8 - Padrão Ipea</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_graf8</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape/man/melt-24.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">base_graf8</span>, id<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pais"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">graf8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">base_graf8</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">pais</span>, y<span class="op">=</span><span class="va">value</span>, group<span class="op">=</span><span class="va">variable</span>, fill<span class="op">=</span><span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -381,11 +373,11 @@ github:</p>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="va">graf8</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-20-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-19-1.png" width="100%"></p>
 <p>Gráfico 9 - Original
 <img src="prints_original/grafico9.png" width="100%"></p>
 <p>Gráfico 9 - Padrão Ipea</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">######## GRAFICO 9</span></span>
 <span><span class="va">base_graf9_aux</span> <span class="op">&lt;-</span> <span class="va">base_graf9</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">base_graf9_aux</span><span class="op">$</span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">base_graf9_aux</span><span class="op">)</span></span>
@@ -418,11 +410,11 @@ github:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span>, clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">graf9</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-22-1.png" width="100%"></p>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-21-1.png" width="100%"></p>
 <p>Gráfico 10 - Original
 <img src="prints_original/grafico10.png" width="100%"></p>
 <p>Gráfico 10 - Padrão Ipea</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_graf10</span> <span class="op">&lt;-</span> <span class="va">base_graf10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>PIB <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">PIB</span><span class="op">)</span>,</span>
 <span>         variacao_PIB <span class="op">=</span> <span class="op">(</span><span class="op">(</span><span class="va">PIB</span><span class="op">/</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">lag</a></span><span class="op">(</span><span class="va">PIB</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span>,</span>
@@ -464,10 +456,8 @@ github:</p>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span>, x_breaks <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">graf10</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-24-1.png" width="100%"></p>
-</div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
-    </nav></aside>
+<p><img src="cookbook_files/figure-html/unnamed-chunk-23-1.png" width="100%"></p>
+  </main>
 </div>
 
 

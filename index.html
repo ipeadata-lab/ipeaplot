@@ -5,16 +5,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Convenient functions to create ggplot graphics following the 
+<meta name="description" content="Convenient functions to create 'ggplot2 graphics following the 
              editorial guidelines of the  Institute for Applied Economic 
              Research (IPEA).">
-<title>Ggplot Graphics in Ipea Standard • ipeaplot</title>
+<title>Add Ipea Editorial Standards to ggplot2 Graphics • ipeaplot</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Ggplot Graphics in Ipea Standard">
-<meta property="og:description" content="Convenient functions to create ggplot graphics following the 
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Add Ipea Editorial Standards to ggplot2 Graphics">
+<meta property="og:description" content="Convenient functions to create 'ggplot2 graphics following the 
              editorial guidelines of the  Institute for Applied Economic 
              Research (IPEA).">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -46,7 +46,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/cookbook.html">Comparativo ipeaplot</a>
-    <a class="dropdown-item" href="articles/intro_ipeaplot.html">Introduction to ipeaplot</a>
+    <a class="dropdown-item" href="articles/intro_ipeaplot.html">Introdução ao ipeaplot</a>
   </div>
 </li>
       </ul>
@@ -70,43 +70,36 @@
 <div class="row">
   <main id="main" class="col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="ipeaplot-ggplot-graphics-in-ipea-standard">ipeaplot: ggplot graphics in Ipea standard.<a class="anchor" aria-label="anchor" href="#ipeaplot-ggplot-graphics-in-ipea-standard"></a>
+<div class="page-header"><h1 id="ipeaplot-add-ipea-editorial-standards-to-ggplot2-graphics">ipeaplot: Add Ipea Editorial Standards to ‘ggplot2’ Graphics<a class="anchor" aria-label="anchor" href="#ipeaplot-add-ipea-editorial-standards-to-ggplot2-graphics"></a>
 </h1></div>
-<p><code>ipeaplot</code> creates ggplot graphics following the editorial guidelines of the Institute of Applied Economic Research (IPEA). It provides users with tools and functions that simplify the application of consistent color schemes and graphic styles, ensuring compliance with IPEA’s publication standards.</p>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>To install the Ipeaplot package, you can use the following code:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ipeadata-lab/ipeaplot"</span><span class="op">)</span></span></code></pre></div>
+<p>O <code>ipeaplot</code> é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote <code>ggplot2</code>, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea.</p>
 </div>
-<div class="section level2">
-<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h2>
-<div class="section level3">
-<h3 id="theme_ipea">
-<code>theme_ipea</code><a class="anchor" aria-label="anchor" href="#theme_ipea"></a>
-</h3>
-<p>The <code>theme_ipea</code> function allows you to define graphical attributes such as axes, fonts, grid, and legends according to the editorial guidelines of Ipea. It can be used as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeadata-lab/ipeaplot" class="external-link">ipeaplot</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">mpg</span> , y<span class="op">=</span><span class="va">cyl</span>, color<span class="op">=</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between Fuel Efficiency and Cylinders"</span>,</span>
-<span>       subtitle <span class="op">=</span> <span class="st">"Cars from the mtcars dataset"</span><span class="op">)</span></span></code></pre></div>
-<p>The <code>theme_ipea</code> function will automatically apply the graphic settings defined by Ipea to the ggplot-created plot.</p>
+<div class="section level1">
+<h1 id="instalação">Instalação<a class="anchor" aria-label="anchor" href="#instala%C3%A7%C3%A3o"></a>
+</h1>
+<p>Você pode instalar a versão em desenvolvimento do <strong>ipeaplot</strong> direto do Github:</p>
+<pre><code><span><span class="co"># Development version</span></span>
+<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html" class="external-link">remove.packages</a></span><span class="op">(</span><span class="st">'ipeaplot'</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ipeadata-lab/ipeaplot"</span><span class="op">)</span></span></code></pre>
 </div>
+<div class="section level1">
+<h1 id="visão-geral-do-pacote">Visão geral do pacote.<a class="anchor" aria-label="anchor" href="#vis%C3%A3o-geral-do-pacote"></a>
+</h1>
+<p>O pacote <strong>ipeaplot</strong> foi desenhado para ser usado em conjunto com o pacote <a href="https://ggplot2.tidyverse.org/" class="external-link">ggplot2</a>, a biblioteca mais popular de visualização de dados em R. Atualmente, o <strong>ipeaplot</strong> inclui três funções principais para ajudar você a alterar o estilo de suas figuras de forma a seguir as diretrizes editoriais do Ipea:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code><a href="reference/theme_ipea.html">theme_ipea()</a></code> - alteração formatação da elemntos da figura (eixos, título, subtítulo, etc);</li>
+<li>
+<code><a href="reference/scale_color_ipea.html">scale_color_ipea()</a></code> e <code><a href="reference/scale_fill_ipea.html">scale_fill_ipea()</a></code>- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;</li>
+<li>
+<code><a href="reference/save_eps.html">save_eps()</a></code> - salva a figura em formato <code>.eps</code>, um formato vetorial de alta resolução utilizado pela equipe do editorial.</li>
+</ol>
+<p>Demonstração completa do pacote nas vinhetas: - <a href="https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html">Introdução ao ipeaplot</a> - <a href="https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html">Comparativo ipeaplot</a></p>
 </div>
-<div class="section level2">
-<h2 id="contribution">Contribution<a class="anchor" aria-label="anchor" href="#contribution"></a>
-</h2>
-<p>If you encounter any problem or have suggestions for improvements to the <code>ipeaplot</code> package, feel free to open an issue.</p>
-</div>
+<div class="section level1">
+<h1 id="equipe-">Equipe <img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/man/figures/ipea.png?raw=true" alt="ipea" width="300"><a class="anchor" aria-label="anchor" href="#equipe-"></a>
+</h1>
+<p>O pacote <strong>ipeaplot</strong> é desenvolvido pela equipe da Coordenação-Geral de Ciência de Dados e Tecnologia da Informação (CGDTI) do Instituto de Pesquisa Econômica Aplicada (Ipea).</p>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
