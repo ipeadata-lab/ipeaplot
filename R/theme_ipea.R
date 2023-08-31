@@ -165,15 +165,15 @@ theme_ipea <- function(axis_lines = 'half',
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
       family = "Frutiger-LT-47-LightCn",
-      size = 10, lineheight = 12, hjust = 0,
-      margin = margin(0,0,0,0, unit = 'mm')
+      size = 10, hjust = 0,
+      margin = margin(0,0,0.5,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
       family = "Frutiger-LT-Std",
-      size = 9, lineheight = 10.8, face = "bold", hjust = 0,
-      margin = margin(0,0,3,0, unit = 'mm'),
+      size = 9, face = "bold", hjust = 0,
+      margin = margin(0,0,2,0, unit = 'mm'),
     ),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
