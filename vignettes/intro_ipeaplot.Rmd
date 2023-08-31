@@ -1,10 +1,10 @@
 ---
-title: "Introduction to ipeaplot"
+title: "Introdução ao ipeaplot"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 urlcolor: blue
 vignette: >
-  %\VignetteIndexEntry{Introduction to ipeaplot}
+  %\VignetteIndexEntry{Introdução ao ipeaplot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,34 +19,37 @@ knitr::opts_chunk$set(
 ```
 
 
-[**ipeaplot**](https://github.com/ipeadata-lab/ipeaplot) is package designed to help researchers create charts and maps following the editorial guidelines used by the Institute for Applied Economic Research - Ipea. The package provides users with tools and functions that simplify the process of consistently using the color schemes and graphic styles used in Ipea's publications. By using **ipeaplot**, users can easily achieve visually appealing and professionally formatted studies. This vignette presents a quick intro to **ipeaplot**.
+O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (IPEA). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea. 
+
+Esta vinheta apresenta introdução rápida ao **ipeaplot**.
 
 
-# Installation
 
-You can install the development version of ipeaplot from github:
+## Instalação
+
+Você pode instalar a versão de desenvolvimento do **ipeaplot** direto do Github:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 # Development version
 utils::remove.packages('ipeaplot')
-devtools::install_github("ipeadata-lab/ipeaplot")
-
+remotes::install_github("ipeadata-lab/ipeaplot")
 ```
 
-# Overview of the package
+# Visão geral do pacote.
 
 The ipeaplot package is meant be used together with `ggplot2`, the most popular data visualization library in R. Currently, ipeaplot includes four main functions to help you change the style of your figures:
 
-1. `theme_ipea()` - changes layout of figure elements (axis, title, subtitle, fonts etc) following Ipea's editorial guidelines;
-2. `scale_color_ipea()` - selects a color palette from a range of options following Ipea's editorial guidelines;
-3. `scale_fill_ipea()`- selects a color palette from a range of options following Ipea's editorial guidelines;
-4. `save_eps()` - saves figures in `.eps` file extesion to be used by Ipea's editing team.
+O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui três funções principais para ajudar você a alterar o estilo de suas figuras de forma a seguir as diretrizes editoriais do Ipea:
+
+1. `theme_ipea()` - alteração formatação da elemntos da figura (eixos, título, subtítulo, etc);
+2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
+3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do editorial.
 
 
 
-# Demonstration on sample data
+# Demonstração do pacote
 
-First, let's load the libraries and sample data we'll be using to demonstrate ipeaplot in this vignette. In these first examples below, we'll be using the `mtcats` data set from R.
+Primeiro, vamos carregar as bibliotecas e uma amostra de dados que usaremos para demonstrar o **ipeaplot**. Nos exemplos a seguir, vamos utilizar os dados `mtcars` do R.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 library(ipeaplot)
@@ -54,23 +57,28 @@ library(ggplot2)
 library(dplyr)
 library(abjData)
 library(geobr)
+library(patchwork)
 
 # Load mtcars dataset
 data(mtcats)
 ```
 
-Here is a general example of how a chart used in Ipea's Discussion Papers look like. In the next sections of this vignette we'll explore how to make changes to the plot while still abiding to Ipea's editorial guidelines.
 
+
+A figura baixo ilustra de maneira geral uma figura ggplot em seu formato pardão, e como ela fica seguindo as diretrizes editoriais de gráficos publicados pelo Ipea em seus Textos para Discussão (TD). Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
-fig_base <- ggplot() +
+fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               labs(y='Consumo de Combustível (milhas por galão)',
                    x ='Potência (Número de cavalos)',
-                   color='Cilindradas') +
+                   color='Cilindradas')
+
+fig_ipea <- fig_raw +
               scale_color_ipea() +
               theme_ipea()
-fig_base
+
+fig_raw + fig_ipea
 ```
 
 ## Paleta de cores

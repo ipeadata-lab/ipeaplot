@@ -18,19 +18,11 @@ knitr::opts_chunk$set(
 )
 ```
 
+O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (IPEA). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea.
 
-O [**ipeaplot**](https://github.com/ipea-datalab/ipeaplot) é um pacote computacional desenvolvido para facilitar a padronização de cores e formatação gráfica para submissões de textos para discussão (TD) e outras publicações do Instituto de Pesquisa Econômica Aplicada (IPEA). Este pacote fornece aos usuários ferramentas e funções que simplificam o processo de aplicação de esquemas de cores e estilos gráficos consistentes em seu trabalho, garantindo a conformidade com os requisitos e diretrizesdo Editorial do Ipea. Esta vinheta apresenta introdução rápida ao **ipeaplot**.
+Esta vinheta apresenta alguns exemplos de como algumas figuras ficam após aplicarmos as diretrizes editoriais do Ipea usando o **ipeaplot**.
 
 
-## Instalação
-
-Você pode instalar a versão de desenvolvimento do ipeaplot no github:
-
-```{r eval=FALSE, message=FALSE, warning=FALSE}
-# Development version
-utils::remove.packages('ipeaplot')
-remotes::install_github("ipeadata-lab/ipeaplot")
-```
 
 Leitura de bibliotecas
 

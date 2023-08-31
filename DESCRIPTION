@@ -12,7 +12,7 @@ Authors@R: c(
     person("Lucas","Mation", role="aut", email="lucas.mation@ipea.gov.br")
     ) 
 Maintainer: Pedro Jorge <pedro.alves@ipea.gov.br>
-Description: Convenient functions to create ggplot graphics following the 
+Description: Convenient functions to create 'ggplot2 graphics following the 
              editorial guidelines of the  Institute for Applied Economic 
              Research (IPEA).
 License: MIT + file LICENSE
@@ -32,19 +32,20 @@ Imports:
     showtext
 Suggests: 
     abjData,
-    geobr,
-    data.table,
     checkmate,
-    forcats,
+    data.table,
     dplyr,
-    tidyr,
+    forcats,
+    geobr,
     knitr,
+    patchwork,
+    purrr,
+    reshape
     rmarkdown,
     sf,
-    purrr,
     sysfonts,
     testthat,
-    reshape
+    tidyr,
 VignetteBuilder: 
     knitr
 LazyData: true
