@@ -9,7 +9,7 @@ scale_color_ipea(
   palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Green-Blue",
     "Orange-Blue", "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
   palette_direction = 1,
-  pt_br = T,
+  decimal.mark = ",",
   barheight,
   barwidth,
   title.hjust,
@@ -30,8 +30,9 @@ to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Ora
 will follow the default of the palette (when the argument is 1) or if it will
 have an inverted ordering (for cases where it is 0).}
 
-\item{pt_br}{A string indicating whether the decimal separator should be a
-\code{","} or a \code{"."}. By default, the function uses a comma \code{","}, following
+\item{decimal.mark}{The character to be used to indicate the numeric decimal point and
+Character used between every 3 digits to separate thousands.
+By default, the function uses a comma \code{","}, following
 the format used in Brazilian Portuguese.}
 
 \item{barheight}{The height of the color gradient bar. This parameter is used

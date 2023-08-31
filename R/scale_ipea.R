@@ -12,8 +12,9 @@
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is 0).
-#' @param pt_br A string indicating whether the decimal separator should be a
-#'        `","` or a `"."`. By default, the function uses a comma `","`, following
+#' @param decimal.mark The character to be used to indicate the numeric decimal point and
+#'        Character used between every 3 digits to separate thousands.
+#'        By default, the function uses a comma `","`, following
 #'        the format used in Brazilian Portuguese.
 #' @param barheight The height of the color gradient bar. This parameter is used
 #'        when the direction is set to "horizontal".
@@ -32,7 +33,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
                                                        'Red-Blue','Green-Blue','Orange-Blue', 'Viridis',
                                                        'Inferno','Magma','Plasma','Cividis'),
                               palette_direction = 1,
-                              pt_br = T,
+                              decimal.mark = ",",
                               barheight, barwidth,
                               title.hjust, label.hjust,
                                ...){
@@ -44,12 +45,14 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
   palette <-  ifelse(missing(palette),'Blue',palette)
 
 
-  if (pt_br == T) {
+  if (decimal.mark == ",") {
     # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
-    labels = scales::label_comma(decimal.mark = ",", big.mark = ".", accuracy = 0.1)
-  } else {
+    labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
+  } else if (decimal.mark == "."){
     # Use dot as decimal mark and comma as thousand separator for labels (default)
-    labels = scales::label_comma(decimal.mark = ".", big.mark = ",", accuracy = 0.1)
+    labels = scales::label_comma(decimal.mark = ".", big.mark = ",")
+  } else{
+    stop("Decimal.mark argument must be '.' or ','.")
   }
 
 
@@ -90,7 +93,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
   if(isTRUE(discrete)){
     # Create a discrete color scale with the specified palette
     graph <- list(ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
-                  ggplot2::guides(color=guide_legend(ncol = 3, byrow = TRUE)))
+                  ggplot2::guides(colour = guide_legend(), size = guide_legend()))
   }
 
   return(graph)
@@ -194,7 +197,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
 
       # Create a discrete fill scale with the specified palette
       graph <- list(ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
-                    ggplot2::guides(fill=guide_legend(ncol = 3, byrow = TRUE)))
+                    ggplot2::guides(fill = guide_legend(), size = guide_legend()))
 
 
   }
