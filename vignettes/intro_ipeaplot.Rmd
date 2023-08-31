@@ -65,7 +65,7 @@ Here is a general example of how a chart used in Ipea's Discussion Papers look l
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
 fig_base <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
-              labs(y='Consumo de Combustível\n(milhas por galão)',
+              labs(y='Consumo de Combustível (milhas por galão)',
                    x ='Potência (Número de cavalos)',
                    color='Cilindradas') +
               scale_color_ipea() +
@@ -90,6 +90,7 @@ scales::show_col(ipea_pal(palette = "Orange")(9), labels = F, ncol = 9, borders 
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(14, 4)}
 scales::show_col(ipea_pal(palette = "Red-Blue")(9), labels = F, ncol = 9, borders = T)
 scales::show_col(ipea_pal(palette = "Orange-Blue")(9), labels = F, ncol = 9, borders = T)
+scales::show_col(ipea_pal(palette = "Green-Blue")(9), labels = F, ncol = 9, borders = T)
 ```
 
 
@@ -325,8 +326,6 @@ Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `fil
 
 ```{r eval=FALSE}
 save_eps(fig2, 
-         file.name = "figura_2.eps",
-         width = 15,
-         height = 15)
+         file.name = "figura_2.eps")
 
 ```
