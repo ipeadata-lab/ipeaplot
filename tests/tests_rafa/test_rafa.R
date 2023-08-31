@@ -84,6 +84,7 @@ tictoc::toc()
 beepr::beep()
 
 
+
 # CRAN
 tictoc::tic()
 Sys.setenv(NOT_CRAN = "false")

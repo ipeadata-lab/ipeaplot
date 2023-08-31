@@ -21,14 +21,12 @@ BugReports: https://github.com/ipeadata-lab/ipeaplot/issues
 Depends: 
     R (>= 3.3.2)
 Imports:
+    checkmate,
     extrafont,
     ggplot2,
     grDevices,
-    scales,
     paletteer,
-    checkmate,
-    reshape,
-    ggthemes,
+    scales,
     showtext
 Suggests: 
     abjData,
@@ -40,12 +38,12 @@ Suggests:
     knitr,
     patchwork,
     purrr,
-    reshape
+    reshape,
     rmarkdown,
     sf,
     sysfonts,
     testthat,
-    tidyr,
+    tidyr
 VignetteBuilder: 
     knitr
 LazyData: true

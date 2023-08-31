@@ -128,164 +128,90 @@ Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scal
 
 ## Ajustando o `theme` das figuras
 
-A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo editorial do Ipea nas publicações de Texto para Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
+A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo Ipea nas publicações de Texto para Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
 
+Para ilustrar essa função, vamos utilizar alguns dados do Atlas do Desenvolvimento Humano organizados em um projeto de parceria entre Ipea, FJP e PNUD). Para carregar os dados, basta rodar:
 
+```{r eval=TRUE}
+df <- abjData::pnud_muni
+head(df)
+```
 
+Essa base de dados traz para cada municipio uma série de indicadores socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro calculamos qual a proporção de domicílios que possuia coleta de esgoto em cada região do país a cada anos, e em seguida geramos o gráfico:
 
-The next step is to combine the ***ipeaplot*** package with other data sets to create thematic graphs In this example, we will be using data from the (Atlas of Human Development (by Ipea/FJP and UNPD) to create a graphs showing the variation of Life Expectancy at birth across Brasil country.
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+# cria variavel identificando a regiao de cada municipio
+df <- df |> 
+      mutate(regiao = substring(uf, 1, 1),
+             regiao = case_when(regiao == 1 ~ 'Norte',
+                                regiao == 2 ~ 'Nordeste',
+                                regiao == 3 ~ 'Sudeste',
+                                regiao == 4 ~ 'Sul',
+                                regiao == 5 ~ 'Centro Oeste'))
 
-Once you've downloaded the data, it is really simple to plot maps using `ggplot2`.
+# calcula media de colega de esgoto por ano e regiao
+df_fig1 <- df |>
+           mutate(regiao = substring(uf, 1, 1)) |>
+           group_by(ano, regiao) |>
+           summarise( t_lixo = weighted.mean(x=t_lixo, w = pop)) |>
+           collect()
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, fig.align = "center"}
-
-# Load the 'consumo' dataset from the 'abjData' package
-cons = abjData::consumo
-cons$dec_date <- as.character(cons$dec_date)
-
-# Create a simple scatter plot with 'dec_date' on the x-axis, 'tempo' on the y-axis, color-coded by 'assunto', and grouped by 'assunto'
-ggplot(data = cons, aes(x = dec_date, y = tempo, color = assunto, group = assunto)) +
-  # Use the 'geom_point()' function to add points to the plot
-  geom_point() +
-  # Set the x-axis label using 'xlab()'
+# plot
+ggplot() +
+  geom_line(data = df_fig1, aes(x=ano, y=t_lixo, color= regiao)) +
+  scale_color_ipea(discrete = T, palette = 'Orange') +
+  labs(title = 'Proporção da população com coleta de lixo', color='Região') +
+  ylab('Proporção em %') +
   xlab('Ano') +
-  # Set the y-axis label using 'ylab()'
-  ylab('Tempo') +
-  # Set the plot title and subtitle using 'ggtitle()'
-  ggtitle(label = "Tempo", subtitle = "Brasil (%)") +
-  # Set the color legend label using 'labs()'
-  labs(color = "Assunto") +
-  # Apply the Ipea theme using 'theme_ipea()'
-  theme_ipea(legend.position = "right") +
-  # Use the 'scale_color_ipea(discrete = T)' function to apply the Ipea discrete color scale
-  scale_color_ipea(discrete = T)
+  theme_ipea()
+```
 
-# Create a simple scatter plot with 'dec_date' on the x-axis, 'tempo' on the y-axis, color-coded by 'assunto', and grouped by 'assunto'
-ggplot(data = cons, aes(x = dec_date, y = tempo, color = assunto, group = assunto)) +
-  # Use the 'geom_point()' function to add points to the plot
-  geom_point() +
-  # Set the x-axis label using 'xlab()'
+Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+ggplot() + 
+  geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
+  scale_fill_ipea(discrete = T, palette = 'Green') +
+  labs(title = 'Proporção da população com coleta de lixo', fill='Ano') +
+  ylab('Proporção em %') +
   xlab('Ano') +
-  # Set the y-axis label using 'ylab()'
-  ylab('Tempo') +
-  # Set the plot title and subtitle using 'ggtitle()'
-  ggtitle(label = "Tempo", subtitle = "Brasil (%)") +
-  # Apply the Ipea theme using 'theme_ipea()'
-  # Hide the legend using 'legend.position = "none"'
-  theme_ipea(legend.position = "none") +
-  # Use the 'scale_color_ipea(discrete = T)' function to apply the Ipea discrete color scale
-  scale_color_ipea(discrete = T)
+  facet_wrap(. ~ regiao) +
+  theme_ipea(x_breaks = 3)
 
 ```
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, fig.align = "center"}
-# Calculate the mean values of 'espvida' and 'rdpc' grouped by 'ano' using the 'pnud_muni' dataset
-graph <- abjData::pnud_muni %>%
-  group_by(ano) %>%
-  dplyr::summarise(espvida = mean(espvida),
-                   rdpc = mean(rdpc))
+Nesse outro gráfico, a gente visualiza a dispersão da expectativa de vida dos municípios em cada região do país no ano de 2010.
 
-# Create a line plot with 'ano' on the x-axis, 'espvida' on the y-axis, color-coded by 'espvida', and grouped by a single group
-ggplot(data = graph, aes(x = as.character(ano), y = espvida, color = espvida, group = 1)) +
-  # Add a line to the plot using 'geom_line()'
-  geom_line() +
-  # Add points to the plot using 'geom_point()'
-  geom_point() +
-  # Set the x-axis label using 'xlab()'
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+df2 <- df |>
+  filter( ano == 2010) |>
+  arrange(espvida)
+
+
+ggplot(data = df2) +
+  geom_boxplot(aes(x = reorder(regiao, espvida), y=espvida, weight = pop, color = regiao)) +
+  scale_color_ipea(discrete = T, palette = 'Blue') +
+  labs(title = 'Proporção da população com coleta de lixo', color='Região') +
+  ylab('Proporção em %') +
   xlab('Ano') +
-  # Set the y-axis label using 'ylab()'
-  ylab('Expectativa de vida') +
-  # Add a custom text label for 'espvida' using 'insert_text()'
-  #insert_text(label = "espvida", decimals = 0) +
-  # Apply a custom format to the y-axis labels using 'scale_y_continuous()'
-  scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
-  # Set the plot title and subtitle using 'ggtitle()'
-  ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +
-  # Apply the Ipea continuous color scale using 'scale_color_ipea()'
-  scale_color_ipea() +
-  # Apply the Ipea theme using 'theme_ipea()'
-  theme_ipea(legend.position = "none")
-
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, fig.align = "center"}
-# Calculate the mean values of 'espvida' and 'rdpc' grouped by 'ano' using the 'pnud_muni' dataset
-graph <- abjData::pnud_muni %>%
-  group_by(ano) %>%
-  dplyr::summarise(espvida = mean(espvida),
-                   rdpc = mean(rdpc))
-
-# Create a bar plot with 'ano' on the x-axis, 'espvida' on the y-axis, and color-filled by 'espvida'
-ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
-  # Add bars to the plot using 'geom_bar(stat = "identity")'
-  geom_bar(stat = "identity") +
-  # Set the x-axis label using 'xlab()'
-  xlab('Ano') +
-  # Set the y-axis label using 'ylab()'
-  ylab('Expectativa de vida') +
-  # Add a custom text label for 'espvida' using 'insert_text()'
-#  insert_text(label = "espvida", decimals = 0) +
-  # Apply a custom format to the y-axis labels using 'scale_y_continuous()'
-  scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
-  # Set the plot title and subtitle using 'ggtitle()'
-  ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +
-  # Apply the Ipea theme using 'theme_ipea()'
-  theme_ipea() +
-  # Apply the Ipea continuous color scale to the fill using 'scale_fill_ipea()'
-  scale_fill_ipea()
-
-```
-
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, fig.align = "center"}
-
-# Calculate the mean values of 'espvida' and 'rdpc' grouped by 'regn' and 'ano' using the 'pnud_muni' dataset
-graph <- abjData::pnud_muni %>%
-  mutate(regn = substr(uf, 1, 1),  # Extract the first character of 'uf' and assign it to 'regn'
-         regn = case_when(regn == "1" ~ "Norte",  # Assign region names based on 'regn' values
-                          regn == "2" ~ "Nordeste",
-                          regn == "3" ~ "Sudeste",
-                          regn == "4" ~ "Sul",
-                          regn == "5" ~ "Centro Oeste",
-                          TRUE ~ regn)) %>%
-  group_by(regn, ano) %>%
-  dplyr::summarise(espvida = mean(espvida),  # Calculate the mean of 'espvida' within each 'regn' and 'ano'
-                   rdpc = mean(rdpc))  # Calculate the mean of 'rdpc' within each 'regn' and 'ano'
-
-# Option for facet title color
-ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
-  # Create a bar plot with 'ano' on x-axis, 'espvida' on y-axis, and 'espvida' for fill
-  geom_bar(stat = "identity") +  
-  # Set the x-axis label
-  xlab('Ano') +  
-  # Set the y-axis label
-  ylab('Expectativa de vida') + 
-  # Add value labels to the plot
-#  insert_text(label = "espvida", decimals = 0) +  
-  # Create separate panels for each 'regn'
-  facet_wrap(. ~ regn) +  
-  # Set the plot title and subtitle
-  ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +  
-  # Apply the default Ipea theme
-  theme_ipea() +  
-  # Apply the Ipea continuous fill color scale
-  scale_fill_ipea() +  
-  # Set the y-axis limits
-  coord_cartesian(ylim = c(min(graph$espvida), max(graph$espvida) + 10))  
-
-
-
-
-
+  theme_ipea(legend.position = 'none')
 ```
 
 
-## Thematic maps
 
-The next step is to combine the ***ipeaplot*** package with other data sets to create thematic maps. In this example, we will be using data from the (Atlas of Human Development (by Ipea/FJP and UNPD) to create a choropleth map using geobr package showing the spatial variation of Average years of study across Brazilian municipalities.
+### Mapas
 
-#### Merge external data
+As funções do **ipeaplot** também facilitam na criação de mapas. No exemplo abaixo, nós vamos fazer um mapa choroplético que mostra a média de anos de estudo dos municípios do Brasil.
 
-First, we need a `data.frame` with estimates of Life Expectancy and merge it to our spatial database. The seven-digit of municipality code is our key column to join these two databases.
+O primeiro passo, é baixar a malha espacial de municípios. Isso pode ser feito com o pacote [geobr](https://ipeagit.github.io/geobr/), desenvolvido pelo Ipea. Para baixar esses dados, basta rodar:
+
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+# Load municipality and state spatial data
+mun <- geobr::read_municipality(year = 2010)
+uf  <- geobr::read_state(year = 2010)
+```
+
+Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável de código do município é a nossa variável-chave para fazer o merge.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 # Load municipality and state spatial data
@@ -293,33 +219,29 @@ mun = read_municipality()
 uf  = read_state()
 
 # Subset and select specific columns from the 'pnud_muni' dataset
-pnud = abjData::pnud_muni %>%
-  # Susbet data 
-  subset(ano == 2010) %>%
-  # Select columns
-  select(ano, code_muni = codmun7, e_anosestudo, rdpc)
+df_escola <- df |>
+             subset(ano == 2010) %>%
+             select(ano, code_muni = codmun7, e_anosestudo)
 
 # Perform a left join between the 'mun' and 'pnud' data frames
-df = left_join(mun, pnud)
+df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
 
 ```
 
+Agora basta criar o mapa:
 
-#### Plot thematic map
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center" }
+fig_map <- ggplot() +
+             geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
+             geom_sf(data = uf, color = "black", fill = NA) +
+             ggtitle("Média de anos de estudo") +
+             scale_fill_ipea(palette = 'Orange-Blue', 
+                             name='Anos de\nestudo') # + theme_ipea()
+   
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.height = 8, fig.width = 8, fig.align = "center" }
-
-# Create a ggplot object 'graf2' using the 'df' dataset, mapping the 'e_anosestudo' variable to the fill aesthetic
-fig2 <- ggplot(data = df, aes(fill = e_anosestudo)) +
-           geom_sf(color = NA) +
-           geom_sf(data = uf, color = "black", fill = NA) +
-           ggtitle("Média de anos de estudo") +
-           xlab("") + ylab("") +
-           scale_fill_ipea(name='Anos de\nestudo')  
-          # theme_ipea()
-
-fig2
+fig_map
 ```
+
 ## Salvando figura
 
 Finalmente, o pacote **ipeaplot** traz a função `save_eps()` para facilitar a exportação da figura para um arquivo em formato `.eps`, um formato de imagem vetorial de alta resolução.
