@@ -6,7 +6,7 @@
 \usage{
 scale_fill_ipea(
   discrete = F,
-  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Blue-Green",
+  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Green-Blue",
     "Orange-Blue", "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
   palette_direction = 1,
   decimal.mark = ",",
@@ -23,7 +23,7 @@ continuous scale bar. The default value is continuous.}
 
 \item{palette}{A character vector specifying the available palette for the
 fill palette. The default palette are \code{"Blue"}, but we can also change
-to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'},\code{'Blue-Green'},
+to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'},\code{'Green-Blue'},
 \code{'Viridis'}, \code{'Inferno'}, \code{'Magma'}, \code{'Plasma'}, \code{'Cividis'}.}
 
 \item{palette_direction}{A logical argument specifying if the ordering of the colors

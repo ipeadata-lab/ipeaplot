@@ -153,7 +153,8 @@ base_graf10 <- data.table::fread(paste0(link,'/12239278/dados_grafico10.csv'),
                                  dec = ",", encoding = 'Latin-1')
 
 ######## Salvando graficos no formato Rdata
-save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,base_graf9, base_graf10,
+save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,
+     base_graf9, base_graf10,
      file='bases_de_dados.Rdata')
 
 ```
@@ -162,8 +163,8 @@ save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf
 
 
 Gráfico 1 - Original
-```{r, echo=FALSE, results='asis'}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico1.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico1.png"))
 ```
 
 
@@ -187,8 +188,8 @@ graf1
 ```
 
 Gráfico 2 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico2.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
 
 Gráfico 2 - Padrão Ipea
@@ -215,8 +216,8 @@ graf2
 
 
 Gráfico 3 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico3.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico3.png"))
 ```
 
 Gráfico 3 - Padrão Ipea
@@ -241,8 +242,8 @@ graf3
 ```
 
 Gráfico 4 - Padrão Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico4.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
 ```
 
 
@@ -272,8 +273,8 @@ graf4
 ```
 
 Gráfico 5 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico5.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 ```
 
 
@@ -293,8 +294,8 @@ graf5
 ```
 
 Gráfico 6 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico6.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 ```
 
 
@@ -309,8 +310,10 @@ graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
        color = "",
        title="GRÁFICO 6",
        subtitle="Crescimento anual do PIB da União Europeia (2004-2013) (Em %)",
-       caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial. Disponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
-  theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom') +
+       caption = 'Fonte: World Bank (2014).\nTradução dos autores.\n
+                  Obs.: Os dados foram coletados no sítio do Banco Mundial.
+                  Disponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
+  theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom', expand_x_limit = F) +
   scale_color_ipea(palette_direction = -1, discrete = T) +
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
@@ -320,13 +323,13 @@ graf6
 ```
 
 Gráfico 7 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico7.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico7.png"))
 ```
 
 
 Gráfico 7 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=5, fig.height=10}
 base_graf7$pais<- factor(base_graf7$pais, levels=rev(sort(base_graf7$pais)))
 graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
   geom_bar(stat="identity", fill = '#015f96') +
@@ -337,18 +340,18 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
        title="GRÁFICO 7",
        subtitle="Importações de energia em termos do consumo total de energia dos países da União Europeia",
        caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
-  theme_ipea(legend.position = 'none')
+  theme_ipea(legend.position = 'none', expand_x_limit = F)
 graf7
 ```
 
 Gráfico 8 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico8.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 ```
 
 
 Gráfico 8 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=10, fig.height=10}
 base_graf8<- melt(base_graf8, id=c("pais"))
 
 graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=variable)) +
@@ -366,8 +369,8 @@ graf8
 ```
 
 Gráfico 9 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico9.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico9.png"))
 ```
 
 
@@ -395,7 +398,8 @@ graf9 <-
        title="GRÁFICO 9",
        subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
        caption = 'Fonte: PwC (2014).\nTradução dos autores') +
-  geom_line(data=base_graf9_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1), color = 'gray') +
+  geom_line(data=base_graf9_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1),
+            color = 'gray') +
   scale_x_continuous(breaks = 1:max(base_graf9$n), labels = label) +
   scale_fill_ipea(discrete = T) +
   theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F) +
@@ -407,8 +411,8 @@ graf9
 ```
 
 Gráfico 10 - Original
-```{r}
-knitr::is_html_output(knitr::include_graphics("https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/prints_original/grafico10.png?raw=true"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico10.png"))
 ```
 
 Gráfico 10 - Padrão Ipea
@@ -449,7 +453,8 @@ graf10 <-
        fill = "",
        title="GRÁFICO 10",
        subtitle="Variação anual do PIB) (Em %)",
-       caption = 'Fonte: Sistema de Contas Nacionais do IBGE e Ipeadata.\nElaboração do autor.') +
+       caption = 'Fonte: Sistema de Contas Nacionais do IBGE e Ipeadata.\n
+                  Elaboração do autor.') +
   theme_ipea(legend.position = 'bottom', x_breaks = 10)
 
 graf10

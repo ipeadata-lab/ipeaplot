@@ -7,7 +7,7 @@
 #'        continuous scale bar. The default value is continuous.
 #' @param palette A character vector specifying the available palette for the
 #'        color palette. The default palette are `"Blue"`, but we can also change
-#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`, `'Blue-Green'`,
+#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
 #'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
@@ -29,7 +29,7 @@
 #'
 #' @export
 scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink','Green-Blue',
-                                                       'Red-Blue','Blue-Green','Orange-Blue', 'Viridis',
+                                                       'Red-Blue','Green-Blue','Orange-Blue', 'Viridis',
                                                        'Inferno','Magma','Plasma','Cividis'),
                               palette_direction = 1,
                               pt_br = T,
@@ -108,7 +108,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #'        continuous scale bar. The default value is continuous.
 #' @param palette A character vector specifying the available palette for the
 #'        fill palette. The default palette are `"Blue"`, but we can also change
-#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`,`'Blue-Green'`,
+#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`,`'Green-Blue'`,
 #'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
@@ -132,7 +132,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
 #'
 #' @export
 scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','Pink','Green-Blue',
-                                                      'Red-Blue','Blue-Green','Orange-Blue', 'Viridis',
+                                                      'Red-Blue','Green-Blue','Orange-Blue', 'Viridis',
                                                       'Inferno','Magma','Plasma','Cividis'),
                             palette_direction = 1,
                             decimal.mark = ",",

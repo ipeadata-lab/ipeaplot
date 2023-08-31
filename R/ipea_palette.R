@@ -23,7 +23,7 @@
 #'  \item{}{'Pink'}
 #'  \item{}{'Red-Blue'}
 #'  \item{}{'Orange-Blue'}
-#'  \item{}{'Blue-Green'}
+#'  \item{}{'Green-Blue'}
 #'  \item{}{'Viridis'}
 #'  \item{}{'Inferno'}
 #'  \item{}{'Magma'}
@@ -31,7 +31,7 @@
 #'  \item{}{'Cividis'}
 #'  }
 #'
-ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Red-Blue','Blue-Green',
+ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Red-Blue',
                                      'Orange-Blue', 'Viridis','Inferno','Magma','Plasma','Cividis'),
                          n,
                          alpha = 1,
@@ -74,9 +74,9 @@ ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue'
   } else if (palette ==  "Red-Blue") {
     # Set colours to the Red-Blue palette using manual_pal function
     colours <- paletteer::paletteer_c("ggthemes::Red-Blue-White Diverging", n)
-  } else if (palette ==  "Blue-Green") {
-    # Set colours to the Blue-Green palette using manual_pal function
-    colours <- paletteer::paletteer_c("ggthemes::Blue-Green-White Diverging", n)
+  } else if (palette ==  "Green-Blue") {
+    # Set colours to the Green-Blue palette using manual_pal function
+    colours <- paletteer::paletteer_c("ggthemes::Green-Blue-White Diverging", n)
   } else if (palette ==  "Orange-Blue") {
     # Set colours to the Orange-Blue palette using manual_pal function
     colours <- paletteer::paletteer_c("ggthemes::Orange-Blue-White Diverging", n)
@@ -97,7 +97,7 @@ ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue'
     colours <- paletteer::paletteer_c("viridis::cividis", n)
   } else {
     # Stop the execution and display an error message if palettes is none of the specified values
-    stop("Palette palettes must be 'Blue','Green','Orange','Pink','Green-Blue','Red-Blue','Blue-Green',
+    stop("Palette palettes must be 'Blue','Green','Orange','Pink','Green-Blue','Red-Blue',
                                    'Orange-Blue', 'Viridis','Inferno','Magma','Plasma' or 'Cividis'")
   }
 
@@ -133,7 +133,7 @@ force_all <- function(...) list(...)
 #'  \item{}{'Pink'}
 #'  \item{}{'Red-Blue'}
 #'  \item{}{'Orange-Blue'}
-#'  \item{}{'Blue-Green'}
+#'  \item{}{'Green-Blue'}
 #'  \item{}{'Viridis'}
 #'  \item{}{'Inferno'}
 #'  \item{}{'Magma'}
@@ -148,7 +148,7 @@ force_all <- function(...) list(...)
 #' scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
 #' scales::show_col(ipea_pal(palette = "Green")(6))
 
-ipea_pal <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Red-Blue','Blue-Green',
+ipea_pal <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Red-Blue',
                                  'Orange-Blue', 'Viridis','Inferno','Magma','Plasma','Cividis'),
                      alpha = 1, begin = 0, end = 1, palette_direction = 1) {
    force_all(palette, alpha, begin, end, palette_direction)

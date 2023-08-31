@@ -5,8 +5,8 @@
 \title{Ipea palette}
 \usage{
 ipea_pal(
-  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Blue-Green",
-    "Orange-Blue", "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Orange-Blue",
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
   alpha = 1,
   begin = 0,
   end = 1,
@@ -23,7 +23,7 @@ These options are available:
 \item{}{'Pink'}
 \item{}{'Red-Blue'}
 \item{}{'Orange-Blue'}
-\item{}{'Blue-Green'}
+\item{}{'Green-Blue'}
 \item{}{'Viridis'}
 \item{}{'Inferno'}
 \item{}{'Magma'}
