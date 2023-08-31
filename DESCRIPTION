@@ -1,6 +1,6 @@
 Type: Package
 Package: ipeaplot
-Title: Ggplot Graphics in Ipea Standard
+Title: Add Ipea Editorial Standards to 'ggplot2' Graphics
 Version: 0.0.1
 Authors@R: c(
     person("Pedro","Jorge", role=c("aut","cre"), email="pedro.alves@ipea.gov.br"),

@@ -18,16 +18,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (IPEA). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea. 
-
-Esta vinheta apresenta introdução rápida ao **ipeaplot**.
+O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea. 
 
 
+# Instalação
 
-## Instalação
-
-Você pode instalar a versão de desenvolvimento do **ipeaplot** direto do Github:
+Você pode instalar a versão em desenvolvimento do **ipeaplot** direto do Github:
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 # Development version
@@ -36,8 +32,6 @@ remotes::install_github("ipeadata-lab/ipeaplot")
 ```
 
 # Visão geral do pacote.
-
-The ipeaplot package is meant be used together with `ggplot2`, the most popular data visualization library in R. Currently, ipeaplot includes four main functions to help you change the style of your figures:
 
 O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui três funções principais para ajudar você a alterar o estilo de suas figuras de forma a seguir as diretrizes editoriais do Ipea:
 
@@ -74,18 +68,18 @@ fig_raw <- ggplot() +
                    x ='Potência (Número de cavalos)',
                    color='Cilindradas')
 
-fig_ipea <- fig_raw +
+fig_base <- fig_raw +
               scale_color_ipea() +
               theme_ipea()
 
-fig_raw + fig_ipea
+fig_raw + fig_base
 ```
 
 ## Paleta de cores
 
-Existem duas funções básicas para seleciona a paleta de cores da figura: `scale_color_ipea()` e `scale_fill_ipea()`. O funcionamento de ambas funções seguem a mesma lógica e parâmetros.
+Existem duas funções básicas para selecionar a paleta de cores da figura: `scale_color_ipea()` e `scale_fill_ipea()`. O funcionamento de ambas funções seguem a mesma lógica e parâmetros.
 
-O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso incluir tanto paletas `c("Blue", "Green", "Orange", "Pink")` como paletes de cores divergentes `c("Red-Blue", "Orange-Blue")`.
+O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais `c("Blue", "Green", "Orange", "Pink")`, quanto paletes com cores divergentes `c("Red-Blue", "Orange-Blue")`.
 
 **Cores sequenciais:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(14, 4)}
@@ -102,7 +96,7 @@ scales::show_col(ipea_pal(palette = "Green-Blue")(9), labels = F, ncol = 9, bord
 ```
 
 
-
+Para usar as paletas de cores, basta adicionar uma das funções na construção da sua figura com `ggplot2`:
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, out.width = "100%"}
 # paleta sequencial verde
@@ -111,6 +105,8 @@ fig_base + scale_color_ipea(palette = "Green")
 # paleta divergente de laranja a azul
 fig_base + scale_color_ipea(palette = "Orange-Blue")
 ```
+
+### Escala de cores contínua e discreta
 
 Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
 
@@ -159,9 +155,9 @@ ggplot(data = cons, aes(x = dec_date, y = tempo, color = assunto, group = assunt
   ggtitle(label = "Tempo", subtitle = "Brasil (%)") +
   # Set the color legend label using 'labs()'
   labs(color = "Assunto") +
-  # Apply the IPEA theme using 'theme_ipea()'
+  # Apply the Ipea theme using 'theme_ipea()'
   theme_ipea(legend.position = "right") +
-  # Use the 'scale_color_ipea(discrete = T)' function to apply the IPEA discrete color scale
+  # Use the 'scale_color_ipea(discrete = T)' function to apply the Ipea discrete color scale
   scale_color_ipea(discrete = T)
 
 # Create a simple scatter plot with 'dec_date' on the x-axis, 'tempo' on the y-axis, color-coded by 'assunto', and grouped by 'assunto'
@@ -174,10 +170,10 @@ ggplot(data = cons, aes(x = dec_date, y = tempo, color = assunto, group = assunt
   ylab('Tempo') +
   # Set the plot title and subtitle using 'ggtitle()'
   ggtitle(label = "Tempo", subtitle = "Brasil (%)") +
-  # Apply the IPEA theme using 'theme_ipea()'
+  # Apply the Ipea theme using 'theme_ipea()'
   # Hide the legend using 'legend.position = "none"'
   theme_ipea(legend.position = "none") +
-  # Use the 'scale_color_ipea(discrete = T)' function to apply the IPEA discrete color scale
+  # Use the 'scale_color_ipea(discrete = T)' function to apply the Ipea discrete color scale
   scale_color_ipea(discrete = T)
 
 ```
@@ -205,9 +201,9 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, color = espvida, gr
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   # Set the plot title and subtitle using 'ggtitle()'
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +
-  # Apply the IPEA continuous color scale using 'scale_color_ipea()'
+  # Apply the Ipea continuous color scale using 'scale_color_ipea()'
   scale_color_ipea() +
-  # Apply the IPEA theme using 'theme_ipea()'
+  # Apply the Ipea theme using 'theme_ipea()'
   theme_ipea(legend.position = "none")
 
 ```
@@ -233,9 +229,9 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
   scale_y_continuous(labels = scales::label_comma(decimal.mark = ",", big.mark = ".")) +
   # Set the plot title and subtitle using 'ggtitle()'
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +
-  # Apply the IPEA theme using 'theme_ipea()'
+  # Apply the Ipea theme using 'theme_ipea()'
   theme_ipea() +
-  # Apply the IPEA continuous color scale to the fill using 'scale_fill_ipea()'
+  # Apply the Ipea continuous color scale to the fill using 'scale_fill_ipea()'
   scale_fill_ipea()
 
 ```
@@ -269,9 +265,9 @@ ggplot(data = graph, aes(x = as.character(ano), y = espvida, fill = espvida)) +
   facet_wrap(. ~ regn) +  
   # Set the plot title and subtitle
   ggtitle(label = "Expectativa de vida", subtitle = "Brasil (%)") +  
-  # Apply the default IPEA theme
+  # Apply the default Ipea theme
   theme_ipea() +  
-  # Apply the IPEA continuous fill color scale
+  # Apply the Ipea continuous fill color scale
   scale_fill_ipea() +  
   # Set the y-axis limits
   coord_cartesian(ylim = c(min(graph$espvida), max(graph$espvida) + 10))  
