@@ -30,7 +30,6 @@ Imports:
     showtext
 Suggests: 
     abjData,
-    checkmate,
     data.table,
     dplyr,
     forcats,
