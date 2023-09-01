@@ -2,43 +2,35 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-# ipeaplot: ggplot graphics in Ipea standard.
+# ipeaplot: Add Ipea Editorial Standards to 'ggplot2' Graphics
 
-``ipeaplot`` creates ggplot graphics following the editorial guidelines of the Institute of Applied Economic Research (IPEA). It provides users with tools and functions that simplify the application of consistent color schemes and graphic styles, ensuring compliance with IPEA's publication standards.
+O `ipeaplot` é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea.
 
-## Installation
+# Instalação
 
-To install the Ipeaplot package, you can use the following code:
+Você pode instalar a versão em desenvolvimento do **ipeaplot** direto do Github:
 
-``` r
-# install.packages("devtools")
-devtools::install_github("ipeadata-lab/ipeaplot")
 ```
-
-## Usage
-
-### `theme_ipea`
-
-The `theme_ipea` function allows you to define graphical attributes such
-as axes, fonts, grid, and legends according to the editorial guidelines
-of Ipea. It can be used as follows:
-
-``` r
-library(ipeaplot)
-library(ggplot2)
-
-data("mtcars")
-ggplot() +
-  geom_point(data=mtcars, aes(x=mpg , y=cyl, color=cyl)) +
-  theme_ipea() +
-  labs(title = "Relationship between Fuel Efficiency and Cylinders",
-       subtitle = "Cars from the mtcars dataset")
+# Development version
+utils::remove.packages('ipeaplot')
+remotes::install_github("ipeadata-lab/ipeaplot")
 ```
+# Visão geral do pacote.
 
-The `theme_ipea` function will automatically apply the graphic settings
-defined by Ipea to the ggplot-created plot.
+O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui três funções principais para ajudar você a alterar o estilo de suas figuras de forma a seguir as diretrizes editoriais do Ipea:
 
-## Contribution
+1. `theme_ipea()` - alteração formatação da elemntos da figura (eixos, título, subtítulo, etc);
+2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
+3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do editorial.
 
-If you encounter any problem or have suggestions for improvements to the
-``ipeaplot`` package, feel free to open an issue.
+
+Demonstração completa do pacote nas vinhetas:
+- [Introdução ao ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
+- [Comparativo ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
+
+
+
+
+# Equipe <img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/man/figures/ipea.png?raw=true" alt="ipea" width="300">
+
+O pacote **ipeaplot** é desenvolvido pela equipe da Coordenação-Geral de Ciência de Dados e Tecnologia da Informação (CGDTI) do Instituto de Pesquisa Econômica Aplicada (Ipea).
