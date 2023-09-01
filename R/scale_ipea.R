@@ -182,7 +182,8 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
       graph <- list(
         ggplot2::scale_fill_gradientn(
         labels = labels,  # Set the labels for the gradient scale
-        colours = scale_manual_pal),
+        colours = scale_manual_pal,
+        ...),
         guides(color =   guide_coloursteps(
           label.hjust = label.hjust,
           title.hjust = title.hjust,
