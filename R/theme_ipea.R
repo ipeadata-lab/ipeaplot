@@ -175,6 +175,7 @@ theme_ipea <- function(axis_lines = 'half',
       size = 9, face = "bold", hjust = 0,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
+    plot.margin=unit(c(.2,.5,.2,.2),"cm"),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text

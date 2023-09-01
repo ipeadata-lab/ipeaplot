@@ -93,7 +93,7 @@ scale_color_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','
   if(isTRUE(discrete)){
     # Create a discrete color scale with the specified palette
     graph <- list(ggplot2::discrete_scale("color", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
-                  ggplot2::guides(colour = guide_legend(), size = guide_legend()))
+                  ggplot2::guides(colour = guide_legend(...)))
   }
 
   return(graph)
@@ -198,7 +198,7 @@ scale_fill_ipea <- function(discrete = F, palette = c('Blue','Green','Orange','P
 
       # Create a discrete fill scale with the specified palette
       graph <- list(ggplot2::discrete_scale("fill", "ipea", ipea_pal(palette = palette, palette_direction = palette_direction), ...),
-                    ggplot2::guides(fill = guide_legend(), size = guide_legend()))
+                    ggplot2::guides(fill = guide_legend(...)))
 
 
   }

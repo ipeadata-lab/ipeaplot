@@ -15,11 +15,16 @@ save_eps <- function(gplot, file.name, width = 5, height = 3){
   if(!("ggplot" %in% class(gplot))){
     stop("gplot deve ser um grafico ggplot")
   }
-  if(!inherits(a, 'character')){
+  if(!inherits(file.name, 'character')){
     stop("O nome do arquivo deve ser uma 'string'")
   }
 
-  loadfonts("postscript")
+  if(!grepl(".eps",file.name)){
+    # forçar que sempre seja terminado com '.eps'
+    file.name <- paste0(gsub("\\.[^.]+$", "", file.name),".eps")
+    warning("O formato do arquivo deve ser '.eps'")
+  }
+
   grDevices::postscript(file = file.name, width = width, height = height)
   gplot
   grDevices::dev.off()
