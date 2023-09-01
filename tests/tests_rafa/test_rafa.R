@@ -6,15 +6,13 @@ data(mtcars)
 # escala continua default do ggplot
 ggplot() +
   geom_point(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
-  ipeaplot::theme_ipea(x_text_angle = 45)
-  #ipeaplot::theme_ipea(angle = 45)
+  ipeaplot::theme_ipea(angle = 45)
 
 
 
 ggplot() +
   geom_col(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
-  ipeaplot::theme_ipea(axis_values = F)
- # ipeaplot::theme_ipea(text = T)
+  ipeaplot::theme_ipea(text = T)
 
 
 # escala continua do ipeaplot
@@ -84,6 +82,7 @@ Sys.setenv(NOT_CRAN = "true")
 devtools::check(pkg = ".",  cran = FALSE, env_vars = c(NOT_CRAN = "true"))
 tictoc::toc()
 beepr::beep()
+
 
 
 # CRAN
