@@ -64,12 +64,12 @@ function includes standardized formatting of options for axis lines, text,</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">theme_ipea</span><span class="op">(</span></span>
 <span>  axis_lines <span class="op">=</span> <span class="st">"half"</span>,</span>
 <span>  axis_values <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  pie.adjust <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  legend.position <span class="op">=</span> <span class="st">"right"</span>,</span>
 <span>  grid.adjust <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
 <span>  <span class="va">x_breaks</span>,</span>
 <span>  <span class="va">y_breaks</span>,</span>
 <span>  expand_x_limit <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  text_scale <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  x_text_angle <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  include_ticks <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -88,10 +88,6 @@ function includes standardized formatting of options for axis lines, text,</p>
 <dd><p>Logical value indicating whether to show text elements. If <code>TRUE</code>,
 axis text will be displayed in black; otherwise, they will
 be hidden.</p></dd>
-
-
-<dt>pie.adjust</dt>
-<dd><p>A character vector specifying some particularities of geom <code>"pie"</code>.</p></dd>
 
 
 <dt>legend.position</dt>
@@ -117,6 +113,10 @@ legend. Valid options are <code>"right"</code> (default), <code>"left"</code>, <
 <dd><p>Logical value that indicates whether the x-axis
 boundary should be expanded. If <code>TRUE</code>, the x-axis text will be
 expanded; otherwise there will be no change.</p></dd>
+
+
+<dt>text_scale</dt>
+<dd><p>scalar that will grow/shrink all text defined within</p></dd>
 
 
 <dt>x_text_angle</dt>
