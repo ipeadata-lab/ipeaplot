@@ -1,12 +1,13 @@
 ---
 title: "Comparativo ipeaplot"
 date: "`r Sys.Date()`"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 urlcolor: blue
-vignette: >
-  %\VignetteIndexEntry{Cookbook ipeaplot}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+vignette: "%\\VignetteIndexEntry{Cookbook ipeaplot} %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, include = FALSE}
@@ -48,14 +49,9 @@ labels <- as.character(Populacao)
 labels <- gsub("." , "," , labels, fixed=T)
 base_graf1 <- data.frame(Ano,Populacao,labels)
 
-######## GRAFICO 2
-Assunto <- c('Produção Técnica do Ipea','Questões Administrativas',
-             'Questões de Ouvidoria','Serviços Ipea','Questões Improcedentes')
-Freq <- c(588,680,434,285,407)
-percentual <- round(Freq/sum(Freq),2)*100
-base_graf2 <- data.frame(Assunto,Freq,percentual)
 
-####### GRAFICO 3
+
+####### GRAFICO 2
 Ano <- factor(c(1950,	1951,	1952,	1953,	1954,	1955,	1956,	1957,	1958,	
                 1959,	1960,	1961,	1962,	1963,	1964,	1965,	1966,	1967,
                 1968,	1969,	1970,	1971,	1972,	1973,	1974,	1975,	1976,
@@ -83,37 +79,37 @@ Populacao<- c( 1.850116458,	1.791417471,	1.760491225,	1.751060624,
                1.151783904)
 labels <- as.character(Populacao)
 labels <- gsub("." , "," , labels, fixed=T)
-base_graf3<- data.frame(Ano,Populacao, labels)
+base_graf2<- data.frame(Ano,Populacao, labels)
 
-######## GRAFICO 4
+######## GRAFICO 3
 # Valores Hipoteticos
 Pais <- factor(c("Ìndia","Japão","Alemanha","Reino Unido","França",
                  "Arábia Saudita","Rússia","China","Estados Unidos"))
 Gasto <- c(40,50,50,60,70,40,90,207,640)
-base_graf4<- data.frame(Pais,Gasto)
-base_graf4$pos <- ifelse(base_graf4$Pais == 'Estados Unidos',2,1)
+base_graf3<- data.frame(Pais,Gasto)
+base_graf3$pos <- ifelse(base_graf3$Pais == 'Estados Unidos',2,1)
 
 library(dplyr)
-base_graf4 <- base_graf4 %>%
+base_graf3 <- base_graf3 %>%
   group_by(pos) %>%
   mutate(total = sum(Gasto))
 
-######## GRAFICO 5
+######## GRAFICO 4
 Ano <- seq(2009,2020,1)
 Exabytes <- c(130,360,750,1400,3100,6000,10000,14000,19000,25000,31500,40000)
 
-base_graf5 <- data.frame(Ano,Exabytes)
+base_graf4 <- data.frame(Ano,Exabytes)
 
-######## GRAFICO 6
+######## GRAFICO 5
 
 Ano <- seq(2004,2013,1)
 Mundo <- c(4.2,3.8,4.1,4,1.5,-2,4,2.9,2.4,2.1)
 UE <- c(2.6,2.2,3.4,3.2,0.6,-4.6,2.1,1.7,-0.4,0)
 
-base_graf6 <- data.frame(Ano,Mundo,UE)
-base_graf6<- melt(base_graf6, id=c("Ano"))
+base_graf5 <- data.frame(Ano,Mundo,UE)
+base_graf5<- melt(base_graf5, id=c("Ano"))
 
-######## GRAFICO 7
+######## GRAFICO 6
 pais <- c("Áustria","Bélgica","Bulgária","Croácia","Chipre","República Tcheca",
           "Dinamarca","Estônia","Finlândia","França","Alemanha","Grécia",
           "Hungria","Irlanda","Itália","Letônia","Lituânia","Luxemburgo",
@@ -123,9 +119,9 @@ pais <- c("Áustria","Bélgica","Bulgária","Croácia","Chipre","República Tche
 petroleo <- c(90,100,97,72,104,96,-37,60,90,97,96,100,
               81,102,89,104,90,98,98,97,96,98,52,89,107,96,95,38)
 
-base_graf7 <- data.frame(pais,petroleo)
+base_graf6 <- data.frame(pais,petroleo)
 
-######## GRAFICO 8
+######## GRAFICO 7
 pais <- c("África do Sul","Brasil","Federação Russa",
           "China","Índia","OCDE")
 
@@ -133,20 +129,20 @@ final <- c(0.695,0.55,0.43,0.413,0.38,0.315)
 
 inicio <- c(0.67,0.61,0.4,0.33,0.32,0.297)
 
-base_graf8 <- data.frame(pais,final,inicio)
+base_graf7 <- data.frame(pais,final,inicio)
 
-######## GRAFICO 9
+######## GRAFICO 8
 link <- 'https://github.com/ipeadata-lab/ipeaplot/files'
-base_graf9 <- data.table::fread(paste0(link,'/12239277/dados_grafico9.csv'),
+base_graf8 <- data.table::fread(paste0(link,'/12239277/dados_grafico9.csv'),
                                 dec = ",", encoding = 'Latin-1')
 
-######## GRAFICO 10
-base_graf10 <- data.table::fread(paste0(link,'/12239278/dados_grafico10.csv'),
+######## GRAFICO 9
+base_graf9 <- data.table::fread(paste0(link,'/12239278/dados_grafico10.csv'),
                                  dec = ",", encoding = 'Latin-1')
 
 ######## Salvando graficos no formato Rdata
 save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,
-     base_graf9, base_graf10,
+     base_graf9,
      file='bases_de_dados.Rdata')
 
 ```
@@ -179,51 +175,24 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
 graf1
 ```
 
+
+
 Gráfico 2 - Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
 
 Gráfico 2 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=5, fig.height=5}
-y.breaks <- cumsum(base_graf2$percentual) - (base_graf2$percentual)/2
-y.breaks
-
-graf2 <- ggplot(base_graf2, aes(x='', y=percentual, fill=Assunto))+
-  geom_bar(width = 1, stat = "identity", color= 'black')+
-  coord_polar("y", start=0) +
-  labs(x="",
-       y="",
-       fill = "",
-       title="GRÁFICO 2",
-       subtitle="Assuntos das manifestações recebidas pela Ouvidoria do Ipea (2004-2014) (Em %)",
-       caption = 'Elaboração dos autores.') +
-  theme_ipea(legend.position="bottom", axis = 'none', axis_values = F, pie.adjust = 'pie') +
-  scale_fill_ipea(discrete = T) +
-  guides(fill = guide_legend(nrow = 2))   + 
-  geom_text(aes(x = 1.8, label = paste0(percentual,"%")), position = position_stack(vjust = .5))
-
-
-graf2
-```
-
-
-Gráfico 3 - Original
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::include_graphics(paste0(getwd(),"/prints_original/grafico3.png"))
-```
-
-Gráfico 3 - Padrão Ipea
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=3}
-base_graf3$Ano <- as.numeric(as.character(base_graf3$Ano))
-ref <- (subset(base_graf3,substr(Ano,4,4) %in% c('5','0')))
+base_graf2$Ano <- as.numeric(as.character(base_graf2$Ano))
+ref <- (subset(base_graf2,substr(Ano,4,4) %in% c('5','0')))
 
-graf3 <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
+graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
   geom_line(color = '#015f96') +
   labs(x="",
        y="",
        fill = "",
-       title="GRÁFICO 3",
+       title="GRÁFICO 2",
        subtitle="Taxa de crescimento da população mundial (Em %)",
        caption = 'Elaboração dos autores.') +
   theme_ipea(x_breaks = 16, x_text_angle = 90, include_ticks = F) +
@@ -231,27 +200,27 @@ graf3 <- ggplot(base_graf3, aes(x=Ano, y=Populacao, group = 1))+
            outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
 
-graf3
+graf2
 ```
 
-Gráfico 4 - Padrão Original
+Gráfico 3 - Padrão Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico3.png"))
 ```
 
 
-Gráfico 4 - Padrão Ipea
+Gráfico 3 - Padrão Ipea
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=5, fig.height=6}
-temp <- base_graf4 %>% distinct(pos, .keep_all = T)
+temp <- base_graf3 %>% distinct(pos, .keep_all = T)
 
 
-graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais,
+graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
                                 label = Pais))+
   geom_bar(width = 0.5, stat = "identity", color= NA) +
   labs(x="",
        y="Gastos com defesa",
        fill = "",
-       title="GRÁFICO 4",
+       title="GRÁFICO 3",
        subtitle="Gastos com defesa (Em bilhões de dólares)",
        caption = 'Fonte: Peter G. Peterson Foundation (2013).\nTradução dos autores.') +
   scale_fill_ipea(discrete = T) +
@@ -259,6 +228,27 @@ graf4 <- ggplot(base_graf4, aes(x= as.character(pos), y=Gasto, fill=Pais,
   geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -1) +
   theme_ipea(legend.position="none")
 
+graf3
+```
+
+Gráfico 4 - Original
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
+```
+
+
+Gráfico 4 - Padrão Ipea
+```{r eval=TRUE, message=FALSE, fig.align="center", fig.width=5, fig.height=5}
+graf4 <- ggplot(base_graf4, aes(x=Ano)) +
+  geom_ribbon(aes(ymin=0, ymax=Exabytes), fill = "#015f96")+
+  labs(x="",
+       y="",
+       fill = "",
+       title="GRÁFICO 4",
+       subtitle="Evolução do volume de informação digital até 2020",
+       caption = 'Fonte: IDC’s Digital Universe Study (Gantz e Reinsel, 2012).') +
+  theme_ipea(legend.position="none",expand_x_limit = F,
+             x_breaks = 10, y_breaks = 4)
 graf4
 ```
 
@@ -269,18 +259,24 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 
 
 Gráfico 5 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, fig.align="center", fig.width=5, fig.height=5}
-graf5 <- ggplot(base_graf5, aes(x=Ano)) +
-  geom_ribbon(aes(ymin=0, ymax=Exabytes), fill = "#015f96")+
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
+  geom_line(size=1)+
+  geom_point(aes(shape=variable, fill = variable),
+             size=3, stroke=1.5, show.legend = F)+
   labs(x="",
        y="",
-       fill = "",
+       color = "",
        title="GRÁFICO 5",
-       subtitle="Evolução do volume de informação digital até 2020",
-       caption = 'Fonte: IDC’s Digital Universe Study (Gantz e Reinsel, 2012).') +
-  theme_ipea(legend.position="none",expand_x_limit = F,
-             x_breaks = 10, y_breaks = 4)
+       subtitle="Crescimento anual do PIB da União Europeia (2004-2013) (Em %)",
+       caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial.\nDisponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
+  theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom', expand_x_limit = F) +
+  scale_color_ipea(palette_direction = -1, discrete = T) +
+  scale_shape_manual(values = c(19, 21)) +
+  scale_fill_manual(values = c(NA,"white"))
+
 graf5
+
 ```
 
 Gráfico 6 - Original
@@ -290,24 +286,19 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 
 
 Gráfico 6 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-graf6 <- ggplot(base_graf6, aes(Ano, value, group=variable, color=variable))+
-  geom_line(size=1)+
-  geom_point(aes(shape=variable, fill = variable),
-             size=3, stroke=1.5, show.legend = F)+
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=4, fig.height=6}
+base_graf6$pais<- factor(base_graf6$pais, levels=rev(sort(base_graf6$pais)))
+graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
+  geom_bar(stat="identity", fill = '#015f96') +
+  coord_flip() +
   labs(x="",
        y="",
-       color = "",
+       fill = "",
        title="GRÁFICO 6",
-       subtitle="Crescimento anual do PIB da União Europeia (2004-2013) (Em %)",
-       caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial.\nDisponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
-  theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom', expand_x_limit = F) +
-  scale_color_ipea(palette_direction = -1, discrete = T) +
-  scale_shape_manual(values = c(19, 21)) +
-  scale_fill_manual(values = c(NA,"white"))
-
+       subtitle="Importações de energia em termos do consumo total\nde energia dos países da União Europeia",
+       caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
+  theme_ipea(legend.position = 'none', expand_x_limit = F)
 graf6
-
 ```
 
 Gráfico 7 - Original
@@ -317,18 +308,20 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico7.png"))
 
 
 Gráfico 7 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=4, fig.height=6}
-base_graf7$pais<- factor(base_graf7$pais, levels=rev(sort(base_graf7$pais)))
-graf7 <- ggplot(data=base_graf7, aes(x=pais, y=petroleo)) +
-  geom_bar(stat="identity", fill = '#015f96') +
-  coord_flip() +
+```{r eval=TRUE, message=FALSE, warning=FALSE,fig.align="center", fig.width=6, fig.height=7}
+base_graf7<- melt(base_graf7, id=c("pais"))
+
+graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=variable)) +
+  geom_bar(position='dodge',stat="identity") +
+  coord_flip()+
   labs(x="",
        y="",
        fill = "",
        title="GRÁFICO 7",
-       subtitle="Importações de energia em termos do consumo total\nde energia dos países da União Europeia",
-       caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
-  theme_ipea(legend.position = 'none', expand_x_limit = F)
+       subtitle="Mudanças nos níveis de desigualdade do BRICS, calculadas pelo coeficiente\nGini, entre o início da década de 1990 e o final da década de 2000",
+       caption = '') +
+  theme_ipea(legend.position = 'bottom') +
+  scale_fill_ipea(discrete = T)
 graf7
 ```
 
@@ -339,110 +332,37 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 
 
 Gráfico 8 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE,fig.align="center", fig.width=5, fig.height=5}
-base_graf8<- melt(base_graf8, id=c("pais"))
-
-graf8 <- ggplot(data=base_graf8, aes(x=pais, y=value, group=variable, fill=variable)) +
-  geom_bar(position='dodge',stat="identity") +
-  coord_flip()+
-  labs(x="",
-       y="",
-       fill = "",
-       title="GRÁFICO 8",
-       subtitle="Mudanças nos níveis de desigualdade do BRICS, calculadas pelo coeficiente\nGini, entre o início da década de 1990 e o final da década de 2000",
-       caption = '') +
-  theme_ipea(legend.position = 'bottom') +
-  scale_fill_ipea(discrete = T)
-graf8
-```
-
-Gráfico 9 - Original
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::include_graphics(paste0(getwd(),"/prints_original/grafico9.png"))
-```
-
-
-Gráfico 9 - Padrão Ipea
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=5, fig.height=6}
-######## GRAFICO 9
-base_graf9_aux <- base_graf9[,c(1,4)]
-base_graf9_aux$n <- 1:nrow(base_graf9_aux)
-base_graf9<- melt(base_graf9[,-4], id=c("pais"))
+######## GRAFICO 8
+base_graf8_aux <- base_graf8[,c(1,4)]
+base_graf8_aux$n <- 1:nrow(base_graf8_aux)
+base_graf8<- melt(base_graf8[,-4], id=c("pais"))
 
-base_graf9 <- base_graf9 %>%
+base_graf8 <- base_graf8 %>%
   group_by(variable) %>%
   mutate(n = 1:n())
 
-label <- (base_graf9 %>% ungroup() %>% distinct(pais))$pais
+label <- (base_graf8 %>% ungroup() %>% distinct(pais))$pais
 
-graf9 <-
+graf8 <-
   ggplot() +
-  geom_bar(data=base_graf9, aes(x=n, y=value,
+  geom_bar(data=base_graf8, aes(x=n, y=value,
                                 group=variable, fill=variable),
            stat="identity", width = 0.5) +
   labs(x="",
        y="",
        fill = "",
-       title="GRÁFICO 9",
+       title="GRÁFICO 8",
        subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
        caption = 'Fonte: PwC (2014).\nTradução dos autores') +
-  geom_line(data=base_graf9_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1),
+  geom_line(data=base_graf8_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1),
             color = 'gray') +
-  scale_x_continuous(breaks = 1:max(base_graf9$n), labels = label) +
+  scale_x_continuous(breaks = 1:max(base_graf8$n), labels = label) +
   scale_fill_ipea(discrete = T) +
   theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F) +
-  geom_rug(data=base_graf9, aes(x = n-0.5),
+  geom_rug(data=base_graf8, aes(x = n-0.5),
            outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off")
 
-graf9
-```
-
-Gráfico 10 - Original
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-knitr::include_graphics(paste0(getwd(),"/prints_original/grafico10.png"))
-```
-
-Gráfico 10 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=5, fig.height=6}
-base_graf10 <- base_graf10 %>%
-  mutate(PIB = as.numeric(PIB),
-         variacao_PIB = ((PIB/lag(PIB,1)) - 1)*100,
-         decada = paste0(substr(Data,3,3),"0")) %>%
-  group_by(decada) %>%
-  mutate(media_variacao = mean(variacao_PIB, na.rm = T)) %>%
-  filter(Data >= 1950)
-
-text <- base_graf10 %>%
-  arrange(-Data) %>%
-  group_by(decada) %>% slice(1)
-
-geom_segment <- base_graf10 %>%
-  group_by(decada) %>%
-  filter(Data == min(Data) | Data == max(Data)) %>%
-  mutate(intervals = ifelse(Data == min(Data),'start_dates','end_dates')) %>%
-  ungroup() %>%
-  select(c(Data,intervals,media_variacao)) %>%
-  tidyr::pivot_wider(names_from = 'intervals', values_from = 'Data')
-
-graf10 <-
-  ggplot() +
-  geom_line(data=base_graf10, aes(x = Data, y= variacao_PIB,
-                                group=1),
-            color = '#015f96') +
-  geom_segment(data = geom_segment,
-               aes(x = start_dates, xend = end_dates,
-                   y =media_variacao, yend = media_variacao),
-               color = 'cyan', linetype = 'dashed')  +
-  geom_text(data = text, aes(x = Data+2,
-                             y= media_variacao, label = round(media_variacao,0))) +
-  labs(x="",
-       y="",
-       fill = "",
-       title="GRÁFICO 10",
-       subtitle="Variação anual do PIB) (Em %)",
-       caption = 'Fonte: Sistema de Contas Nacionais do IBGE e Ipeadata.\nElaboração do autor.') +
-  theme_ipea(legend.position = 'bottom', x_breaks = 10)
-
-graf10
+graf8
 ```

@@ -10,7 +10,6 @@
 #' @param axis_values Logical value indicating whether to show text elements. If `TRUE`,
 #'        axis text will be displayed in black; otherwise, they will
 #'        be hidden.
-#' @param pie.adjust A character vector specifying some particularities of geom `"pie"`.
 #' @param legend.position A character vector specifying the position of the
 #'        legend. Valid options are `"right"` (default), `"left"`, `"top"`, and
 #'        `"bottom"`.
@@ -21,6 +20,7 @@
 #' @param expand_x_limit Logical value that indicates whether the x-axis
 #'        boundary should be expanded. If `TRUE`, the x-axis text will be
 #'        expanded; otherwise there will be no change.
+#' @param text_scale scalar that will grow/shrink all text defined within
 #' @param x_text_angle Numeric. Angle in degrees of the text in the x-axis.
 #' @param include_ticks Logical. Whether to include ticks. Defaults to `TRUE`.
 #' @param ... Additional arguments to be passed to the `theme` function from the
@@ -32,11 +32,11 @@
 
 theme_ipea <- function(axis_lines = 'half',
                        axis_values = T,
-                       pie.adjust = F,
                        legend.position = 'right',
                        grid.adjust = 'horizontal',
                        x_breaks , y_breaks,
                        expand_x_limit = T,
+                       text_scale = 1,
                        x_text_angle = 0,
                        include_ticks = T,
                        ...){
@@ -51,13 +51,7 @@ theme_ipea <- function(axis_lines = 'half',
   checkmate::assert_string(x = grid.adjust, pattern = c('vertical|horizontal'))
   checkmate::assert_string(x = legend.position, pattern = c('right|left|bottom|top|none'))
 
-
-  if(isFALSE(pie.adjust)){
-    color = "#b7bdb7"
-  } else {
-    color = NA
-  }
-
+  color = "#b7bdb7"
 
 
   if (axis_lines == "half") {
@@ -158,28 +152,28 @@ theme_ipea <- function(axis_lines = 'half',
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
     # Adjusts the vertical alignment of the y-axis title
-    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5, size = 8, lineheight = 9.6),
+    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5, size = 8*text_scale, lineheight = 9.6),
     # Adjusts the vertical alignment of the x-axis title
-    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4, size = 8, lineheight = 9.6),
+    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4, size = 8*text_scale, lineheight = 9.6),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
       family = "Frutiger-LT-47-LightCn",
-      size = 10, hjust = 0,
+      size = 10*text_scale, hjust = 0,
       margin = margin(0,0,0.5,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
       family = "Frutiger-LT-Std",
-      size = 9, face = "bold", hjust = 0,
+      size = 9*text_scale, face = "bold", hjust = 0,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
     plot.margin=unit(c(.2,.5,.2,.2),"cm"),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text
-    legend.text = ggplot2::element_text(size = 7),
+    legend.text = ggplot2::element_text(size = 7*text_scale),
     # Set caption position
     plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0),
     # Set the horizontal alignment of the legend to center

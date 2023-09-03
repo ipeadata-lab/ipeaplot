@@ -7,12 +7,12 @@
 theme_ipea(
   axis_lines = "half",
   axis_values = T,
-  pie.adjust = F,
   legend.position = "right",
   grid.adjust = "horizontal",
   x_breaks,
   y_breaks,
   expand_x_limit = T,
+  text_scale = 1,
   x_text_angle = 0,
   include_ticks = T,
   ...
@@ -26,8 +26,6 @@ theme_ipea(
 \item{axis_values}{Logical value indicating whether to show text elements. If \code{TRUE},
 axis text will be displayed in black; otherwise, they will
 be hidden.}
-
-\item{pie.adjust}{A character vector specifying some particularities of geom \code{"pie"}.}
 
 \item{legend.position}{A character vector specifying the position of the
 legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"}, and
@@ -43,6 +41,8 @@ legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"},
 \item{expand_x_limit}{Logical value that indicates whether the x-axis
 boundary should be expanded. If \code{TRUE}, the x-axis text will be
 expanded; otherwise there will be no change.}
+
+\item{text_scale}{scalar that will grow/shrink all text defined within}
 
 \item{x_text_angle}{Numeric. Angle in degrees of the text in the x-axis.}
 

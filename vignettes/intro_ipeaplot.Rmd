@@ -61,7 +61,7 @@ data(mtcats)
 
 A figura baixo ilustra de maneira geral uma figura ggplot em seu formato pardão, e como ela fica seguindo as diretrizes editoriais de gráficos publicados pelo Ipea em seus Textos para Discussão (TD). Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, fig.width=8, fig.height=4, message=FALSE, warning=FALSE, out.width = "100%"}
 fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               labs(y='Consumo de Combustível (milhas por galão)',
@@ -82,14 +82,14 @@ Existem duas funções básicas para selecionar a paleta de cores da figura: `sc
 O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais `c("Blue", "Green", "Orange", "Pink")`, quanto paletes com cores divergentes `c("Red-Blue", "Orange-Blue")`.
 
 **Cores sequenciais:**
-```{r eval=TRUE, echo=FALSE, fig.dim = c(14, 4)}
+```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4)}
 scales::show_col(ipea_pal(palette = "Blue")(9), labels = F, ncol = 9, borders = F)
 scales::show_col(ipea_pal(palette = "Green")(9), labels = F, ncol = 9, borders = F)
 scales::show_col(ipea_pal(palette = "Orange")(9), labels = F, ncol = 9, borders = F)
 ```
 
 **Cores divergentes:**
-```{r eval=TRUE, echo=FALSE, fig.dim = c(14, 4)}
+```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4)}
 scales::show_col(ipea_pal(palette = "Red-Blue")(9), labels = F, ncol = 9, borders = T)
 scales::show_col(ipea_pal(palette = "Orange-Blue")(9), labels = F, ncol = 9, borders = T)
 scales::show_col(ipea_pal(palette = "Green-Blue")(9), labels = F, ncol = 9, borders = T)
@@ -98,7 +98,7 @@ scales::show_col(ipea_pal(palette = "Green-Blue")(9), labels = F, ncol = 9, bord
 
 Para usar as paletas de cores, basta adicionar uma das funções na construção da sua figura com `ggplot2`:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, out.width = "100%"}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=5}
 # paleta sequencial verde
 fig_base + scale_color_ipea(palette = "Green")
 
@@ -110,7 +110,7 @@ fig_base + scale_color_ipea(palette = "Orange-Blue")
 
 Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE,  fig.width=8, fig.height=5}
 ggplot() +
   geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
   labs(y='Consumo de Combustível\n(milhas por galão)',
@@ -128,7 +128,7 @@ Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scal
 
 ## Ajustando o `theme` das figuras
 
-A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo Ipea nas publicações de Texto para Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
+A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo wwwwIpea nas publicações de Texto para Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
 
 Para ilustrar essa função, vamos utilizar alguns dados do Atlas do Desenvolvimento Humano organizados em um projeto de parceria entre Ipea, FJP e PNUD). Para carregar os dados, basta rodar:
 
@@ -139,7 +139,7 @@ head(df)
 
 Essa base de dados traz para cada municipio uma série de indicadores socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro calculamos qual a proporção de domicílios que possuia coleta de esgoto em cada região do país a cada anos, e em seguida geramos o gráfico:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=3}
 # cria variavel identificando a regiao de cada municipio
 df <- df |> 
       mutate(regiao = substring(uf, 1, 1),
@@ -168,7 +168,7 @@ ggplot() +
 
 Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6}
 ggplot() + 
   geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
   scale_fill_ipea(discrete = T, palette = 'Green') +
@@ -182,7 +182,7 @@ ggplot() +
 
 Nesse outro gráfico, a gente visualiza a dispersão da expectativa de vida dos municípios em cada região do país no ano de 2010.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6}
 df2 <- df |>
   filter( ano == 2010) |>
   arrange(espvida)
@@ -230,7 +230,7 @@ df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
 
 Agora basta criar o mapa:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center" }
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6 }
 fig_map <- ggplot() +
              geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
              geom_sf(data = uf, color = "black", fill = NA) +
