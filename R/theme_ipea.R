@@ -20,7 +20,6 @@
 #' @param expand_x_limit Logical value that indicates whether the x-axis
 #'        boundary should be expanded. If `TRUE`, the x-axis text will be
 #'        expanded; otherwise there will be no change.
-#' @param text_scale scalar that will grow/shrink all text defined within
 #' @param x_text_angle Numeric. Angle in degrees of the text in the x-axis.
 #' @param include_ticks Logical. Whether to include ticks. Defaults to `TRUE`.
 #' @param ... Additional arguments to be passed to the `theme` function from the
@@ -36,7 +35,6 @@ theme_ipea <- function(axis_lines = 'half',
                        grid.adjust = 'horizontal',
                        x_breaks , y_breaks,
                        expand_x_limit = T,
-                       text_scale = 1,
                        x_text_angle = 0,
                        include_ticks = T,
                        ...){
@@ -152,28 +150,28 @@ theme_ipea <- function(axis_lines = 'half',
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
     # Adjusts the vertical alignment of the y-axis title
-    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5, size = 8*text_scale, lineheight = 9.6),
+    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5,  lineheight = 9.6),
     # Adjusts the vertical alignment of the x-axis title
-    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4, size = 8*text_scale, lineheight = 9.6),
+    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4,  lineheight = 9.6),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
       family = "Frutiger-LT-47-LightCn",
-      size = 10*text_scale, hjust = 0,
+       hjust = 0,
       margin = margin(0,0,0.5,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
       family = "Frutiger-LT-Std",
-      size = 9*text_scale, face = "bold", hjust = 0,
+       face = "bold", hjust = 0,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
     plot.margin=unit(c(.2,.5,.2,.2),"cm"),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text
-    legend.text = ggplot2::element_text(size = 7*text_scale),
+    #legend.text = ggplot2::element_text(size = 7),
     # Set caption position
     plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0),
     # Set the horizontal alignment of the legend to center

@@ -12,7 +12,6 @@ theme_ipea(
   x_breaks,
   y_breaks,
   expand_x_limit = T,
-  text_scale = 1,
   x_text_angle = 0,
   include_ticks = T,
   ...
@@ -41,8 +40,6 @@ legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"},
 \item{expand_x_limit}{Logical value that indicates whether the x-axis
 boundary should be expanded. If \code{TRUE}, the x-axis text will be
 expanded; otherwise there will be no change.}
-
-\item{text_scale}{scalar that will grow/shrink all text defined within}
 
 \item{x_text_angle}{Numeric. Angle in degrees of the text in the x-axis.}
 
