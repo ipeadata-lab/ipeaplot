@@ -25,7 +25,7 @@ save_eps <- function(gplot, file.name, width = 5, height = 3){
     warning("O formato do arquivo deve ser '.eps'")
   }
 
-  ggplot2::ggsave(gplot, file = file.name,  device="eps")
+  ggplot2::ggsave(gplot, file = file.name,  device="eps", family = 'Frutiger LT Light Cond')
 
 
 }
