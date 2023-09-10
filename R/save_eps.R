@@ -10,7 +10,7 @@
 #' @family save
 #' @export
 #'
-save_eps <- function(gplot, file.name, width = 5, height = 3){
+save_eps <- function(gplot, file.name, width = 5, height = 3, ...){
 
   if(!("ggplot" %in% class(gplot))){
     stop("gplot deve ser um grafico ggplot")
@@ -26,7 +26,7 @@ save_eps <- function(gplot, file.name, width = 5, height = 3){
   }
 
   extrafont::loadfonts(quiet = TRUE)
-  ggplot2::ggsave(gplot, file = file.name,  device="eps", family = 'Frutiger LT Light Cond')
+  ggplot2::ggsave(gplot, file = file.name,  device="eps", family = 'Frutiger LT Light Cond', ...)
 
 
 }
