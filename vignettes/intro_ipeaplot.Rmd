@@ -53,6 +53,14 @@ library(abjData)
 library(geobr)
 library(patchwork)
 
+# Function that aligns color palettes
+pal <- function(col, border = "light gray") {
+  n <- length(col)
+  plot(0, 0, type="n", xlim = c(0, 1), ylim = c(0, 1), axes = FALSE,
+       xlab = "", ylab = "")
+  rect(0:(n-1)/n, 0, 1:n/n, 1, col = col, border = border)
+}
+
 # Load mtcars dataset
 data(mtcats)
 ```
@@ -83,16 +91,19 @@ O parâmetro `palette` permite escolher uma paleta de cores entre as opções de
 
 **Cores sequenciais:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4)}
-scales::show_col(ipea_pal(palette = "Blue")(9), labels = F, ncol = 9, borders = F)
-scales::show_col(ipea_pal(palette = "Green")(9), labels = F, ncol = 9, borders = F)
-scales::show_col(ipea_pal(palette = "Orange")(9), labels = F, ncol = 9, borders = F)
+par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
+pal(ipea_pal(palette = "Blue")(9)); mtext("Blue")
+pal(ipea_pal(palette = "Green")(9)); mtext("Green")
+pal(ipea_pal(palette = "Orange")(9)); mtext("Orange")
+
 ```
 
 **Cores divergentes:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4)}
-scales::show_col(ipea_pal(palette = "Red-Blue")(9), labels = F, ncol = 9, borders = T)
-scales::show_col(ipea_pal(palette = "Orange-Blue")(9), labels = F, ncol = 9, borders = T)
-scales::show_col(ipea_pal(palette = "Green-Blue")(9), labels = F, ncol = 9, borders = T)
+par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
+pal(ipea_pal(palette = "Red-Blue")(9)); mtext("Red-Blue")
+pal(ipea_pal(palette = "Orange-Blue")(9)); mtext("Orange-Blue")
+pal(ipea_pal(palette = "Green-Blue")(9)); mtext("Green-Blue")
 ```
 
 
@@ -236,7 +247,8 @@ fig_map <- ggplot() +
              geom_sf(data = uf, color = "black", fill = NA) +
              ggtitle("Média de anos de estudo") +
              scale_fill_ipea(palette = 'Orange-Blue', 
-                             name='Anos de\nestudo') # + theme_ipea()
+                             name='Anos de\nestudo') + 
+             theme_ipea()
    
 
 fig_map
