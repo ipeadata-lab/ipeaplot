@@ -220,9 +220,7 @@ theme_ipea <- function(axis_lines = 'half',
 
     if(axis_lines %in% c('none','full')){
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
-           theme,
-           scale_y,
-           scale_x)
+           theme)
 
     } else {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
