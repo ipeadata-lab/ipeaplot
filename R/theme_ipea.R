@@ -222,9 +222,7 @@ theme_ipea <- function(axis_lines = 'half',
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
            scale_y,
-           scale_x,
-           annotate(geom = 'segment', y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25),
-           annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = color, linewidth = 0.25))
+           scale_x)
 
     } else {
       list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
