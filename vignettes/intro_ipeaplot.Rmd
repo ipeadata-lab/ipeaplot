@@ -193,7 +193,7 @@ ggplot() +
 
 Nesse outro gráfico, a gente visualiza a dispersão da expectativa de vida dos municípios em cada região do país no ano de 2010.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=5, fig.height=5}
 df2 <- df |>
   filter( ano == 2010) |>
   arrange(espvida)
