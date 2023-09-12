@@ -29,7 +29,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Pedro Cavalcanti Gonçalves Ferreira \email{pedro.ferreira2@ipea.gov.br}
+  \item Pedro Cavalcanti Goncalves Ferreira \email{pedro.ferreira2@ipea.gov.br}
   \item Daniel Lima \email{daniel.viegas@ipea.gov.br}
   \item Gustavo Coelho \email{gustavo.coelho@ipea.gov.br}
   \item Rafael H. M. Pereira \email{rafa.pereira.br@gmail.com} (\href{https://orcid.org/0000-0003-2125-7465}{ORCID})
