@@ -51,6 +51,15 @@ theme_ipea <- function(axis_lines = 'half',
 
   color = "#b7bdb7"
 
+  if(grid.adjust == 'horizontal'){
+    panel.grid.major.x = ggplot2::element_blank()
+    panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
+
+  } else if (grid.adjust == 'vertical'){
+    panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
+    panel.grid.major.y = ggplot2::element_blank()
+  }
+
 
   if (axis_lines == "half") {
     # Define the axis line and panel border for "half" style
@@ -59,18 +68,16 @@ theme_ipea <- function(axis_lines = 'half',
     axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
     axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
     panel.border = ggplot2::element_blank()
-    panel.grid   = ggplot2::element_line()
 
   } else if (axis_lines == "full") {
     # Define the axis line and panel border for "full" style
-    axis.line.x  = ggplot2::element_blank(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.line.y  = ggplot2::element_blank(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.ticks.x = ggplot2::element_blank(colour = "black", linewidth = 0.25)
-    axis.ticks.y = ggplot2::element_blank(colour = "black", linewidth = 0.25)
-    panel.grid   = ggplot2::element_line()
+    axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
+    axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
+    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
+    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
     panel.border = ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA)
 
-  } else {
+  } else if (axis_lines == "none") {
     # Define the axis line and panel border for other styles
     axis.line.x  = ggplot2::element_blank()
     axis.line.y  = ggplot2::element_blank()
@@ -78,14 +85,18 @@ theme_ipea <- function(axis_lines = 'half',
     axis.ticks.y = ggplot2::element_blank()
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()
-    panel.grid   = ggplot2::element_blank()
+    panel.grid.major.x = ggplot2::element_blank()
+    panel.grid.major.y = ggplot2::element_blank()
     panel.border = ggplot2::element_blank()
 
+  } else {
+    stop("Argument axis_lines must be 'half', 'full' or 'none'.")
   }
 
 
   if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
+    axis.ticks.y = ggplot2::element_blank()
     hjust <- ifelse(x_text_angle == 0,0.5, 1)
     vjust <- ifelse(x_text_angle == 0,3, 0.5)
   }
@@ -103,16 +114,7 @@ theme_ipea <- function(axis_lines = 'half',
     strip.background = ggplot2::element_rect(fill = "white")
     strip.text = ggplot2::element_text(colour = 'black',hjust=0)
 
-    if(grid.adjust == 'horizontal'){
-      panel.grid.major.x = ggplot2::element_blank()
-      panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
-      geom_segment = annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25)
 
-    } else if (grid.adjust == 'vertical'){
-      panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
-      panel.grid.major.y = ggplot2::element_blank()
-      geom_segment = annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25)
-    }
 
 
     theme <- ggplot2::theme(
@@ -121,15 +123,13 @@ theme_ipea <- function(axis_lines = 'half',
     # Sets the panel border based on the previous assignment
     panel.border = panel.border,
     # Sets the major grid lines color and size
-    panel.grid.major = ggplot2::element_line(colour = color, linewidth = 0.25),
+    #panel.grid.major = ggplot2::element_line(colour = color, linewidth = 0.25),
     # Sets the minor grid lines color and size
     panel.grid.minor = ggplot2::element_line(colour = "white", linewidth = 1),
     # Hides the major grid lines on the x-axis
     panel.grid.major.x = panel.grid.major.x,
     # Hides the major grid lines on the x-axis
     panel.grid.major.y = panel.grid.major.y,
-    #
-    panel.grid = panel.grid,
     # Sets the position of the legend based on the previous assignment
     legend.position = legend.position,
     # Sets the appearance of the legend key
