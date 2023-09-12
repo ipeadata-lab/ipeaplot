@@ -62,7 +62,7 @@ pal <- function(col, border = "light gray") {
 }
 
 # Load mtcars dataset
-data(mtcats)
+data(mtcars)
 ```
 
 
