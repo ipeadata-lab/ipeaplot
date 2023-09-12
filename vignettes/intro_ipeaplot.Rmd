@@ -248,7 +248,7 @@ fig_map <- ggplot() +
              ggtitle("Média de anos de estudo") +
              scale_fill_ipea(palette = 'Orange-Blue', 
                              name='Anos de\nestudo') + 
-             theme_ipea()
+             theme_ipea(axis_lines = 'none', include_ticks = F, axis_values = F)
    
 
 fig_map

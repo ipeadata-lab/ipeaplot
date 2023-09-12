@@ -14,6 +14,6 @@
   suppressMessages({sysfonts::font_add("Frutiger-LT-55-Roman", regular = paste0(path,"/ttf/Frutiger-LT-55-Roman.ttf"))})
   suppressMessages({sysfonts::font_add("Frutiger-LT-67-Bold-Condensed", regular = paste0(path,"/ttf/Frutiger-LT-67-Bold-Condensed.ttf"))})
   suppressMessages({showtext::showtext_auto()})
-  suppressMessages({extrafont::font_import(paths = paste0(path,'ttf/'), prompt = F)})
+  suppressMessages({extrafont::font_import(paths = paste0(path,'/ttf/'), prompt = F)})
   extrafont::loadfonts(quiet = TRUE)
 }
