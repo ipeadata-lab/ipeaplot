@@ -1,5 +1,6 @@
 # Desativar deteccao de HTML
 *.html linguist-detectable=false
+*.tff linguist-detectable=false
 
 # Interpretar .rmd como R
 *.Rmd linguist-language=R
