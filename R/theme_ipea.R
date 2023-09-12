@@ -150,21 +150,21 @@ theme_ipea <- function(axis_lines = 'half',
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
     # Adjusts the vertical alignment of the y-axis title
-    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5,  lineheight = .5),
+    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5,  lineheight = .6),
     # Adjusts the vertical alignment of the x-axis title
-    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4,  lineheight = .5),
+    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4,  lineheight = .6),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
       family = "Frutiger-LT-47-LightCn",
-       hjust = 0,  lineheight = .5,
+       hjust = 0,  lineheight = .6,
       margin = margin(0,0,0.5,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
       family = "Frutiger-LT-Std",
-       face = "bold", hjust = 0,  lineheight = .5,
+       face = "bold", hjust = 0,  lineheight = .6,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
     plot.margin=unit(c(.2,.5,.2,.2),"cm"),
@@ -173,7 +173,7 @@ theme_ipea <- function(axis_lines = 'half',
     # Sets the appearance of the legend text
     #legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0,  lineheight = .5),
+    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0,  lineheight = .6),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y
