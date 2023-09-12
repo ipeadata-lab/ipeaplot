@@ -4,16 +4,12 @@
 \alias{save_eps}
 \title{Save the chart in Eps format}
 \usage{
-save_eps(gplot, file.name, width = 5, height = 3)
+save_eps(gplot, file.name, ...)
 }
 \arguments{
 \item{gplot}{ggplot which will be saved.}
 
 \item{file.name}{Character. Name of the file which will be generated}
-
-\item{width}{Numeric. Width of the picture in centimeters}
-
-\item{height}{Numeric. Height of the picture in centimeters}
 }
 \description{
 Convenient function to save charts in Eps format.

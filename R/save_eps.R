@@ -4,13 +4,11 @@
 #'
 #' @param gplot ggplot which will be saved.
 #' @param file.name Character. Name of the file which will be generated
-#' @param width Numeric. Width of the picture in centimeters
-#' @param height Numeric. Height of the picture in centimeters
 #'
 #' @family save
 #' @export
 #'
-save_eps <- function(gplot, file.name, width = 5, height = 3, ...){
+save_eps <- function(gplot, file.name,  ...){
 
   if(!("ggplot" %in% class(gplot))){
     stop("gplot deve ser um grafico ggplot")
