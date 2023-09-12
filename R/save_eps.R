@@ -4,6 +4,8 @@
 #'
 #' @param gplot ggplot which will be saved.
 #' @param file.name Character. Name of the file which will be generated
+#' @param ... Additional arguments to be passed to the `ggsave` function from the
+#'        `ggplot2` package.
 #'
 #' @family save
 #' @export

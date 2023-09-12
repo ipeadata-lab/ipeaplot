@@ -10,6 +10,9 @@ save_eps(gplot, file.name, ...)
 \item{gplot}{ggplot which will be saved.}
 
 \item{file.name}{Character. Name of the file which will be generated}
+
+\item{...}{Additional arguments to be passed to the \code{ggsave} function from the
+\code{ggplot2} package.}
 }
 \description{
 Convenient function to save charts in Eps format.
