@@ -72,7 +72,7 @@ data(mtcars)
 
 A figura baixo ilustra de maneira geral uma figura ggplot em seu formato pardão, e como ela fica seguindo as diretrizes editoriais de gráficos publicados pelo Ipea em seus Textos para Discussão (TD). Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
-```{r eval=TRUE, fig.width=8, fig.height=4, message=FALSE, warning=FALSE, out.width = "100%"}
+```{r eval=TRUE, message=FALSE, warning=FALSE, out.width = "100%"}
 fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               labs(y='Consumo de Combustível (milhas por galão)',
@@ -112,7 +112,7 @@ pal(ipea_pal(palette = "Green-Blue")(9)); mtext("Green-Blue")
 
 Para usar as paletas de cores, basta adicionar uma das funções na construção da sua figura com `ggplot2`:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, out.width = "100%"}
 # paleta sequencial verde
 fig_base + scale_color_ipea(palette = "Green")
 
@@ -124,7 +124,7 @@ fig_base + scale_color_ipea(palette = "Orange-Blue")
 
 Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE,  fig.width=8, fig.height=5}
+```{r eval=TRUE, message=FALSE, warning=FALSE, out.width = "100%"}
 ggplot() +
   geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
   labs(y='Consumo de Combustível\n(milhas por galão)',
