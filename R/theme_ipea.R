@@ -205,30 +205,26 @@ theme_ipea <- function(axis_lines = 'half',
       limit = 0
     }
 
-      if(missing(x_breaks)){
-        scale_x = NULL
-      } else {
-        scale_x = scale_x_continuous(expand = expansion(mult = c(0, limit)), breaks = scales::pretty_breaks(n = x_breaks))
-      }
-
-
     if(missing(y_breaks)){
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::extended_breaks( only.loose = TRUE ), ...)
+      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."),  ...)
     } else {
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks), ...)
+      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks),...)
     }
 
     if(axis_lines %in% c('none','full')){
-      list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
+      suppressWarnings({
+        list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme)
+      })
 
     } else {
-      list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
+      suppressWarnings({list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
            theme,
            scale_y,
            scale_x,
            annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25),
            annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = color, linewidth = 0.25))
+     })
     }
 
 
