@@ -211,6 +211,12 @@ theme_ipea <- function(axis_lines = 'half',
       scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks),...)
     }
 
+    if(missing(x_breaks)){
+      scale_x = NULL
+    } else {
+      scale_x = scale_x_continuous(expand = expansion(mult = c(0, limit)),labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = x_breaks))
+    }
+
     if(axis_lines %in% c('none','full')){
       suppressWarnings({
         list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
