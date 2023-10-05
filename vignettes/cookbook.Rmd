@@ -226,7 +226,9 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
   scale_fill_ipea(discrete = T) +
   geom_text( position = position_stack(vjust = 0.5), color = 'white', size = 3) +
   geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -1) +
-  theme_ipea(legend.position="none")
+  theme_ipea(legend.position="none") +
+  theme(axis.ticks.x = ggplot2::element_blank(),
+        axis.text.x  = ggplot2::element_blank())
 
 graf3
 ```
