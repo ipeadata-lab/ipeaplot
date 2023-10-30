@@ -228,8 +228,8 @@ theme_ipea <- function(axis_lines = 'half',
            theme,
            scale_y,
            scale_x,
-           annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = color, linewidth = 0.25),
-           annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = color, linewidth = 0.25))
+           annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = 'black', linewidth = 0.25),
+           annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = 'black', linewidth = 0.25))
      })
     }
 
