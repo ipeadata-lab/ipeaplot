@@ -15,7 +15,7 @@ Você pode instalar a versão em desenvolvimento do **ipeaplot** direto do Githu
 utils::remove.packages('ipeaplot')
 remotes::install_github("ipeadata-lab/ipeaplot")
 ```
-# Visão geral do pacote.
+# Visão geral do pacote
 
 O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui três funções principais para ajudar você a alterar o estilo de suas figuras de forma a seguir as diretrizes editoriais do Ipea:
 
