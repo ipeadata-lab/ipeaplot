@@ -71,7 +71,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Introdução ao ipeaplot</h1>
             
-            <h4 data-toc-skip class="date">2023-11-10</h4>
+            <h4 data-toc-skip class="date">2023-11-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ipeadata-lab/ipeaplot/blob/HEAD/vignettes/intro_ipeaplot.Rmd" class="external-link"><code>vignettes/intro_ipeaplot.Rmd</code></a></small>
       <div class="d-none name"><code>intro_ipeaplot.Rmd</code></div>
@@ -84,8 +84,7 @@ facilitar a padronização de gráficos e figuras seguindo a política
 editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote
 traz algumas funções que facilitam o ajuste de formatação e de cores de
 gráficos criados com o pacote <code>ggplot2</code>, garantindo a
-conformidade com as diretrizes editoriais para a publicação de Textos
-para Discussão (TD) do Ipea.</p>
+conformidade com as diretrizes editoriais das publicações do Ipea.</p>
 <div class="section level2">
 <h2 id="instalação">Instalação<a class="anchor" aria-label="anchor" href="#instala%C3%A7%C3%A3o"></a>
 </h2>
@@ -134,14 +133,15 @@ seguir, vamos utilizar os dados <code>mtcars</code> do R.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeaGIT/geobr" class="external-link">geobr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span></span>
-<span></span>
-<span></span>
 <span><span class="co"># Load mtcars dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span></code></pre></div>
-<p>A figura baixo ilustra de maneira geral uma figura ggplot em seu
-formato pardão, e como ela fica seguindo as diretrizes editoriais de
-gráficos publicados pelo Ipea em seus Textos para Discussão (TD). Nas
-próximas seções, vamos explorar como usar as funções do
+<p>No painel abaixo, à direita, temos a representação de um gráfico no
+formato padrão do <em>ggplot2</em>. Já à esquerda, destacamos o
+resultado obtido após a aplicação de linhas de código com as funções
+theme_ipea() e scale_color_ipea(). Essas funções incorporam à figura
+diretrizes visuais fundamentais das publicações do Ipea, proporcionando
+uma apresentação alinhada aos padrões estilístico estabelecidos pelo
+instituto. Nas próximas seções, vamos explorar como usar as funções do
 <strong>ipeaplot</strong> editar as figuras seguindo essas
 diretrizes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -214,10 +214,10 @@ completa de parâmetros está disponível na documentação da função
 <h3 id="ajustando-o-theme-das-figuras">Ajustando o <code>theme</code> das figuras<a class="anchor" aria-label="anchor" href="#ajustando-o-theme-das-figuras"></a>
 </h3>
 <p>A função <code><a href="../reference/theme_ipea.html">theme_ipea()</a></code> aplica às figuras o padrão visual
-de gráficos utilizados pelo wwwwIpea nas publicações de Texto para
-Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar
-diversas características das figuras, como por exemplo os eixos, posição
-da legenda, escalas dos eixos etc.</p>
+de gráficos utilizados pelo Ipea em suas publicações. Ainda, a função
+traz uma maneira conveniente de ajustar diversas características das
+figuras, como por exemplo os eixos, posição da legenda, escalas dos
+eixos etc.</p>
 <p>Para ilustrar essa função, vamos utilizar alguns dados do Atlas do
 Desenvolvimento Humano organizados em um projeto de parceria entre Ipea,
 FJP e PNUD). Para carregar os dados, basta rodar:</p>
