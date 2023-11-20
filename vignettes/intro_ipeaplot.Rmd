@@ -26,7 +26,7 @@ pal <- function(col, border = "light gray") {
 }
 ```
 
-O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea. 
+O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais das publicações do Ipea. 
 
 
 # Instalação
@@ -62,15 +62,11 @@ library(abjData)
 library(geobr)
 library(patchwork)
 
-
-
 # Load mtcars dataset
 data(mtcars)
 ```
 
-
-
-A figura baixo ilustra de maneira geral uma figura ggplot em seu formato pardão, e como ela fica seguindo as diretrizes editoriais de gráficos publicados pelo Ipea em seus Textos para Discussão (TD). Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
+No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea(). Essas funções incorporam à figura diretrizes visuais fundamentais das publicações do Ipea, proporcionando uma apresentação alinhada aos padrões estilístico estabelecidos pelo instituto. Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
 fig_raw <- ggplot() +
@@ -142,7 +138,7 @@ Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scal
 
 ## Ajustando o `theme` das figuras
 
-A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo wwwwIpea nas publicações de Texto para Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
+A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo Ipea em suas publicações. Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
 
 Para ilustrar essa função, vamos utilizar alguns dados do Atlas do Desenvolvimento Humano organizados em um projeto de parceria entre Ipea, FJP e PNUD). Para carregar os dados, basta rodar:
 
