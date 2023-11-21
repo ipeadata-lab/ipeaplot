@@ -33,3 +33,7 @@ Demonstração completa do pacote nas vinhetas:
 # Equipe <img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/man/figures/ipea.png?raw=true" alt="ipea" width="300">
 
 O pacote **ipeaplot** é desenvolvido pela equipe da Coordenação-Geral de Ciência de Dados e Tecnologia da Informação (CGDTI) do Instituto de Pesquisa Econômica Aplicada (Ipea).
+
+# Outros pacotes semelhantes
+- UNHCR's [unhcrthemes](https://github.com/unhcr-dataviz/unhcrthemes)
+- BBC's [bbplot](https://github.com/bbc/bbplot)
