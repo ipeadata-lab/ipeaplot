@@ -296,8 +296,8 @@ Ipea. Para baixar esses dados, basta rodar:</p>
 <span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geobr/man/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
 <span><span class="va">uf</span>  <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geobr/man/read_state.html" class="external-link">read_state</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></code></pre></div>
 <p>Agora nós precisamos fazer um <em>merge</em> dos dados espaciais e
-dos dados com as estimativas de anos de estudo. A variável de código do
-município é a nossa variável-chave para fazer o merge.</p>
+dos dados com as estimativas de anos de estudo. A variável com os
+códigos do municípios é a nossa chave para unir as duas bases.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load municipality and state spatial data</span></span>
 <span><span class="va">mun</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/geobr/man/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span><span class="op">)</span></span>
