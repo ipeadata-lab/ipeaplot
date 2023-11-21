@@ -205,7 +205,7 @@ mun <- geobr::read_municipality(year = 2010)
 uf  <- geobr::read_state(year = 2010)
 ```
 
-Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável de código do município é a nossa variável-chave para fazer o merge.
+Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável com os códigos do municípios é a nossa chave para unir as duas bases.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 # Load municipality and state spatial data
