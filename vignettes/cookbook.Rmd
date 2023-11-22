@@ -161,7 +161,7 @@ Gráfico 1 - Padrão ipea
 graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
   geom_bar(stat="identity", fill = '#015f96', width=2) +
   geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
-           outside = TRUE, sides = "b", length = unit(3, "mm"), linewidth = 0.25) +
+           outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = TRUE, clip = "off") +
   labs(x="",
        y="",
@@ -183,7 +183,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
 
 Gráfico 2 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=3}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=unit(8,"cm"),fig.height=unit(8,"cm")}
 base_graf2$Ano <- as.numeric(as.character(base_graf2$Ano))
 ref <- (subset(base_graf2,substr(Ano,4,4) %in% c('5','0')))
 
@@ -197,7 +197,7 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
        caption = 'Elaboração dos autores.') +
   theme_ipea(x_breaks = 16, x_text_angle = 90, include_ticks = F) +
   geom_rug(data = ref, aes(x = Ano+2.5),inherit.aes = FALSE,
-           outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
+           outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
 
 graf2
@@ -210,7 +210,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico3.png"))
 
 
 Gráfico 3 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=5, fig.height=6}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width = unit(8,"cm"), fig.height=unit(8,"cm")}
 temp <- base_graf3 %>% distinct(pos, .keep_all = T)
 
 
@@ -240,7 +240,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
 
 
 Gráfico 4 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, fig.align="center", fig.width=5, fig.height=5}
+```{r eval=TRUE, message=FALSE, fig.align="center", fig.width=unit(8,"cm"),fig.height=unit(8,"cm")}
 graf4 <- ggplot(base_graf4, aes(x=Ano)) +
   geom_ribbon(aes(ymin=0, ymax=Exabytes), fill = "#015f96")+
   labs(x="",
@@ -261,7 +261,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 
 
 Gráfico 5 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=unit(8,"cm"), fig.height=unit(8,"cm")}
 graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
   geom_line(size=1)+
   geom_point(aes(shape=variable, fill = variable),
@@ -288,7 +288,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 
 
 Gráfico 6 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=4, fig.height=6}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=unit(8,"cm"), fig.height=unit(8,"cm")}
 base_graf6$pais<- factor(base_graf6$pais, levels=rev(sort(base_graf6$pais)))
 graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
   geom_bar(stat="identity", fill = '#015f96') +
@@ -310,7 +310,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico7.png"))
 
 
 Gráfico 7 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE,fig.align="center", fig.width=6, fig.height=7}
+```{r eval=TRUE, message=FALSE, warning=FALSE,fig.align="center", fig.width = unit(8,"cm"), fig.height=unit(8,"cm")}
 base_graf7<- melt(base_graf7, id=c("pais"))
 
 graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=variable)) +
@@ -334,7 +334,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 
 
 Gráfico 8 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=5, fig.height=6}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=unit(8,"cm"), fig.height=unit(8,"cm")}
 ######## GRAFICO 8
 base_graf8_aux <- base_graf8[,c(1,4)]
 base_graf8_aux$n <- 1:nrow(base_graf8_aux)
@@ -363,7 +363,7 @@ graf8 <-
   scale_fill_ipea(discrete = T) +
   theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F) +
   geom_rug(data=base_graf8, aes(x = n-0.5),
-           outside = TRUE, sides = "b", length = unit(5, "mm"), linewidth = 0.25) +
+           outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off")
 
 graf8

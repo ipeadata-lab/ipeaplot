@@ -97,13 +97,13 @@ theme_ipea <- function(axis_lines = 'half',
   if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
     axis.ticks.y = ggplot2::element_blank()
-    hjust <- ifelse(x_text_angle == 0,0.5, 1)
+    hjust <- ifelse(x_text_angle == 0,1,2)
     vjust <- ifelse(x_text_angle == 0,3, 0.5)
   }
 
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
-    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  vjust = vjust, hjust= hjust)
+    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  margin = margin(b = 1,unit = 'mm'))
   } else {
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()
@@ -150,42 +150,45 @@ theme_ipea <- function(axis_lines = 'half',
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
     # Adjusts the vertical alignment of the y-axis title
-    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5,  lineheight = .6),
+    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5,  margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm')),
     # Adjusts the vertical alignment of the x-axis title
-    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4,  lineheight = .6),
+    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4,  margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm')),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
       family = "Frutiger-LT-47-LightCn",
        hjust = 0,  lineheight = .6,
-      margin = margin(0,0,0.5,0, unit = 'mm')
+      margin = margin(0,0,2,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
-      family = "Frutiger-LT-Std",
+      family = "Frutiger-LT-55-Roman",
        face = "bold", hjust = 0,  lineheight = .6,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
+    axis.text = element_text(family = "Frutiger-LT-47-LightCn", size = unit(6, "pt")),
     plot.margin=unit(c(.2,.5,.2,.2),"cm"),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text
     #legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0,  lineheight = .6),
+    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 5,  lineheight = 1.25),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y
-    #legend.spacing.y = unit(2, 'mm'),
     # Set horizontal and vertical spacing between legend keys (2 right,2 bottom,1 left)
-    legend.spacing = margin(0,2,2,1, unit = 'mm'),
+    #legend.spacing = margin(t = 1,4,4,1, unit = 'mm'),
     # Set Margin spacing
-    legend.margin= margin(t= unit(3, 'mm')),
+    #legend.margin  = margin(t = 0,r = 15, b= 0,l = 1, unit = 'mm'),
     #change legend key size
-    #legend.key.size = unit(2, 'mm'),
+    # legend.key.size = unit(1, 'mm'),
     # Set key size
-    legend.key.size = unit(5,"mm","linewidth"),
+    # legend.spacing.x = unit(4, 'mm'),
+    # legend.spacing.y = unit(4, 'mm'),
+    legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm')),
+    #legend.key.size = unit(5,"mm","linewidth"),
     # Adjust haste length
     axis.ticks.length = unit(2, "mm"),
     ...
