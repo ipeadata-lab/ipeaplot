@@ -157,14 +157,14 @@ theme_ipea <- function(axis_lines = 'half',
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
       family = "Frutiger-LT-47-LightCn",
-       hjust = 0,  lineheight = .6,
-      margin = margin(0,0,2,0, unit = 'mm')
+       hjust = 0,  lineheight = .5,
+      margin = margin(0,0,1,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
       family = "Frutiger-LT-55-Roman",
-       face = "bold", hjust = 0,  lineheight = 1.25,
+       face = "bold", hjust = 0,  lineheight = 1,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
     # axis.text = element_text(family = "Frutiger-LT-47-LightCn", size = unit(6, "pt")),
@@ -174,16 +174,18 @@ theme_ipea <- function(axis_lines = 'half',
     # Sets the appearance of the legend text
     #legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 10,  lineheight = 1.25),
+    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 0,  lineheight = 1.25),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y
     # Set horizontal and vertical spacing between legend keys (2 right,2 bottom,1 left)
     #legend.spacing = margin(t = 1,4,4,1, unit = 'mm'),
     # Set Margin spacing
+    legend.box.spacing = unit(-1, "mm"),
     #legend.margin  = margin(t = 0,r = 15, b= 0,l = 1, unit = 'mm'),
     #change legend key size
     # legend.key.size = unit(1, 'mm'),
+    legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10),
     # Set key size
     # legend.spacing.x = unit(4, 'mm'),
     # legend.spacing.y = unit(4, 'mm'),
