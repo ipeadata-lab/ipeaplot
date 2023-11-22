@@ -164,17 +164,17 @@ theme_ipea <- function(axis_lines = 'half',
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
       family = "Frutiger-LT-55-Roman",
-       face = "bold", hjust = 0,  lineheight = .6,
+       face = "bold", hjust = 0,  lineheight = 1.25,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
-    axis.text = element_text(family = "Frutiger-LT-47-LightCn", size = unit(6, "pt")),
+    # axis.text = element_text(family = "Frutiger-LT-47-LightCn", size = unit(6, "pt")),
     plot.margin=unit(c(.2,.5,.2,.2),"cm"),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text
     #legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 5,  lineheight = 1.25),
+    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 10,  lineheight = 1.25),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y
