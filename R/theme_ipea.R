@@ -73,8 +73,8 @@ theme_ipea <- function(axis_lines = 'half',
     # Define the axis line and panel border for "full" style
     axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
+    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25, size = unit(1, 'mm'))
+    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25, size = unit(1, 'mm'))
     panel.border = ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA)
 
   } else if (axis_lines == "none") {
@@ -103,7 +103,7 @@ theme_ipea <- function(axis_lines = 'half',
 
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
-    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  margin = margin(b = 1,unit = 'mm'))
+    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  margin = margin(b = 2,unit = 'mm'))
   } else {
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()
@@ -188,7 +188,7 @@ theme_ipea <- function(axis_lines = 'half',
     # legend.spacing.x = unit(4, 'mm'),
     # legend.spacing.y = unit(4, 'mm'),
     legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm')),
-    #legend.key.size = unit(5,"mm","linewidth"),
+    legend.key.size = unit(4,"mm","linewidth"),
     # Adjust haste length
     axis.ticks.length = unit(2, "mm"),
     ...
