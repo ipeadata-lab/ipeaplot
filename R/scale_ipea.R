@@ -11,7 +11,7 @@
 #'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
-#'        have an inverted ordering (for cases where it is 0).
+#'        have an inverted ordering (for cases where it is -1).
 #' @param decimal.mark The character to be used to indicate the numeric decimal point and
 #'        Character used between every 3 digits to separate thousands.
 #'        By default, the function uses a comma `","`, following

@@ -26,7 +26,7 @@ pal <- function(col, border = "light gray") {
 }
 ```
 
-O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea. 
+O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais das publicações do Ipea. 
 
 
 # Instalação
@@ -41,11 +41,11 @@ remotes::install_github("ipeadata-lab/ipeaplot")
 
 # Visão geral do pacote.
 
-O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui três funções principais para ajudar você a alterar o estilo de suas figuras de forma a seguir as diretrizes editoriais do Ipea:
+O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui quatro funções principais para ajudar você a alterar o estilo de suas figuras de forma a seguir as diretrizes editoriais do Ipea:
 
-1. `theme_ipea()` - alteração formatação da elemntos da figura (eixos, título, subtítulo, etc);
+1. `theme_ipea()` - formatação de elementos estilísticos da figura (eixos, fontes, linhas, grid, etc.);
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
-3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do editorial.
+3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
 
 
 
@@ -62,15 +62,11 @@ library(abjData)
 library(geobr)
 library(patchwork)
 
-
-
 # Load mtcars dataset
 data(mtcars)
 ```
 
-
-
-A figura baixo ilustra de maneira geral uma figura ggplot em seu formato pardão, e como ela fica seguindo as diretrizes editoriais de gráficos publicados pelo Ipea em seus Textos para Discussão (TD). Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
+No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea(). Essas funções incorporam à figura diretrizes visuais fundamentais das publicações do Ipea, proporcionando uma apresentação alinhada aos padrões estilístico estabelecidos pelo instituto. Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE}
 fig_raw <- ggplot() +
@@ -90,7 +86,7 @@ fig_raw + fig_base
 
 Existem duas funções básicas para selecionar a paleta de cores da figura: `scale_color_ipea()` e `scale_fill_ipea()`. O funcionamento de ambas funções seguem a mesma lógica e parâmetros.
 
-O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais `c("Blue", "Green", "Orange", "Pink")`, quanto paletes com cores divergentes `c("Red-Blue", "Orange-Blue")`.
+O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange", "Pink"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
 
 **Cores sequenciais:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4)}
@@ -142,7 +138,7 @@ Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scal
 
 ## Ajustando o `theme` das figuras
 
-A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo wwwwIpea nas publicações de Texto para Discussão (TD). Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
+A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utilizados pelo Ipea em suas publicações. Ainda, a função traz uma maneira conveniente de ajustar diversas características das figuras, como por exemplo os eixos, posição da legenda, escalas dos eixos etc.
 
 Para ilustrar essa função, vamos utilizar alguns dados do Atlas do Desenvolvimento Humano organizados em um projeto de parceria entre Ipea, FJP e PNUD). Para carregar os dados, basta rodar:
 
@@ -209,7 +205,7 @@ mun <- geobr::read_municipality(year = 2010)
 uf  <- geobr::read_state(year = 2010)
 ```
 
-Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável de código do município é a nossa variável-chave para fazer o merge.
+Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável com os códigos do municípios é a nossa chave para unir as duas bases.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 # Load municipality and state spatial data
