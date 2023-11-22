@@ -109,6 +109,16 @@ theme_ipea <- function(axis_lines = 'half',
     axis.text.y  = ggplot2::element_blank()
   }
 
+  if(legend.position == 'bottom'){
+    legend.box.spacing = unit(-1, "mm")
+    legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10)
+    legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm'))
+  } else{
+    legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
+    legend.text = element_text(size = 10, color = "black")  # Valor padrão para legend.text
+    legend.box.margin = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
+  }
+
 
     # Define the strip background and text styles for other box options
     strip.background = ggplot2::element_rect(fill = "white")
@@ -181,15 +191,15 @@ theme_ipea <- function(axis_lines = 'half',
     # Set horizontal and vertical spacing between legend keys (2 right,2 bottom,1 left)
     #legend.spacing = margin(t = 1,4,4,1, unit = 'mm'),
     # Set Margin spacing
-    legend.box.spacing = unit(-1, "mm"),
+    legend.box.spacing = legend.box.spacing,
     #legend.margin  = margin(t = 0,r = 15, b= 0,l = 1, unit = 'mm'),
     #change legend key size
     # legend.key.size = unit(1, 'mm'),
-    legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10),
+    legend.box.margin =  legend.box.margin,
     # Set key size
     # legend.spacing.x = unit(4, 'mm'),
     # legend.spacing.y = unit(4, 'mm'),
-    legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm')),
+    legend.text = legend.text,
     legend.key.size = unit(4,"mm","linewidth"),
     # Adjust haste length
     axis.ticks.length = unit(2, "mm"),
