@@ -13,6 +13,8 @@ theme_ipea(
   y_breaks,
   expand_x_limit = T,
   x_text_angle = 0,
+  include_x_text_title = T,
+  include_y_text_title = T,
   include_ticks = T,
   ...
 )
@@ -39,9 +41,13 @@ legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"},
 
 \item{expand_x_limit}{Logical value that indicates whether the x-axis
 boundary should be expanded. If \code{TRUE}, the x-axis text will be
-expanded; otherwise there will be no change.}
+expanded; otherwise there will be no change}
 
 \item{x_text_angle}{Numeric. Angle in degrees of the text in the x-axis.}
+
+\item{include_x_text_title}{Logical. Whether to include x text title Defaults to \code{TRUE}.}
+
+\item{include_y_text_title}{Logical. Whether to include x text title. Defaults to \code{TRUE}.}
 
 \item{include_ticks}{Logical. Whether to include ticks. Defaults to \code{TRUE}.}
 

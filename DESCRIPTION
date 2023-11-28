@@ -34,7 +34,6 @@ Suggests:
     data.table,
     dplyr,
     forcats,
-    ggthemes,
     geobr,
     knitr,
     patchwork,

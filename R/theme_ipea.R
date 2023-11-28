@@ -36,6 +36,8 @@ theme_ipea <- function(axis_lines = 'half',
                        x_breaks , y_breaks,
                        expand_x_limit = T,
                        x_text_angle = 0,
+                       include_x_text_title = T,
+                       include_y_text_title = T,
                        include_ticks = T,
                        ...){
 
@@ -49,7 +51,7 @@ theme_ipea <- function(axis_lines = 'half',
   checkmate::assert_string(x = grid.adjust, pattern = c('vertical|horizontal'))
   checkmate::assert_string(x = legend.position, pattern = c('right|left|bottom|top|none'))
 
-  color = "#b7bdb7"
+  color = "gray75"
 
   if(grid.adjust == 'horizontal'){
     panel.grid.major.x = ggplot2::element_blank()
@@ -103,26 +105,48 @@ theme_ipea <- function(axis_lines = 'half',
 
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
-    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  margin = margin(b = 2,unit = 'mm'))
-  } else {
+    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  margin = margin(b = 3,unit = 'mm'))
+  } else if(axis_values == F){
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()
+  } else {
+    stop("Argument axis_values must be TRUE or FALSE")
+  }
+
+
+  if(include_x_text_title == T){
+    axis.title.x  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm'))
+  } else if(include_x_text_title == F){
+    axis.title.x  = ggplot2::element_blank()
+  } else {
+    stop("Argument include_x_text_title must be TRUE or FALSE")
+  }
+
+  if(include_y_text_title == T){
+    axis.title.y  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm'))
+  } else if(include_y_text_title == F){
+    axis.title.y  = ggplot2::element_blank()
+  } else {
+    stop("Argument include_y_text_title must be TRUE or FALSE")
   }
 
   if(legend.position == 'bottom'){
-    legend.box.spacing = unit(-1, "mm")
-    legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10)
-    legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm'))
+    # legend.box.spacing = unit(-1, "mm")
+    # legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10)
+    # legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm'))
+    legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
+    legend.text        = element_text(size = 10, color = "black")  # Valor padrão para legend.text
+    legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
   } else{
     legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
-    legend.text = element_text(size = 10, color = "black")  # Valor padrão para legend.text
-    legend.box.margin = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
+    legend.text        = element_text(size = 10, color = "black")  # Valor padrão para legend.text
+    legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
   }
 
 
     # Define the strip background and text styles for other box options
     strip.background = ggplot2::element_rect(fill = "white")
-    strip.text = ggplot2::element_text(colour = 'black',hjust=0)
+    strip.text       = ggplot2::element_text(colour = 'black',hjust=0)
 
 
 
@@ -156,13 +180,11 @@ theme_ipea <- function(axis_lines = 'half',
     # Sets the appearance of the axis text based on the previous assignment
     axis.text.x = axis.text.x,
     axis.text.y = axis.text.y,
+    axis.title.x = axis.title.x,
+    axis.title.y = axis.title.y,
     # Sets the appearance of the axis ticks based on the previous assignment
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
-    # Adjusts the vertical alignment of the y-axis title
-    axis.title.y = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = 1.5,  margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm')),
-    # Adjusts the vertical alignment of the x-axis title
-    axis.title.x = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",vjust = -0.4,  margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm')),
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
