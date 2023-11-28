@@ -43,7 +43,7 @@ fig_raw +
       scale_color_ipea() +
       theme_ipea()
 ```
-<img src="man/figures/README-base-plot-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="man/figures/figura_read_me.pdf" width="90%" style="display: block; margin: auto;" />
 
 
 Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
