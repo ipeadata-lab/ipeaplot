@@ -23,7 +23,30 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
 3. `save_eps()` - salva a figura com a extensão `.eps`, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.
 
-Demonstração completa do pacote nas vinhetas:
+# Demonstração do pacote
+
+```
+# Carregue os pacotes
+library(ipeaplot)
+library(ggplot2)
+```
+No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea().
+
+```
+fig_raw <- ggplot() +
+              geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
+              labs(y='Consumo de Combustível (milhas por galão)',
+                   x ='Potência (Número de cavalos)',
+                   color='Cilindradas')
+
+fig_raw +
+      scale_color_ipea() +
+      theme_ipea()
+```
+<img src="man/figures/README-base-plot-1.png" width="90%" style="display: block; margin: auto;" />
+
+
+Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
 - [Introdução ao ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
 - [Comparativo ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
 
