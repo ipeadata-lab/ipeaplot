@@ -19,8 +19,10 @@
 #' @param y_breaks Numeric. The number of breaks on the y-axis
 #' @param expand_x_limit Logical value that indicates whether the x-axis
 #'        boundary should be expanded. If `TRUE`, the x-axis text will be
-#'        expanded; otherwise there will be no change.
+#'        expanded; otherwise there will be no change
 #' @param x_text_angle Numeric. Angle in degrees of the text in the x-axis.
+#' @param include_x_text_title Logical. Whether to include x text title Defaults to `TRUE`.
+#' @param include_y_text_title Logical. Whether to include x text title. Defaults to `TRUE`.
 #' @param include_ticks Logical. Whether to include ticks. Defaults to `TRUE`.
 #' @param ... Additional arguments to be passed to the `theme` function from the
 #'        `ggplot2` package.
