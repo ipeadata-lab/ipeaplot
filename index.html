@@ -94,7 +94,25 @@
 <li>
 <code><a href="reference/save_eps.html">save_eps()</a></code> - salva a figura com a extensão <code>.eps</code>, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.</li>
 </ol>
-<p>Demonstração completa do pacote nas vinhetas: - <a href="https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html">Introdução ao ipeaplot</a> - <a href="https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html">Comparativo ipeaplot</a></p>
+</div>
+<div class="section level1">
+<h1 id="demonstração-do-pacote">Demonstração do pacote<a class="anchor" aria-label="anchor" href="#demonstra%C3%A7%C3%A3o-do-pacote"></a>
+</h1>
+<pre><code><span><span class="co"># Carregue os pacotes</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeadata-lab/ipeaplot" class="external-link">ipeaplot</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre>
+<p>No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do <em>ggplot2</em>. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea().</p>
+<pre><code><span><span class="va">fig_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span> , y <span class="op">=</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y<span class="op">=</span><span class="st">'Consumo de Combustível (milhas por galão)'</span>,</span>
+<span>                   x <span class="op">=</span><span class="st">'Potência (Número de cavalos)'</span>,</span>
+<span>                   color<span class="op">=</span><span class="st">'Cilindradas'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fig_raw</span> <span class="op">+</span></span>
+<span>      <span class="fu"><a href="reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>      <span class="fu"><a href="reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<p><img src="reference/figures/README-base-plot-1.png" width="90%" style="display: block; margin: auto;"></p>
+<p>Mais detalhes sobre a utilização do <strong>ipeaplot</strong> nas vinhetas: - <a href="https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html">Introdução ao ipeaplot</a> - <a href="https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html">Comparativo ipeaplot</a></p>
 </div>
 <div class="section level1">
 <h1 id="equipe-">Equipe <img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/man/figures/ipea.png?raw=true" alt="ipea" width="300"><a class="anchor" aria-label="anchor" href="#equipe-"></a>
