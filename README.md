@@ -35,7 +35,7 @@ No painel abaixo, à direita, temos a representação de um gráfico no formato 
 ```
 fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
-              labs(y='Consumo de Combustível (milhas por galão)',
+              labs(y='Consumo de Combustível',
                    x ='Potência (Número de cavalos)',
                    color='Cilindradas')
 
