@@ -4,6 +4,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 # ipeaplot: criando graficos no padrão editorial do Ipea 
 
+<img align="right" src="man/figures/ipeaplot.png?raw=true" alt="logo" width="180"> 
+
 O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes das publicações do Instituto.
 
 # Instalação
