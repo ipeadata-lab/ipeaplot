@@ -42,7 +42,7 @@ library(knitr)
 
 
 Leitura dos dados
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 ######## GRAFICO 1
 Ano <- factor(c(2000,2005,2010,2015,2020,2025,2030,2035,2040,2045,2050))
 Populacao <- c(6.1,6.5,6.9,7.3,7.7,8.0,8.3,8.6,8.9,9.1,9.3)
@@ -159,7 +159,7 @@ Gráfico 1 - Original
 
 
 Gráfico 1 - Padrão ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=5}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
   geom_bar(stat="identity", fill = '#015f96', width=2) +
   geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
@@ -188,7 +188,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
 
 Gráfico 2 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width = 5, fig.height = 5}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 base_graf2$Ano <- as.numeric(as.character(base_graf2$Ano))
 ref <- (subset(base_graf2,substr(Ano,4,4) %in% c('5','0')))
 
@@ -216,7 +216,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico3.png"))
 
 
 Gráfico 3 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 temp <- base_graf3 %>% distinct(pos, .keep_all = T)
 
 
@@ -250,7 +250,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
 
 
 Gráfico 4 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=FALSE, message=FALSE}
 graf4 <- ggplot(base_graf4, aes(x=Ano)) +
   geom_ribbon(aes(ymin=0, ymax=Exabytes), fill = "#015f96")+
   labs(fill = "",
@@ -274,7 +274,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 
 
 Gráfico 5 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
   geom_line(size=1)+
   geom_point(aes(shape=variable, fill = variable),
@@ -304,7 +304,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 
 
 Gráfico 6 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 base_graf6$pais<- factor(base_graf6$pais, levels=rev(sort(base_graf6$pais)))
 graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
   geom_bar(stat="identity", fill = '#015f96') +
@@ -329,7 +329,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico7.png"))
 
 
 Gráfico 7 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE,fig.align="center", fig.width=6, fig.height=6}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 base_graf7<- melt(base_graf7, id=c("pais"))
 
 graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=variable)) +
@@ -356,7 +356,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 
 
 Gráfico 8 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 ######## GRAFICO 8
 base_graf8_aux <- base_graf8[,c(1,4)]
 base_graf8_aux$n <- 1:nrow(base_graf8_aux)
