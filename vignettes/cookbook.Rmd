@@ -1,5 +1,5 @@
 ---
-title: "Comparativo ipeaplot"
+title: "Cookbook ipeaplot"
 date: "`r Sys.Date()`"
 output:
   pdf_document: default
@@ -19,16 +19,18 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
+O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). 
 
-O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes editoriais para a publicação de Textos para Discussão (TD) do Ipea.
+Nesta vinheta, apresentamos exemplos práticos do uso do pacote para gerar visulizações de dados comuns em textos e relatórios do Ipea. 
 
-Esta vinheta apresenta alguns exemplos de como algumas figuras ficam após aplicarmos as diretrizes editoriais do Ipea usando o **ipeaplot**.
+Em algumas figuras, os ajustes necessários para atender às diretrizes estilísticas do Editorial do Ipea demandam a criação de códigos específicos, extrapolando as configurações pré-estabelecidas no **ipeaplot**. 
 
+Essa vinheta tem, por isso, um formato de *cookbook*, proporcionando orientações práticas para a utilização de outros recursos do `ggplot2`.
 
-
-Leitura de bibliotecas
+Em todos os exemplos, é exibida a versão "bruta" da figura, tal como foi submetida à Coordenação do Editorial. Em seguida, indicamos como é possível, com o **ipeaplot** e algumas linhas de código adicionais, atingir o nível de padronização necessário às publicações do Ipea.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+# Leitura de bibliotecas
 library(ipeaplot)
 library(ggplot2)
 library(dplyr)
@@ -38,21 +40,16 @@ library(reshape)
 library(knitr)
 ```
 
-
-
-
-Leitura dos dados
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
-######## GRAFICO 1
+# Leitura de bibliotecas
+## Gráfico 1
 Ano <- factor(c(2000,2005,2010,2015,2020,2025,2030,2035,2040,2045,2050))
 Populacao <- c(6.1,6.5,6.9,7.3,7.7,8.0,8.3,8.6,8.9,9.1,9.3)
 labels <- as.character(Populacao)
 labels <- gsub("." , "," , labels, fixed=T)
 base_graf1 <- data.frame(Ano,Populacao,labels)
 
-
-
-####### GRAFICO 2
+## Gráfico 2
 Ano <- factor(c(1950,	1951,	1952,	1953,	1954,	1955,	1956,	1957,	1958,	
                 1959,	1960,	1961,	1962,	1963,	1964,	1965,	1966,	1967,
                 1968,	1969,	1970,	1971,	1972,	1973,	1974,	1975,	1976,
@@ -82,7 +79,7 @@ labels <- as.character(Populacao)
 labels <- gsub("." , "," , labels, fixed=T)
 base_graf2<- data.frame(Ano,Populacao, labels)
 
-######## GRAFICO 3
+## Gráfico 3
 # Valores Hipoteticos
 Pais <- factor(c("Ìndia","Japão","Alemanha","Reino Unido","França",
                  "Arábia Saudita","Rússia","China","Estados Unidos"))
@@ -95,13 +92,13 @@ base_graf3 <- base_graf3 %>%
   group_by(pos) %>%
   mutate(total = sum(Gasto))
 
-######## GRAFICO 4
+## Gráfico 4
 Ano <- seq(2009,2020,1)
 Exabytes <- c(130,360,750,1400,3100,6000,10000,14000,19000,25000,31500,40000)
 
 base_graf4 <- data.frame(Ano,Exabytes)
 
-######## GRAFICO 5
+## Gráfico 5
 
 Ano <- seq(2004,2013,1)
 Mundo <- c(4.2,3.8,4.1,4,1.5,-2,4,2.9,2.4,2.1)
@@ -110,7 +107,7 @@ UE <- c(2.6,2.2,3.4,3.2,0.6,-4.6,2.1,1.7,-0.4,0)
 base_graf5 <- data.frame(Ano,Mundo,UE)
 base_graf5<- melt(base_graf5, id=c("Ano"))
 
-######## GRAFICO 6
+## Gráfico 6
 pais <- c("Áustria","Bélgica","Bulgária","Croácia","Chipre","República Tcheca",
           "Dinamarca","Estônia","Finlândia","França","Alemanha","Grécia",
           "Hungria","Irlanda","Itália","Letônia","Lituânia","Luxemburgo",
@@ -122,7 +119,7 @@ petroleo <- c(90,100,97,72,104,96,-37,60,90,97,96,100,
 
 base_graf6 <- data.frame(pais,petroleo)
 
-######## GRAFICO 7
+## Gráfico 7
 pais <- c("África do Sul","Brasil","Federação Russa",
           "China","Índia","OCDE")
 
@@ -132,33 +129,30 @@ inicio <- c(0.67,0.61,0.4,0.33,0.32,0.297)
 
 base_graf7 <- data.frame(pais,final,inicio)
 
-######## GRAFICO 8
+## Gráfico 8
 link <- 'https://github.com/ipeadata-lab/ipeaplot/files'
 base_graf8 <- data.table::fread(paste0(link,'/12239277/dados_grafico9.csv'),
                                 dec = ",", encoding = 'Latin-1')
 
-######## GRAFICO 9
+## Gráfico 9
 base_graf9 <- data.table::fread(paste0(link,'/12239278/dados_grafico10.csv'),
                                  dec = ",", encoding = 'Latin-1')
 
-######## Salvando graficos no formato Rdata
+## Salvando graficos no formato Rdata
 save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,
      base_graf9,
      file='bases_de_dados.Rdata')
 
 ```
 
-
-
-
-Gráfico 1 - Original
+## Gráfico 1
+### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
  knitr::include_graphics(paste0(getwd(),"/prints_original/grafico1.png"))
 #![graph](prints_original/grafico1.png){fig-align="center", width='80%'}
 ```
 
-
-Gráfico 1 - Padrão ipea
+### Padrão ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
   geom_bar(stat="identity", fill = '#015f96', width=2) +
@@ -181,13 +175,14 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
 ```
 
 
+## Gráfico 2 
 
-Gráfico 2 - Original
+### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
 
-Gráfico 2 - Padrão Ipea
+### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 base_graf2$Ano <- as.numeric(as.character(base_graf2$Ano))
 ref <- (subset(base_graf2,substr(Ano,4,4) %in% c('5','0')))
@@ -209,13 +204,15 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico2.png"))
 ```
 
-Gráfico 3 - Padrão Original
+## Gráfico 3
+
+### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico3.png"))
 ```
 
 
-Gráfico 3 - Padrão Ipea
+### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 temp <- base_graf3 %>% distinct(pos, .keep_all = T)
 
@@ -243,13 +240,14 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico3.png"))
 ```
 
-Gráfico 4 - Original
+## Gráfico 4
+
+### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
 ```
 
-
-Gráfico 4 - Padrão Ipea
+### Padrão Ipea
 ```{r eval=FALSE, message=FALSE}
 graf4 <- ggplot(base_graf4, aes(x=Ano)) +
   geom_ribbon(aes(ymin=0, ymax=Exabytes), fill = "#015f96")+
@@ -267,13 +265,14 @@ graf4 <- ggplot(base_graf4, aes(x=Ano)) +
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico4.png"))
 ```
 
-Gráfico 5 - Original
+## Gráfico 5
+
+### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 ```
 
-
-Gráfico 5 - Padrão Ipea
+### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
   geom_line(size=1)+
@@ -297,13 +296,14 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico5.png"))
 ```
 
-Gráfico 6 - Original
+## Gráfico 6
+
+### Original
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 ```
 
-
-Gráfico 6 - Padrão Ipea
+### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 base_graf6$pais<- factor(base_graf6$pais, levels=rev(sort(base_graf6$pais)))
 graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
@@ -322,13 +322,14 @@ graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico6.png"))
 ```
 
-Gráfico 7 - Original
+## Gráfico 7
+
+### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico7.png"))
 ```
 
-
-Gráfico 7 - Padrão Ipea
+### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 base_graf7<- melt(base_graf7, id=c("pais"))
 
@@ -349,13 +350,14 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico7.png"))
 ```
 
-Gráfico 8 - Original
+## Gráfico 8
+
+### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 ```
 
-
-Gráfico 8 - Padrão Ipea
+### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 ######## GRAFICO 8
 base_graf8_aux <- base_graf8[,c(1,4)]
