@@ -71,7 +71,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Comparativo ipeaplot</h1>
             
-            <h4 data-toc-skip class="date">2023-11-28</h4>
+            <h4 data-toc-skip class="date">2023-12-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ipeadata-lab/ipeaplot/blob/HEAD/vignettes/cookbook.Rmd" class="external-link"><code>vignettes/cookbook.Rmd</code></a></small>
       <div class="d-none name"><code>cookbook.Rmd</code></div>
@@ -217,10 +217,9 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>       caption <span class="op">=</span> <span class="st">'Fonte: United Nations (2012a).\nTradução dos autores.'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>x_breaks <span class="op">=</span> <span class="fl">10</span>,include_ticks <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\."</span>, <span class="st">","</span>,<span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">Populacao</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, hjust <span class="op">=</span> <span class="fl">0.5</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, size <span class="op">=</span> <span class="fl">6</span>, family <span class="op">=</span> <span class="st">"Frutiger-LT-55-Roman"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">graf1</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"\\."</span>, <span class="st">","</span>,<span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">Populacao</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>            hjust <span class="op">=</span> <span class="fl">0.5</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 2 - Original
 <img src="prints_original/grafico2.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 2 - Padrão Ipea</p>
@@ -238,10 +237,8 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ref</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Ano</span><span class="op">+</span><span class="fl">2.5</span><span class="op">)</span>,inherit.aes <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>           outside <span class="op">=</span> <span class="cn">TRUE</span>, sides <span class="op">=</span> <span class="st">"b"</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"mm"</span><span class="op">)</span>, linewidth <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">graf2</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico2.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 3 - Padrão Original
 <img src="prints_original/grafico3.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 3 - Padrão Ipea</p>
@@ -258,15 +255,13 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>       subtitle<span class="op">=</span><span class="st">"Gastos com defesa (Em bilhões de dólares)"</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">'Fonte: Peter G. Peterson Foundation (2013).\nTradução dos autores.'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span> position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_stack</a></span><span class="op">(</span>vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'white'</span>, size <span class="op">=</span> <span class="fl">3</span>, family <span class="op">=</span> <span class="st">"Frutiger-LT-55-Roman"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">temp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">total</span> ,label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"U$ "</span>,<span class="va">total</span><span class="op">)</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span>, size <span class="op">=</span> <span class="fl">6</span>, family <span class="op">=</span> <span class="st">"Frutiger-LT-55-Roman"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span> position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_stack.html" class="external-link">position_stack</a></span><span class="op">(</span>vjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">'white'</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">temp</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">total</span> ,label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"U$ "</span>,<span class="va">total</span><span class="op">)</span><span class="op">)</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span>,</span>
 <span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.ticks.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>        axis.text.x  <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">graf3</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>        axis.text.x  <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico3.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 4 - Original
 <img src="prints_original/grafico4.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 4 - Padrão Ipea</p>
@@ -279,9 +274,8 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>       caption <span class="op">=</span> <span class="st">'Fonte: IDC’s Digital Universe Study (Gantz e Reinsel, 2012).'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span>,expand_x_limit <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>             x_breaks <span class="op">=</span> <span class="fl">10</span>, y_breaks <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
-<span><span class="va">graf4</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico4.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 5 - Original
 <img src="prints_original/grafico5.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 5 - Padrão Ipea</p>
@@ -298,10 +292,8 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>palette_direction <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>, discrete <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_shape_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">19</span>, <span class="fl">21</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">graf5</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico5.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 6 - Original</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>,<span class="st">"/prints_original/grafico6.png"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -317,9 +309,8 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>       subtitle<span class="op">=</span><span class="st">"Importações de energia em termos do consumo total\nde energia dos países da União Europeia"</span>,</span>
 <span>       caption <span class="op">=</span> <span class="st">'Fonte: Eurostat (2014).\nTradução dos autores.'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'none'</span>, expand_x_limit <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
-<span><span class="va">graf6</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico6.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 7 - Original
 <img src="prints_original/grafico7.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 7 - Padrão Ipea</p>
@@ -335,9 +326,8 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>       caption <span class="op">=</span> <span class="st">''</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'bottom'</span>,</span>
 <span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
-<span><span class="va">graf7</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span>discrete <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico7.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 8 - Original
 <img src="prints_original/grafico8.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Gráfico 8 - Padrão Ipea</p>
@@ -370,10 +360,8 @@ após aplicarmos as diretrizes editoriais do Ipea usando o
 <span>             include_x_text_title <span class="op">=</span> <span class="cn">F</span>,include_y_text_title <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">base_graf8</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">n</span><span class="op">-</span><span class="fl">0.5</span><span class="op">)</span>,</span>
 <span>           outside <span class="op">=</span> <span class="cn">TRUE</span>, sides <span class="op">=</span> <span class="st">"b"</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">2</span>, <span class="st">"mm"</span><span class="op">)</span>, linewidth <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span>, clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">graf8</span></span></code></pre></div>
-<p><img src="cookbook_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"></p>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="cn">FALSE</span>, clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="prints_ipeaplot/grafico8.png" width="100%" style="display: block; margin: auto;"></p>
   </main>
 </div>
 
