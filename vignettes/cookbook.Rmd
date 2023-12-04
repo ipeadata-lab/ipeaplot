@@ -38,6 +38,7 @@ library(abjData)
 library(geobr)
 library(reshape)
 library(knitr)
+
 ```
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
@@ -145,12 +146,16 @@ save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf
 
 ```
 
+
 ## Gráfico 1
+
+
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
  knitr::include_graphics(paste0(getwd(),"/prints_original/grafico1.png"))
 #![graph](prints_original/grafico1.png){fig-align="center", width='80%'}
 ```
+
 
 ### Padrão ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
@@ -177,10 +182,12 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
 
 ## Gráfico 2 
 
+
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
+
 
 ### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
@@ -202,9 +209,12 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico2.png"))
+
 ```
 
+
 ## Gráfico 3
+
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
@@ -233,19 +243,21 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
   theme(axis.ticks.x = ggplot2::element_blank(),
         axis.text.x  = ggplot2::element_blank())
 
-
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico3.png"))
 ```
 
+
 ## Gráfico 4
+
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
 ```
+
 
 ### Padrão Ipea
 ```{r eval=FALSE, message=FALSE}
@@ -265,12 +277,15 @@ graf4 <- ggplot(base_graf4, aes(x=Ano)) +
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico4.png"))
 ```
 
+
 ## Gráfico 5
+
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 ```
+
 
 ### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
@@ -288,20 +303,21 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
 
-
-
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico5.png"))
 ```
 
+
 ## Gráfico 6
+
 
 ### Original
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 ```
+
 
 ### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
@@ -322,12 +338,15 @@ graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico6.png"))
 ```
 
+
 ## Gráfico 7
+
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico7.png"))
 ```
+
 
 ### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
@@ -350,12 +369,15 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
  knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico7.png"))
 ```
 
+
 ## Gráfico 8
+
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 ```
+
 
 ### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
@@ -388,7 +410,6 @@ graf8 <-
   geom_rug(data=base_graf8, aes(x = n-0.5),
            outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off")
-
 
 ```
 
