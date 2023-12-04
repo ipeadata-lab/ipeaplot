@@ -152,13 +152,14 @@ save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf
 
 
 Gráfico 1 - Original
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"/prints_original/grafico1.png"))
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico1.png"))
+#![graph](prints_original/grafico1.png){fig-align="center", width='80%'}
 ```
 
 
 Gráfico 1 - Padrão ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=5}
 graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
   geom_bar(stat="identity", fill = '#015f96', width=2) +
   geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
@@ -170,9 +171,13 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
        caption = 'Fonte: United Nations (2012a).\nTradução dos autores.') +
   theme_ipea(x_breaks = 10,include_ticks = F,
              include_x_text_title = F,include_y_text_title = F) +
-  geom_text(aes(label = gsub("\\.", ",",round(Populacao,1))), hjust = 0.5, vjust = -0.5, size = 6, family = "Frutiger-LT-55-Roman")
+  geom_text(aes(label = gsub("\\.", ",",round(Populacao,1))),
+            hjust = 0.5, vjust = -0.5)
 
-graf1
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico1.png"))
 ```
 
 
@@ -183,7 +188,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
 
 Gráfico 2 - Padrão Ipea
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width = 5, fig.height = 5}
 base_graf2$Ano <- as.numeric(as.character(base_graf2$Ano))
 ref <- (subset(base_graf2,substr(Ano,4,4) %in% c('5','0')))
 
@@ -198,8 +203,10 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
   geom_rug(data = ref, aes(x = Ano+2.5),inherit.aes = FALSE,
            outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
+```
 
-graf2
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico2.png"))
 ```
 
 Gráfico 3 - Padrão Original
@@ -222,14 +229,18 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
        subtitle="Gastos com defesa (Em bilhões de dólares)",
        caption = 'Fonte: Peter G. Peterson Foundation (2013).\nTradução dos autores.') +
   scale_fill_ipea(discrete = T) +
-  geom_text( position = position_stack(vjust = 0.5), color = 'white', size = 3, family = "Frutiger-LT-55-Roman") +
-  geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -.5, size = 6, family = "Frutiger-LT-55-Roman") +
+  geom_text( position = position_stack(vjust = 0.5), color = 'white') +
+  geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -.5) +
   theme_ipea(legend.position="none",
              include_x_text_title = F) +
   theme(axis.ticks.x = ggplot2::element_blank(),
         axis.text.x  = ggplot2::element_blank())
 
-graf3
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico3.png"))
 ```
 
 Gráfico 4 - Original
@@ -249,7 +260,11 @@ graf4 <- ggplot(base_graf4, aes(x=Ano)) +
   theme_ipea(legend.position="none",expand_x_limit = F,
              x_breaks = 10, y_breaks = 4,
              include_x_text_title = F,include_y_text_title = F)
-graf4
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico4.png"))
 ```
 
 Gráfico 5 - Original
@@ -274,8 +289,12 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
 
-graf5
 
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico5.png"))
 ```
 
 Gráfico 6 - Original
@@ -296,7 +315,11 @@ graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
        caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
   theme_ipea(legend.position = 'none', expand_x_limit = F,
              include_x_text_title = F,include_y_text_title = F)
-graf6
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico6.png"))
 ```
 
 Gráfico 7 - Original
@@ -319,7 +342,11 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
   theme_ipea(legend.position = 'bottom',
              include_x_text_title = F,include_y_text_title = F) +
   scale_fill_ipea(discrete = T)
-graf7
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico7.png"))
 ```
 
 Gráfico 8 - Original
@@ -360,5 +387,10 @@ graf8 <-
            outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(expand = FALSE, clip = "off")
 
-graf8
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico8.png"))
 ```

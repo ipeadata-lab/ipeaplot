@@ -31,7 +31,7 @@
 #' @import ggplot2
 #' @export
 
-theme_ipea <- function(axis_lines = 'half',
+theme_ipea <- function(axis_lines = 'full',
                        axis_values = T,
                        legend.position = 'right',
                        grid.adjust = 'horizontal',
@@ -101,13 +101,14 @@ theme_ipea <- function(axis_lines = 'half',
   if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
     axis.ticks.y = ggplot2::element_blank()
-    hjust <- ifelse(x_text_angle == 0,1,2)
+    hjust <- ifelse(x_text_angle == 0,0.5, 1)
     vjust <- ifelse(x_text_angle == 0,3, 0.5)
   }
 
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
-    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  margin = margin(b = 3,unit = 'mm'))
+    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
+    #axis.text.x  = ggplot2::element_text(angle = x_text_angle,  vjust = vjust, hjust= hjust)
   } else if(axis_values == F){
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()
@@ -154,6 +155,8 @@ theme_ipea <- function(axis_lines = 'half',
 
 
     theme <- ggplot2::theme(
+    text = ggplot2::element_text(family = "Frutiger-LT-55-Roman"),
+    #text = ggplot2::element_text(family = "Frutiger-LT-55-Roman",size = unit(6, unit = 'mm')),
     # Sets the background color of the panel to white
     panel.background = ggplot2::element_rect(fill = "white", colour = NA),
     # Sets the panel border based on the previous assignment
@@ -182,6 +185,7 @@ theme_ipea <- function(axis_lines = 'half',
     # Sets the appearance of the axis text based on the previous assignment
     axis.text.x = axis.text.x,
     axis.text.y = axis.text.y,
+    # Change title x
     axis.title.x = axis.title.x,
     axis.title.y = axis.title.y,
     # Sets the appearance of the axis ticks based on the previous assignment

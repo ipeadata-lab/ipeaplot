@@ -1,12 +1,14 @@
 ---
 title: "Introdução ao ipeaplot"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  html_document:
+    self_contained: yes
+    mode: selfcontained
+  pdf_document: default
 urlcolor: blue
-vignette: >
-  %\VignetteIndexEntry{Introdução ao ipeaplot}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+vignette: "%\\VignetteIndexEntry{Introdução ao ipeaplot} %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, include = FALSE}
@@ -68,7 +70,7 @@ data(mtcars)
 
 No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea(). Essas funções incorporam à figura diretrizes visuais fundamentais das publicações do Ipea, proporcionando uma apresentação alinhada aos padrões estilístico estabelecidos pelo instituto. Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
 fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               labs(y='Consumo de Combustível (milhas por galão)',
@@ -79,7 +81,11 @@ fig_base <- fig_raw +
               scale_color_ipea() +
               theme_ipea()
 
-fig_raw + fig_base
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico1.png"))
 ```
 
 ## Paleta de cores
@@ -89,7 +95,7 @@ Existem duas funções básicas para selecionar a paleta de cores da figura: `sc
 O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange", "Pink"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
 
 **Cores sequenciais:**
-```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4)}
+```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4),fig.align = "center", out.width = "50%"}
 par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
 pal(ipea_pal(palette = "Blue")(9)); mtext("Blue")
 pal(ipea_pal(palette = "Green")(9)); mtext("Green")
@@ -98,7 +104,7 @@ pal(ipea_pal(palette = "Orange")(9)); mtext("Orange")
 ```
 
 **Cores divergentes:**
-```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4)}
+```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4),fig.align = "center", out.width = "50%"}
 par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
 pal(ipea_pal(palette = "Red-Blue")(9)); mtext("Red-Blue")
 pal(ipea_pal(palette = "Orange-Blue")(9)); mtext("Orange-Blue")
@@ -108,19 +114,21 @@ pal(ipea_pal(palette = "Green-Blue")(9)); mtext("Green-Blue")
 
 Para usar as paletas de cores, basta adicionar uma das funções na construção da sua figura com `ggplot2`:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE,fig.align = "center"}
 # paleta sequencial verde
-fig_base + scale_color_ipea(palette = "Green")
+# fig_base + scale_color_ipea(palette = "Green")
+knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico2.png"))
 
 # paleta divergente de laranja a azul
-fig_base + scale_color_ipea(palette = "Orange-Blue")
+# fig_base + scale_color_ipea(palette = "Orange-Blue")
+knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 ```
 
 ### Escala de cores contínua e discreta
 
 Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
 ggplot() +
   geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
   labs(y='Consumo de Combustível\n(milhas por galão)',
@@ -128,6 +136,8 @@ ggplot() +
        color='Cilindradas') +
   scale_color_ipea(palette = "Orange", discrete = TRUE ) +
   theme_ipea()
+
+knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico4.png"))
 
 ```
 
@@ -174,6 +184,9 @@ ggplot() +
   ylab('Proporção em %') +
   xlab('Ano') +
   theme_ipea()
+
+knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
+
 ```
 
 Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
@@ -187,6 +200,8 @@ ggplot() +
   xlab('Ano') +
   facet_wrap(. ~ regiao) +
   theme_ipea(x_breaks = 3)
+
+knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico6.png"))
 
 ```
 
@@ -234,7 +249,11 @@ fig_map <- ggplot() +
              theme_ipea(axis_lines = 'none', include_ticks = F, axis_values = F)
    
 
-fig_map
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico7.png"))
 ```
 
 ## Salvando figura
