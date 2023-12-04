@@ -114,13 +114,19 @@ pal(ipea_pal(palette = "Green-Blue")(9)); mtext("Green-Blue")
 
 Para usar as paletas de cores, basta adicionar uma das funções na construção da sua figura com `ggplot2`:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE,fig.align = "center"}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 # paleta sequencial verde
-# fig_base + scale_color_ipea(palette = "Green")
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico2.png"))
+fig_base + scale_color_ipea(palette = "Green")
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico2.png"))
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE,fig.align = "center"}
 # paleta divergente de laranja a azul
-# fig_base + scale_color_ipea(palette = "Orange-Blue")
+fig_base + scale_color_ipea(palette = "Orange-Blue")
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 ```
 
@@ -128,7 +134,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 
 Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 graph <- ggplot() +
   geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
   labs(y='Consumo de Combustível\n(milhas por galão)',
@@ -136,7 +142,9 @@ graph <- ggplot() +
        color='Cilindradas') +
   scale_color_ipea(palette = "Orange", discrete = TRUE ) +
   theme_ipea()
+```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico4.png"))
 
 ```
@@ -152,14 +160,14 @@ A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utili
 
 Para ilustrar essa função, vamos utilizar alguns dados do Atlas do Desenvolvimento Humano organizados em um projeto de parceria entre Ipea, FJP e PNUD). Para carregar os dados, basta rodar:
 
-```{r eval=TRUE}
+```{r eval=FALSE}
 df <- abjData::pnud_muni
 head(df)
 ```
 
 Essa base de dados traz para cada municipio uma série de indicadores socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro calculamos qual a proporção de domicílios que possuia coleta de esgoto em cada região do país a cada anos, e em seguida geramos o gráfico:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=3}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 # cria variavel identificando a regiao de cada municipio
 df <- df |> 
       mutate(regiao = substring(uf, 1, 1),
@@ -184,6 +192,9 @@ ggplot() +
   ylab('Proporção em %') +
   xlab('Ano') +
   theme_ipea()
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
 
@@ -191,7 +202,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
 
 Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6}
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 graph <- ggplot() + 
   geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
   scale_fill_ipea(discrete = T, palette = 'Green') +
@@ -201,12 +212,11 @@ graph <- ggplot() +
   facet_wrap(. ~ regiao) +
   theme_ipea(x_breaks = 3)
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico6.png"))
 
 ```
-
-
-
 
 ### Mapas
 
@@ -214,7 +224,7 @@ As funções do **ipeaplot** também facilitam na criação de mapas. No exemplo
 
 O primeiro passo, é baixar a malha espacial de municípios. Isso pode ser feito com o pacote [geobr](https://ipeagit.github.io/geobr/), desenvolvido pelo Ipea. Para baixar esses dados, basta rodar:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 # Load municipality and state spatial data
 mun <- geobr::read_municipality(year = 2010)
 uf  <- geobr::read_state(year = 2010)
@@ -222,7 +232,7 @@ uf  <- geobr::read_state(year = 2010)
 
 Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável com os códigos do municípios é a nossa chave para unir as duas bases.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 # Load municipality and state spatial data
 mun = read_municipality()
 uf  = read_state()
@@ -239,7 +249,7 @@ df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
 
 Agora basta criar o mapa:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6 }
+```{r eval=FALSE, message=FALSE, warning=FALSE}
 fig_map <- ggplot() +
              geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
              geom_sf(data = uf, color = "black", fill = NA) +
@@ -247,9 +257,6 @@ fig_map <- ggplot() +
              scale_fill_ipea(palette = 'Orange-Blue', 
                              name='Anos de\nestudo') + 
              theme_ipea(axis_lines = 'none', include_ticks = F, axis_values = F)
-   
-
-
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
