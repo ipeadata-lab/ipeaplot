@@ -50,7 +50,7 @@ fig_raw +
 
 Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
 - [Introdução ao ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
-- [Comparativo ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
+- [Cookbook ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
 
 
 
