@@ -129,7 +129,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
-ggplot() +
+graph <- ggplot() +
   geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
   labs(y='Consumo de Combustível\n(milhas por galão)',
        x ='Potência (Número de cavalos)',
@@ -192,7 +192,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
 Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6}
-ggplot() + 
+graph <- ggplot() + 
   geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
   scale_fill_ipea(discrete = T, palette = 'Green') +
   labs(title = 'Proporção da população com coleta de lixo', fill='Ano') +

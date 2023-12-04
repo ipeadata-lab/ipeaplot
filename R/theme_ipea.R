@@ -77,8 +77,8 @@ theme_ipea <- function(axis_lines = 'full',
     # Define the axis line and panel border for "full" style
     axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
     axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25, size = unit(1, 'mm'))
-    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25, size = unit(1, 'mm'))
+    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
+    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
     panel.border = ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA)
 
   } else if (axis_lines == "none") {
