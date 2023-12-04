@@ -42,7 +42,7 @@ library(knitr)
 ```
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
-# Leitura de bibliotecas
+# Leitura dos dados
 ## Gráfico 1
 Ano <- factor(c(2000,2005,2010,2015,2020,2025,2030,2035,2040,2045,2050))
 Populacao <- c(6.1,6.5,6.9,7.3,7.7,8.0,8.3,8.6,8.9,9.1,9.3)
