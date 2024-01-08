@@ -39,11 +39,11 @@ scale_color_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-B
 
   structure(list(palette = palette, palette_direction = palette_direction,
                  decimal.mark = decimal.mark, barheight = barheight, barwidth = barwidth,
-                 title.hjust = title.hjust, label.hjust = label.hjust,...), class = "scale_ipea")
+                 title.hjust = title.hjust, label.hjust = label.hjust,...), class = "scale_ipea_color")
 }
 
-# Definition of the ggplot_add.scale_ipea method
-ggplot_add.scale_ipea <- function(object, plot, name, ...){
+# Definition of the ggplot_add.scale_ipea_color method
+ggplot_add.scale_ipea_color <- function(object, plot, name, ...){
 
   # Set arguments
   args <- object
@@ -183,11 +183,11 @@ scale_fill_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-Bl
 
   structure(list(palette = palette, palette_direction = palette_direction,
                  decimal.mark = decimal.mark, barheight = barheight, barwidth = barwidth,
-                 title.hjust = title.hjust, label.hjust = label.hjust,...), class = "scale_ipea")
+                 title.hjust = title.hjust, label.hjust = label.hjust,...), class = "scale_ipea_fill")
 }
 
-# Definition of the ggplot_add.scale_ipea method
-ggplot_add.scale_ipea <- function(object, plot, name, ...){
+# Definition of the ggplot_add.scale_ipea_fill method
+ggplot_add.scale_ipea_fill <- function(object, plot, name, ...){
 
   # Set arguments
   args <- object
