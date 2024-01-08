@@ -5,8 +5,9 @@
 \title{Ipea Color Palette and Scales}
 \usage{
 ipea_palette(
-  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Orange-Blue",
-    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Green-Blue-White",
+    "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White", "Viridis",
+    "Inferno", "Magma", "Plasma", "Cividis"),
   n,
   alpha = 1,
   begin = 0,
@@ -25,6 +26,9 @@ These options are available:
 \item{}{'Red-Blue'}
 \item{}{'Orange-Blue'}
 \item{}{'Green-Blue'}
+\item{}{'Red-Blue-White'}
+\item{}{'Orange-Blue-White'}
+\item{}{'Green-Blue-White'}
 \item{}{'Viridis'}
 \item{}{'Inferno'}
 \item{}{'Magma'}

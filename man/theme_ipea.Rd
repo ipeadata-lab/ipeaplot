@@ -5,7 +5,7 @@
 \title{Ggplot theme for Ipea charts and figures}
 \usage{
 theme_ipea(
-  axis_lines = "half",
+  axis_lines = "full",
   axis_values = T,
   legend.position = "right",
   grid.adjust = "horizontal",

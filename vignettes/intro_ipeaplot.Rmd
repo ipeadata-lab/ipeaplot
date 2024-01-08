@@ -126,7 +126,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 
 ### Escala de cores contínua e discreta
 
-Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `discrete = TRUE`.
+Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `RUE`.
 
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
 graph <- ggplot() +
@@ -134,7 +134,7 @@ graph <- ggplot() +
   labs(y='Consumo de Combustível\n(milhas por galão)',
        x ='Potência (Número de cavalos)',
        color='Cilindradas') +
-  scale_color_ipea(palette = "Orange", discrete = TRUE ) +
+  scale_color_ipea(palette = "Orange", RUE ) +
   theme_ipea()
 
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico4.png"))
@@ -179,7 +179,7 @@ df_fig1 <- df |>
 # plot
 ggplot() +
   geom_line(data = df_fig1, aes(x=ano, y=t_lixo, color= regiao)) +
-  scale_color_ipea(discrete = T, palette = 'Orange') +
+  scale_color_ipea(palette = 'Orange') +
   labs(title = 'Proporção da população com coleta de lixo', color='Região') +
   ylab('Proporção em %') +
   xlab('Ano') +
@@ -194,7 +194,7 @@ Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
 ```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center",  fig.width=6, fig.height=6}
 graph <- ggplot() + 
   geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
-  scale_fill_ipea(discrete = T, palette = 'Green') +
+  scale_fill_ipea(palette = 'Green') +
   labs(title = 'Proporção da população com coleta de lixo', fill='Ano') +
   ylab('Proporção em %') +
   xlab('Ano') +

@@ -228,7 +228,7 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
        title="GRÁFICO 3",
        subtitle="Gastos com defesa (Em bilhões de dólares)",
        caption = 'Fonte: Peter G. Peterson Foundation (2013).\nTradução dos autores.') +
-  scale_fill_ipea(discrete = T) +
+  scale_fill_ipea() +
   geom_text( position = position_stack(vjust = 0.5), color = 'white') +
   geom_text(data = temp, aes(y = total ,label = paste0("U$ ",total)), vjust = -.5) +
   theme_ipea(legend.position="none",
@@ -285,7 +285,7 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
        caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial.\nDisponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
   theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom', expand_x_limit = F,
              include_x_text_title = F,include_y_text_title = F) +
-  scale_color_ipea(palette_direction = -1, discrete = T) +
+  scale_color_ipea(palette_direction = -1, ) +
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
 
@@ -341,7 +341,7 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
        caption = '') +
   theme_ipea(legend.position = 'bottom',
              include_x_text_title = F,include_y_text_title = F) +
-  scale_fill_ipea(discrete = T)
+  scale_fill_ipea()
 
 ```
 
@@ -380,7 +380,7 @@ graf8 <-
   geom_line(data=base_graf8_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1),
             color = 'gray') +
   scale_x_continuous(breaks = 1:max(base_graf8$n), labels = label) +
-  scale_fill_ipea(discrete = T) +
+  scale_fill_ipea() +
   theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F,
              include_x_text_title = F,include_y_text_title = F) +
   geom_rug(data=base_graf8, aes(x = n-0.5),

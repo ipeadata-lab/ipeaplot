@@ -5,8 +5,9 @@
 \title{Ipea palette}
 \usage{
 ipea_pal(
-  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Orange-Blue",
-    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Green-Blue-White",
+    "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White", "Viridis",
+    "Inferno", "Magma", "Plasma", "Cividis"),
   alpha = 1,
   begin = 0,
   end = 1,

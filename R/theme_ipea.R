@@ -107,8 +107,8 @@ theme_ipea <- function(axis_lines = 'full',
 
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
-    axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
-    #axis.text.x  = ggplot2::element_text(angle = x_text_angle,  vjust = vjust, hjust= hjust)
+    #axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
+    axis.text.x  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn", angle = x_text_angle,  hjust = hjust, vjust = margin(b = vjust,unit = 'mm'))
   } else if(axis_values == F){
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()

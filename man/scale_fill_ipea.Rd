@@ -5,22 +5,19 @@
 \title{Scale fill IPEA}
 \usage{
 scale_fill_ipea(
-  discrete = F,
-  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Red-Blue", "Green-Blue",
-    "Orange-Blue", "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Green-Blue-White",
+    "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White", "Viridis",
+    "Inferno", "Magma", "Plasma", "Cividis"),
   palette_direction = 1,
   decimal.mark = ",",
-  barheight,
-  barwidth,
-  title.hjust,
-  label.hjust,
+  barheight = NULL,
+  barwidth = NULL,
+  title.hjust = NULL,
+  label.hjust = NULL,
   ...
 )
 }
 \arguments{
-\item{discrete}{A logical value indicating whether to use discrete or
-continuous scale bar. The default value is continuous.}
-
 \item{palette}{A character vector specifying the available palette for the
 fill palette. The default palette are \code{"Blue"}, but we can also change
 to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'},\code{'Green-Blue'},
@@ -48,6 +45,9 @@ when the direction is set to "horizontal".}
 \item{...}{Additional arguments to be passed to the scale_fill_gradientn,
 scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 function from the ggplot2 package}
+
+\item{discrete}{A logical value indicating whether to use discrete or
+continuous scale bar. The default value is continuous.}
 }
 \value{
 A list object be added to a ggplot object to change color pallete.
