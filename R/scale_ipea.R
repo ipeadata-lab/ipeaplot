@@ -3,8 +3,6 @@
 #' @description Generate a color palette (continuous or discrete) following the
 #'              editorial guidelines used by the Institute for Applied Economic
 #'              Research - Ipea.
-#' @param discrete A logical value indicating whether to use discrete or
-#'        continuous scale bar. The default value is continuous.
 #' @param palette A character vector specifying the available palette for the
 #'        color palette. The default palette are `"Blue"`, but we can also change
 #'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
@@ -149,11 +147,10 @@ ggplot_add.scale_ipea <- function(object, plot, name, ...){
 #' @description Generate a fill palette (continuous or discrete) in the
 #'              formatting of texts published by the Institute for Applied
 #'              Economic Research (IPEA)
-#' @param discrete A logical value indicating whether to use discrete or
-#'        continuous scale bar. The default value is continuous.
 #' @param palette A character vector specifying the available palette for the
-#'        fill palette. The default palette are `"Blue"`, but we can also change
-#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`,`'Green-Blue'`,
+#'        color palette. The default palette are `"Blue"`, but we can also change
+#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
+#'        `'Red-Blue-White'`, `'Orange-Blue-White'`, `'Green-Blue-White'`,
 #'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will

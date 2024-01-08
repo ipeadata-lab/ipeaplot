@@ -19,8 +19,9 @@ scale_fill_ipea(
 }
 \arguments{
 \item{palette}{A character vector specifying the available palette for the
-fill palette. The default palette are \code{"Blue"}, but we can also change
-to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'},\code{'Green-Blue'},
+color palette. The default palette are \code{"Blue"}, but we can also change
+to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'}, \code{'Green-Blue'},
+\code{'Red-Blue-White'}, \code{'Orange-Blue-White'}, \code{'Green-Blue-White'},
 \code{'Viridis'}, \code{'Inferno'}, \code{'Magma'}, \code{'Plasma'}, \code{'Cividis'}.}
 
 \item{palette_direction}{A logical argument specifying if the ordering of the colors
@@ -45,9 +46,6 @@ when the direction is set to "horizontal".}
 \item{...}{Additional arguments to be passed to the scale_fill_gradientn,
 scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 function from the ggplot2 package}
-
-\item{discrete}{A logical value indicating whether to use discrete or
-continuous scale bar. The default value is continuous.}
 }
 \value{
 A list object be added to a ggplot object to change color pallete.

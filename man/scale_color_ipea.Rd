@@ -46,9 +46,6 @@ when the direction is set to "horizontal".}
 \item{...}{Additional arguments to be passed to the scale_fill_gradientn,
 scale_color_gradientn, scale_fill_distiller or scale_color_distiller
 function from the ggplot2 package.}
-
-\item{discrete}{A logical value indicating whether to use discrete or
-continuous scale bar. The default value is continuous.}
 }
 \value{
 A list object be added to a ggplot object to change color pallete.
