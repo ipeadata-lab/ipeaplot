@@ -2,7 +2,9 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-# ipeaplot: criando graficos no padrão editorial do Ipea
+# ipeaplot: criando graficos no padrão editorial do Ipea 
+
+<img align="right" src="man/figures/ipeaplot.png?raw=true" alt="logo" width="140"> 
 
 O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). O pacote traz algumas funções que facilitam o ajuste de formatação e de cores de gráficos criados com o pacote `ggplot2`, garantindo a conformidade com as diretrizes das publicações do Instituto.
 
@@ -47,15 +49,15 @@ fig_raw +
 ```
 <img src="man/figures/figura_read_me.png" width="70%" style="display: block; margin: auto;" />
 
-
 Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
+
 - [Introdução ao ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
-- [Comparativo ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
+  
+- [Cookbook ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
 
+# Equipe 
 
-
-
-# Equipe <img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/man/figures/ipea.png?raw=true" alt="ipea" width="300">
+<img align="right" src="https://github.com/ipeadata-lab/ipeaplot/blob/master/man/figures/ipea.png?raw=true" alt="ipea" width="300">
 
 O pacote **ipeaplot** é desenvolvido pela equipe da Coordenação-Geral de Ciência de Dados e Tecnologia da Informação (CGDTI) do Instituto de Pesquisa Econômica Aplicada (Ipea).
 
