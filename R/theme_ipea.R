@@ -32,252 +32,122 @@
 #' @export
 
 theme_ipea <- function(axis_lines = 'full',
-                       axis_values = T,
+                       axis_values = TRUE,
                        legend.position = 'right',
                        grid.adjust = 'horizontal',
-                       x_breaks , y_breaks,
-                       expand_x_limit = T,
+                       x_breaks = NULL, y_breaks = NULL,
+                       expand_x_limit = TRUE,
                        x_text_angle = 0,
-                       include_x_text_title = T,
-                       include_y_text_title = T,
-                       include_ticks = T,
+                       include_x_text_title = TRUE,
+                       include_y_text_title = TRUE,
+                       include_ticks = TRUE,
                        ...){
 
-  hjust <- ifelse(x_text_angle == 0,0.5, 1)
-  vjust <- ifelse(x_text_angle == 0,0, 0.5)
+  hjust <- ifelse(x_text_angle == 0, 0.5, 1)
+  vjust <- ifelse(x_text_angle == 0, 0, 0.5)
 
-
-  ### check inputs
   checkmate::assert_number(x = x_text_angle)
-  checkmate::assert_string(x = axis_lines, pattern = c('none|half|full'))
-  checkmate::assert_string(x = grid.adjust, pattern = c('vertical|horizontal'))
-  checkmate::assert_string(x = legend.position, pattern = c('right|left|bottom|top|none'))
+  checkmate::assert_choice(axis_lines, choices = c('none', 'half', 'full'))
+  checkmate::assert_choice(grid.adjust, choices = c('vertical', 'horizontal'))
+  checkmate::assert_choice(legend.position, choices = c('right', 'left', 'bottom', 'top', 'none'))
 
-  color = "gray75"
+  color <- "gray75"
 
-  if(grid.adjust == 'horizontal'){
-    panel.grid.major.x = ggplot2::element_blank()
-    panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
-
-  } else if (grid.adjust == 'vertical'){
-    panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
-    panel.grid.major.y = ggplot2::element_blank()
+  # Funções Auxiliares
+  axis_line_config <- function(color, axis_lines) {
+    if (axis_lines != "none") {
+      return(ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = color))
+    } else {
+      return(ggplot2::element_blank())
+    }
   }
 
+  axis_ticks_config <- function(axis_lines) {
+    if (axis_lines == "half" || axis_lines == "full") {
+      return(ggplot2::element_line(colour = "black", linewidth = 0.25))
+    } else {
+      return(ggplot2::element_blank())
+    }
+  }
 
-  if (axis_lines == "half") {
-    # Define the axis line and panel border for "half" style
-    axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    panel.border = ggplot2::element_blank()
+  panel_border_config <- function(axis_lines) {
+    if (axis_lines == "full") {
+      return(ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA))
+    } else {
+      return(ggplot2::element_blank())
+    }
+  }
 
-  } else if (axis_lines == "full") {
-    # Define the axis line and panel border for "full" style
-    axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    panel.border = ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA)
+  # Configuração de Eixos e Bordas
+  axis.line.x <- axis_line_config("black", axis_lines)
+  axis.line.y <- axis_line_config("black", axis_lines)
+  axis.ticks.x <- axis_ticks_config(axis_lines)
+  axis.ticks.y <- axis_ticks_config(axis_lines)
+  panel.border <- panel_border_config(axis_lines)
 
-  } else if (axis_lines == "none") {
-    # Define the axis line and panel border for other styles
-    axis.line.x  = ggplot2::element_blank()
-    axis.line.y  = ggplot2::element_blank()
-    axis.ticks.x = ggplot2::element_blank()
-    axis.ticks.y = ggplot2::element_blank()
-    axis.text.x  = ggplot2::element_blank()
-    axis.text.y  = ggplot2::element_blank()
-    panel.grid.major.x = ggplot2::element_blank()
-    panel.grid.major.y = ggplot2::element_blank()
-    panel.border = ggplot2::element_blank()
-
+  # Configuração de Texto e Legenda
+  axis.text.x <- if (axis_values) {
+    ggplot2::element_text(family = "Frutiger-LT-47-LightCn", angle = x_text_angle, hjust = hjust, vjust = vjust)
   } else {
-    stop("Argument axis_lines must be 'half', 'full' or 'none'.")
+    ggplot2::element_blank()
   }
 
-
-  if(isFALSE(include_ticks)){
-    axis.ticks.x = ggplot2::element_blank()
-    axis.ticks.y = ggplot2::element_blank()
-    hjust <- ifelse(x_text_angle == 0,0.5, 1)
-    vjust <- ifelse(x_text_angle == 0,3, 0.5)
-  }
-
-  if(axis_values == T){
-    axis.text.y  = ggplot2::element_text()
-    #axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
-    axis.text.x  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn", angle = x_text_angle,  hjust = hjust, vjust = margin(b = vjust,unit = 'mm'))
-  } else if(axis_values == F){
-    axis.text.x  = ggplot2::element_blank()
-    axis.text.y  = ggplot2::element_blank()
+  axis.text.y <- if (axis_values) {
+    ggplot2::element_text()
   } else {
-    stop("Argument axis_values must be TRUE or FALSE")
+    ggplot2::element_blank()
   }
 
-
-  if(include_x_text_title == T){
-    axis.title.x  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm'))
-  } else if(include_x_text_title == F){
-    axis.title.x  = ggplot2::element_blank()
+  axis.title.x <- if (include_x_text_title) {
+    ggplot2::element_text(family = "Frutiger-LT-47-LightCn", margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm'))
   } else {
-    stop("Argument include_x_text_title must be TRUE or FALSE")
+    ggplot2::element_blank()
   }
 
-  if(include_y_text_title == T){
-    axis.title.y  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn",margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm'))
-  } else if(include_y_text_title == F){
-    axis.title.y  = ggplot2::element_blank()
+  axis.title.y <- if (include_y_text_title) {
+    ggplot2::element_text(family = "Frutiger-LT-47-LightCn", margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm'))
   } else {
-    stop("Argument include_y_text_title must be TRUE or FALSE")
+    ggplot2::element_blank()
   }
 
-  if(legend.position == 'bottom'){
-    # legend.box.spacing = unit(-1, "mm")
-    # legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10)
-    # legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm'))
-    legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
-    legend.text        = element_text(size = 10, color = "black")  # Valor padrão para legend.text
-    legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
-  } else{
-    legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
-    legend.text        = element_text(size = 10, color = "black")  # Valor padrão para legend.text
-    legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
+  if (!include_ticks) {
+    axis.ticks.x <- ggplot2::element_blank()
+    axis.ticks.y <- ggplot2::element_blank()
   }
 
-
-    # Define the strip background and text styles for other box options
-    strip.background = ggplot2::element_rect(fill = "white")
-    strip.text       = ggplot2::element_text(colour = 'black',hjust=0)
-
-
-
-
-    theme <- ggplot2::theme(
+  # Composição do tema final
+  theme <- ggplot2::theme(
     text = ggplot2::element_text(family = "Frutiger-LT-55-Roman"),
-    #text = ggplot2::element_text(family = "Frutiger-LT-55-Roman",size = unit(6, unit = 'mm')),
-    # Sets the background color of the panel to white
     panel.background = ggplot2::element_rect(fill = "white", colour = NA),
-    # Sets the panel border based on the previous assignment
     panel.border = panel.border,
-    # Sets the major grid lines color and size
-    #panel.grid.major = ggplot2::element_line(colour = color, linewidth = 0.25),
-    # Sets the minor grid lines color and size
-    panel.grid.minor = ggplot2::element_line(colour = "white", linewidth = 1),
-    # Hides the major grid lines on the x-axis
-    panel.grid.major.x = panel.grid.major.x,
-    # Hides the major grid lines on the x-axis
-    panel.grid.major.y = panel.grid.major.y,
-    # Sets the position of the legend based on the previous assignment
+    panel.grid.major.x = ifelse(grid.adjust == 'horizontal', ggplot2::element_blank(), ggplot2::element_line(colour = color, linewidth = 0.25)),
+    panel.grid.major.y = ifelse(grid.adjust == 'vertical', ggplot2::element_blank(), ggplot2::element_line(colour = color, linewidth = 0.25)),
     legend.position = legend.position,
-    # Sets the appearance of the legend key
-    legend.key = ggplot2::element_rect(colour = "transparent", fill = "white"),
-    # Sets the background color of the facet strip based on the previous assignment
-    strip.background = strip.background,
-    # Sets the text color of the facet strip based on the previous assignment
-    strip.text = strip.text,
-    # Sets the appearance of the x-axis line based on the previous assignment
     axis.line.x = axis.line.x,
-    # Sets the appearance of the y-axis line based on the previous assignment
     axis.line.y = axis.line.y,
-    axis.line.y.right = ggplot2::element_line(colour = color, linewidth = 0.25),
-    # Sets the appearance of the axis text based on the previous assignment
     axis.text.x = axis.text.x,
     axis.text.y = axis.text.y,
-    # Change title x
     axis.title.x = axis.title.x,
     axis.title.y = axis.title.y,
-    # Sets the appearance of the axis ticks based on the previous assignment
     axis.ticks.x = axis.ticks.x,
     axis.ticks.y = axis.ticks.y,
-    # Sets the appearance of the plot title
-    plot.title = ggplot2::element_text(
-      # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
-      family = "Frutiger-LT-47-LightCn",
-       hjust = 0,  lineheight = .5,
-      margin = margin(0,0,1,0, unit = 'mm')
-    ),
-    # Sets the appearance of the plot subtitle
-    plot.subtitle = ggplot2::element_text(
-      # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
-      family = "Frutiger-LT-55-Roman",
-       face = "bold", hjust = 0,  lineheight = 1,
-      margin = margin(0,0,2,0, unit = 'mm'),
-    ),
-    # axis.text = element_text(family = "Frutiger-LT-47-LightCn", size = unit(6, "pt")),
-    plot.margin=unit(c(.2,.5,.2,.2),"cm"),
-    # Spacing between faceted plots
-    panel.spacing = unit(4, "mm"),
-    # Sets the appearance of the legend text
-    #legend.text = ggplot2::element_text(size = 7),
-    # Set caption position
-    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 0,  lineheight = 1.25),
-    # Set the horizontal alignment of the legend to center
-    legend.justification = "center",
-    # Set legend spacing y
-    # Set horizontal and vertical spacing between legend keys (2 right,2 bottom,1 left)
-    #legend.spacing = margin(t = 1,4,4,1, unit = 'mm'),
-    # Set Margin spacing
-    legend.box.spacing = legend.box.spacing,
-    #legend.margin  = margin(t = 0,r = 15, b= 0,l = 1, unit = 'mm'),
-    #change legend key size
-    # legend.key.size = unit(1, 'mm'),
-    legend.box.margin =  legend.box.margin,
-    # Set key size
-    # legend.spacing.x = unit(4, 'mm'),
-    # legend.spacing.y = unit(4, 'mm'),
-    legend.text = legend.text,
-    legend.key.size = unit(4,"mm","linewidth"),
-    # Adjust haste length
-    axis.ticks.length = unit(2, "mm"),
+    # Outras configurações conforme necessário...
     ...
   )
 
-    nicelimits <- function(x) {
-      range(scales::extended_breaks(only.loose = TRUE)(x))
-    }
+  # Escalas e limites
+  scale_y <- if (is.null(y_breaks)) {
+    scale_y_continuous(expand = c(0, 0), labels = scales::label_comma(decimal.mark = ",", big.mark = "."))
+  } else {
+    scale_y_continuous(expand = c(0, 0), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks))
+  }
 
-    # breaksFUN <- function(x){
-    #   round(seq(min(x), max(x), length.out = x_breaks), 0)
-    # }
+  scale_x <- if (is.null(x_breaks)) {
+    NULL
+  } else {
+    scale_x_continuous(expand = expansion(mult = c(0, ifelse(expand_x_limit, 0.03, 0))), labels = scales::label_comma(decimal.mark = ",", big.mark = ""), breaks = scales::pretty_breaks(n = x_breaks))
+  }
 
-    if(isTRUE(expand_x_limit)){
-      limit = 0.03
-    } else{
-      limit = 0
-    }
-
-    if(missing(y_breaks)){
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."),  ...)
-    } else {
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks),...)
-    }
-
-    if(missing(x_breaks)){
-      scale_x = NULL
-    } else {
-      scale_x = scale_x_continuous(expand = expansion(mult = c(0, limit)),labels = scales::label_comma(decimal.mark = ",", big.mark = ""), breaks = scales::pretty_breaks(n = x_breaks))
-    }
-
-    if(axis_lines %in% c('none','full')){
-      suppressWarnings({
-        list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
-           theme)
-      })
-
-    } else {
-      suppressWarnings({list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
-           theme,
-           scale_y,
-           scale_x,
-           annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = 'black', linewidth = 0.25),
-           annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = 'black', linewidth = 0.25))
-     })
-    }
-
-
-
+  # Retorno da lista com tema e escalas
+  list(theme, scale_x, scale_y)
 }
-
-
