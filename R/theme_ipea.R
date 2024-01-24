@@ -136,13 +136,13 @@ theme_ipea <- function(axis_lines = 'full',
   if(legend.position == 'bottom'){
     # legend.box.spacing = unit(-1, "mm")
     # legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10)
-    # legend.text = element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm'))
+    # legend.text = ggplot2::element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm'))
     legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
-    legend.text        = element_text(size = 10, color = "black")  # Valor padrão para legend.text
+    legend.text        = ggplot2::element_text(size = 10, color = "black")  # Valor padrão para legend.text
     legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
   } else{
     legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
-    legend.text        = element_text(size = 10, color = "black")  # Valor padrão para legend.text
+    legend.text        = ggplot2::element_text(size = 10, color = "black")  # Valor padrão para legend.text
     legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
   }
 
@@ -205,14 +205,14 @@ theme_ipea <- function(axis_lines = 'full',
        face = "bold", hjust = 0,  lineheight = 1,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
-    # axis.text = element_text(family = "Frutiger-LT-47-LightCn", size = unit(6, "pt")),
+    # axis.text = ggplot2::element_text(family = "Frutiger-LT-47-LightCn", size = unit(6, "pt")),
     plot.margin=unit(c(.2,.5,.2,.2),"cm"),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text
     #legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 0,  lineheight = 1.25),
+    plot.caption = ggplot2::element_text(family = "Frutiger-LT-Std", hjust = 0, vjust = 0,  lineheight = 1.25),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y
@@ -234,13 +234,50 @@ theme_ipea <- function(axis_lines = 'full',
     ...
   )
 
+
+
     nicelimits <- function(x) {
       range(scales::extended_breaks(only.loose = TRUE)(x))
     }
 
-    # breaksFUN <- function(x){
-    #   round(seq(min(x), max(x), length.out = x_breaks), 0)
-    # }
+
+
+    my_pretty_breaks <- function(n = 5, na.rm = TRUE, digits = 3, ...) {
+      n_default <- n
+      function(x) {
+        if (na.rm) {
+          x <- na.omit(x)
+        }
+        # Verificando se há variação nos dados
+        if (length(unique(x)) == 1) {
+          return(unique(x))
+        }
+
+        if(n_default >= 8){
+          p = 1.01
+        } else {
+          p = 1.1
+        }
+
+
+        range_x <- range(x)
+        breaks <- seq(from = range_x[1]*p, to = range_x[2]*0.99, length.out = n_default)
+
+
+        t <- 0
+        length <- length(unique(round(breaks,t)))
+        while(length != n_default){
+          t <- t+1
+          length <- length(unique(round(breaks,t)))
+        }
+
+        # Arredondando para o número especificado de dígitos significativos
+        round(breaks,t)
+
+      }
+    }
+
+
 
     if(isTRUE(expand_x_limit)){
       limit = 0.03
@@ -249,21 +286,30 @@ theme_ipea <- function(axis_lines = 'full',
     }
 
     if(missing(y_breaks)){
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."),  ...)
+      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ),
+                                   labels = scales::label_comma(decimal.mark = ",", big.mark = "."),  ...)
     } else {
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = scales::pretty_breaks(n = y_breaks),...)
+      scale_y = scale_y_continuous(limits = nicelimits,
+                                   expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
+                                   breaks = my_pretty_breaks(n = y_breaks),...)
     }
 
     if(missing(x_breaks)){
       scale_x = NULL
     } else {
-      scale_x = scale_x_continuous(expand = expansion(mult = c(0, limit)),labels = scales::label_comma(decimal.mark = ",", big.mark = ""), breaks = scales::pretty_breaks(n = x_breaks))
+      scale_x = scale_x_continuous(expand = expansion(mult = c(0, limit)),
+                                   labels = scales::label_comma(decimal.mark = ",", big.mark = ""),
+                                   breaks = my_pretty_breaks(n = x_breaks),...)
     }
 
     if(axis_lines %in% c('none','full')){
       suppressWarnings({
         list(ggplot2::theme_gray(base_family = "Frutiger-LT-55-Roman"),
-           theme)
+           theme,
+           scale_y,
+           scale_x,
+           annotate(geom = 'segment',  y = -Inf, yend = Inf,x = Inf, xend = Inf, color = 'black', linewidth = 0.25),
+           annotate(geom = 'segment', y = Inf, yend = Inf,x = -Inf, xend = Inf, color = 'black', linewidth = 0.25))
       })
 
     } else {
