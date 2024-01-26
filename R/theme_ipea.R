@@ -241,46 +241,54 @@ theme_ipea <- function(axis_lines = 'full',
     }
 
 
-
-    my_pretty_breaks <- function(n = 5, na.rm = TRUE, digits = 3, ...) {
-      n_default <- n
+    my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, sd = 0.05,  ...) {
       function(x) {
         if (na.rm) {
           x <- na.omit(x)
         }
-        # Verificando se há variação nos dados
         if (length(unique(x)) == 1) {
           return(unique(x))
         }
 
-        if(n_default >= 8){
-          p = 1.01
-        } else {
-          p = 1.1
-        }
+        # Aplica a expansão
+        #    range_x <- range(x)
+        range_x <- c(0.55,10.45)
 
+        # Calcula o valor de expansão atual
+        current_expand_amount <- diff(range_x) * current_expand / (1 + 2 * current_expand)
 
-        range_x <- range(x)
-        breaks <- seq(from = range_x[1]*p, to = range_x[2]*0.99, length.out = n_default)
+        # Contração do intervalo para remover a expansão
+        contracted_range <- c(range_x[1] + current_expand_amount, range_x[2] - current_expand_amount)
+
+        # Calcula os breaks com o intervalo contraído
+        breaks <- seq(from = contracted_range[1], to = contracted_range[2], length.out = n_breaks)
 
 
         t <- 0
-        length <- length(unique(round(breaks,t)))
-        while(length != n_default){
-          t <- t+1
-          length <- length(unique(round(breaks,t)))
+        len <- length(unique(round(breaks, t)))
+        while(len != n_breaks && t < 10) {  # Corrigido aqui: n para n_breaks
+          t <- t + 1
+          len <- length(unique(round(breaks, t)))
         }
 
-        # Arredondando para o número especificado de dígitos significativos
-        round(breaks,t)
+        temp <- round(breaks, t)
+        intervals <- c(diff(temp))
 
+        while(any(sd(intervals) > sd) && t < 10){
+          t <- t + 1
+          temp <- round(breaks, t)
+          intervals <- c(diff(temp))
+        }
+
+        round(breaks, t)
       }
     }
 
 
 
+
     if(isTRUE(expand_x_limit)){
-      limit = 0.03
+      limit = 0.05
     } else{
       limit = 0
     }
@@ -297,9 +305,9 @@ theme_ipea <- function(axis_lines = 'full',
     if(missing(x_breaks)){
       scale_x = NULL
     } else {
-      scale_x = scale_x_continuous(expand = expansion(mult = c(0, limit)),
+      scale_x = scale_x_continuous(expand = expansion(mult = c(0.05, 0.05)),
                                    labels = scales::label_comma(decimal.mark = ",", big.mark = ""),
-                                   breaks = my_pretty_breaks(n = x_breaks),...)
+                                   breaks = my_pretty_breaks(n_breaks = x_breaks),...)
     }
 
     if(axis_lines %in% c('none','full')){
