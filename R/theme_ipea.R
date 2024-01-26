@@ -251,8 +251,7 @@ theme_ipea <- function(axis_lines = 'full',
         }
 
         # Aplica a expansão
-        #    range_x <- range(x)
-        range_x <- c(0.55,10.45)
+        range_x <- range(x)
 
         # Calcula o valor de expansão atual
         current_expand_amount <- diff(range_x) * current_expand / (1 + 2 * current_expand)
