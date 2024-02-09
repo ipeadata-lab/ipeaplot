@@ -294,8 +294,10 @@ theme_ipea <- function(axis_lines = 'full',
     }
 
     if(missing(y_breaks)){
-      scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ),
-                                   labels = scales::label_comma(decimal.mark = ",", big.mark = "."),  ...)
+      #scale_y = scale_y_continuous(limits = nicelimits, expand = c( 0, 0 ),
+      #                             labels = scales::label_comma(decimal.mark = ",", big.mark = "."),  ...)
+      scale_y = NULL
+      
     } else {
       scale_y = scale_y_continuous(limits = nicelimits,
                                    expand = c( 0, 0 ), labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
