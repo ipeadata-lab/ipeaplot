@@ -10,5 +10,7 @@ import(ggplot2)
 importFrom(grDevices,dev.off)
 importFrom(grDevices,postscript)
 
+
+S3method(ggplot_add,scale_auto_ipea)
 S3method(ggplot_add,scale_ipea_color)
 S3method(ggplot_add,scale_ipea_fill)
