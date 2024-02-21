@@ -31,17 +31,96 @@
 #' @import ggplot2
 #' @export
 
+
+
 theme_ipea <- function(axis_lines = 'full',
-                       axis_values = T,
+                       axis_values = TRUE,
                        legend.position = 'right',
                        grid.adjust = 'horizontal',
-                       x_breaks , y_breaks,
-                       expand_x_limit = T,
+                       x_breaks = NULL, # Valor padrão definido como NULL
+                       y_breaks = NULL, # Valor padrão definido como NULL
+                       expand_x_limit = TRUE,
                        x_text_angle = 0,
-                       include_x_text_title = T,
-                       include_y_text_title = T,
-                       include_ticks = T,
+                       include_x_text_title = TRUE,
+                       include_y_text_title = TRUE,
+                       include_ticks = TRUE,
                        ...){
+
+  structure(list(axis_lines = axis_lines,
+                 axis_values = axis_values,
+                 legend.position = legend.position, grid.adjust = grid.adjust,
+                 x_breaks = x_breaks, y_breaks = y_breaks,
+                 expand_x_limit = expand_x_limit, x_text_angle = x_text_angle,
+                 include_x_text_title = include_x_text_title, include_y_text_title = include_y_text_title,
+                 include_ticks = include_ticks, ...), class = "scale_auto_ipea")
+
+}
+
+nicelimits <- function(x) {
+  range(scales::extended_breaks(only.loose = TRUE)(x))
+}
+
+my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, sd = 0.05,  ...) {
+  function(x) {
+    if (na.rm) {
+      x <- na.omit(x)
+    }
+    if (length(unique(x)) == 1) {
+      return(unique(x))
+    }
+
+    # Aplica a expansão
+    range_x <- range(x)
+    #range_x <- c(0.55, 10.45)
+
+    # Calcula o valor de expansão atual
+    current_expand_amount <- diff(range_x) * current_expand / (1 + 2 * current_expand)
+
+    # Contração do intervalo para remover a expansão
+    contracted_range <- c(range_x[1] + current_expand_amount, range_x[2] - current_expand_amount)
+
+    # Calcula os breaks com o intervalo contraído
+    breaks <- seq(from = contracted_range[1], to = contracted_range[2], length.out = n_breaks)
+
+
+    t <- 0
+    len <- length(unique(round(breaks, t)))
+    while(len != n_breaks && t < 10) {  # Corrigido aqui: n para n_breaks
+      t <- t + 1
+      len <- length(unique(round(breaks, t)))
+    }
+
+    temp <- round(breaks, t)
+    intervals <- c(diff(temp))
+
+    while(any(sd(intervals) > sd | is.na(sd(intervals))) && t < 10){
+      t <- t + 1
+      temp <- round(breaks, t)
+      intervals <- c(diff(temp))
+    }
+
+    round(breaks, t)
+  }
+}
+
+# Método ggplot_add para a classe 'scale_y_auto_ipea'
+ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
+  # Extração de argumentos do objeto
+  args <- object
+  axis_lines <- args$axis_lines
+  axis_values <- args$axis_values
+  legend.position <- args$legend.position
+  grid.adjust <- args$grid.adjust
+  x_breaks <- args$x_breaks
+  y_breaks <- args$y_breaks
+  expand_x_limit <- args$expand_x_limit
+  x_text_angle <- args$x_text_angle
+  include_x_text_title <- args$include_x_text_title
+  include_y_text_title <- args$include_y_text_title
+  include_ticks <- args$include_ticks
+
+
+
 
   hjust <- ifelse(x_text_angle == 0,0.5, 1)
   vjust <- ifelse(x_text_angle == 0,0, 0.5)
@@ -234,109 +313,40 @@ theme_ipea <- function(axis_lines = 'full',
     ...
   )
 
+  # Verificação do tipo de dados para x_var no plot
+  x_var <- plot$mapping$x
+  x_var <- rlang::eval_tidy(x_var, plot$data)
+
+  # Verificação do tipo de dados para y_var no plot
+  y_var <- plot$mapping$x
+  y_var <- rlang::eval_tidy(y_var, plot$data)
 
 
+  # Aplicação condicional das escalas
+  # Escala para x_var
+  if (!is.null(args$x_breaks) && is.numeric(x_var)) {
+    plot <- plot + scale_x_continuous(
+      breaks = my_pretty_breaks(n_breaks = args$x_breaks),
+      expand = expansion(mult = c(ifelse(args$expand_x_limit, 0.05, 0), 0.05)),
+      labels = scales::label_comma(decimal.mark = ",", big.mark = "")
+    )
+  } else if (!is.numeric(x_var)) {
 
-}
-
-nicelimits <- function(x) {
-  range(scales::extended_breaks(only.loose = TRUE)(x))
-}
-
-
-my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, sd = 0.05,  ...) {
-  function(x) {
-    if (na.rm) {
-      x <- na.omit(x)
-    }
-    if (length(unique(x)) == 1) {
-      return(unique(x))
-    }
-
-    # Aplica a expansão
-    range_x <- range(x)
-    range_x <- c(0.55, 10.45)
-
-    # Calcula o valor de expansão atual
-    current_expand_amount <- diff(range_x) * current_expand / (1 + 2 * current_expand)
-
-    # Contração do intervalo para remover a expansão
-    contracted_range <- c(range_x[1] + current_expand_amount, range_x[2] - current_expand_amount)
-
-    # Calcula os breaks com o intervalo contraído
-    breaks <- seq(from = contracted_range[1], to = contracted_range[2], length.out = n_breaks)
-
-
-    t <- 0
-    len <- length(unique(round(breaks, t)))
-    while(len != n_breaks && t < 10) {  # Corrigido aqui: n para n_breaks
-      t <- t + 1
-      len <- length(unique(round(breaks, t)))
-    }
-
-    temp <- round(breaks, t)
-    intervals <- c(diff(temp))
-
-    while(any(sd(intervals) > sd | is.na(sd(intervals))) && t < 10){
-      t <- t + 1
-      temp <- round(breaks, t)
-      intervals <- c(diff(temp))
-    }
-
-    round(breaks, t)
   }
 
-  # Definição da função auxiliar de escala
-  scale_auto_ipea <- function() {
-    structure(list(), class = c("scale_y_auto_ipea", "scale_y_auto", "scale"))
+  # Escala para y_var
+  if (!is.null(args$y_breaks) && is.numeric(y_var)) {
+    plot <- plot + scale_y_continuous(
+      breaks = my_pretty_breaks(n_breaks = args$y_breaks),
+      labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
+    )
+  } else if (!is.numeric(y_var)) {
+
   }
 
-  # Adiciona a função auxiliar ao tema para execução via ggplot_add
-  list(theme = list(...), scale_y_auto = scale_y_auto_ipea())
-}
+  plot <- plot + theme
 
-# Método ggplot_add para a classe 'scale_y_auto_ipea'
-ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
-  # Detecção do tipo de dados de 'y' e aplicação da escala apropriada
-  data <- plot$data
-  y_var <- eval(plot$mapping$y, envir = data)
-  x_var <- eval(plot$mapping$x, envir = data)
 
-  scale_x <- if(is.numeric(x_var)) {
-    if(is.null(object$x_breaks)) {
-      scale_x_continuous()
-    } else {
-      #scale_x_continuous(limits = nicelimits(data[[as.character(plot$mapping$y)]]), expand = c(0, 0), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = my_pretty_breaks(n = object$x_breaks))
-      scale_x_continuous(expand = expansion(mult = c(ifelse(object$expand_x_limit, 0.05, 0), 0.05)), labels = scales::label_comma(decimal.mark = ",", big.mark = ""), breaks = my_pretty_breaks(n_breaks = object$x_breaks))
-    }
-  } else {
-    scale_x_discrete(labels = scales::label_comma(decimal.mark = ",", big.mark = "."))
-  }
 
-  scale_y <- if(is.numeric(y_var)) {
-    if(is.null(object$y_breaks)) {
-      scale_y_continuous()
-    } else {
-      scale_y_continuous(limits = nicelimits(data[[as.character(plot$mapping$y)]]), expand = c(0, 0), labels = scales::label_comma(decimal.mark = ",", big.mark = "."), breaks = my_pretty_breaks(n = object$y_breaks))
-    }
-  } else {
-    scale_y_discrete(labels = scales::label_comma(decimal.mark = ",", big.mark = "."))
-  }
-
-  # Aplica a escala 'y' ao plot
-  plot <- plot + scale_y + scale_x
-
-  # # Configuração e aplicação da escala 'x', se necessário
-  # if(!is.null(object$x_breaks)) {
-  #   scale_x <- scale_x_continuous(expand = expansion(mult = c(ifelse(object$expand_x_limit, 0.05, 0), 0.05)), labels = scales::label_comma(decimal.mark = ",", big.mark = ""), breaks = my_pretty_breaks(n_breaks = object$x_breaks))
-  #   plot <- plot + scale_x
-  # }
-
-  # Anotações baseadas em 'axis_lines'
-  if(object$axis_lines %in% c('none', 'full')) {
-    plot <- plot + annotate("segment", x = -Inf, xend = Inf, y = -Inf, yend = Inf, colour = "black", size = 0.5) +
-      annotate("segment", x = -Inf, xend = Inf, y = Inf, yend = Inf, colour = "black", size = 0.5)
-  }
-  # Retorna o plot modificado
   return(plot)
 }
