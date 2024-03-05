@@ -92,6 +92,7 @@ ggplot_add.scale_ipea_color <- function(object, plot, name, ...){
   for (i in seq_along(plot$layers)) {
     if ("colour" %in% names(plot$layers[[i]]$mapping)) {
       colour_var <- plot$layers[[i]]$mapping$colour
+      var_evaluated <- rlang::eval_tidy(colour_var, plot$layers[[i]]$data)
       break
     } else {
       colour_var <- NULL
@@ -100,8 +101,9 @@ ggplot_add.scale_ipea_color <- function(object, plot, name, ...){
 
 
   # If 'colour_var' was not found in any layer, check in the base ggplot call
-  if (is.null(colour_var) && !is.null(plot$mapping$colour)) {
+  if (is.null(colour_var)) {
     colour_var <- plot$mapping$colour
+    var_evaluated <- rlang::eval_tidy(colour_var, plot$data)
   }
 
   # If 'colour_var' is not yet found, returns the graphic without changes
@@ -111,7 +113,6 @@ ggplot_add.scale_ipea_color <- function(object, plot, name, ...){
 
   # Evaluates whether the variable is numeric.
   # Based on this criterion, we will select whether the palette will be discrete or continuous.
-  var_evaluated <- rlang::eval_tidy(colour_var, plot$data)
   auto_discrete_choose <- !is.numeric(var_evaluated)
 
   # Choose the correct scale
@@ -236,6 +237,7 @@ ggplot_add.scale_ipea_fill <- function(object, plot, name, ...){
   for (i in seq_along(plot$layers)) {
     if ("fill" %in% names(plot$layers[[i]]$mapping)) {
       fill_var <- plot$layers[[i]]$mapping$fill
+      var_evaluated <- rlang::eval_tidy(fill_var, plot$layers[[i]]$data)
       break
     } else {
       fill_var <- NULL
@@ -246,6 +248,7 @@ ggplot_add.scale_ipea_fill <- function(object, plot, name, ...){
   # If 'fill_var' was not found in any layer, check in the base ggplot call
   if (is.null(fill_var) && !is.null(plot$mapping$fill)) {
     fill_var <- plot$mapping$fill
+    var_evaluated <- rlang::eval_tidy(fill_var, plot$data)
   }
 
   # If 'fill_var' is not yet found, returns the graphic without changes
@@ -255,7 +258,6 @@ ggplot_add.scale_ipea_fill <- function(object, plot, name, ...){
 
   # Evaluates whether the variable is numeric.
   # Based on this criterion, we will select whether the palette will be discrete or continuous.
-  var_evaluated <- rlang::eval_tidy(fill_var, plot$data)
   auto_discrete_choose <- !is.numeric(var_evaluated)
 
   # Choose the correct scale
