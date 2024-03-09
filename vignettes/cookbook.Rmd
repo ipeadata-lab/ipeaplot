@@ -168,10 +168,11 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
        title="GRÁFICO 1",
        subtitle="Evolução do crescimento da população mundial 2000-2050\n(Em bilhões)",
        caption = 'Fonte: United Nations (2012a).\nTradução dos autores.') +
-  theme_ipea(x_breaks = 10,include_ticks = F,
+  theme_ipea(x_breaks = 11,include_ticks = F,
              include_x_text_title = F,include_y_text_title = F) +
   geom_text(aes(label = gsub("\\.", ",",round(Populacao,1))),
             hjust = 0.5, vjust = -0.5)
+
 
 ```
 
@@ -200,9 +201,9 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
        title="GRÁFICO 2",
        subtitle="Taxa de crescimento da população mundial (Em %)",
        caption = 'Elaboração dos autores.') +
-  theme_ipea(x_breaks = 16, x_text_angle = 90, include_ticks = F,
+  theme_ipea(x_breaks = 16, x_text_angle = 90, include_ticks = F,expand_y_limit = T,
              include_x_text_title = F,include_y_text_title = F) +
-  geom_rug(data = ref, aes(x = Ano+2.5),inherit.aes = FALSE,
+  geom_rug(data = ref, aes(x = Ano+1),inherit.aes = FALSE,
            outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
 ```
@@ -297,7 +298,8 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
        title="GRÁFICO 5",
        subtitle="Crescimento anual do PIB da União Europeia (2004-2013) (Em %)",
        caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial.\nDisponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
-  theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom', expand_x_limit = F,
+  theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom',
+             expand_y_limit = T,expand_x_limit = F,
              include_x_text_title = F,include_y_text_title = F) +
   scale_color_ipea(palette_direction = -1, ) +
   scale_shape_manual(values = c(19, 21)) +
@@ -314,7 +316,7 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
 
 
 ### Original
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
 knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 ```
 
@@ -384,32 +386,33 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 ######## GRAFICO 8
 base_graf8_aux <- base_graf8[,c(1,4)]
 base_graf8_aux$n <- 1:nrow(base_graf8_aux)
-base_graf8<- melt(base_graf8[,-4], id=c("pais"))
+base_graf8_new <- base_graf8[,-4]
+base_graf8_new<- melt(base_graf8_new, id=c("pais"))
 
-base_graf8 <- base_graf8 %>%
+base_graf8_new <- base_graf8_new %>%
   group_by(variable) %>%
   mutate(n = 1:n())
 
-label <- (base_graf8 %>% ungroup() %>% distinct(pais))$pais
+label <- (base_graf8_new %>% ungroup() %>% distinct(pais))$pais
 
 graf8 <-
   ggplot() +
-  geom_bar(data=base_graf8, aes(x=n, y=value,
-                                group=variable, fill=variable),
-           stat="identity", width = 0.5) +
-  labs(fill = "",
-       title="GRÁFICO 8",
-       subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
-       caption = 'Fonte: PwC (2014).\nTradução dos autores') +
-  geom_line(data=base_graf8_aux, aes(x=n ,y=`crescimento do PIB (ppc)_perct`, group = 1),
-            color = 'gray') +
-  scale_x_continuous(breaks = 1:max(base_graf8$n), labels = label) +
-  scale_fill_ipea() +
-  theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F,
-             include_x_text_title = F,include_y_text_title = F) +
-  geom_rug(data=base_graf8, aes(x = n-0.5),
-           outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
-  coord_cartesian(expand = FALSE, clip = "off")
+    geom_bar(data=base_graf8_new, aes(x=n-0.5, y=value,
+                                      group=variable, fill=variable),
+             stat="identity", width = 0.5) +
+    labs(fill = "",
+         title="GRÁFICO 8",
+         subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
+         caption = 'Fonte: PwC (2014).\nTradução dos autores') +
+    geom_line(data=base_graf8_aux, aes(x=n-0.5 ,y=`crescimento do PIB (ppc)_perct`, group = 1),
+              color = 'gray') +
+    scale_x_continuous(breaks = 1:max(base_graf8_new$n), labels = label) +
+    scale_fill_ipea() +
+    theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F,
+               include_x_text_title = F,include_y_text_title = F, expand_x_limit = T) +
+    geom_rug(data=base_graf8_new, aes(x = n - 1),
+             outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
+    coord_cartesian( clip = "off")
 
 ```
 

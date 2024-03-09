@@ -18,7 +18,10 @@
 #' @param x_breaks Numeric. The number of breaks on the x-axis
 #' @param y_breaks Numeric. The number of breaks on the y-axis
 #' @param expand_x_limit Logical value that indicates whether the x-axis
-#'        boundary should be expanded. If `TRUE`, the x-axis text will be
+#'        boundary should be expanded. If `TRUE`, the x-axis limits will be
+#'        expanded; otherwise there will be no change
+#' @param expand_y_limit Logical value that indicates whether the y-axis
+#'        boundary should be expanded. If `TRUE`, the x-axis limits will be
 #'        expanded; otherwise there will be no change
 #' @param x_text_angle Numeric. Angle in degrees of the text in the x-axis.
 #' @param include_x_text_title Logical. Whether to include x text title Defaults to `TRUE`.
@@ -40,6 +43,7 @@ theme_ipea <- function(axis_lines = 'full',
                        x_breaks = NULL, # Valor padrão definido como NULL
                        y_breaks = NULL, # Valor padrão definido como NULL
                        expand_x_limit = TRUE,
+                       expand_y_limit = TRUE,
                        x_text_angle = 0,
                        include_x_text_title = TRUE,
                        include_y_text_title = TRUE,
@@ -50,7 +54,8 @@ theme_ipea <- function(axis_lines = 'full',
                  axis_values = axis_values,
                  legend.position = legend.position, grid.adjust = grid.adjust,
                  x_breaks = x_breaks, y_breaks = y_breaks,
-                 expand_x_limit = expand_x_limit, x_text_angle = x_text_angle,
+                 expand_x_limit = expand_x_limit,expand_y_limit = expand_y_limit,
+                 x_text_angle = x_text_angle,
                  include_x_text_title = include_x_text_title, include_y_text_title = include_y_text_title,
                  include_ticks = include_ticks, ...), class = "scale_auto_ipea")
 
@@ -69,6 +74,24 @@ my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, s
       return(unique(x))
     }
 
+    if(length(x) >= n_breaks){
+
+      breaks = unique(x)
+      print(breaks)
+      return(round(breaks, 0))
+
+    } else if(nchar(max(round(x,0))) >= 3){
+
+      minx <- min(x)
+      maxx <- max(x)
+      midx <- (minx+maxx)/2
+      x2 <- midx+(x-midx)*0.9
+      breaks <- pretty(x2, n = n_breaks, ...)
+      names(breaks) <- attr(breaks, "labels")
+      return(round(breaks, 0))
+    } else {
+
+
     # Aplica a expansão
     range_x <- range(x)
     #range_x <- c(0.55, 10.45)
@@ -78,6 +101,7 @@ my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, s
 
     # Contração do intervalo para remover a expansão
     contracted_range <- c(range_x[1] + current_expand_amount, range_x[2] - current_expand_amount)
+
 
     # Calcula os breaks com o intervalo contraído
     breaks <- seq(from = contracted_range[1], to = contracted_range[2], length.out = n_breaks)
@@ -99,7 +123,9 @@ my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, s
       intervals <- c(diff(temp))
     }
 
-    round(breaks, t)
+
+    return(round(breaks, t))
+    }
   }
 }
 
@@ -114,11 +140,11 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   x_breaks <- args$x_breaks
   y_breaks <- args$y_breaks
   expand_x_limit <- args$expand_x_limit
+  expand_y_limit <- args$expand_y_limit
   x_text_angle <- args$x_text_angle
   include_x_text_title <- args$include_x_text_title
   include_y_text_title <- args$include_y_text_title
   include_ticks <- args$include_ticks
-
 
 
 
@@ -315,34 +341,82 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   )
 
   # Verificação do tipo de dados para x_var no plot
-  x_var <- plot$mapping$x
-  x_var <- rlang::eval_tidy(x_var, plot$data)
+  # x_var <- plot$mapping$x
+  # x_var <- rlang::eval_tidy(x_var, plot$data)
 
   # Verificação do tipo de dados para y_var no plot
-  y_var <- plot$mapping$x
-  y_var <- rlang::eval_tidy(y_var, plot$data)
+  # y_var <- plot$mapping$x
+  # y_var <- rlang::eval_tidy(y_var, plot$data)
+
+  for (i in seq_along(plot$layers)) {
+    if ("fill" %in% names(plot$layers[[i]]$mapping)) {
+      x_var <- plot$layers[[i]]$mapping$x
+      x_var <- rlang::eval_tidy(x_var, plot$layers[[i]]$data)
+      break
+    } else {
+      x_var <- plot$mapping$x
+      x_var <- rlang::eval_tidy(x_var, plot$data)
+    }
+  }
+
+  for (i in seq_along(plot$layers)) {
+    if ("fill" %in% names(plot$layers[[i]]$mapping)) {
+      y_var <- plot$layers[[i]]$mapping$y
+      y_var <- rlang::eval_tidy(y_var, plot$layers[[i]]$data)
+      break
+    } else {
+      y_var <- plot$mapping$y
+      y_var <- rlang::eval_tidy(y_var, plot$data)
+    }
+  }
+
+  test <- NULL
+  for (i in seq_along(plot$layers)) {
+    temp <- grepl('bar',plot$layers[[i]]$constructor)
+    test <- rbind(test,temp)
+
+  }
+
+  test <- test[grepl('TRUE',test)]
+
+  breaks = args$x_breaks
+
+  if(length(test) > 0 & expand_y_limit == TRUE){
+    warning('Due to the existence of a bar chart, the `expand_y_limit` argument will be converted to FALSE')
+    expand_y_limit = FALSE
+
+    warning('Due to the existence of a bar chart, the `x_breaks ` argument will be converted to the number of options available')
+    breaks = length(unique(x_var))
+  }
 
 
   # Aplicação condicional das escalas
   # Escala para x_var
-  if (!is.null(args$x_breaks) && is.numeric(x_var)) {
+  if (!is.null(breaks) && is.numeric(x_var)) {
     plot <- plot + scale_x_continuous(
-      breaks = my_pretty_breaks(n_breaks = args$x_breaks),
-      expand = expansion(mult = c(ifelse(args$expand_x_limit, 0.05, 0), 0.05)),
+      breaks = my_pretty_breaks(n_breaks = breaks),
+      expand = expansion(mult = c(ifelse(expand_x_limit == TRUE, 0.03, 0),
+                                  ifelse(expand_x_limit == TRUE, 0.03, 0))),
       labels = scales::label_comma(decimal.mark = ",", big.mark = "")
     )
-  } else if (!is.numeric(x_var)) {
+  } else {
 
   }
+
+
 
   # Escala para y_var
   if (!is.null(args$y_breaks) && is.numeric(y_var)) {
     plot <- plot + scale_y_continuous(
       breaks = my_pretty_breaks(n_breaks = args$y_breaks),
-      labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
+      labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
+      expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0),  0.1)),
     )
-  } else if (!is.numeric(y_var)) {
-
+  } else {
+    plot <- plot + scale_y_continuous(
+      labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
+      expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0), 0.1)),
+    )
   }
 
   plot <- plot + theme
