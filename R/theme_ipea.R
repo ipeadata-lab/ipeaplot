@@ -65,28 +65,17 @@ nicelimits <- function(x) {
   range(scales::extended_breaks(only.loose = TRUE)(x))
 }
 
-my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, sd = 0.05,  ...) {
-  function(x) {
-    if (na.rm) {
-      x <- na.omit(x)
-    }
-    if (length(unique(x)) == 1) {
-      return(unique(x))
-    }
+my_pretty_breaks <- function(x, n_breaks = 5, na.rm = TRUE,  ...) {
 
     # Aplica a expansão
     range_x <- range(x)
     #range_x <- c(0.55, 10.45)
 
-    # Calcula o valor de expansão atual
-    current_expand_amount <- diff(range_x) * current_expand / (1 + 2 * current_expand)
-
-    # Contração do intervalo para remover a expansão
-    contracted_range <- c(range_x[1] + current_expand_amount, range_x[2] - current_expand_amount)
 
 
     # Calcula os breaks com o intervalo contraído
-    breaks <- seq(from = contracted_range[1], to = contracted_range[2], length.out = n_breaks)
+    breaks <- seq(from = range_x[1], to = range_x[2], length.out = n_breaks)
+
 
 
     t <- 0
@@ -106,14 +95,17 @@ my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, s
     }
 
     if(max(nchar(x)) >= 3){
+
+      t <- 0
+      temp <- round(breaks, t)
+      intervals <- c(diff(temp))
+      intervals <- median(intervals)
+      breaks <- seq(from = range_x[1], to = range_x[2], by = intervals)
+      breaks <- c(breaks,tail(breaks,1) + intervals)
       return(round(breaks, 0))
     } else {
       return(round(breaks, t))
     }
-
-
-
-  }
 
 }
 
@@ -203,7 +195,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
 
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
-    #axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
+    # axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
     axis.text.x  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn", angle = x_text_angle,color = 'black',
                                          hjust = hjust, vjust = vjust_angle,margin = margin(b = vjust,unit = 'mm'))
   } else if(axis_values == F){
@@ -332,60 +324,119 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   )
 
   # Verificação do tipo de dados para x_var no plot
-  # x_var <- plot$mapping$x
-  # x_var <- rlang::eval_tidy(x_var, plot$data)
+  x_var <- plot$mapping$x
+  x_var <- rlang::eval_tidy(x_var, plot$data)
 
   # Verificação do tipo de dados para y_var no plot
-  # y_var <- plot$mapping$x
-  # y_var <- rlang::eval_tidy(y_var, plot$data)
+  y_var <- plot$mapping$y
+  y_var <- rlang::eval_tidy(y_var, plot$data)
 
   for (i in seq_along(plot$layers)) {
-    if ("x" %in% names(plot$layers[[i]]$mapping)) {
-      x_var <- plot$layers[[i]]$mapping$x
-      x_var <- rlang::eval_tidy(x_var, plot$layers[[i]]$data)
+    if ("x" %in% names(plot$layers[[i]]$mapping) & !is.null(nrow(plot$layers[[i]]$data))) {
+
+      x_var_temp <- plot$layers[[i]]$mapping$x
+      x_var_temp <- rlang::eval_tidy(x_var_temp, plot$layers[[i]]$data)
       break
+
+    } else if("x" %in% names(plot$layers[[i]]$mapping) & is.null(nrow(plot$layers[[i]]$data))){
+
+      x_var_temp <- plot$layers[[i]]$mapping$x
+      x_var_temp <- rlang::eval_tidy(x_var_temp, plot$data)
+      break
+
     } else {
-      x_var <- plot$mapping$x
-      x_var <- rlang::eval_tidy(x_var, plot$data)
+      x_var_temp <- plot$mapping$x
+      x_var_temp <- rlang::eval_tidy(x_var_temp, plot$data)
     }
+
   }
 
+
   for (i in seq_along(plot$layers)) {
-    if ("y" %in% names(plot$layers[[i]]$mapping)) {
-      y_var <- plot$layers[[i]]$mapping$y
-      y_var <- rlang::eval_tidy(y_var, plot$layers[[i]]$data)
+    if ("y" %in% names(plot$layers[[i]]$mapping) & !is.null(nrow(plot$layers[[i]]$data))) {
+
+      y_var_temp <- plot$layers[[i]]$mapping$y
+      y_var_temp <- rlang::eval_tidy(y_var_temp, plot$layers[[i]]$data)
       break
+
+    } else if("y" %in% names(plot$layers[[i]]$mapping) & is.null(nrow(plot$layers[[i]]$data))){
+
+      y_var_temp <- plot$layers[[i]]$mapping$y
+      y_var_temp <- rlang::eval_tidy(y_var_temp, plot$data)
+      break
+
     } else {
-      y_var <- plot$mapping$y
-      y_var <- rlang::eval_tidy(y_var, plot$data)
+      y_var_temp <- plot$mapping$y
+      y_var_temp <- rlang::eval_tidy(y_var_temp, plot$data)
     }
+
   }
+
+  if(is.null(x_var)){
+    x_var <- x_var_temp
+  } else{
+    x_var <- x_var
+  }
+
+  if(is.null(y_var)){
+    y_var <- y_var_temp
+  } else{
+    y_var <- y_var
+  }
+
+
 
   test <- NULL
   for (i in seq_along(plot$layers)) {
-    temp <- grepl('bar',plot$layers[[i]]$constructor)
-    temp <- temp[grepl('TRUE',temp)]
+    temp <- ifelse(grepl('bar',plot$layers[[i]]$constructor),'Bar chart',
+            ifelse(grepl('ribbon',plot$layers[[i]]$constructor),'Ribbon',
+            ifelse(grepl('area',plot$layers[[i]]$constructor),'Area',
+            ifelse(grepl('histogram',plot$layers[[i]]$constructor),'Histogram',
+            ifelse(grepl('density',plot$layers[[i]]$constructor),'Density',NA)))))
     test <- rbind(test,temp)
+    test <- test[!is.na(test)]
 
   }
 
+  test <- unique(test)
+
+  if(length(test) == 1){
+    if(grepl('Bar',test)){
+
+    } else {
+      test = paste0(test,' graph')
+    }
+
+  } else if(length(test) > 1){
+    test[length(test)] <- paste0('and ',test[length(test)],' graph')
+
+    if(grepl('Bar',test)){
+      test <- gsub(' Chart','',test)
+    }
+
+  } else {
+    test <- 0
+  }
 
 
-  if(length(test) > 0 & expand_y_limit == TRUE){
-    warning('Due to the existence of a bar chart, the `expand_y_limit` argument will be converted to FALSE')
+  if(is.null(x_breaks) & expand_y_limit == TRUE & length(test) > 0){
+    message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a ',paste(test, collapse = ", "),', the `expand_y_limit` argument will be converted to FALSE')))
     expand_y_limit = FALSE
-
-    warning('Due to the existence of a bar chart, the `x_breaks ` argument will be converted to the number of options available')
+  } else if(!is.null(x_breaks) & expand_y_limit == FALSE & length(test) > 0){
+    message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a ',paste(test, collapse = ", "),'the `x_breaks` argument will be converted to the number of options available')))
+    x_breaks = length(unique(x_var))
+  } else if(!is.null(x_breaks) & expand_y_limit == TRUE & length(test) > 0){
+    message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a ',paste(test, collapse = ", "),', the `expand_y_limit` argument will be converted to FALSE')))
+    expand_y_limit = FALSE
+    message(gsub(", and "," and ",paste0('  Due to the existence of a ',paste(test, collapse = ", "),'the `x_breaks` argument will be converted to the number of options available')))
     x_breaks = length(unique(x_var))
   }
-
-
 
   # Aplicação condicional das escalas
   # Escala para x_var
   if (!is.null(x_breaks) && is.numeric(x_var)) {
     plot <- plot + scale_x_continuous(
-      breaks = my_pretty_breaks(n_breaks = x_breaks),
+      breaks = my_pretty_breaks(x_var,x_breaks),
       expand = expansion(mult = c(ifelse(expand_x_limit == TRUE, 0.03, 0),
                                   ifelse(expand_x_limit == TRUE, 0.03, 0))),
       labels = scales::label_comma(decimal.mark = ",", big.mark = "")
@@ -398,7 +449,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   # Escala para y_var
   if (!is.null(args$y_breaks) && is.numeric(y_var)) {
     plot <- plot + scale_y_continuous(
-      breaks = my_pretty_breaks(n_breaks = args$y_breaks),
+      breaks = my_pretty_breaks(y_var,y_breaks),
       labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
       expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0),  0.1)),
     )
