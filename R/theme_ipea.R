@@ -74,24 +74,6 @@ my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, s
       return(unique(x))
     }
 
-    if(length(x) >= n_breaks){
-
-      breaks = unique(x)
-      print(breaks)
-      return(round(breaks, 0))
-
-    } else if(nchar(max(round(x,0))) >= 3){
-
-      minx <- min(x)
-      maxx <- max(x)
-      midx <- (minx+maxx)/2
-      x2 <- midx+(x-midx)*0.9
-      breaks <- pretty(x2, n = n_breaks, ...)
-      names(breaks) <- attr(breaks, "labels")
-      return(round(breaks, 0))
-    } else {
-
-
     # Aplica a expansão
     range_x <- range(x)
     #range_x <- c(0.55, 10.45)
@@ -123,9 +105,63 @@ my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, s
       intervals <- c(diff(temp))
     }
 
-
-    return(round(breaks, t))
+    if(max(nchar(x)) >= 3){
+      return(round(breaks, 0))
+    } else {
+      return(round(breaks, t))
     }
+
+
+
+  }
+
+  function(y) {
+    if (na.rm) {
+      y <- na.omit(y)
+    }
+    if (length(unique(y)) == 1) {
+      return(unique(y))
+    }
+
+    # Aplica a expansão
+    range_y <- range(y)
+    #range_y <- c(0.55, 10.45)
+
+    # Calcula o valor de expansão atual
+    current_expand_amount <- diff(range_y) * current_expand / (1 + 2 * current_expand)
+
+    # Contração do intervalo para remover a expansão
+    contracted_range <- c(range_y[1] + current_expand_amount, range_y[2] - current_expand_amount)
+
+
+    # Calcula os breaks com o intervalo contraído
+    breaks <- seq(from = contracted_range[1], to = contracted_range[2], length.out = n_breaks)
+
+
+    t <- 0
+    len <- length(unique(round(breaks, t)))
+    while(len != n_breaks && t < 10) {  # Corrigido aqui: n para n_breaks
+      t <- t + 1
+      len <- length(unique(round(breaks, t)))
+    }
+
+    temp <- round(breaks, t)
+    intervals <- c(diff(temp))
+
+    while(any(sd(intervals) > sd | is.na(sd(intervals))) && t < 10){
+      t <- t + 1
+      temp <- round(breaks, t)
+      intervals <- c(diff(temp))
+    }
+
+    if(max(nchar(y)) >= 3){
+      return(round(breaks, 0))
+    } else {
+      return(round(breaks, t))
+    }
+
+
+
   }
 }
 
@@ -148,8 +184,10 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
 
 
 
-  hjust <- ifelse(x_text_angle == 0,0.5, 1)
+
+  hjust <- ifelse(x_text_angle == 0,0.5, 0.8)
   vjust <- ifelse(x_text_angle == 0,0, 0.5)
+  vjust_angle <- ifelse(x_text_angle == 0,-1, 0.5)
 
 
   ### check inputs
@@ -206,15 +244,16 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   if(isFALSE(include_ticks)){
     axis.ticks.x = ggplot2::element_blank()
     axis.ticks.y = ggplot2::element_blank()
-    hjust <- ifelse(x_text_angle == 0,0.5, 1)
+    hjust <- ifelse(x_text_angle == 0,0.5, 0.8)
     vjust <- ifelse(x_text_angle == 0,3, 0.5)
+    vjust_angle <- ifelse(x_text_angle == 0,-1, 0)
   }
 
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
     #axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
     axis.text.x  = ggplot2::element_text(family = "Frutiger-LT-47-LightCn", angle = x_text_angle,color = 'black',
-                                         hjust = hjust, vjust = -1,margin = margin(b = vjust,unit = 'mm'))
+                                         hjust = hjust, vjust = vjust_angle,margin = margin(b = vjust,unit = 'mm'))
   } else if(axis_values == F){
     axis.text.x  = ggplot2::element_blank()
     axis.text.y  = ggplot2::element_blank()
@@ -349,7 +388,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   # y_var <- rlang::eval_tidy(y_var, plot$data)
 
   for (i in seq_along(plot$layers)) {
-    if ("fill" %in% names(plot$layers[[i]]$mapping)) {
+    if ("x" %in% names(plot$layers[[i]]$mapping)) {
       x_var <- plot$layers[[i]]$mapping$x
       x_var <- rlang::eval_tidy(x_var, plot$layers[[i]]$data)
       break
@@ -360,7 +399,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   }
 
   for (i in seq_along(plot$layers)) {
-    if ("fill" %in% names(plot$layers[[i]]$mapping)) {
+    if ("y" %in% names(plot$layers[[i]]$mapping)) {
       y_var <- plot$layers[[i]]$mapping$y
       y_var <- rlang::eval_tidy(y_var, plot$layers[[i]]$data)
       break
@@ -373,28 +412,28 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   test <- NULL
   for (i in seq_along(plot$layers)) {
     temp <- grepl('bar',plot$layers[[i]]$constructor)
+    temp <- temp[grepl('TRUE',temp)]
     test <- rbind(test,temp)
 
   }
 
-  test <- test[grepl('TRUE',test)]
 
-  breaks = args$x_breaks
 
   if(length(test) > 0 & expand_y_limit == TRUE){
     warning('Due to the existence of a bar chart, the `expand_y_limit` argument will be converted to FALSE')
     expand_y_limit = FALSE
 
     warning('Due to the existence of a bar chart, the `x_breaks ` argument will be converted to the number of options available')
-    breaks = length(unique(x_var))
+    x_breaks = length(unique(x_var))
   }
+
 
 
   # Aplicação condicional das escalas
   # Escala para x_var
-  if (!is.null(breaks) && is.numeric(x_var)) {
+  if (!is.null(x_breaks) && is.numeric(x_var)) {
     plot <- plot + scale_x_continuous(
-      breaks = my_pretty_breaks(n_breaks = breaks),
+      breaks = my_pretty_breaks(n_breaks = x_breaks),
       expand = expansion(mult = c(ifelse(expand_x_limit == TRUE, 0.03, 0),
                                   ifelse(expand_x_limit == TRUE, 0.03, 0))),
       labels = scales::label_comma(decimal.mark = ",", big.mark = "")
@@ -402,7 +441,6 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   } else {
 
   }
-
 
 
   # Escala para y_var
