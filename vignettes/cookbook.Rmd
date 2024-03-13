@@ -34,6 +34,7 @@ Em todos os exemplos, é exibida a versão "bruta" da figura, tal como foi subme
 library(ipeaplot)
 library(ggplot2)
 library(dplyr)
+library(data.table)
 library(abjData)
 library(geobr)
 library(reshape)
@@ -131,18 +132,30 @@ inicio <- c(0.67,0.61,0.4,0.33,0.32,0.297)
 base_graf7 <- data.frame(pais,final,inicio)
 
 ## Gráfico 8
-link <- 'https://github.com/ipeadata-lab/ipeaplot/files'
-base_graf8 <- data.table::fread(paste0(link,'/12239277/dados_grafico9.csv'),
-                                dec = ",", encoding = 'Latin-1')
+# link <- 'https://github.com/ipeadata-lab/ipeaplot/files'
+# base_graf8 <- data.table::fread(paste0(link,'/12239277/dados_grafico9.csv'),
+#                                 dec = ",", encoding = 'Latin-1')
 
-## Gráfico 9
-base_graf9 <- data.table::fread(paste0(link,'/12239278/dados_grafico10.csv'),
-                                 dec = ",", encoding = 'Latin-1')
+base_graf8 <- data.table(pais = c("Nigéria", "Vietnã", "Índia", "Indonésia", 
+                         "Malásia", "China", "Arábia Saudita", "África do Sul", "México", 
+                         "Turquia", "Brasil", "Argentina", "Austrália", "Rússia", "Polônia", 
+                         "Canadá", "USA", "Fraça", "Reino Unido", "Espanha", "Coreia do Sul", 
+                         "Itália", "Japão", "Alemanha"), 
+                `crescimento medio do PIB per capita_perct` = c(2,0.5, 0.8, 0.5, 1, 0.1, 1.1, 0.4, 0.5, 0.5, 0.3, 0.5, 0.7, -0.2,
+                                                                -0.1, 0.5, 0.5, 0.3, 0.32, 0.3, 0.12, 0.1, -0.1, 0),
+                `crescimento populacional medio_perct` = c(3.9,5.3, 4.6, 4.2, 3.65, 4.2, 3.1, 3.62, 3.46, 3.3, 3.4, 3.1, 2.5, 
+                                                           3.37, 3.1, 2.2, 2.2, 2.2, 2.18, 2.1, 2.28, 1.9, 2.1, 1.8),
+                `crescimento do PIB (ppc)_perct` = c(5.9,5.8, 5.4, 4.7, 4.65, 4.3, 4.2, 4.02, 3.96, 3.8, 3.7, 3.6, 3.2, 
+                                                     3.17, 3, 2.7, 2.7, 2.5, 2.5, 2.4, 2.4, 2, 2, 1.8))
+
 
 ## Salvando graficos no formato Rdata
 save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,
-     base_graf9,
      file='bases_de_dados.Rdata')
+
+
+
+
 
 ```
 
@@ -173,6 +186,9 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
   geom_text(aes(label = gsub("\\.", ",",round(Populacao,1))),
             hjust = 0.5, vjust = -0.5)
 
+png(paste0(getwd(),"/prints_ipeaplot/grafico1.png"),  width=724, height=546)
+print(graf1)
+dev.off()
 
 ```
 
@@ -201,11 +217,16 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
        title="GRÁFICO 2",
        subtitle="Taxa de crescimento da população mundial (Em %)",
        caption = 'Elaboração dos autores.') +
-  theme_ipea(x_breaks = 16, x_text_angle = 90, include_ticks = F,expand_y_limit = T,
+  theme_ipea(x_breaks = 14, x_text_angle = 90, include_ticks = F,expand_y_limit = T,
              include_x_text_title = F,include_y_text_title = F) +
   geom_rug(data = ref, aes(x = Ano+1),inherit.aes = FALSE,
            outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
+
+png(paste0(getwd(),"/prints_ipeaplot/grafico2.png"),  width=724, height=546)
+print(graf2)
+dev.off()
+
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
@@ -244,6 +265,10 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
   theme(axis.ticks.x = ggplot2::element_blank(),
         axis.text.x  = ggplot2::element_blank())
 
+png(paste0(getwd(),"/prints_ipeaplot/grafico3.png"),  width=724, height=546)
+print(graf3)
+dev.off()
+
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
@@ -272,6 +297,11 @@ graf4 <- ggplot(base_graf4, aes(x=Ano)) +
              x_breaks = 10, y_breaks = 4,
              include_x_text_title = F,include_y_text_title = F)
 
+png(paste0(getwd(),"/prints_ipeaplot/grafico4.png"),  width=724, height=546)
+print(graf4)
+dev.off()
+
+
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
@@ -291,19 +321,23 @@ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 ### Padrão Ipea
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
-  geom_line(size=1)+
+  geom_line(linewidth=1)+
   geom_point(aes(shape=variable, fill = variable),
              size=3, stroke=1.5, show.legend = F)+
   labs(color = "",
        title="GRÁFICO 5",
        subtitle="Crescimento anual do PIB da União Europeia (2004-2013) (Em %)",
        caption = 'Fonte: World Bank (2014).\nTradução dos autores.\nObs.: Os dados foram coletados no sítio do Banco Mundial.\nDisponível em: <http://goo.gl/IvtZ1a>. Acesso em: 26 set. 2014.') +
-  theme_ipea(x_breaks = 8, y_breaks = 10, legend.position = 'bottom',
+  theme_ipea(x_breaks = 10, y_breaks = 10, legend.position = 'bottom',
              expand_y_limit = T,expand_x_limit = F,
              include_x_text_title = F,include_y_text_title = F) +
   scale_color_ipea(palette_direction = -1, ) +
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
+
+png(paste0(getwd(),"/prints_ipeaplot/grafico5.png"),  width=724, height=546)
+print(graf5)
+dev.off()
 
 ```
 
@@ -333,6 +367,11 @@ graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
        caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
   theme_ipea(legend.position = 'none', expand_x_limit = F,
              include_x_text_title = F,include_y_text_title = F)
+
+png(paste0(getwd(),"/prints_ipeaplot/grafico6.png"),  width=724, height=546)
+print(graf6)
+dev.off()
+
 
 ```
 
@@ -365,6 +404,10 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
              include_x_text_title = F,include_y_text_title = F) +
   scale_fill_ipea()
 
+png(paste0(getwd(),"/prints_ipeaplot/grafico7.png"),  width=724, height=546)
+print(graf7)
+dev.off()
+
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
@@ -393,26 +436,24 @@ base_graf8_new <- base_graf8_new %>%
   group_by(variable) %>%
   mutate(n = 1:n())
 
-label <- (base_graf8_new %>% ungroup() %>% distinct(pais))$pais
-
 graf8 <-
-  ggplot() +
-    geom_bar(data=base_graf8_new, aes(x=n-0.5, y=value,
-                                      group=variable, fill=variable),
-             stat="identity", width = 0.5) +
-    labs(fill = "",
-         title="GRÁFICO 8",
-         subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
-         caption = 'Fonte: PwC (2014).\nTradução dos autores') +
-    geom_line(data=base_graf8_aux, aes(x=n-0.5 ,y=`crescimento do PIB (ppc)_perct`, group = 1),
-              color = 'gray') +
-    scale_x_continuous(breaks = 1:max(base_graf8_new$n), labels = label) +
-    scale_fill_ipea() +
-    theme_ipea(legend.position = 'bottom', x_text_angle = 90, include_ticks = F,
-               include_x_text_title = F,include_y_text_title = F, expand_x_limit = T) +
-    geom_rug(data=base_graf8_new, aes(x = n - 1),
-             outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
-    coord_cartesian( clip = "off")
+ggplot() +
+  geom_bar(data=base_graf8_new, aes(x = reorder(pais, n), y=value,
+                                    group=variable, fill=variable),
+           stat="identity", width = 0.5) +
+  labs(fill = "",
+       title="GRÁFICO 8",
+       subtitle="Crescimento médio real do PIB em PPC (2011-2050) (Em %)",
+       caption = 'Fonte: PwC (2014).\nTradução dos autores') +
+  geom_line(data=base_graf8_aux, aes(x = reorder(pais, n) ,y=`crescimento do PIB (ppc)_perct`, group = 1),
+            color = 'gray') +
+  scale_fill_ipea() +
+  theme_ipea(legend.position = 'bottom', x_text_angle = 90) +
+  coord_cartesian(clip = "off")
+
+png(paste0(getwd(),"/prints_ipeaplot/grafico8.png"),  width=724, height=546)
+print(graf8)
+dev.off()
 
 ```
 
