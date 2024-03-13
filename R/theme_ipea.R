@@ -65,18 +65,18 @@ nicelimits <- function(x) {
   range(scales::extended_breaks(only.loose = TRUE)(x))
 }
 
-my_pretty_breaks <- function(x, n_breaks = 5, na.rm = TRUE,  ...) {
+my_pretty_breaks <- function(x, n_breaks = NULL, na.rm = TRUE,  ...) {
+
+
+  if(!is.null(n_breaks)){
+
 
     # Aplica a expansão
     range_x <- range(x)
     #range_x <- c(0.55, 10.45)
 
-
-
     # Calcula os breaks com o intervalo contraído
     breaks <- seq(from = range_x[1], to = range_x[2], length.out = n_breaks)
-
-
 
     t <- 0
     len <- length(unique(round(breaks, t)))
@@ -96,15 +96,26 @@ my_pretty_breaks <- function(x, n_breaks = 5, na.rm = TRUE,  ...) {
 
     if(max(nchar(x)) >= 3){
 
+      temp <- unique(ceiling(breaks / 5) * 5)
+
+      if(length(temp) != n_breaks){
+
+      } else {
+        breaks <- temp
+      }
+
+      return(round(breaks, 0))
+    } else {
+      return(round(breaks, t))
+    }
+
+    } else {
       t <- 0
       temp <- round(breaks, t)
       intervals <- c(diff(temp))
       intervals <- median(intervals)
       breaks <- seq(from = range_x[1], to = range_x[2], by = intervals)
       breaks <- c(breaks,tail(breaks,1) + intervals)
-      return(round(breaks, 0))
-    } else {
-      return(round(breaks, t))
     }
 
 }
@@ -393,8 +404,9 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
             ifelse(grepl('area',plot$layers[[i]]$constructor),'Area',
             ifelse(grepl('histogram',plot$layers[[i]]$constructor),'Histogram',
             ifelse(grepl('density',plot$layers[[i]]$constructor),'Density',NA)))))
+    temp <- temp[!is.na(temp)]
     test <- rbind(test,temp)
-    test <- test[!is.na(test)]
+
 
   }
 
@@ -415,20 +427,22 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
     }
 
   } else {
-    test <- 0
+    test <- NULL
   }
 
 
-  if(is.null(x_breaks) & expand_y_limit == TRUE & length(test) > 0){
+  if(expand_y_limit == TRUE & length(test) > 0){
     message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a ',paste(test, collapse = ", "),', the `expand_y_limit` argument will be converted to FALSE')))
     expand_y_limit = FALSE
-  } else if(!is.null(x_breaks) & expand_y_limit == FALSE & length(test) > 0){
-    message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a ',paste(test, collapse = ", "),'the `x_breaks` argument will be converted to the number of options available')))
+  }
+
+  if(!is.null(x_breaks) & length(test[grepl('Bar',test)]) > 0){
+    message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a Bar chart the `x_breaks` argument will be converted to the number of options available')))
     x_breaks = length(unique(x_var))
-  } else if(!is.null(x_breaks) & expand_y_limit == TRUE & length(test) > 0){
-    message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a ',paste(test, collapse = ", "),', the `expand_y_limit` argument will be converted to FALSE')))
-    expand_y_limit = FALSE
-    message(gsub(", and "," and ",paste0('  Due to the existence of a ',paste(test, collapse = ", "),'the `x_breaks` argument will be converted to the number of options available')))
+  }
+
+  if(!is.null(x_breaks) & length(test) > 0 & length(test[grepl('Bar',test)]) == 0 & length(unique(x_var)) <= 20){
+    message(gsub(", and "," and ",paste0('Warning message:\n  Due to the existence of a ',paste(test, collapse = ", "),'and the number of values on the x-axis is small the `x_breaks` argument will be converted to the number of options available')))
     x_breaks = length(unique(x_var))
   }
 
@@ -437,6 +451,13 @@ ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
   if (!is.null(x_breaks) && is.numeric(x_var)) {
     plot <- plot + scale_x_continuous(
       breaks = my_pretty_breaks(x_var,x_breaks),
+      expand = expansion(mult = c(ifelse(expand_x_limit == TRUE, 0.03, 0),
+                                  ifelse(expand_x_limit == TRUE, 0.03, 0))),
+      labels = scales::label_comma(decimal.mark = ",", big.mark = "")
+    )
+  } else if(is.null(x_breaks) && is.numeric(x_var)) {
+    plot <- plot + scale_x_continuous(
+      breaks = my_pretty_breaks(x_var),
       expand = expansion(mult = c(ifelse(expand_x_limit == TRUE, 0.03, 0),
                                   ifelse(expand_x_limit == TRUE, 0.03, 0))),
       labels = scales::label_comma(decimal.mark = ",", big.mark = "")
