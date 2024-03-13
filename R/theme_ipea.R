@@ -113,7 +113,6 @@ my_pretty_breaks <- function(x, n_breaks = NULL, na.rm = TRUE,  ...) {
 
       # Aplica a expansão
       range_x <- range(x)
-      #range_x <- c(0.55, 10.45)
 
       # Calcula os breaks com o intervalo contraído
       breaks <- seq(from = range_x[1], to = range_x[2], length.out = 5)
