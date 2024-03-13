@@ -115,54 +115,6 @@ my_pretty_breaks <- function(n_breaks = 5, na.rm = TRUE,current_expand = 0.05, s
 
   }
 
-  function(y) {
-    if (na.rm) {
-      y <- na.omit(y)
-    }
-    if (length(unique(y)) == 1) {
-      return(unique(y))
-    }
-
-    # Aplica a expansão
-    range_y <- range(y)
-    #range_y <- c(0.55, 10.45)
-
-    # Calcula o valor de expansão atual
-    current_expand_amount <- diff(range_y) * current_expand / (1 + 2 * current_expand)
-
-    # Contração do intervalo para remover a expansão
-    contracted_range <- c(range_y[1] + current_expand_amount, range_y[2] - current_expand_amount)
-
-
-    # Calcula os breaks com o intervalo contraído
-    breaks <- seq(from = contracted_range[1], to = contracted_range[2], length.out = n_breaks)
-
-
-    t <- 0
-    len <- length(unique(round(breaks, t)))
-    while(len != n_breaks && t < 10) {  # Corrigido aqui: n para n_breaks
-      t <- t + 1
-      len <- length(unique(round(breaks, t)))
-    }
-
-    temp <- round(breaks, t)
-    intervals <- c(diff(temp))
-
-    while(any(sd(intervals) > sd | is.na(sd(intervals))) && t < 10){
-      t <- t + 1
-      temp <- round(breaks, t)
-      intervals <- c(diff(temp))
-    }
-
-    if(max(nchar(y)) >= 3){
-      return(round(breaks, 0))
-    } else {
-      return(round(breaks, t))
-    }
-
-
-
-  }
 }
 
 # Método ggplot_add para a classe 'scale_y_auto_ipea'
