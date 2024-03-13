@@ -65,7 +65,7 @@ nicelimits <- function(x) {
   range(scales::extended_breaks(only.loose = TRUE)(x))
 }
 
-my_pretty_breaks <- function(x, n_breaks = NULL, na.rm = TRUE,  ...) {
+my_pretty_breaks <- function(x, n_breaks = NULL, na.rm = TRUE,sd = 0.05,  ...) {
 
 
   if(!is.null(n_breaks)){
