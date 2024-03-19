@@ -27,6 +27,7 @@ Imports:
     grDevices,
     paletteer,
     scales,
+    rlang,
     ggthemes,
     showtext
 Suggests: 

@@ -3,6 +3,13 @@
 # https://www.ipea.gov.br/sites/manualeditorial/padroes-editoriais/padroes-grafico-visuais/ilustracoes/graficos
 remotes::install_github("ipeadata-lab/ipeaplot")
 
+# checks spelling
+library(spelling)
+devtools::spell_check(pkg = ".", vignettes = TRUE, use_wordlist = TRUE)
+
+# Update documentation
+devtools::document(pkg = ".")
+
 devtools::check(pkg = ".",  cran = FALSE, env_vars = c(NOT_CRAN = "true"))
 
 library(ipeaplot)

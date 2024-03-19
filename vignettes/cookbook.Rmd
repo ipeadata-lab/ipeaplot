@@ -7,8 +7,10 @@ output:
     df_print: paged
   word_document: default
 urlcolor: blue
-vignette: "%\\VignetteIndexEntry{Cookbook ipeaplot} %\\VignetteEngine{knitr::rmarkdown}
-  %\\VignetteEncoding{UTF-8}\n"
+vignette: >
+  %\VignetteIndexEntry{Cookbook ipeaplot} 
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}\n
 ---
 
 ```{r, include = FALSE}

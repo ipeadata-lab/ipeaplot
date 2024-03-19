@@ -12,7 +12,7 @@ theme_ipea(
   x_breaks = NULL,
   y_breaks = NULL,
   expand_x_limit = TRUE,
-  expand_y_limit = FALSE,
+  expand_y_limit = TRUE,
   x_text_angle = 0,
   include_x_text_title = TRUE,
   include_y_text_title = TRUE,
@@ -41,12 +41,12 @@ legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"},
 \item{y_breaks}{Numeric. The number of breaks on the y-axis}
 
 \item{expand_x_limit}{Logical value that indicates whether the x-axis
-boundary should be expanded. If \code{TRUE}, the x-axis text will be
+boundary should be expanded. If \code{TRUE}, the x-axis limits will be
 expanded; otherwise there will be no change}
 
 \item{expand_y_limit}{Logical value that indicates whether the y-axis
-boundary should be expanded. If \code{FALSE}, the x-axis text will be no
-expanded; otherwise there will be change}
+boundary should be expanded. If \code{TRUE}, the x-axis limits will be
+expanded; otherwise there will be no change}
 
 \item{x_text_angle}{Numeric. Angle in degrees of the text in the x-axis.}
 

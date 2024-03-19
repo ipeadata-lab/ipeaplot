@@ -31,7 +31,7 @@
 #'        `ggplot2` package.
 #'
 #' @return A custom theme for IPEA graphics.
-#' @import ggplot2
+#' @import ggplot2 ggthemes rlang
 #' @export
 
 
@@ -120,15 +120,17 @@ my_pretty_breaks <- function(x, n_breaks = NULL, na.rm = TRUE,sd = 0.05,  ...) {
       t <- 0
       temp <- round(breaks, t)
       intervals <- c(diff(temp))
-      intervals <- median(intervals)
+      intervals <- summary(intervals)[3]
       breaks <- seq(from = range_x[1], to = range_x[2], by = intervals)
-      breaks <- c(breaks,tail(breaks,1) + intervals)
+      breaks <- c(breaks,breaks[length(breaks)] + intervals)
     }
 
 }
 
-# Método ggplot_add para a classe 'scale_y_auto_ipea'
-ggplot_add.scale_auto_ipea <- function(object, plot, name, ...) {
+#' @export
+#' @method ggplot_add scale_auto_ipea
+# Método ggplot_add para a classe 'scale_auto_ipea'
+ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
   # Extração de argumentos do objeto
   args <- object
   axis_lines <- args$axis_lines

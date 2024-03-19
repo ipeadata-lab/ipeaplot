@@ -50,7 +50,7 @@ covr::report()
 
 # checks spelling
 library(spelling)
-devtools::spell_check(pkg = ".", vignettes = TRUE, use_wordlist = TRUE, )
+devtools::spell_check(pkg = ".", vignettes = TRUE, use_wordlist = TRUE)
 
 # Update documentation
 devtools::document(pkg = ".")

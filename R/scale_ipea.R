@@ -27,7 +27,10 @@
 #'
 #' @return A list object be added to a ggplot object to change color pallete.
 #'
+#' @import ggplot2 ggthemes rlang
 #' @export
+
+
 # Definition of the scale_color_ipea function
 scale_color_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                          'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
@@ -42,8 +45,10 @@ scale_color_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-B
                  title.hjust = title.hjust, label.hjust = label.hjust,...), class = "scale_ipea_color")
 }
 
+#' @export
+#' @method ggplot_add scale_ipea_color
 # Definition of the ggplot_add.scale_ipea_color method
-ggplot_add.scale_ipea_color <- function(object, plot, name, ...){
+ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
 
   # Set arguments
   args <- object
@@ -187,8 +192,10 @@ scale_fill_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-Bl
                  title.hjust = title.hjust, label.hjust = label.hjust,...), class = "scale_ipea_fill")
 }
 
+#' @export
+#' @method ggplot_add scale_ipea_fill
 # Definition of the ggplot_add.scale_ipea_fill method
-ggplot_add.scale_ipea_fill <- function(object, plot, name, ...){
+ggplot_add.scale_ipea_fill <- function(object, plot, object_name, ...){
 
   # Set arguments
   args <- object

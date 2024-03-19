@@ -7,8 +7,10 @@ output:
     mode: selfcontained
   pdf_document: default
 urlcolor: blue
-vignette: "%\\VignetteIndexEntry{Introdução ao ipeaplot} %\\VignetteEngine{knitr::rmarkdown}
-  %\\VignetteEncoding{UTF-8}\n"
+vignette: >
+  %\VignetteIndexEntry{Introdução ao ipeaplot} 
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}\n
 ---
 
 ```{r, include = FALSE}
