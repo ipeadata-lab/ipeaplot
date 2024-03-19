@@ -29,7 +29,7 @@ Essa vinheta tem, por isso, um formato de *cookbook*, proporcionando orientaçõ
 
 Em todos os exemplos, é exibida a versão "bruta" da figura, tal como foi submetida à Coordenação do Editorial. Em seguida, indicamos como é possível, com o **ipeaplot** e algumas linhas de código adicionais, atingir o nível de padronização necessário às publicações do Ipea.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 # Leitura de bibliotecas
 library(ipeaplot)
 library(ggplot2)
@@ -185,7 +185,10 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
              include_x_text_title = F,include_y_text_title = F) +
   geom_text(aes(label = gsub("\\.", ",",round(Populacao,1))),
             hjust = 0.5, vjust = -0.5)
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico1.png"),  width=724, height=546)
 print(graf1)
 dev.off()
@@ -219,10 +222,13 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
        caption = 'Elaboração dos autores.') +
   theme_ipea(x_breaks = 14, x_text_angle = 90, include_ticks = F,expand_y_limit = T,
              include_x_text_title = F,include_y_text_title = F) +
-  geom_rug(data = ref, aes(x = Ano+1),inherit.aes = FALSE,
+  geom_rug(data = ref, aes(x = Ano+2),inherit.aes = FALSE,
            outside = TRUE, sides = "b", length = unit(2, "mm"), linewidth = 0.25) +
   coord_cartesian(clip = "off")
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico2.png"),  width=724, height=546)
 print(graf2)
 dev.off()
@@ -264,7 +270,10 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
              include_x_text_title = F) +
   theme(axis.ticks.x = ggplot2::element_blank(),
         axis.text.x  = ggplot2::element_blank())
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico3.png"),  width=724, height=546)
 print(graf3)
 dev.off()
@@ -296,7 +305,10 @@ graf4 <- ggplot(base_graf4, aes(x=Ano)) +
   theme_ipea(legend.position="none",expand_x_limit = F,
              x_breaks = 10, y_breaks = 4,
              include_x_text_title = F,include_y_text_title = F)
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico4.png"),  width=724, height=546)
 print(graf4)
 dev.off()
@@ -334,7 +346,10 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
   scale_color_ipea(palette_direction = -1, ) +
   scale_shape_manual(values = c(19, 21)) +
   scale_fill_manual(values = c(NA,"white"))
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico5.png"),  width=724, height=546)
 print(graf5)
 dev.off()
@@ -367,7 +382,10 @@ graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
        caption = 'Fonte: Eurostat (2014).\nTradução dos autores.') +
   theme_ipea(legend.position = 'none', expand_x_limit = F,
              include_x_text_title = F,include_y_text_title = F)
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico6.png"),  width=724, height=546)
 print(graf6)
 dev.off()
@@ -403,7 +421,10 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
   theme_ipea(legend.position = 'bottom',
              include_x_text_title = F,include_y_text_title = F) +
   scale_fill_ipea()
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico7.png"),  width=724, height=546)
 print(graf7)
 dev.off()
@@ -450,7 +471,10 @@ ggplot() +
   scale_fill_ipea() +
   theme_ipea(legend.position = 'bottom', x_text_angle = 90) +
   coord_cartesian(clip = "off")
+```
 
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
 png(paste0(getwd(),"/prints_ipeaplot/grafico8.png"),  width=724, height=546)
 print(graf8)
 dev.off()
