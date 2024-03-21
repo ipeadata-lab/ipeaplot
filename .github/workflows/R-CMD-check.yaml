@@ -41,12 +41,12 @@ jobs:
 
       - name: Install TinyTeX
         run: |
-          if [ "${{ runner.os }}" = "Windows" ]; then
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
             choco install tinytex
-            refreshenv
-            tinytex::tlmgr_install("pdflatex")
+            $env:Path += ";C:\Users\runneradmin\AppData\Roaming\TinyTeX\bin\win32"
           else
             wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+            echo "$HOME/bin" >> $GITHUB_PATH
           fi
         shell: bash
 
