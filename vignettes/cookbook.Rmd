@@ -152,8 +152,7 @@ base_graf8 <- data.table(pais = c("Nigéria", "Vietnã", "Índia", "Indonésia",
 
 
 ## Salvando graficos no formato Rdata
-save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,
-     file='bases_de_dados.Rdata')
+#save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,file='bases_de_dados.Rdata')
 
 
 
