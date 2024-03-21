@@ -60,4 +60,3 @@ jobs:
           upload-snapshots: true
           build_args: "--no-manual"
           error-on: "warning"
-          check-dir: "check"
