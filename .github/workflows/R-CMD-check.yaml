@@ -31,11 +31,13 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - name: Install TinyTeX
+      - name: Install TinyTeX for Windows
         if: runner.os == 'Windows'
         run: |
           R -e 'options(repos = c(CRAN = "https://cran.rstudio.com")); install.packages("tinytex"); tinytex::install_tinytex()'
         shell: pwsh
+
+        
 
       - name: Install TinyTeX
         run: |
