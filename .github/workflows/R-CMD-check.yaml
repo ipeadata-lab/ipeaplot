@@ -41,9 +41,14 @@ jobs:
 
       - name: Install TinyTeX
         run: |
-          wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
-          export PATH=$PATH:~/bin
-        if: matrix.config.os == 'ubuntu-latest' || matrix.config.os == 'macos-latest'
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            choco install tinytex
+            refreshenv
+            tinytex::tlmgr_install("pdflatex")
+          else
+            wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+          fi
+        shell: bash
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
