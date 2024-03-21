@@ -39,10 +39,11 @@ jobs:
 
         
 
-      - name: Install TinyTeX
-        run: |
-          R -e 'install.packages("tinytex"); tinytex::install_tinytex()'
-        shell: bash
+      - name: Install TinyTeX for Windows
+        if: runner.os == 'Windows'
+        run: Rscript -e `"options(repos = c(CRAN = 'https://cran.rstudio.com')); install.packages('tinytex', dependencies = TRUE); tinytex::install_tinytex()`"
+        shell: pwsh
+
       
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
