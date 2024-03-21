@@ -29,20 +29,13 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: ${{ matrix.config.r }}
+          r-version: ${{ matrix.config.r }}     
 
-      - name: Install TinyTeX for Windows
-        if: runner.os == 'Windows'
+       
+      - name: Install TinyTeX
         run: |
-          R -e 'options(repos = c(CRAN = "https://cran.rstudio.com")); install.packages("tinytex"); tinytex::install_tinytex()'
-        shell: pwsh
-
-        
-
-      - name: Install TinyTeX for Windows
-        if: runner.os == 'Windows'
-        run: Rscript -e `"options(repos = c(CRAN = 'https://cran.rstudio.com')); install.packages('tinytex', dependencies = TRUE); tinytex::install_tinytex()`"
-        shell: pwsh
+          R -e 'install.packages("tinytex"); tinytex::install_tinytex()'
+        shell: bash
 
       
       - name: Install R dependencies
