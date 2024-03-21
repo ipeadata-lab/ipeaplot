@@ -34,8 +34,9 @@ jobs:
        
       - name: Install TinyTeX
         run: |
-          R -e 'install.packages("tinytex"); tinytex::install_tinytex()'
+          R -e "options(repos = list(CRAN = 'https://cloud.r-project.org')); install.packages('tinytex'); tinytex::install_tinytex()"
         shell: bash
+
 
       
       - name: Install R dependencies
