@@ -33,15 +33,14 @@ jobs:
 
       - name: Install TinyTeX
         run: |
-          if [ "${{ runner.os }}" = "Linux" ] || [ "${{ runner.os }}" = "macOS" ]; then
+          if [ "$RUNNER_OS" = "Linux" ] || [ "$RUNNER_OS" = "macOS" ]; then
             wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
-            echo "$HOME/.TinyTeX/bin/x86_64-linux" >> $GITHUB_PATH
-          elif [ "${{ runner.os }}" = "Windows" ]; then
+          elif [ "$RUNNER_OS" = "Windows" ]; then
             choco install tinytex
-            echo "C:\Users\runneradmin\AppData\Roaming\TinyTeX\bin\win32" | Out-File -Append -Encoding utf8 $env:GITHUB_PATH
+          fi
         shell: bash
         env:
-          TZ: 'Etc/UTC'
+          RUNNER_OS: ${{ runner.os }}
 
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
