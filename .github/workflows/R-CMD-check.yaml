@@ -58,4 +58,6 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-          args: --no-exit-on-warnings
+          build_args: "--no-manual"
+          error-on: "warning"
+          check-dir: "check"
