@@ -37,9 +37,6 @@ jobs:
             wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
           elif [ "$RUNNER_OS" = "Windows" ]; then
             choco install tinytex
-            Write-Output "C:\Users\runneradmin\AppData\Roaming\TinyTeX\bin\win32" | Out-File -Append -Encoding utf8 $env:GITHUB_PATH
-            refreshenv
-            tinytex::tlmgr_install("pdflatex")
           fi
         shell: bash
         env:
