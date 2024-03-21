@@ -1,6 +1,6 @@
 Type: Package
 Package: ipeaplot
-Title: Add Ipea Editorial Standards to 'ggplot2' Graphics
+Title: Add IPEA Editorial Standards to 'ggplot2' Graphics
 Version: 0.0.1
 Authors@R: c(
     person("Pedro","Jorge", role=c("aut","cre"), email="pedro.alves@ipea.gov.br"),
@@ -12,7 +12,7 @@ Authors@R: c(
     person("Lucas","Mation", role="aut", email="lucas.mation@ipea.gov.br")
     ) 
 Maintainer: Pedro Jorge <pedro.alves@ipea.gov.br>
-Description: Convenient functions to create 'ggplot2 graphics following the 
+Description: Convenient functions to create 'ggplot2' graphics following the 
              editorial guidelines of the  Institute for Applied Economic 
              Research (IPEA).
 License: MIT + file LICENSE
