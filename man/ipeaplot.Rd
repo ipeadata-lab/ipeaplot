@@ -36,4 +36,9 @@ Authors:
   \item Lucas Mation \email{lucas.mation@ipea.gov.br}
 }
 
+Other contributors:
+\itemize{
+  \item Ipea - Institue for Applied Economic Research [copyright holder, funder]
+}
+
 }
