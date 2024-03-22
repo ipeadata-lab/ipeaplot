@@ -9,7 +9,7 @@ Authors@R: c(
     person("Gustavo","Coelho", role="aut", email="gustavo.coelho@ipea.gov.br"),
     person("Rafael H. M.", "Pereira", , "rafa.pereira.br@gmail.com", role = c("aut"),
            comment = c(ORCID = "0000-0003-2125-7465")),
-    person("Lucas","Mation", role="aut", email="lucas.mation@ipea.gov.br")
+    person("Lucas","Mation", role="aut", email="lucas.mation@ipea.gov.br"),
     person("Ipea - Institue for Applied Economic Research", role = c("cph", "fnd")))
 Maintainer: Pedro Jorge <pedro.alves@ipea.gov.br>
 Description: Convenient functions to create 'ggplot2' graphics following the 
