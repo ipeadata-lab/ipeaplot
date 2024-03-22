@@ -13,6 +13,9 @@ O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de
 Você pode instalar a versão em desenvolvimento do **ipeaplot** direto do Github:
 
 ```
+# CRAN (em breve)
+install.packages("ipeaplot")
+
 # Versão em desenvolvimento
 utils::remove.packages('ipeaplot')
 remotes::install_github("ipeadata-lab/ipeaplot")
