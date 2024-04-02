@@ -29,7 +29,18 @@
 #'
 #' @import ggplot2 ggthemes rlang
 #' @export
-
+#' @family ggplot2 theme functions
+#'
+#' @examples
+#' # Creating scale for ggplot2 graph using default arguments
+#' fig_raw <- ggplot() +
+#'   geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
+#'   scale_color_ipea()
+#'
+#' # Creating scale for ggplot2 graph using green sequential palette
+#' fig_raw <- ggplot() +
+#'   geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
+#'   scale_color_ipea(palette = "Green")
 
 # Definition of the scale_color_ipea function
 scale_color_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
@@ -179,6 +190,19 @@ ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
 #' @return A list object be added to a ggplot object to change color pallete.
 #'
 #' @export
+#' @family ggplot2 theme functions
+#'
+#' @examples
+#' # Creating scale for ggplot2 graph using default arguments
+#' fig_raw <- ggplot() +
+#'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
+#'   scale_fill_ipea()
+#'
+#' # Creating scale for ggplot2 graph using green sequential palette
+#' fig_raw <- ggplot() +
+#'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
+#'   scale_fill_ipea(palette = "Green")
+#'
 scale_fill_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                         'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
                              palette_direction = 1,

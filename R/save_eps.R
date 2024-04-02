@@ -7,8 +7,18 @@
 #' @param ... Additional arguments to be passed to the `ggsave` function from the
 #'        `ggplot2` package.
 #'
-#' @family save
+#' @return An `"sf" "data.frame"` object
+#'
 #' @export
+#' @family save
+#'
+#' @examples
+#' # Creating theme for ggplot2 graph using default arguments
+#' fig_raw <- ggplot() +
+#'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
+#'   theme_ipea()
+#' # Save ggplot output
+#' save_eps(fig_raw,file.name = "figura.eps")
 #'
 save_eps <- function(gplot, file.name,  ...){
 

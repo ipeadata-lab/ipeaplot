@@ -33,9 +33,14 @@
 #' @return A custom theme for IPEA graphics.
 #' @import ggplot2 ggthemes rlang
 #' @export
-
-
-
+#' @family ggplot2 theme functions
+#'
+#' @examples
+#' # Creating theme for ggplot2 graph using default arguments
+#' fig_raw <- ggplot() +
+#'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
+#'   theme_ipea()
+#'
 theme_ipea <- function(axis_lines = 'full',
                        axis_values = TRUE,
                        legend.position = 'right',
