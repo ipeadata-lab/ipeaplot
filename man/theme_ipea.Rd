@@ -69,6 +69,7 @@ function includes standardized formatting of options for axis lines, text,
 }
 \examples{
 # Creating theme for ggplot2 graph using default arguments
+library(ggplot2)
 fig_raw <- ggplot() +
   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
   theme_ipea()

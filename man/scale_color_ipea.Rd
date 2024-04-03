@@ -57,6 +57,7 @@ Research - Ipea.
 }
 \examples{
 # Creating scale for ggplot2 graph using default arguments
+library(ggplot2)
 fig_raw <- ggplot() +
   geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
   scale_color_ipea()
