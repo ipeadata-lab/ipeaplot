@@ -55,3 +55,20 @@ Generate a color palette (continuous or discrete) following the
 editorial guidelines used by the Institute for Applied Economic
 Research - Ipea.
 }
+\examples{
+# Creating scale for ggplot2 graph using default arguments
+fig_raw <- ggplot() +
+  geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
+  scale_color_ipea()
+
+# Creating scale for ggplot2 graph using green sequential palette
+fig_raw <- ggplot() +
+  geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
+  scale_color_ipea(palette = "Green")
+}
+\seealso{
+Other ggplot2 theme functions: 
+\code{\link{scale_fill_ipea}()},
+\code{\link{theme_ipea}()}
+}
+\concept{ggplot2 theme functions}

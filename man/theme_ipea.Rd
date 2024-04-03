@@ -67,3 +67,16 @@ Applies a custom theme for ggplot figures following the editorial
 guidelines used by the Institute for Applied Economic Research - Ipea. The
 function includes standardized formatting of options for axis lines, text,
 }
+\examples{
+# Creating theme for ggplot2 graph using default arguments
+fig_raw <- ggplot() +
+  geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
+  theme_ipea()
+
+}
+\seealso{
+Other ggplot2 theme functions: 
+\code{\link{scale_color_ipea}()},
+\code{\link{scale_fill_ipea}()}
+}
+\concept{ggplot2 theme functions}

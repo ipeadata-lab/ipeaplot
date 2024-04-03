@@ -14,7 +14,19 @@ save_eps(gplot, file.name, ...)
 \item{...}{Additional arguments to be passed to the \code{ggsave} function from the
 \code{ggplot2} package.}
 }
+\value{
+An \verb{"sf" "data.frame"} object
+}
 \description{
 Convenient function to save charts in Eps format.
+}
+\examples{
+# Creating theme for ggplot2 graph using default arguments
+fig_raw <- ggplot() +
+  geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
+  theme_ipea()
+# Save ggplot output
+save_eps(fig_raw,file.name = "figura.eps")
+
 }
 \concept{save}
