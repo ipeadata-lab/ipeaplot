@@ -21,6 +21,7 @@ An \verb{"sf" "data.frame"} object
 Convenient function to save charts in Eps format.
 }
 \examples{
+\dontrun{
 # Creating theme for ggplot2 graph using default arguments
 library(ggplot2)
 fig_raw <- ggplot() +
@@ -28,6 +29,6 @@ fig_raw <- ggplot() +
   theme_ipea()
 # Save ggplot output
 save_eps(fig_raw,file.name = "figura.eps")
-
+}
 }
 \concept{save}

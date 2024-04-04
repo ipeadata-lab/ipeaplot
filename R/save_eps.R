@@ -13,6 +13,7 @@
 #' @family save
 #'
 #' @examples
+#' \dontrun{
 #' # Creating theme for ggplot2 graph using default arguments
 #' library(ggplot2)
 #' fig_raw <- ggplot() +
@@ -20,7 +21,7 @@
 #'   theme_ipea()
 #' # Save ggplot output
 #' save_eps(fig_raw,file.name = "figura.eps")
-#'
+#' }
 save_eps <- function(gplot, file.name,  ...){
 
   if(!("ggplot" %in% class(gplot))){
