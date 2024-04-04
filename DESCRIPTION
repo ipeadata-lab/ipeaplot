@@ -4,7 +4,7 @@ Title: Add IPEA Editorial Standards to 'ggplot2' Graphics
 Version: 0.0.1
 Authors@R: c(
     person("Pedro","Jorge", role=c("aut","cre"), email="pedro.alves@ipea.gov.br"),
-    person("Pedro Cavalcanti Gonçalves","Ferreira", role="aut", email="pedro.ferreira2@ipea.gov.br"),
+    person("Pedro", "Cavalcanti", role="aut", email="pedro.ferreira2@ipea.gov.br"),
     person("Daniel","Lima", role="aut", email="daniel.viegas@ipea.gov.br"),
     person("Gustavo","Coelho", role="aut", email="gustavo.coelho@ipea.gov.br"),
     person("Rafael H. M.", "Pereira", , "rafa.pereira.br@gmail.com", role = c("aut"),
