@@ -25,14 +25,14 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Pedro Jorge \email{pedro.alves@ipea.gov.br}
+\strong{Maintainer}: Pedro Ferreira \email{pedro.ferreira2@ipea.gov.br}
 
 Authors:
 \itemize{
-  \item Pedro Cavalcanti \email{pedro.ferreira2@ipea.gov.br}
+  \item Pedro Jorge \email{pedro.alves@ipea.gov.br}
   \item Daniel Lima \email{daniel.viegas@ipea.gov.br}
   \item Gustavo Coelho \email{gustavo.coelho@ipea.gov.br}
-  \item Rafael H. M. Pereira \email{rafa.pereira.br@gmail.com} (\href{https://orcid.org/0000-0003-2125-7465}{ORCID})
+  \item Rafael H. M. Pereira \email{rafa.pereira.br@gmail.com}
   \item Lucas Mation \email{lucas.mation@ipea.gov.br}
 }
 
