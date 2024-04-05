@@ -13,7 +13,7 @@ Authors@R: c(
 Maintainer: Pedro Ferreira <pedro.ferreira2@ipea.gov.br>
 Description: Convenient functions to create 'ggplot2' graphics following the 
              editorial guidelines of the  Institute for Applied Economic 
-             Research.
+             Research (Ipea).
 License: MIT + file LICENSE
 URL: https://github.com/ipeadata-lab/ipeaplot
 BugReports: https://github.com/ipeadata-lab/ipeaplot/issues
