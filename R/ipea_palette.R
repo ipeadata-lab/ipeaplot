@@ -15,24 +15,9 @@
 #'        colors are ordered from darkest to lightest. If `-1`, the order of
 #'        colors is reversed.
 #' @param palette A character string indicating the color map option to use.
-#'  These options are available:
-#'  \itemize{
-#'  \item{}{'Blue'}
-#'  \item{}{'Green'}
-#'  \item{}{'Orange'}
-#'  \item{}{'Pink'}
-#'  \item{}{'Red-Blue'}
-#'  \item{}{'Orange-Blue'}
-#'  \item{}{'Green-Blue'}
-#'  \item{}{'Red-Blue-White'}
-#'  \item{}{'Orange-Blue-White'}
-#'  \item{}{'Green-Blue-White'}
-#'  \item{}{'Viridis'}
-#'  \item{}{'Inferno'}
-#'  \item{}{'Magma'}
-#'  \item{}{'Plasma'}
-#'  \item{}{'Cividis'}
-#'  }
+#'  These options are available:'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
+#'  'Orange-Blue', 'Green-Blue', 'Red-Blue-White', 'Orange-Blue-White',
+#'  'Green-Blue-White', 'Viridis', 'Inferno', 'Magma', 'Plasma', 'Cividis'.
 #'
 ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                      'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
@@ -137,21 +122,9 @@ force_all <- function(...) list(...)
 #'        colors are ordered from darkest to lightest. If -1, the order of
 #'        colors is reversed.
 #' @param palette A character string indicating the color map option to use.
-#'  These options are available:
-#'  \itemize{
-#'  \item{}{'Blue'}
-#'  \item{}{'Green'}
-#'  \item{}{'Orange'}
-#'  \item{}{'Pink'}
-#'  \item{}{'Red-Blue'}
-#'  \item{}{'Orange-Blue'}
-#'  \item{}{'Green-Blue'}
-#'  \item{}{'Viridis'}
-#'  \item{}{'Inferno'}
-#'  \item{}{'Magma'}
-#'  \item{}{'Plasma'}
-#'  \item{}{'Cividis'}
-#'  }
+#'  These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
+#'  'Orange-Blue', 'Green-Blue', 'Viridis', 'Inferno', 'Magma', 'Plasma'
+#'  'Cividis'.
 #'
 #' @export
 #' @examples

@@ -16,21 +16,9 @@ ipea_pal(
 }
 \arguments{
 \item{palette}{A character string indicating the color map option to use.
-These options are available:
-\itemize{
-\item{}{'Blue'}
-\item{}{'Green'}
-\item{}{'Orange'}
-\item{}{'Pink'}
-\item{}{'Red-Blue'}
-\item{}{'Orange-Blue'}
-\item{}{'Green-Blue'}
-\item{}{'Viridis'}
-\item{}{'Inferno'}
-\item{}{'Magma'}
-\item{}{'Plasma'}
-\item{}{'Cividis'}
-}}
+These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
+'Orange-Blue', 'Green-Blue', 'Viridis', 'Inferno', 'Magma', 'Plasma'
+'Cividis'.}
 
 \item{alpha}{The alpha transparency in a number between \code{0} and \code{1}.}
 

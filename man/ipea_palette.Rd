@@ -17,24 +17,9 @@ ipea_palette(
 }
 \arguments{
 \item{palette}{A character string indicating the color map option to use.
-These options are available:
-\itemize{
-\item{}{'Blue'}
-\item{}{'Green'}
-\item{}{'Orange'}
-\item{}{'Pink'}
-\item{}{'Red-Blue'}
-\item{}{'Orange-Blue'}
-\item{}{'Green-Blue'}
-\item{}{'Red-Blue-White'}
-\item{}{'Orange-Blue-White'}
-\item{}{'Green-Blue-White'}
-\item{}{'Viridis'}
-\item{}{'Inferno'}
-\item{}{'Magma'}
-\item{}{'Plasma'}
-\item{}{'Cividis'}
-}}
+These options are available:'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
+'Orange-Blue', 'Green-Blue', 'Red-Blue-White', 'Orange-Blue-White',
+'Green-Blue-White', 'Viridis', 'Inferno', 'Magma', 'Plasma', 'Cividis'.}
 
 \item{n}{The number of colors (\eqn{\ge 1}) used in the palette.}
 
