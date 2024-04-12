@@ -4,10 +4,8 @@
 #' @noRd
 
 .onLoad <- function(libname, pkgname) {
-#   # path = file.path(getwd(), "inst")
+
   path <- system.file("extdata/", package = "ipeaplot")
-  # path <- ifelse(dir.exists(path), path, find.package("ipeaplot"))
-  #packageStartupMessage(path)
 
   suppressMessages({sysfonts::font_add("Frutiger-LT-47-LightCn", regular = paste0(path,"/ttf/Frutiger-LT-47-Light-Condensed.ttf"))})
   suppressMessages({sysfonts::font_add("Frutiger-LT-Std", regular = paste0(path,"/ttf/Frutiger-LT-57-Light-Condensed.ttf"))})
