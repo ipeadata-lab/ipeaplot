@@ -7,7 +7,7 @@
 #' @param ... Additional arguments to be passed to the `ggsave` function from the
 #'        `ggplot2` package.
 #'
-#' @return An `"sf" "data.frame"` object
+#' @return An `"eps"` file
 #'
 #' @export
 #' @family save

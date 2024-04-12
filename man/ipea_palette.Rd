@@ -35,10 +35,22 @@ color map ends.}
 colors are ordered from darkest to lightest. If \code{-1}, the order of
 colors is reversed.}
 }
+\value{
+\code{ipea_palette} produces a character vector, \code{cv}, containing color hex codes.
+This vector can be utilized to establish a custom color scheme for future graphics using \code{palette(cv)},
+or it can be applied directly as a \code{col =} parameter in graphic functions or within \code{par}.
+}
 \description{
 This function creates a vector of n equally spaced colors
 along the selected color map.
 }
 \details{
 A 9-color Ipea palette.
+}
+\references{
+\itemize{
+\item{}{''Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
+'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/}
+}
 }

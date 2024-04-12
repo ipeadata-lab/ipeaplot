@@ -19,6 +19,17 @@
 #'  'Orange-Blue', 'Green-Blue', 'Red-Blue-White', 'Orange-Blue-White',
 #'  'Green-Blue-White', 'Viridis', 'Inferno', 'Magma', 'Plasma', 'Cividis'.
 #'
+#' @references
+#' \itemize{
+#'   \item{}{''Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+#'   'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
+#'   'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/}
+#' }
+#'
+#' @return \code{ipea_palette} produces a character vector, \code{cv}, containing color hex codes.
+#' This vector can be utilized to establish a custom color scheme for future graphics using \code{palette(cv)},
+#' or it can be applied directly as a \code{col =} parameter in graphic functions or within \code{par}.
+#'
 ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                      'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
                          n,
@@ -125,6 +136,16 @@ force_all <- function(...) list(...)
 #'  These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
 #'  'Orange-Blue', 'Green-Blue', 'Viridis', 'Inferno', 'Magma', 'Plasma'
 #'  'Cividis'.
+#' @references
+#' \itemize{
+#'   \item{}{''Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+#'   'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
+#'   'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/}
+#' }
+#'
+#' @return \code{ipea_palette} produces a character vector, \code{cv}, containing color hex codes.
+#' This vector can be utilized to establish a custom color scheme for future graphics using \code{palette(cv)},
+#' or it can be applied directly as a \code{col =} parameter in graphic functions or within \code{par}.
 #'
 #' @export
 #' @examples

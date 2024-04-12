@@ -30,6 +30,11 @@ These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
 colors are ordered from darkest to lightest. If -1, the order of
 colors is reversed.}
 }
+\value{
+\code{ipea_palette} produces a character vector, \code{cv}, containing color hex codes.
+This vector can be utilized to establish a custom color scheme for future graphics using \code{palette(cv)},
+or it can be applied directly as a \code{col =} parameter in graphic functions or within \code{par}.
+}
 \description{
 Ipea palette
 }
@@ -38,4 +43,11 @@ scales::show_col(ipea_pal()(10))
 scales::show_col(ipea_pal(palette_direction = -1)(6))
 scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
 scales::show_col(ipea_pal(palette = "Green")(6))
+}
+\references{
+\itemize{
+\item{}{''Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
+'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/}
+}
 }

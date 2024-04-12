@@ -15,7 +15,7 @@ save_eps(gplot, file.name, ...)
 \code{ggplot2} package.}
 }
 \value{
-An \verb{"sf" "data.frame"} object
+An \code{"eps"} file
 }
 \description{
 Convenient function to save charts in Eps format.
