@@ -13,14 +13,14 @@
 #' @family save
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Creating theme for ggplot2 graph using default arguments
 #' library(ggplot2)
 #' fig_raw <- ggplot() +
 #'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
 #'   theme_ipea()
 #' # Save ggplot output
-#' save_eps(fig_raw,file.name = "figura.eps")
+#' save_eps(fig_raw,file.name = paste0(tempdir(),"/figura.eps"))
 #' }
 save_eps <- function(gplot, file.name,  ...){
 
