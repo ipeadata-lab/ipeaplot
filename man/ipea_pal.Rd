@@ -45,9 +45,7 @@ scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
 scales::show_col(ipea_pal(palette = "Green")(6))
 }
 \references{
-\itemize{
-\item{}{''Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+'Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
-'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/}
-}
+'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
 }

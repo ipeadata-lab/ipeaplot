@@ -48,9 +48,7 @@ along the selected color map.
 A 9-color Ipea palette.
 }
 \references{
-\itemize{
-\item{}{''Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+'Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
-'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/}
-}
+'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
 }
