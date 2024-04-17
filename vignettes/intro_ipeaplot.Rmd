@@ -99,7 +99,7 @@ O parâmetro `palette` permite escolher uma paleta de cores entre as opções de
 **Cores sequenciais:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4),fig.align = "center", out.width = "50%"}
 # Salvar as configurações originais
-oldpar <- par()
+old.par <- par(no.readonly = TRUE)
 
 # Modificar as configurações conforme necessário
 par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
@@ -108,14 +108,14 @@ pal(ipea_pal(palette = "Green")(9)); mtext("Green")
 pal(ipea_pal(palette = "Orange")(9)); mtext("Orange")
 
 # Restaurar as configurações originais
-par(oldpar)
+par(old.par)
 
 ```
 
 **Cores divergentes:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4),fig.align = "center", out.width = "50%"}
 # Salvar as configurações originais
-oldpar <- par()
+old.par <- par(no.readonly = TRUE)
 
 # Modificar as configurações conforme necessário
 par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
@@ -124,7 +124,7 @@ pal(ipea_pal(palette = "Orange-Blue")(9)); mtext("Orange-Blue")
 pal(ipea_pal(palette = "Green-Blue")(9)); mtext("Green-Blue")
 
 # Restaurar as configurações originais
-par(oldpar)
+par(old.par)
 ```
 
 
