@@ -146,28 +146,7 @@ fig_base + scale_color_ipea(palette = "Orange-Blue")
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 ```
 
-### Escala de cores contínua e discreta
-
-Por padrão, as funções `scale_color_ipea()` e `scale_fill_ipea()` geram escalas de cores para variáveis **contínuas**. Para utilizar uma escala de core para variáveis discretas, basta passar o parâmetro `RUE`.
-
-```{r eval=FALSE, message=FALSE, warning=FALSE}
-graph <- ggplot() +
-  geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
-  labs(y='Consumo de Combustível\n(milhas por galão)',
-       x ='Potência (Número de cavalos)',
-       color='Cilindradas') +
-  scale_color_ipea(palette = "Orange", RUE ) +
-  theme_ipea()
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico4.png"))
-
-```
-
-
-
-Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scale_fill_ipea()` trazem ainda outros parâmetros que permitem escolher o separador de casa decimal (ponto ou vírgula), ajustar o tamanho da legenda etc. A lista completa de parâmetros está disponível na documentação da função `?scale_color_ipea()`.
+Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scale_fill_ipea()` trazem ainda outros parâmetros que permitem escolher o separador de casa decimal (ponto ou vírgula), ajustar o tamanho da barra de legenda etc. A lista completa de parâmetros está disponível na documentação da função `?scale_color_ipea()`.
 
 
 ## Ajustando o `theme` das figuras
