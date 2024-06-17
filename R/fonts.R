@@ -7,11 +7,12 @@
 
   path <- system.file("extdata/", package = "ipeaplot")
 
-  suppressMessages({sysfonts::font_add("Frutiger-LT-47-LightCn", regular = paste0(path,"/ttf/Frutiger-LT-47-Light-Condensed.ttf"))})
-  suppressMessages({sysfonts::font_add("Frutiger-LT-Std", regular = paste0(path,"/ttf/Frutiger-LT-57-Light-Condensed.ttf"))})
-  suppressMessages({sysfonts::font_add("Frutiger-LT-55-Roman", regular = paste0(path,"/ttf/Frutiger-LT-55-Roman.ttf"))})
-  suppressMessages({sysfonts::font_add("Frutiger-LT-67-Bold-Condensed", regular = paste0(path,"/ttf/Frutiger-LT-67-Bold-Condensed.ttf"))})
-  suppressMessages({showtext::showtext_auto()})
+  suppressMessages({sysfonts::font_add("RobotoCondensed-Light", regular = paste0(path,"/ttf/RobotoCondensed-Light.ttf"))})
+  suppressMessages({sysfonts::font_add("Roboto-Regular", regular = paste0(path,"/ttf/Roboto-Regular.ttf"))})
+  suppressMessages({sysfonts::font_add("Roboto-Medium", regular = paste0(path,"/ttf/Roboto-Medium.ttf"))})
+  suppressMessages({sysfonts::font_add("RobotoCondensed-Bold", regular = paste0(path,"/ttf/RobotoCondensed-Bold.ttf"))})
+  #suppressMessages({showtext::showtext_auto()})
   suppressMessages({extrafont::font_import(paths = paste0(path,'/ttf/'), prompt = F)})
   extrafont::loadfonts(quiet = TRUE)
 }
+
