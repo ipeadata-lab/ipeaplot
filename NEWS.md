@@ -1,5 +1,5 @@
 # ipeaplot (development version)
-
+  * Roboto family fonts (replacing the Frutiger family)
 
 # ipeaplot 0.3.1
 
