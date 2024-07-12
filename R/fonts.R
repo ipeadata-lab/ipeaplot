@@ -10,17 +10,21 @@
   font_dir <- font_dir[cond, ]
   font_dir <- unique(dirname(font_dir$path))
   pattern <- "(?i)roboto-(regular|bold|italic|bolditalic)"
-  suppressMessages(extrafont::font_import(font_dir,
-                                          pattern = pattern,
-                                          prompt = FALSE
-  ))
-  suppressMessages(extrafont::loadfonts())
+
+  if(length(font_dir) > 0){
+    suppressMessages(extrafont::font_import(font_dir,
+                                            pattern = pattern,
+                                            prompt = FALSE
+    ))
+    suppressMessages(extrafont::loadfonts())
 
 
-  # path <- system.file("extdata/", package = "ipeaplot")
-  # suppressMessages({extrafont::font_import(paths = paste0(path,'/ttf/'), prompt = F)})
-  #suppressMessages({extrafont::font_import(pattern="Roboto-",prompt = FALSE)})
-  # suppressMessages({extrafont::loadfonts(quiet = TRUE)})
+    # path <- system.file("extdata/", package = "ipeaplot")
+    # suppressMessages({extrafont::font_import(paths = paste0(path,'/ttf/'), prompt = F)})
+    #suppressMessages({extrafont::font_import(pattern="Roboto-",prompt = FALSE)})
+    # suppressMessages({extrafont::loadfonts(quiet = TRUE)})
+  }
+
 }
 
 .onAttach <- function(libname, pkgname) {
