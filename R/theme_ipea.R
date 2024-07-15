@@ -270,7 +270,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
 
 
   theme <- ggplot2::theme(
-    text = ggplot2::element_text(family = "Roboto Condensed Light"),
+    text = ggplot2::element_text(family = "Roboto"),
     #text = ggplot2::element_text(family = "Roboto Condensed Light",size = unit(6, unit = 'mm')),
     # Sets the background color of the panel to white
     panel.background = ggplot2::element_rect(fill = "white", colour = NA),
@@ -316,7 +316,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
-      family = "Roboto Condensed Light",
+      family = "Roboto",
       face = "bold", hjust = 0,  lineheight = 1,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),

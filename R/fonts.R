@@ -6,29 +6,26 @@
 .onLoad <- function(libname, pkgname) {
 
   font_dir <- systemfonts::system_fonts()
-  cond <- grepl("RobotoCondensed-Light", font_dir$name, ignore.case = TRUE)
+  cond <- grepl("roboto", font_dir$name, ignore.case = TRUE)
   font_dir <- font_dir[cond, ]
   font_dir <- unique(dirname(font_dir$path))
-  pattern <- "(?i)roboto-(regular|bold|italic|bolditalic)"
 
   if(length(font_dir) > 0){
     suppressMessages(extrafont::font_import(font_dir,
-                                            pattern = pattern,
+                                            pattern = "(?i)roboto",
                                             prompt = FALSE
     ))
     suppressMessages(extrafont::loadfonts())
 
+    suppressMessages(extrafont::loadfonts(device = "pdf"))
+    suppressMessages(extrafont::loadfonts(device = "postscript"))
 
-    # path <- system.file("extdata/", package = "ipeaplot")
-    # suppressMessages({extrafont::font_import(paths = paste0(path,'/ttf/'), prompt = F)})
-    #suppressMessages({extrafont::font_import(pattern="Roboto-",prompt = FALSE)})
-    # suppressMessages({extrafont::loadfonts(quiet = TRUE)})
+
   }
-
 }
 
 .onAttach <- function(libname, pkgname) {
-  roboto_fonts <- c("RobotoCondensed-Light")
+  roboto_fonts <- c("RobotoCondensed-Light","Roboto-Regular")
 
   sys_fonts <- systemfonts::system_fonts()
   missing_fonts <- roboto_fonts[!(roboto_fonts %in% sys_fonts$name)]
