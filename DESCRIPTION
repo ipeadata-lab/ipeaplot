@@ -30,7 +30,6 @@ Imports:
     rlang,
     ggthemes,
     showtext
-    showtext,
     systemfonts
 Suggests: 
     abjData,
