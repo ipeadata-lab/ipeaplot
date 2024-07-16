@@ -2,15 +2,15 @@
 title: "Introdução ao ipeaplot"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
     self_contained: yes
     mode: selfcontained
-  pdf_document: default
 urlcolor: blue
 vignette: >
   %\VignetteIndexEntry{Introdução ao ipeaplot} 
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}\n
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r, include = FALSE}
@@ -267,7 +267,7 @@ Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `fil
 
 
 ```{r eval=FALSE}
-save_eps(fig2, 
-         file.name = "figura_2.eps")
+# save_eps(fig2, 
+#          file.name = "figura_2.eps")
 
 ```
