@@ -29,13 +29,9 @@ Imports:
     scales,
     rlang,
     ggthemes,
-<<<<<<< HEAD
-    systemfonts,
     showtext
-=======
     showtext,
     systemfonts
->>>>>>> b92b9e30723a21de9eab21c065e6a53c6666fc21
 Suggests: 
     abjData,
     data.table,
