@@ -29,6 +29,7 @@ Imports:
     scales,
     rlang,
     ggthemes,
+    systemfonts,
     showtext
 Suggests: 
     abjData,
