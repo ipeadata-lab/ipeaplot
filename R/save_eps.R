@@ -9,6 +9,7 @@
 #'
 #' @return An `"eps"` file
 #'
+#' @import grDevices
 #' @export
 #' @family save
 #'

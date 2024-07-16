@@ -1,6 +1,6 @@
 #' Imports necessary fonts to produce the charts
 #'
-#' @import extrafont
+#' @import extrafont systemfonts
 #' @noRd
 
 .onLoad <- function(libname, pkgname) {
