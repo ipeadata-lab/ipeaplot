@@ -42,6 +42,19 @@
 #'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
 #'   theme_ipea()
 #'
+
+roboto_installed <- function() {
+  sys_fonts <- systemfonts::system_fonts()
+  any(grepl("Roboto", sys_fonts$family, ignore.case = TRUE))
+}
+
+roboto_condensed_light_installed <- function() {
+  sys_fonts <- systemfonts::system_fonts()
+  any(grepl("Roboto Condensed Light", sys_fonts$family, ignore.case = TRUE))
+}
+
+
+
 theme_ipea <- function(axis_lines = 'full',
                        axis_values = TRUE,
                        legend.position = 'right',
@@ -222,7 +235,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
   if(axis_values == T){
     axis.text.y  = ggplot2::element_text()
     # axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
-    axis.text.x  = ggplot2::element_text(family = "Roboto Condensed Light", angle = x_text_angle,color = 'black',
+    axis.text.x  = ggplot2::element_text(family = if (roboto_condensed_light_installed()) "Roboto Condensed Light" else "sans", angle = x_text_angle,color = 'black',
                                          hjust = hjust, vjust = vjust_angle,margin = margin(b = vjust,unit = 'mm'))
   } else if(axis_values == F){
     axis.text.x  = ggplot2::element_blank()
@@ -233,7 +246,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
 
 
   if(include_x_text_title == T){
-    axis.title.x  = ggplot2::element_text(family = "Roboto Condensed Light",margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm'))
+    axis.title.x  = ggplot2::element_text(family = if (roboto_condensed_light_installed()) "Roboto Condensed Light" else "sans",margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm'))
   } else if(include_x_text_title == F){
     axis.title.x  = ggplot2::element_blank()
   } else {
@@ -241,7 +254,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
   }
 
   if(include_y_text_title == T){
-    axis.title.y  = ggplot2::element_text(family = "Roboto Condensed Light",margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm'))
+    axis.title.y  = ggplot2::element_text(family = if (roboto_condensed_light_installed()) "Roboto Condensed Light" else "sans",margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm'))
   } else if(include_y_text_title == F){
     axis.title.y  = ggplot2::element_blank()
   } else {
@@ -270,8 +283,8 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
 
 
   theme <- ggplot2::theme(
-    text = ggplot2::element_text(family = "Roboto"),
-    #text = ggplot2::element_text(family = "Roboto Condensed Light",size = unit(6, unit = 'mm')),
+    text = ggplot2::element_text(family = if (roboto_installed()) "Roboto" else "sans"),
+    #text = ggplot2::element_text(family = if (roboto_condensed_light_installed()) "Roboto Condensed Light" else "sans",size = unit(6, unit = 'mm')),
     # Sets the background color of the panel to white
     panel.background = ggplot2::element_rect(fill = "white", colour = NA),
     # Sets the panel border based on the previous assignment
@@ -309,25 +322,25 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
     # Sets the appearance of the plot title
     plot.title = ggplot2::element_text(
       # FullName (Frutiger LT 47 Light Condensed). FamillyName (Frutiger LT 47 LightCn)
-      family = "Roboto Condensed Light",
+      family = if (roboto_condensed_light_installed()) "Roboto Condensed Light" else "sans",
       hjust = 0,  lineheight = .5,
       margin = margin(0,0,1,0, unit = 'mm')
     ),
     # Sets the appearance of the plot subtitle
     plot.subtitle = ggplot2::element_text(
       # FullName (Frutiger LT Std 57 Condensed). FamillyName (Frutiger LT Std)
-      family = "Roboto",
+      family = if (roboto_installed()) "Roboto" else "sans",
       face = "bold", hjust = 0,  lineheight = 1,
       margin = margin(0,0,2,0, unit = 'mm'),
     ),
-    # axis.text = ggplot2::element_text(family = "Roboto Condensed Light", size = unit(6, "pt")),
+    # axis.text = ggplot2::element_text(family = if (roboto_condensed_light_installed()) "Roboto Condensed Light" else "sans", size = unit(6, "pt")),
     plot.margin=unit(c(.2,.5,.2,.2),"cm"),
     # Spacing between faceted plots
     panel.spacing = unit(4, "mm"),
     # Sets the appearance of the legend text
     #legend.text = ggplot2::element_text(size = 7),
     # Set caption position
-    plot.caption = ggplot2::element_text(family = "Roboto Condensed Light", hjust = 0, vjust = 0,  lineheight = 1.25),
+    plot.caption = ggplot2::element_text(family = if (roboto_condensed_light_installed()) "Roboto Condensed Light" else "sans", hjust = 0, vjust = 0,  lineheight = 1.25),
     # Set the horizontal alignment of the legend to center
     legend.justification = "center",
     # Set legend spacing y
