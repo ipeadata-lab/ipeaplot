@@ -267,7 +267,7 @@ Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `fil
 
 
 ```{r, eval=F, echo=T}
-# save_eps(fig2,
-#          file.name = "figura_2.eps")
+save_eps(fig2,
+         file.name = "figura_2.eps")
 
 ```
