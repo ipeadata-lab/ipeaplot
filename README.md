@@ -42,7 +42,9 @@ Para os dispositivos R PDF (pdf) e PostScript (postscript), existe a função im
 Para garantir que a fonte Roboto esteja corretamente instalada no seu dispositivo e que você possa utilizar todas as funcionalidades do pacote **ipeaplot**, recomendamos seguir os passos descritos nos links abaixo, específicos para cada sistema operacional. Esses tutoriais fornecem instruções detalhadas sobre como instalar fontes no seu dispositivo. Você pode encontrar os arquivos da fonte Roboto na pasta fontes do repositório do [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf).
 
 [MacOS](https://support.apple.com/pt-br/guide/font-book/fntbk1000/mac)
+
 [Linux](https://askubuntu.com/questions/3697/how-do-i-install-fonts)
+
 [Windows](https://support.microsoft.com/en-us/office/add-a-font-b7c5f17c-4426-4b53-967f-455339c564c1)
 
 Seguir essas instruções garantirá que a fonte Roboto esteja disponível para uso com os dispositivos cairo_pdf ou cairo_ps, proporcionando uma melhor experiência e suporte para fontes personalizadas.
