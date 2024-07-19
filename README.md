@@ -37,7 +37,7 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 
 Para garantir a funcionalidade ideal do pacote **ipeaplot**, certifique-se de que as fontes *Roboto* (regular) e *Roboto Condensed Light* estejam instaladas em seu dispositivo.
 
-Recomendamos a seguir tutoriais para instalação de fontes em cada tipo sistema operacional. Esses tutoriais fornecem instruções detalhadas sobre como instalar as fontes no seu dispositivo. Você pode baixar os arquivos das fontes *Roboto* (regular) e *Roboto Condensed Light* no repositório do [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf).
+Recomendamos a seguir tutoriais para instalação de fontes em cada sistema operacional. Esses tutoriais fornecem instruções detalhadas sobre como instalar as fontes no seu dispositivo. Você pode baixar os arquivos das fontes *Roboto* (regular) e *Roboto Condensed Light* no repositório do [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf).
 
 [MacOS](https://support.apple.com/pt-br/guide/font-book/fntbk1000/mac)
 
