@@ -104,6 +104,10 @@ pelo Ipea;</li>
 <code><a href="../reference/save_eps.html">save_eps()</a></code> - salva a figura em formato
 <code>.eps</code>, um formato vetorial de alta resolução utilizado pela
 equipe do Editorial do Ipea.</li>
+<li>
+<code><a href="../reference/save_pdf.html">save_pdf()</a></code> - salva a figura em formato
+<code>.pdf</code>, um formato vetorial de alta resolução utilizado pela
+equipe do Editorial do Ipea.</li>
 </ol>
 </div>
 <div class="section level2">
@@ -292,16 +296,18 @@ códigos do municípios é a nossa chave para unir as duas bases.</p>
 <div class="section level3">
 <h3 id="salvando-figura">Salvando figura<a class="anchor" aria-label="anchor" href="#salvando-figura"></a>
 </h3>
-<p>Finalmente, o pacote <strong>ipeaplot</strong> traz a função
-<code><a href="../reference/save_eps.html">save_eps()</a></code> para facilitar a exportação da figura para um
-arquivo em formato <code>.eps</code>, um formato de imagem vetorial de
-alta resolução.</p>
+<p>Finalmente, o pacote <strong>ipeaplot</strong> traz as funções
+<code><a href="../reference/save_eps.html">save_eps()</a></code> e <code><a href="../reference/save_pdf.html">save_pdf()</a></code> para facilitar a
+exportação da figura para um arquivo em formato <code>.eps</code>, um
+formato de imagem vetorial de alta resolução.</p>
 <p>Basta passar o objeto ggplot da figura que deseja salvar, o nome do
 arquivo <code>file.name</code> e as dimensões da figura
 <code>width</code> e <code>height</code> em centímetros:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_eps.html">save_eps</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
-<span>         file.name <span class="op">=</span> <span class="st">"figura_2.eps"</span><span class="op">)</span></span></code></pre></div>
+<span>         file.name <span class="op">=</span> <span class="st">"figura_2.eps"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/save_pdf.html">save_pdf</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
+<span>         file.name <span class="op">=</span> <span class="st">"figura_2.pdf"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
