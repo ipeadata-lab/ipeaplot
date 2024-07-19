@@ -51,7 +51,17 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
 3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
 
+# Fontes
 
+Para garantir a funcionalidade ideal do pacote **ipeaplot**, certifique-se de que as fontes *Roboto* (regular) e *Roboto Condensed Light* estejam instaladas em seu dispositivo.
+
+Recomendamos a seguir tutoriais para instalação de fontes em cada sistema operacional. Esses tutoriais fornecem instruções detalhadas sobre como instalar as fontes no seu dispositivo. Você pode baixar os arquivos das fontes *Roboto* (regular) e *Roboto Condensed Light* no repositório do [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf).
+
+[MacOS](https://support.apple.com/pt-br/guide/font-book/fntbk1000/mac)
+
+[Linux](https://askubuntu.com/questions/3697/how-do-i-install-fonts)
+
+[Windows](https://support.microsoft.com/en-us/office/add-a-font-b7c5f17c-4426-4b53-967f-455339c564c1)
 
 # Demonstração do pacote
 
