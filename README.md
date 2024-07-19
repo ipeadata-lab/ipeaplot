@@ -1,5 +1,5 @@
 [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/ipeaplot)](https://CRAN.R-project.org/package=ipeaplot)
-[![CRAN/METACRAN Total downloads](http://cranlogs.r-pkg.org/badges/grand-total/ipeaplot?color=yellow)](https://CRAN.R-project.org/package=ipeaplot)
+[![CRAN/METACRAN Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ipeaplot?color=green)](https://CRAN.R-project.org/package=ipeaplot)
 [![rcmdcheck](https://github.com/ipeadata-lab/ipeaplot/workflows/R-CMD-check/badge.svg)](https://github.com/ipeadata-lab/ipeaplot/actions)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
@@ -36,19 +36,15 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 
 # Fontes
 
-Uma das fontes oficialmente recomendadas é a Roboto, conhecida por sua legibilidade e design moderno. Para garantir a funcionalidade ideal do pacote **ipeaplot**, certifique-se de que a fonte Roboto esteja instalada em seu dispositivo antes de utilizá-lo.
+Para garantir a funcionalidade ideal do pacote **ipeaplot**, certifique-se de que as fontes *Roboto* (regular) e *Roboto Condensed Light* estejam instaladas em seu dispositivo.
 
-Para os dispositivos R PDF (pdf) e PostScript (postscript), existe a função import_roboto que pode ser utilizada para importar a fonte Roboto para esses dois dispositivos. Para garantir a qualidade e a possibilidade de edição, nossas funções utilizam os dispositivos cairo_pdf ou cairo_ps, que funcionam quando a fonte Roboto está instalada. Esses dispositivos estão disponíveis em todas as plataformas e oferecem melhor suporte para fontes personalizadas.
-
-Para garantir que a fonte Roboto esteja corretamente instalada no seu dispositivo e que você possa utilizar todas as funcionalidades do pacote **ipeaplot**, recomendamos seguir os passos descritos nos links abaixo, específicos para cada sistema operacional. Esses tutoriais fornecem instruções detalhadas sobre como instalar fontes no seu dispositivo. Você pode encontrar os arquivos da fonte Roboto na pasta fontes do repositório do [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf).
+Recomendamos a seguir tutoriais para instalação de fontes em cada sistema operacional. Esses tutoriais fornecem instruções detalhadas sobre como instalar as fontes no seu dispositivo. Você pode baixar os arquivos das fontes *Roboto* (regular) e *Roboto Condensed Light* no repositório do [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf).
 
 [MacOS](https://support.apple.com/pt-br/guide/font-book/fntbk1000/mac)
 
 [Linux](https://askubuntu.com/questions/3697/how-do-i-install-fonts)
 
 [Windows](https://support.microsoft.com/en-us/office/add-a-font-b7c5f17c-4426-4b53-967f-455339c564c1)
-
-Seguir essas instruções garantirá que a fonte Roboto esteja disponível para uso com os dispositivos cairo_pdf ou cairo_ps, proporcionando uma melhor experiência e suporte para fontes personalizadas.
 
 # Demonstração do pacote
 
