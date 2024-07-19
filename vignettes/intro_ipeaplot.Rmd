@@ -13,6 +13,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}\n
 ---
 
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -50,6 +51,7 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 1. `theme_ipea()` - formatação de elementos estilísticos da figura (eixos, fontes, linhas, grid, etc.);
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
 3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
+4. `save_pdf()` - salva a figura em formato `.pdf`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
 
 
 
@@ -260,7 +262,7 @@ fig_map <- ggplot() +
 
 ## Salvando figura
 
-Finalmente, o pacote **ipeaplot** traz a função `save_eps()` para facilitar a exportação da figura para um arquivo em formato `.eps`, um formato de imagem vetorial de alta resolução.
+Finalmente, o pacote **ipeaplot** traz as funções `save_eps()` e `save_pdf()` para facilitar a exportação da figura para um arquivo em formato `.eps`, um formato de imagem vetorial de alta resolução.
 
 Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `file.name` e as dimensões da figura `width` e `height` em centímetros:
 
@@ -269,5 +271,7 @@ Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `fil
 ```{r, eval=F, echo=T}
 save_eps(fig2,
          file.name = "figura_2.eps")
+save_pdf(fig2,
+         file.name = "figura_2.pdf")
 
 ```

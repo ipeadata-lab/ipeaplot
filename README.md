@@ -32,6 +32,7 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 1. `theme_ipea()` - para formatação de elementos estilísticos da figura (eixos, fontes, linhas, grid, etc.);
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
 3. `save_eps()` - salva a figura com a extensão `.eps`, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.
+3. `save_pdf()` - salva a figura com a extensão `.pdf`, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.
 
 # Fontes
 
