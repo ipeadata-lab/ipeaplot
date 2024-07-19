@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 ```
 O **ipeaplot** é um pacote em R desenvolvido para facilitar a padronização de gráficos e figuras seguindo a política editorial do Instituto de Pesquisa Econômica Aplicada (Ipea). 
 
-Para garantir o uso correto da fonte Roboto no pacote **ipeaplot**, siga as instruções de instalação específicas para o seu sistema operacional: [MacOS](https://support.apple.com/pt-br/guide/font-book/fntbk1000/mac), [Linux](https://askubuntu.com/questions/3697/how-do-i-install-fonts) e [Windows](https://support.microsoft.com/en-us/office/add-a-font-b7c5f17c-4426-4b53-967f-455339c564c1). Os arquivos da fonte Roboto estão disponíveis na pasta fontes do repositório [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf). Isso assegurará melhor suporte para fontes personalizadas nos dispositivos cairo_pdf ou cairo_ps.
+Para garantir o uso correto da fonte Roboto no pacote **ipeaplot**, siga as instruções de instalação específicas para o seu sistema operacional: [MacOS](https://support.apple.com/pt-br/guide/font-book/fntbk1000/mac), [Linux](https://askubuntu.com/questions/3697/how-do-i-install-fonts) e [Windows](https://support.microsoft.com/en-us/office/add-a-font-b7c5f17c-4426-4b53-967f-455339c564c1). Os arquivos da fonte Roboto estão disponíveis na pasta fontes do repositório [ipeaplot](https://github.com/ipeadata-lab/ipeaplot/tree/master/inst/extdata/ttf).
 
 Nesta vinheta, apresentamos exemplos práticos do uso do pacote para gerar visulizações de dados comuns em textos e relatórios do Ipea. 
 
