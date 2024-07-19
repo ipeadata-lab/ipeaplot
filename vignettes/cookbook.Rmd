@@ -2,14 +2,13 @@
 title: "Cookbook ipeaplot"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
+  word_document: default
   html_document:
     df_print: paged
-  word_document: default
 urlcolor: blue
-vignette: >
-  %\VignetteIndexEntry{Cookbook ipeaplot} 
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}\n
+vignette: "%\\VignetteIndexEntry{Cookbook ipeaplot}  %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}\\n\n"
 ---
 
 ```{r, include = FALSE}
