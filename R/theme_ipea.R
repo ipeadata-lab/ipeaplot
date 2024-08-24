@@ -43,15 +43,6 @@
 #'   theme_ipea()
 #'
 
-# roboto_installed <- function() {
-#   sys_fonts <- systemfonts::system_fonts()
-#   any(grepl("Roboto", sys_fonts$family, ignore.case = TRUE))
-# }
-#
-# roboto_condensed_light_installed <- function() {
-#   sys_fonts <- systemfonts::system_fonts()
-#   any(grepl("Roboto Condensed Light", sys_fonts$family, ignore.case = TRUE))
-# }
 
 
 
