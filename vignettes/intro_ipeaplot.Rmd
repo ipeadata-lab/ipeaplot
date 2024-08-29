@@ -157,9 +157,8 @@ A função `theme_ipea()` aplica às figuras o padrão visual de gráficos utili
 
 Para ilustrar essa função, vamos utilizar alguns dados do Atlas do Desenvolvimento Humano organizados em um projeto de parceria entre Ipea, FJP e PNUD). Para carregar os dados, basta rodar:
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 df <- abjData::pnud_muni
-head(df)
 ```
 
 Essa base de dados traz para cada municipio uma série de indicadores socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro calculamos qual a proporção de domicílios que possuia coleta de esgoto em cada região do país a cada anos, e em seguida geramos o gráfico:
