@@ -1,7 +1,7 @@
 [![CRAN/METACRAN Version](https://www.r-pkg.org/badges/version/ipeaplot)](https://CRAN.R-project.org/package=ipeaplot)
 [![CRAN/METACRAN Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ipeaplot?color=green)](https://CRAN.R-project.org/package=ipeaplot)
 [![rcmdcheck](https://github.com/ipeadata-lab/ipeaplot/workflows/R-CMD-check/badge.svg)](https://github.com/ipeadata-lab/ipeaplot/actions)
-[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 # ipeaplot: criando graficos no padrão editorial do Ipea 
 
