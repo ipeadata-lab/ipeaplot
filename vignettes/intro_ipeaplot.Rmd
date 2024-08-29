@@ -131,19 +131,17 @@ par(old.par)
 
 Para usar as paletas de cores, basta adicionar uma das funções na construção da sua figura com `ggplot2`:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 # paleta sequencial verde
 fig_base + scale_color_ipea(palette = "Green")
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico2.png"))
 ```
 
-```{r eval=FALSE, message=FALSE, warning=FALSE,fig.align = "center"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 # paleta divergente de laranja a azul
 fig_base + scale_color_ipea(palette = "Orange-Blue")
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 ```
 
@@ -163,7 +161,7 @@ head(df)
 
 Essa base de dados traz para cada municipio uma série de indicadores socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro calculamos qual a proporção de domicílios que possuia coleta de esgoto em cada região do país a cada anos, e em seguida geramos o gráfico:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 # cria variavel identificando a regiao de cada municipio
 df <- df |> 
       mutate(regiao = substring(uf, 1, 1),
@@ -188,9 +186,6 @@ ggplot() +
   ylab('Proporção em %') +
   xlab('Ano') +
   theme_ipea()
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
 
@@ -198,7 +193,7 @@ knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
 
 Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 graph <- ggplot() + 
   geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
   scale_fill_ipea(palette = 'Green') +
@@ -208,7 +203,6 @@ graph <- ggplot() +
   facet_wrap(. ~ regiao) +
   theme_ipea(x_breaks = 3)
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 
 knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico6.png"))
 
