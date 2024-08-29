@@ -59,7 +59,7 @@
 
       <h1>Introdução ao ipeaplot</h1>
             
-            <h4 data-toc-skip class="date">2024-08-28</h4>
+            <h4 data-toc-skip class="date">2024-08-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/intro_ipeaplot.Rmd" class="external-link"><code>vignettes/intro_ipeaplot.Rmd</code></a></small>
       <div class="d-none name"><code>intro_ipeaplot.Rmd</code></div>
@@ -109,6 +109,17 @@ equipe do Editorial do Ipea.</li>
 <code>.pdf</code>, um formato vetorial de alta resolução utilizado pela
 equipe do Editorial do Ipea.</li>
 </ol>
+</div>
+<div class="section level2">
+<h2 id="fontes">Fontes<a class="anchor" aria-label="anchor" href="#fontes"></a>
+</h2>
+<p>Por limitações de licenciamento, o <strong>ipeaplot</strong> utiliza,
+em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema
+operacional do usuário e não a tipografia recomendada pelo Editorial do
+Ipea (<em>Frutiger</em>). Se as figuras forem salvas em formatos
+“editáveis” (pdf ou eps, usando as funções <code><a href="../reference/save_pdf.html">save_pdf()</a></code> ou
+<code><a href="../reference/save_eps.html">save_eps()</a></code>), a equipe editorial poderá alterar a fonte no
+momento da edição de uma publicação.</p>
 </div>
 <div class="section level2">
 <h2 id="demonstração-do-pacote">Demonstração do pacote<a class="anchor" aria-label="anchor" href="#demonstra%C3%A7%C3%A3o-do-pacote"></a>
@@ -166,14 +177,8 @@ cores divergentes (<code>"Red-Blue", "Orange-Blue"</code>).</p>
 <img src="intro_ipeaplot_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;"></p>
 <p>Para usar as paletas de cores, basta adicionar uma das funções na
 construção da sua figura com <code>ggplot2</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># paleta sequencial verde</span></span>
-<span><span class="va">fig_base</span> <span class="op">+</span> <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Green"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="prints_intro_ipeaplot/grafico2.png" width="100%" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># paleta divergente de laranja a azul</span></span>
-<span><span class="va">fig_base</span> <span class="op">+</span> <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Orange-Blue"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="prints_intro_ipeaplot/grafico3.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"><img src="prints_intro_ipeaplot/grafico2.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"><img src="prints_intro_ipeaplot/grafico3.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Além de selecionar a paleta de cores, as funções
 <code><a href="../reference/scale_color_ipea.html">scale_color_ipea()</a></code> e <code><a href="../reference/scale_fill_ipea.html">scale_fill_ipea()</a></code> trazem
 ainda outros parâmetros que permitem escolher o separador de casa
@@ -192,50 +197,15 @@ eixos etc.</p>
 <p>Para ilustrar essa função, vamos utilizar alguns dados do Atlas do
 Desenvolvimento Humano organizados em um projeto de parceria entre Ipea,
 FJP e PNUD). Para carregar os dados, basta rodar:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">abjData</span><span class="fu">::</span><span class="va"><a href="https://abjur.github.io/abjData/reference/pnud_muni.html" class="external-link">pnud_muni</a></span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">abjData</span><span class="fu">::</span><span class="va"><a href="https://abjur.github.io/abjData/reference/pnud_muni.html" class="external-link">pnud_muni</a></span></span></code></pre></div>
 <p>Essa base de dados traz para cada municipio uma série de indicadores
 socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro
 calculamos qual a proporção de domicílios que possuia coleta de esgoto
 em cada região do país a cada anos, e em seguida geramos o gráfico:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># cria variavel identificando a regiao de cada municipio</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> </span>
-<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>regiao <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">uf</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>             regiao <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">regiao</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">'Norte'</span>,</span>
-<span>                                <span class="va">regiao</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">'Nordeste'</span>,</span>
-<span>                                <span class="va">regiao</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">'Sudeste'</span>,</span>
-<span>                                <span class="va">regiao</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">'Sul'</span>,</span>
-<span>                                <span class="va">regiao</span> <span class="op">==</span> <span class="fl">5</span> <span class="op">~</span> <span class="st">'Centro Oeste'</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># calcula media de colega de esgoto por ano e regiao</span></span>
-<span><span class="va">df_fig1</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
-<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>regiao <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">uf</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ano</span>, <span class="va">regiao</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span> t_lixo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/weighted.mean.html" class="external-link">weighted.mean</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">t_lixo</span>, w <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>           <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># plot</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_fig1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">ano</span>, y<span class="op">=</span><span class="va">t_lixo</span>, color<span class="op">=</span> <span class="va">regiao</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">'Orange'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Proporção da população com coleta de lixo'</span>, color<span class="op">=</span><span class="st">'Região'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">'Proporção em %'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">'Ano'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="prints_intro_ipeaplot/grafico5.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;"><img src="prints_intro_ipeaplot/grafico5.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Os mesmos dados também poderiam ser visualizados com um gráfico de
 colunas:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df_fig1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">ano</span>, y<span class="op">=</span><span class="va">t_lixo</span>, fill<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">ano</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">'Green'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Proporção da população com coleta de lixo'</span>, fill<span class="op">=</span><span class="st">'Ano'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="st">'Proporção em %'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">'Ano'</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="va">.</span> <span class="op">~</span> <span class="va">regiao</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>x_breaks <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="prints_intro_ipeaplot/grafico6.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="section level4">
 <h4 id="mapas">Mapas<a class="anchor" aria-label="anchor" href="#mapas"></a>
@@ -246,14 +216,14 @@ mostra a média de anos de estudo dos municípios do Brasil.</p>
 <p>O primeiro passo, é baixar a malha espacial de municípios. Isso pode
 ser feito com o pacote <a href="https://ipeagit.github.io/geobr/" class="external-link">geobr</a>, desenvolvido pelo
 Ipea. Para baixar esses dados, basta rodar:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load municipality and state spatial data</span></span>
 <span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
 <span><span class="va">uf</span>  <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_state.html" class="external-link">read_state</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></code></pre></div>
 <p>Agora nós precisamos fazer um <em>merge</em> dos dados espaciais e
 dos dados com as estimativas de anos de estudo. A variável com os
 códigos do municípios é a nossa chave para unir as duas bases.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load municipality and state spatial data</span></span>
 <span><span class="va">mun</span> <span class="op">=</span> <span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">uf</span>  <span class="op">=</span> <span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_state.html" class="external-link">read_state</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -266,7 +236,7 @@ códigos do municípios é a nossa chave para unir as duas bases.</p>
 <span><span class="co"># Perform a left join between the 'mun' and 'pnud' data frames</span></span>
 <span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">mun</span>, <span class="va">df_escola</span>, by <span class="op">=</span> <span class="st">'code_muni'</span><span class="op">)</span></span></code></pre></div>
 <p>Agora basta criar o mapa:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">e_anosestudo</span><span class="op">)</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
 <span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">uf</span>, color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
@@ -287,7 +257,7 @@ formato de imagem vetorial de alta resolução.</p>
 <p>Basta passar o objeto ggplot da figura que deseja salvar, o nome do
 arquivo <code>file.name</code> e as dimensões da figura
 <code>width</code> e <code>height</code> em centímetros:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_eps.html">save_eps</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
 <span>         file.name <span class="op">=</span> <span class="st">"figura_2.eps"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/save_pdf.html">save_pdf</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
