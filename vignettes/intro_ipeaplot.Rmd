@@ -5,7 +5,6 @@ output:
   html_document:
     self_contained: yes
     mode: selfcontained
-  pdf_document: default
 urlcolor: blue
 vignette: >
   %\VignetteIndexEntry{Introdução ao ipeaplot} 
