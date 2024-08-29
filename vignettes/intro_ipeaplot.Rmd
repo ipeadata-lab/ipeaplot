@@ -53,6 +53,9 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
 4. `save_pdf()` - salva a figura em formato `.pdf`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
 
+# Fontes
+
+Por questões de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo editorial (*Frutiger*).
 
 # Demonstração do pacote
 
