@@ -67,7 +67,7 @@ Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
 
 # Fontes
 
-Por questões de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo editorial (*Frutiger*).
+Por limitações de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (*Frutiger*). Se as figuras forem salvas em formatos "editáveis" (pdf ou eps, usando as funções save_pdf ou save_eps), a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.
 
 # Equipe 
 
