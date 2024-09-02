@@ -74,7 +74,7 @@ data(mtcars)
 
 No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea(). Essas funções incorporam à figura diretrizes visuais fundamentais das publicações do Ipea, proporcionando uma apresentação alinhada aos padrões estilístico estabelecidos pelo instituto. Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               labs(y='Consumo de Combustível (milhas por galão)',
@@ -226,7 +226,7 @@ df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
 
 Agora basta criar o mapa:
 
-```{r eval=TRUE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 fig_map <- ggplot() +
              geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
              geom_sf(data = uf, color = "black", fill = NA) +
