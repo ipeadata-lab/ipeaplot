@@ -44,7 +44,7 @@ library(ggplot2)
 ```
 No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea().
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+```
 # Figura ggplot original
 fig_raw <- ggplot(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               geom_point() +
@@ -57,6 +57,7 @@ fig_raw +
       scale_color_ipea() +
       theme_ipea()
 ```
+<img src="man/figures/figura_read_me.png" width="70%" style="display: block; margin: auto;" />
 
 Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
 
