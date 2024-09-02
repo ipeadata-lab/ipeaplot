@@ -155,7 +155,7 @@ base_graf8 <- data.table(pais = c("Nigéria", "Vietnã", "Índia", "Indonésia",
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"prints_original/grafico1.png"))
+ knitr::include_graphics(paste0(getwd(),"/prints_original/grafico1.png"))
 #![graph](prints_original/grafico1.png){fig-align="center", width='80%'}
 ```
 
@@ -195,7 +195,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"prints_original/grafico2.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico2.png"))
 ```
 
 
@@ -236,7 +236,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"prints_original/grafico3.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico3.png"))
 ```
 
 
@@ -280,7 +280,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"prints_original/grafico4.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico4.png"))
 ```
 
 
@@ -316,7 +316,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"prints_original/grafico5.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico5.png"))
 ```
 
 
@@ -356,7 +356,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"prints_original/grafico6.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico6.png"))
 ```
 
 
@@ -393,7 +393,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"prints_original/grafico7.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico7.png"))
 ```
 
 
@@ -431,7 +431,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"prints_original/grafico8.png"))
+knitr::include_graphics(paste0(getwd(),"/prints_original/grafico8.png"))
 ```
 
 
@@ -465,7 +465,7 @@ ggplot() +
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"prints_ipeaplot/grafico8.png"),  width=724, height=546)
+png(paste0(getwd(),"/prints_ipeaplot/grafico8.png"),  width=724, height=546)
 print(graf8)
 dev.off()
 
@@ -473,5 +473,5 @@ dev.off()
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico8.png"))
+ knitr::include_graphics(paste0(getwd(),"/prints_ipeaplot/grafico8.png"))
 ```
