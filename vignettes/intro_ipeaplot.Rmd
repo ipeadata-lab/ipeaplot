@@ -2,6 +2,7 @@
 title: "Introdução ao ipeaplot"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
     self_contained: true
     mode: selfcontained
