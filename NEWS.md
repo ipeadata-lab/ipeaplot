@@ -1,3 +1,5 @@
+# ipeaplot (development version)
+
 # ipeaplot 0.4.0
   * The Frutiger family has been replaced by the default sans-serif font in titles and labels.
   * New function `save_pdf()`
