@@ -21,3 +21,4 @@
 ^docs$
 ^CRAN-SUBMISSION$
 ^revdep$
+^cookbook.Rmd$
