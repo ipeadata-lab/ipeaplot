@@ -7,10 +7,8 @@ output:
     self_contained: true
     mode: selfcontained
 urlcolor: blue
-vignette: 
-"%\\VignetteIndexEntry{Introdução ao ipeaplot}  
-%\\VignetteEngine{knitr::rmarkdown}
-%\\VignetteEncoding{UTF-8}\\n\n"
+vignette:"%\\VignetteIndexEntry{Introdução ao ipeaplot}  %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}\\n\n"
 ---
 
 
