@@ -2,13 +2,14 @@
 title: "Introdução ao ipeaplot"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document:
     self_contained: true
     mode: selfcontained
 urlcolor: blue
-vignette: "%\\VignetteIndexEntry{Introdução ao ipeaplot}  %\\VignetteEngine{knitr::rmarkdown}
-  %\\VignetteEncoding{UTF-8}\\n\n"
+vignette: 
+"%\\VignetteIndexEntry{Introdução ao ipeaplot}  
+%\\VignetteEngine{knitr::rmarkdown}
+%\\VignetteEncoding{UTF-8}\\n\n"
 ---
 
 
