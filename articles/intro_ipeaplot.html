@@ -146,16 +146,6 @@ uma apresentação alinhada aos padrões estilístico estabelecidos pelo
 instituto. Nas próximas seções, vamos explorar como usar as funções do
 <strong>ipeaplot</strong> editar as figuras seguindo essas
 diretrizes.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fig_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span> , y <span class="op">=</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y<span class="op">=</span><span class="st">'Consumo de Combustível (milhas por galão)'</span>,</span>
-<span>                   x <span class="op">=</span><span class="st">'Potência (Número de cavalos)'</span>,</span>
-<span>                   color<span class="op">=</span><span class="st">'Cilindradas'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">fig_base</span> <span class="op">&lt;-</span> <span class="va">fig_raw</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="../reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="paleta-de-cores">Paleta de cores<a class="anchor" aria-label="anchor" href="#paleta-de-cores"></a>
 </h3>
@@ -195,7 +185,7 @@ eixos etc.</p>
 <p>Para ilustrar essa função, vamos utilizar alguns dados do Atlas do
 Desenvolvimento Humano organizados em um projeto de parceria entre Ipea,
 FJP e PNUD). Para carregar os dados, basta rodar:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">abjData</span><span class="fu">::</span><span class="va"><a href="https://abjur.github.io/abjData/reference/pnud_muni.html" class="external-link">pnud_muni</a></span></span></code></pre></div>
 <p>Essa base de dados traz para cada municipio uma série de indicadores
 socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro
@@ -213,14 +203,14 @@ mostra a média de anos de estudo dos municípios do Brasil.</p>
 <p>O primeiro passo, é baixar a malha espacial de municípios. Isso pode
 ser feito com o pacote <a href="https://ipeagit.github.io/geobr/" class="external-link">geobr</a>, desenvolvido pelo
 Ipea. Para baixar esses dados, basta rodar:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load municipality and state spatial data</span></span>
 <span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
 <span><span class="va">uf</span>  <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_state.html" class="external-link">read_state</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></code></pre></div>
 <p>Agora nós precisamos fazer um <em>merge</em> dos dados espaciais e
 dos dados com as estimativas de anos de estudo. A variável com os
 códigos do municípios é a nossa chave para unir as duas bases.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load municipality and state spatial data</span></span>
 <span><span class="va">mun</span> <span class="op">=</span> <span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">uf</span>  <span class="op">=</span> <span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_state.html" class="external-link">read_state</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -233,14 +223,6 @@ códigos do municípios é a nossa chave para unir as duas bases.</p>
 <span><span class="co"># Perform a left join between the 'mun' and 'pnud' data frames</span></span>
 <span><span class="va">df3</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">mun</span>, <span class="va">df_escola</span>, by <span class="op">=</span> <span class="st">'code_muni'</span><span class="op">)</span></span></code></pre></div>
 <p>Agora basta criar o mapa:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fig_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df3</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">e_anosestudo</span><span class="op">)</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">uf</span>, color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
-<span>             <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Média de anos de estudo"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>             <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">'Orange-Blue'</span>, </span>
-<span>                             name<span class="op">=</span><span class="st">'Anos de\nestudo'</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>             <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>axis_lines <span class="op">=</span> <span class="st">'none'</span>, include_ticks <span class="op">=</span> <span class="cn">F</span>, axis_values <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -253,7 +235,7 @@ formato de imagem vetorial de alta resolução.</p>
 <p>Basta passar o objeto ggplot da figura que deseja salvar, o nome do
 arquivo <code>file.name</code> e as dimensões da figura
 <code>width</code> e <code>height</code> em centímetros:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/save_eps.html">save_eps</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
 <span>         file.name <span class="op">=</span> <span class="st">"figura_2.eps"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/save_pdf.html">save_pdf</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
