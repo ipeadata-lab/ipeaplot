@@ -63,6 +63,8 @@ Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
 
 - [Introdução ao ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
 
+- [Cookbook ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
+
 # Fontes
 
 Por limitações de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (*Frutiger*). Se as figuras forem salvas em formatos "editáveis" (pdf ou eps, usando as funções `save_pdf()` ou `save_eps()`), a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.
