@@ -2,14 +2,13 @@
 title: "Introdução ao ipeaplot"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: default
   html_document:
-    self_contained: yes
+    self_contained: true
     mode: selfcontained
 urlcolor: blue
-vignette: >
-  %\VignetteIndexEntry{Introdução ao ipeaplot} 
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}\n
+vignette: "%\\VignetteIndexEntry{Introdução ao ipeaplot}  %\\VignetteEngine{knitr::rmarkdown}
+  %\\VignetteEncoding{UTF-8}\\n\n"
 ---
 
 
@@ -90,7 +89,7 @@ fig_base <- fig_raw +
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico1.png"))
+knitr::include_graphics(paste0(getwd(),"prints_intro_ipeaplot/grafico1.png"))
 ```
 
 ## Paleta de cores
@@ -137,14 +136,14 @@ Para usar as paletas de cores, basta adicionar uma das funções na construção
 # paleta sequencial verde
 fig_base + scale_color_ipea(palette = "Green")
 
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico2.png"))
+knitr::include_graphics(paste0(getwd(),"prints_intro_ipeaplot/grafico2.png"))
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 # paleta divergente de laranja a azul
 fig_base + scale_color_ipea(palette = "Orange-Blue")
 
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
+knitr::include_graphics(paste0(getwd(),"prints_intro_ipeaplot/grafico3.png"))
 ```
 
 Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scale_fill_ipea()` trazem ainda outros parâmetros que permitem escolher o separador de casa decimal (ponto ou vírgula), ajustar o tamanho da barra de legenda etc. A lista completa de parâmetros está disponível na documentação da função `?scale_color_ipea()`.
@@ -188,7 +187,7 @@ ggplot() +
   xlab('Ano') +
   theme_ipea()
 
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
+knitr::include_graphics(paste0(getwd(),"prints_intro_ipeaplot/grafico5.png"))
 
 ```
 
@@ -205,7 +204,7 @@ graph <- ggplot() +
   theme_ipea(x_breaks = 3)
 
 
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico6.png"))
+knitr::include_graphics(paste0(getwd(),"prints_intro_ipeaplot/grafico6.png"))
 
 ```
 
@@ -251,7 +250,7 @@ fig_map <- ggplot() +
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico7.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_intro_ipeaplot/grafico7.png"))
 ```
 
 ## Salvando figura

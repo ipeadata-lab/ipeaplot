@@ -155,7 +155,7 @@ base_graf8 <- data.table(pais = c("Nigéria", "Vietnã", "Índia", "Indonésia",
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico1.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_original/grafico1.png"))
 #![graph](prints_original/grafico1.png){fig-align="center", width='80%'}
 ```
 
@@ -179,14 +179,14 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico1.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico1.png"),  width=724, height=546)
 print(graf1)
 dev.off()
 
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico1.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico1.png"))
 ```
 
 
@@ -195,7 +195,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico2.png"))
+knitr::include_graphics(paste0(getwd(),"prints_original/grafico2.png"))
 ```
 
 
@@ -219,14 +219,14 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico2.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico2.png"),  width=724, height=546)
 print(graf2)
 dev.off()
 
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico2.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico2.png"))
 
 ```
 
@@ -236,7 +236,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico3.png"))
+knitr::include_graphics(paste0(getwd(),"prints_original/grafico3.png"))
 ```
 
 
@@ -264,14 +264,14 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico3.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico3.png"),  width=724, height=546)
 print(graf3)
 dev.off()
 
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico3.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico3.png"))
 ```
 
 
@@ -280,7 +280,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico4.png"))
+knitr::include_graphics(paste0(getwd(),"prints_original/grafico4.png"))
 ```
 
 
@@ -299,7 +299,7 @@ graf4 <- ggplot(base_graf4, aes(x=Ano)) +
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico4.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico4.png"),  width=724, height=546)
 print(graf4)
 dev.off()
 
@@ -307,7 +307,7 @@ dev.off()
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico4.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico4.png"))
 ```
 
 
@@ -316,7 +316,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico5.png"))
+knitr::include_graphics(paste0(getwd(),"prints_original/grafico5.png"))
 ```
 
 
@@ -340,14 +340,14 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico5.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico5.png"),  width=724, height=546)
 print(graf5)
 dev.off()
 
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico5.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico5.png"))
 ```
 
 
@@ -356,7 +356,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico6.png"))
+knitr::include_graphics(paste0(getwd(),"prints_original/grafico6.png"))
 ```
 
 
@@ -376,7 +376,7 @@ graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico6.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico6.png"),  width=724, height=546)
 print(graf6)
 dev.off()
 
@@ -384,7 +384,7 @@ dev.off()
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico6.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico6.png"))
 ```
 
 
@@ -393,7 +393,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico7.png"))
+knitr::include_graphics(paste0(getwd(),"prints_original/grafico7.png"))
 ```
 
 
@@ -415,14 +415,14 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico7.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico7.png"),  width=724, height=546)
 print(graf7)
 dev.off()
 
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico7.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico7.png"))
 ```
 
 
@@ -431,7 +431,7 @@ dev.off()
 
 ### Original
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.width=6, fig.height=6}
-knitr::include_graphics(paste0(getwd(),"vignettes/prints_original/grafico8.png"))
+knitr::include_graphics(paste0(getwd(),"prints_original/grafico8.png"))
 ```
 
 
@@ -465,7 +465,7 @@ ggplot() +
 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
-png(paste0(getwd(),"vignettes/prints_ipeaplot/grafico8.png"),  width=724, height=546)
+png(paste0(getwd(),"prints_ipeaplot/grafico8.png"),  width=724, height=546)
 print(graf8)
 dev.off()
 
@@ -473,5 +473,5 @@ dev.off()
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"vignettes/prints_ipeaplot/grafico8.png"))
+ knitr::include_graphics(paste0(getwd(),"prints_ipeaplot/grafico8.png"))
 ```
