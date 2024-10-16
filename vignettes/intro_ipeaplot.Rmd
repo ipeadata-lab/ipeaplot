@@ -118,7 +118,7 @@ par(old.par)
 old.par <- par(no.readonly = TRUE)
 
 # Modificar as configurações conforme necessário
-par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
+par(mfrow = c(4, 1), mar = c(1, 0, 2, 0))
 pal(ipea_pal(palette = "Red-Blue")(9)); mtext("Red-Blue")
 pal(ipea_pal(palette = "Orange-Blue")(9)); mtext("Orange-Blue")
 pal(ipea_pal(palette = "Green-Blue")(9)); mtext("Green-Blue")
