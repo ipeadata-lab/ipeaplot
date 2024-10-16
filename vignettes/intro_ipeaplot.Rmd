@@ -94,7 +94,7 @@ fig_base
 
 Existem duas funções básicas para selecionar a paleta de cores da figura: `scale_color_ipea()` e `scale_fill_ipea()`. O funcionamento de ambas funções seguem a mesma lógica e parâmetros.
 
-O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange", "Pink"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
+O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
 
 **Cores sequenciais:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4),fig.align = "center", out.width = "50%"}
