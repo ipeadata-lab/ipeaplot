@@ -146,15 +146,6 @@ base_graf8 <- data.table(pais = c("Nigéria", "Vietnã", "Índia", "Indonésia",
                                                            3.37, 3.1, 2.2, 2.2, 2.2, 2.18, 2.1, 2.28, 1.9, 2.1, 1.8),
                 `crescimento do PIB (ppc)_perct` = c(5.9,5.8, 5.4, 4.7, 4.65, 4.3, 4.2, 4.02, 3.96, 3.8, 3.7, 3.6, 3.2, 
                                                      3.17, 3, 2.7, 2.7, 2.5, 2.5, 2.4, 2.4, 2, 2, 1.8))
-
-
-## Salvando graficos no formato Rdata
-#save(base_graf1,base_graf2,base_graf3,base_graf5,base_graf6,base_graf7,base_graf8,file='bases_de_dados.Rdata')
-
-
-
-
-
 ```
 
 

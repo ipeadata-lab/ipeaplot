@@ -3,7 +3,7 @@ title: "Introdução ao ipeaplot"
 date: "`r Sys.Date()`"
 output:
   html_document:
-    self_contained: yes
+    self_contained: true
     mode: selfcontained
 urlcolor: blue
 vignette: >
@@ -75,7 +75,7 @@ data(mtcars)
 
 No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea(). Essas funções incorporam à figura diretrizes visuais fundamentais das publicações do Ipea, proporcionando uma apresentação alinhada aos padrões estilístico estabelecidos pelo instituto. Nas próximas seções, vamos explorar como usar as funções do **ipeaplot** editar as figuras seguindo essas diretrizes.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, fig.align = "center"}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               labs(y='Consumo de Combustível (milhas por galão)',
@@ -86,18 +86,15 @@ fig_base <- fig_raw +
               scale_color_ipea() +
               theme_ipea()
 
+fig_base
 
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico1.png"))
 ```
 
 ## Paleta de cores
 
 Existem duas funções básicas para selecionar a paleta de cores da figura: `scale_color_ipea()` e `scale_fill_ipea()`. O funcionamento de ambas funções seguem a mesma lógica e parâmetros.
 
-O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange", "Pink"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
+O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
 
 **Cores sequenciais:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4),fig.align = "center", out.width = "50%"}
@@ -133,18 +130,14 @@ par(old.par)
 
 Para usar as paletas de cores, basta adicionar uma das funções na construção da sua figura com `ggplot2`:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 # paleta sequencial verde
 fig_base + scale_color_ipea(palette = "Green")
-
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico2.png"))
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 # paleta divergente de laranja a azul
 fig_base + scale_color_ipea(palette = "Orange-Blue")
-
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico3.png"))
 ```
 
 Além de selecionar a paleta de cores, as funções `scale_color_ipea()` e `scale_fill_ipea()` trazem ainda outros parâmetros que permitem escolher o separador de casa decimal (ponto ou vírgula), ajustar o tamanho da barra de legenda etc. A lista completa de parâmetros está disponível na documentação da função `?scale_color_ipea()`.
@@ -162,7 +155,7 @@ df <- abjData::pnud_muni
 
 Essa base de dados traz para cada municipio uma série de indicadores socioeconômicos para diferentes anos. Neste exemplo abaixo, nós primeiro calculamos qual a proporção de domicílios que possuia coleta de esgoto em cada região do país a cada anos, e em seguida geramos o gráfico:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
 # cria variavel identificando a regiao de cada municipio
 df <- df |> 
       mutate(regiao = substring(uf, 1, 1),
@@ -188,14 +181,12 @@ ggplot() +
   xlab('Ano') +
   theme_ipea()
 
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico5.png"))
-
 ```
 
 Os mesmos dados também poderiam ser visualizados com um gráfico de colunas:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
-graph <- ggplot() + 
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ggplot() + 
   geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
   scale_fill_ipea(palette = 'Green') +
   labs(title = 'Proporção da população com coleta de lixo', fill='Ano') +
@@ -203,9 +194,6 @@ graph <- ggplot() +
   xlab('Ano') +
   facet_wrap(. ~ regiao) +
   theme_ipea(x_breaks = 3)
-
-
-knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico6.png"))
 
 ```
 
@@ -215,7 +203,7 @@ As funções do **ipeaplot** também facilitam na criação de mapas. No exemplo
 
 O primeiro passo, é baixar a malha espacial de municípios. Isso pode ser feito com o pacote [geobr](https://ipeagit.github.io/geobr/), desenvolvido pelo Ipea. Para baixar esses dados, basta rodar:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 # Load municipality and state spatial data
 mun <- geobr::read_municipality(year = 2010)
 uf  <- geobr::read_state(year = 2010)
@@ -223,7 +211,7 @@ uf  <- geobr::read_state(year = 2010)
 
 Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável com os códigos do municípios é a nossa chave para unir as duas bases.
 
-```{r eval=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
 # Load municipality and state spatial data
 mun = read_municipality()
 uf  = read_state()
@@ -240,18 +228,14 @@ df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
 
 Agora basta criar o mapa:
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
-fig_map <- ggplot() +
-             geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
-             geom_sf(data = uf, color = "black", fill = NA) +
-             ggtitle("Média de anos de estudo") +
-             scale_fill_ipea(palette = 'Orange-Blue', 
-                             name='Anos de\nestudo') + 
-             theme_ipea(axis_lines = 'none', include_ticks = F, axis_values = F)
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
- knitr::include_graphics(paste0(getwd(),"/prints_intro_ipeaplot/grafico7.png"))
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+ggplot() +
+  geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
+  geom_sf(data = uf, color = "black", fill = NA) +
+  ggtitle("Média de anos de estudo") +
+  scale_fill_ipea(palette = 'Orange-Blue',
+                  name='Anos de\nestudo') +
+  theme_ipea(axis_lines = 'none', include_ticks = F, axis_values = F)
 ```
 
 ## Salvando figura
@@ -260,9 +244,7 @@ Finalmente, o pacote **ipeaplot** traz as funções `save_eps()` e `save_pdf()` 
 
 Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `file.name` e as dimensões da figura `width` e `height` em centímetros:
 
-
-
-```{r, eval=F, echo=T}
+```{r, eval=FALSE, echo=TRUE}
 save_eps(fig2,
          file.name = "figura_2.eps")
 save_pdf(fig2,

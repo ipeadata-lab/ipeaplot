@@ -21,13 +21,13 @@ install.packages("ipeaplot")
 A versão em desenvolvimento está disponível no GitHub:
 
 ```
-# Versão em desenvolvimento (0.3.1.9000)
+# Versão em desenvolvimento (0.4.0.9000)
 utils::remove.packages('ipeaplot')
 remotes::install_github("ipeadata-lab/ipeaplot")
 ```
 # Visão geral do pacote
 
-O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui três funções principais:
+O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggplot2](https://ggplot2.tidyverse.org/), a biblioteca mais popular de visualização de dados em R. Atualmente, o **ipeaplot** inclui quatro funções principais:
 
 1. `theme_ipea()` - para formatação de elementos estilísticos da figura (eixos, fontes, linhas, grid, etc.);
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
@@ -62,7 +62,7 @@ fig_raw +
 Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
 
 - [Introdução ao ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
-  
+
 - [Cookbook ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
 
 # Fontes
