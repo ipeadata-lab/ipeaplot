@@ -106,7 +106,6 @@ par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
 pal(ipea_pal(palette = "Blue")(9)); mtext("Blue")
 pal(ipea_pal(palette = "Green")(9)); mtext("Green")
 pal(ipea_pal(palette = "Orange")(9)); mtext("Orange")
-pal(ipea_pal(palette = "Pink")(9)); mtext("Pink")
 
 # Restaurar as configurações originais
 par(old.par)
