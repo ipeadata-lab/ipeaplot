@@ -110,7 +110,6 @@ pal(ipea_pal(palette = "Pink")(9)); mtext("Pink")
 
 # Restaurar as configurações originais
 par(old.par)
-
 ```
 
 **Cores divergentes:**
