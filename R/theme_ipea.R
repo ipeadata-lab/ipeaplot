@@ -75,67 +75,52 @@ nicelimits <- function(x) {
   range(scales::extended_breaks(only.loose = TRUE)(x))
 }
 
-my_pretty_breaks <- function(x, n_breaks = NULL, na.rm = TRUE,sd = 0.05,  ...) {
 
-
-  if(!is.null(n_breaks)){
-
-
-    # Aplica a expansão
-    range_x <- range(x)
-    #range_x <- c(0.55, 10.45)
-
-    # Calcula os breaks com o intervalo contraído
-    breaks <- seq(from = range_x[1], to = range_x[2], length.out = n_breaks)
-
-    t <- 0
-    len <- length(unique(round(breaks, t)))
-    while(len != n_breaks && t < 10) {  # Corrigido aqui: n para n_breaks
-      t <- t + 1
-      len <- length(unique(round(breaks, t)))
-    }
-
-    temp <- round(breaks, t)
-    intervals <- c(diff(temp))
-
-    while(any(sd(intervals) > sd | is.na(sd(intervals))) && t < 10){
-      t <- t + 1
-      temp <- round(breaks, t)
-      intervals <- c(diff(temp))
-    }
-
-    if(max(nchar(x)) >= 3){
-
-      temp <- unique(ceiling(breaks / 5) * 5)
-
-      if(length(temp) != n_breaks){
-
-      } else {
-        breaks <- temp
-      }
-
-      return(round(breaks, 0))
-    } else {
-      return(round(breaks, t))
-    }
-
-  } else {
-
-    # Aplica a expansão
-    range_x <- range(x)
-
-    # Calcula os breaks com o intervalo contraído
-    breaks <- seq(from = range_x[1], to = range_x[2], length.out = 5)
-
-    t <- 0
-    temp <- round(breaks, t)
-    intervals <- c(diff(temp))
-    intervals <- summary(intervals)[3]
-    breaks <- seq(from = range_x[1], to = range_x[2], by = intervals)
-    breaks <- c(breaks,breaks[length(breaks)] + intervals)
+my_pretty_breaks <- function(x, n_breaks = NULL, sd = 0.05, ...) {
+  if (is.null(n_breaks)) {
+    n_breaks <- 5
   }
 
+  # Aplica a expansão ao intervalo dos dados
+  range_x <- range(x, na.rm = T)
+
+  # Calcula os breaks com base no intervalo fornecido
+  breaks <- seq(from = range_x[1], to = range_x[2], length.out = n_breaks)
+
+  # Ajusta precisão para evitar números repetidos
+  t <- 0
+  len <- length(unique(round(breaks, t)))
+  while (len != n_breaks && t < 10) {
+    t <- t + 1
+    len <- length(unique(round(breaks, t)))
+  }
+
+  # Aplicar arredondamento com base em t
+  if (t == 0) {
+    # Quando t == 0, arredondamos para inteiros
+    breaks <- round(breaks, 0)
+  } else {
+    # Quando t > 0, arredondamos de acordo com a precisão
+    breaks <- round(breaks, t)
+  }
+
+  # Ajusta para intervalos consistentes, mantendo-os dentro de `range_x`
+  intervals <- diff(breaks)
+  while (any(sd(intervals) > sd | is.na(sd(intervals))) && t < 10) {
+    t <- t + 1
+    breaks <- round(seq(from = range_x[1], to = range_x[2], length.out = n_breaks), t)
+    intervals <- diff(breaks)
+  }
+
+  # Verifica os limites
+  if (max(breaks) >= range_x[2]) {
+    breaks[length(breaks)] <- floor(range_x[2])
+  }
+
+  return(breaks)
 }
+
+
 
 #' @export
 #' @method ggplot_add scale_auto_ipea
