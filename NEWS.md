@@ -1,5 +1,7 @@
 # ipeaplot (development version)
-
+  * Palette 'Pink'.
+  * Fix: Adjust breaks logic to address issue #60
+    
 # ipeaplot 0.4.0
   * The Frutiger family has been replaced by the default sans-serif font in titles and labels.
   * New function `save_pdf()`
