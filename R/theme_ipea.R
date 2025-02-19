@@ -113,7 +113,7 @@ my_pretty_breaks <- function(x, n_breaks = NULL, sd = 0.05, ...) {
   }
 
   # Verifica os limites
-  if (max(breaks) >= range_x[2]) {
+  if (max(breaks) >= range_x[2] & !between(max(breaks),-1,1)) {
     breaks[length(breaks)] <- floor(range_x[2])
   }
 
@@ -461,7 +461,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
     )
   } else if(is.null(x_breaks) && is.numeric(x_var)) {
     plot <- plot + scale_x_continuous(
-      breaks = my_pretty_breaks(x_var),
+      #breaks = my_pretty_breaks(x_var),
       expand = expansion(mult = c(ifelse(expand_x_limit == TRUE, 0.03, 0),
                                   ifelse(expand_x_limit == TRUE, 0.03, 0))),
       labels = scales::label_comma(decimal.mark = ",", big.mark = "")
@@ -472,19 +472,22 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
 
 
   # Escala para y_var
-  if (!is.null(args$y_breaks) && is.numeric(y_var)) {
+  if (!is.null(y_breaks) && is.numeric(y_var)) {
     plot <- plot + scale_y_continuous(
       breaks = my_pretty_breaks(y_var,y_breaks),
-      labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
-      expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0),  0.1)),
+      expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0),
+                                  ifelse(expand_y_limit == TRUE, 0.03, 0))),
+      labels = scales::label_comma(decimal.mark = ",", big.mark = "")
     )
-  }
-
-  if (is.null(args$y_breaks) && is.numeric(y_var)){
+  } else if(is.null(y_breaks) && is.numeric(y_var)) {
     plot <- plot + scale_y_continuous(
-      labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
-      expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0), 0.1)),
+      #breaks = my_pretty_breaks(y_var),
+      expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0),
+                                  ifelse(expand_y_limit == TRUE, 0.03, 0))),
+      labels = scales::label_comma(decimal.mark = ",", big.mark = "")
     )
+  } else {
+
   }
 
   plot <- plot + theme
