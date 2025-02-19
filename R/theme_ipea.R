@@ -478,7 +478,9 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
       labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
       expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0),  0.1)),
     )
-  } else {
+  }
+
+  if (is.null(args$y_breaks) && is.numeric(y_var)){
     plot <- plot + scale_y_continuous(
       labels = scales::label_comma(decimal.mark = ",", big.mark = "."),
       expand = expansion(mult = c(ifelse(expand_y_limit == TRUE, 0.03, 0), 0.1)),
