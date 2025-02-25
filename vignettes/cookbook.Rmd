@@ -6,10 +6,10 @@ output:
   html_document:
     df_print: paged
 urlcolor: blue
-vignette: >
-  %\VignetteIndexEntry{Cookbook}
+Vignette: >
+  %\VignetteIndexEntry{Cookbook} 
   %\VignetteEngine{knitr::rmarkdown}
-  %\\VignetteEncoding{UTF-8}\\n\n"
+  %\VignetteEncoding{UTF-8}\n
 ---
 
 ```{r, include = FALSE}
