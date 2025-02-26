@@ -113,7 +113,7 @@ my_pretty_breaks <- function(x, n_breaks = NULL, sd = 0.05, ...) {
   }
 
   # Verifica os limites
-  if (max(breaks) >= range_x[2] & !between(max(breaks),-1,1)) {
+  if (max(breaks) >= range_x[2] & !(max(breaks) >= -1 & max(breaks) <= 1)) {
     breaks[length(breaks)] <- floor(range_x[2])
   }
 
