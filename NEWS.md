@@ -1,4 +1,4 @@
-# ipeaplot (development version)
+# ipeaplot 0.4.1
   * Palette 'Pink'.
   * Fixed: Adjust breaks logic to address issue #60
   * Fixed: Issue with categorical data on the Y-axis, addressed in issue #61.
