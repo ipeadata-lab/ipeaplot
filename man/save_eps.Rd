@@ -33,6 +33,7 @@ save_eps(fig_raw,file.name = paste0(tempdir(),"/figura.eps"))
 }
 \seealso{
 Other save: 
+\code{\link{save_multi}()},
 \code{\link{save_pdf}()}
 }
 \concept{save}
