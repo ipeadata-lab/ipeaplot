@@ -28,7 +28,7 @@ save_jpg <- function(gplot,
   if (requireNamespace("ragg", quietly = TRUE)) {
     dev <- function(...) ragg::agg_jpeg(..., quality = quality)
   } else {
-    dev <- "jpeg"
+    dev <- "jpg"
   }
 
   ggplot2::ggsave(
