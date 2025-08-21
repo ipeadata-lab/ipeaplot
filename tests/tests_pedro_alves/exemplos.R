@@ -93,8 +93,10 @@ bp <- ggplot(graph, aes(x="", y=share, fill=ufn))+
        title="GRÁFICO 5",
        subtitle="Indicadores de infraestrutura das escolas - capitais regionais do Nordeste (2018)",
        caption = 'Fonte: ipea') +
-  theme_ipea(legend.position = 'bottom', axis = 'none')
+  theme_ipea(legend.position = 'bottom')
 bp
+
+save_jpg(bp, 'arquivo.jpg', dpi = 300)
 
 # Exemplo 3
 graph <- abjData::pnud_uf %>% filter(ano == 2010)

@@ -4,22 +4,14 @@
 \alias{save_jpg}
 \title{Save the chart in JPG/JPEG format}
 \usage{
-save_jpg(
-  gplot,
-  file.name,
-  width = 160,
-  height = 100,
-  units = c("mm", "cm", "in")[1],
-  dpi = 300,
-  quality = 90,
-  background = "white",
-  ...
-)
+save_jpg(gplot, file.name, ...)
 }
 \arguments{
 \item{gplot}{ggplot object.}
 
 \item{file.name}{Caminho/nome do arquivo (com ou sem .jpg/.jpeg).}
+
+\item{...}{repassado a ggplot2::ggsave()}
 
 \item{width, height, units}{Tamanho (padrão: 160x100 mm).}
 
@@ -28,8 +20,6 @@ save_jpg(
 \item{quality}{Qualidade (0–100) se usar ragg::agg_jpeg.}
 
 \item{background}{Cor de fundo (JPG não suporta transparência).}
-
-\item{...}{repassado a ggplot2::ggsave()}
 }
 \value{
 caminho do arquivo (invisível)
