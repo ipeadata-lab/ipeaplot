@@ -96,7 +96,45 @@ bp <- ggplot(graph, aes(x="", y=share, fill=ufn))+
   theme_ipea(legend.position = 'bottom')
 bp
 
-save_jpg(bp, 'arquivo.jpg', dpi = 300)
+# 1) Mesmo comportamento (só JPG, 300 dpi)
+#    (pode passar com ou sem extensão; a função remove se vier)
+save_ipeaplot(
+  gplot  = bp,
+  file.name = "arquivo",          # "arquivo.jpg" também funciona
+  format = "jpg",
+  dpi    = 300
+)
+
+# 2) Salvar em múltiplos formatos de uma vez
+save_ipeaplot(
+  bp, "arquivo",
+  format = c("jpg","png","pdf","eps"),
+  dpi = 300
+)
+
+# 3) Salvar dentro de uma pasta, sem sobrescrever (cria _1, _2, ...)
+save_ipeaplot(
+  bp, "arquivo",
+  format    = c("jpg","png"),
+  path      = "results/graphs",
+  overwrite = FALSE
+)
+
+# 4) Adicionar data ao nome do arquivo (ex.: arquivo_20250910.png)
+save_ipeaplot(
+  bp, "arquivo",
+  format       = "png",
+  include_date = TRUE
+)
+
+# 5) PNG transparente em alta resolução
+save_ipeaplot(
+  bp, "arquivo",
+  format     = "png",
+  background = NA,
+  dpi        = 600
+)
+
 
 # Exemplo 3
 graph <- abjData::pnud_uf %>% filter(ano == 2010)
