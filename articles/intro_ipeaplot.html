@@ -59,7 +59,7 @@
 
       <h1>Introdução ao ipeaplot</h1>
             
-            <h4 data-toc-skip class="date">2025-08-21</h4>
+            <h4 data-toc-skip class="date">2025-09-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/intro_ipeaplot.Rmd" class="external-link"><code>vignettes/intro_ipeaplot.Rmd</code></a></small>
       <div class="d-none name"><code>intro_ipeaplot.Rmd</code></div>
@@ -101,11 +101,11 @@ figura (eixos, fontes, linhas, grid, etc.);</li>
 selecionam paleta de cores dentro de um conjunto de opções utilizadas
 pelo Ipea;</li>
 <li>
-<code><a href="../reference/save_eps.html">save_eps()</a></code> - salva a figura em formato
+<code>save_eps()</code> - salva a figura em formato
 <code>.eps</code>, um formato vetorial de alta resolução utilizado pela
 equipe do Editorial do Ipea.</li>
 <li>
-<code><a href="../reference/save_pdf.html">save_pdf()</a></code> - salva a figura em formato
+<code>save_pdf()</code> - salva a figura em formato
 <code>.pdf</code>, um formato vetorial de alta resolução utilizado pela
 equipe do Editorial do Ipea.</li>
 </ol>
@@ -117,8 +117,8 @@ equipe do Editorial do Ipea.</li>
 em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema
 operacional do usuário e não a tipografia recomendada pelo Editorial do
 Ipea (<em>Frutiger</em>). Se as figuras forem salvas em formatos
-“editáveis” (pdf ou eps, usando as funções <code><a href="../reference/save_pdf.html">save_pdf()</a></code> ou
-<code><a href="../reference/save_eps.html">save_eps()</a></code>), a equipe editorial poderá alterar a fonte no
+“editáveis” (pdf ou eps, usando as funções <code>save_pdf()</code> ou
+<code>save_eps()</code>), a equipe editorial poderá alterar a fonte no
 momento da edição de uma publicação.</p>
 </div>
 <div class="section level2">
@@ -293,16 +293,16 @@ códigos do municípios é a nossa chave para unir as duas bases.</p>
 <h3 id="salvando-figura">Salvando figura<a class="anchor" aria-label="anchor" href="#salvando-figura"></a>
 </h3>
 <p>Finalmente, o pacote <strong>ipeaplot</strong> traz as funções
-<code><a href="../reference/save_eps.html">save_eps()</a></code> e <code><a href="../reference/save_pdf.html">save_pdf()</a></code> para facilitar a
+<code>save_eps()</code> e <code>save_pdf()</code> para facilitar a
 exportação da figura para um arquivo em formato <code>.eps</code>, um
 formato de imagem vetorial de alta resolução.</p>
 <p>Basta passar o objeto ggplot da figura que deseja salvar, o nome do
 arquivo <code>file.name</code> e as dimensões da figura
 <code>width</code> e <code>height</code> em centímetros:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/save_eps.html">save_eps</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
+<code class="sourceCode R"><span><span class="fu">save_eps</span><span class="op">(</span><span class="va">fig2</span>,</span>
 <span>         file.name <span class="op">=</span> <span class="st">"figura_2.eps"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/save_pdf.html">save_pdf</a></span><span class="op">(</span><span class="va">fig2</span>,</span>
+<span><span class="fu">save_pdf</span><span class="op">(</span><span class="va">fig2</span>,</span>
 <span>         file.name <span class="op">=</span> <span class="st">"figura_2.pdf"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
