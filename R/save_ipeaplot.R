@@ -1,6 +1,5 @@
-#' Save ggplot in multiple formats (única função)
-#'
-#' Função unificada para salvar objetos ggplot em um ou mais formatos.
+#' @title Save ggplot in multiple formats
+#' @description Função unificada para salvar objetos ggplot em um ou mais formatos.
 #'
 #' @param gplot ggplot object.
 #' @param file.name Base do arquivo (sem extensão). Ex.: "results/figs/meu_grafico".
@@ -24,27 +23,13 @@
 #'
 #' @return Vetor nomeado (invisível) com caminhos dos arquivos salvos.
 #' @export
-#' Save ggplot in multiple formats (única função)
-#' @export
 save_ipeaplot <- function(
-    gplot,
-    file.name,
-    format = NULL,
-    width = 160,
-    height = 100,
-    units = c("mm","cm","in"),
-    dpi = 300,
-    background = "white",
-    quality = 95,
-    path = ".",
-    scale = 1,
-    overwrite = TRUE,
-    include_date = FALSE,
-    date_format = "%Y%m%d",
-    use_cairo = TRUE,
-    use_ragg = TRUE,
-    quiet = TRUE,
-    ...
+    gplot, file.name, format = NULL,
+    width = 160, height = 100, units = c("mm","cm","in"),
+    dpi = 300, background = "white", quality = 95,
+    path = ".", scale = 1, overwrite = TRUE,
+    include_date = FALSE, date_format = "%Y%m%d",
+    use_cairo = TRUE, use_ragg = TRUE, quiet = TRUE, ...
 ) {
   if (!inherits(gplot, "ggplot"))
     stop("gplot deve ser um objeto ggplot2.", call. = FALSE)

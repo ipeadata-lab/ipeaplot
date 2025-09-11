@@ -2,7 +2,7 @@
 % Please edit documentation in R/save_ipeaplot.R
 \name{save_ipeaplot}
 \alias{save_ipeaplot}
-\title{Save ggplot in multiple formats (única função)}
+\title{Save ggplot in multiple formats}
 \usage{
 save_ipeaplot(
   gplot,
