@@ -68,7 +68,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ipeaplot"</span><span class="op">)</span></span></code></pre>
 <p>A versão em desenvolvimento está disponível no GitHub:</p>
 <pre><code><span><span class="co"># Versão em desenvolvimento (0.4.1.9000)</span></span>
-<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html" class="external-link">remove.packages</a></span><span class="op">(</span><span class="st">'ipeaplot'</span><span class="op">)</span></span>
+<span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/remove.packages.html" class="external-link">remove.packages</a></span><span class="op">(</span><span class="st">"ipeaplot"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ipeadata-lab/ipeaplot"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level1">
@@ -81,9 +81,7 @@
 <li>
 <code><a href="reference/scale_color_ipea.html">scale_color_ipea()</a></code> e <code><a href="reference/scale_fill_ipea.html">scale_fill_ipea()</a></code>- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;</li>
 <li>
-<code>save_eps()</code> - salva a figura com a extensão <code>.eps</code>, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.</li>
-<li>
-<code>save_pdf()</code> - salva a figura com a extensão <code>.pdf</code>, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.</li>
+<code><a href="reference/save_ipeaplot.html">save_ipeaplot()</a></code> - uma função unificada para salvar gráficos em múltiplos formatos (vetoriais como <code>.eps</code> e <code>.pdf</code>, e raster como <code>.png</code> e <code>.jpg</code>), com padrões que facilitam o uso.</li>
 </ol>
 </div>
 <div class="section level1">
@@ -93,17 +91,20 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ipeadata-lab/ipeaplot" class="external-link">ipeaplot</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre>
 <p>No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do <em>ggplot2</em>. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea().</p>
-<pre><code><span><span class="co"># Figura ggplot original</span></span>
-<span><span class="va">fig_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span> , y <span class="op">=</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>              <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y<span class="op">=</span><span class="st">'Consumo de Combustível'</span>,</span>
-<span>                   x <span class="op">=</span><span class="st">'Potência (Número de cavalos)'</span>,</span>
-<span>                   color<span class="op">=</span><span class="st">'Cilindradas'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Adicionando os padrões do Ipea</span></span>
-<span><span class="va">fig_raw</span> <span class="op">+</span></span>
-<span>      <span class="fu"><a href="reference/scale_color_ipea.html">scale_color_ipea</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>      <span class="fu"><a href="reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span><span class="op">)</span></span></code></pre>
+<pre><code># Figura ggplot original
+fig_raw &lt;- ggplot(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
+              geom_point() +
+              labs(y=\'Consumo de Combustível\',
+                   x =\'Potência (Número de cavalos)\',
+                   color=\'Cilindradas\')
+
+# Adicionando os padrões do Ipea
+fig_ipea &lt;- fig_raw +
+      scale_color_ipea() +
+      theme_ipea()
+
+# Salvando o gráfico em múltiplos formatos com a nova função
+save_ipeaplot(fig_ipea, file.name = "meu_grafico_ipea", format = c("png", "pdf"))</code></pre>
 <p><img src="reference/figures/figura_read_me.png" width="70%" style="display: block; margin: auto;"></p>
 <p>Mais detalhes sobre a utilização do <strong>ipeaplot</strong> nas vinhetas:</p>
 <ul>
@@ -114,7 +115,7 @@
 <div class="section level1">
 <h1 id="fontes">Fontes<a class="anchor" aria-label="anchor" href="#fontes"></a>
 </h1>
-<p>Por limitações de licenciamento, o <strong>ipeaplot</strong> utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (<em>Frutiger</em>). Se as figuras forem salvas em formatos “editáveis” (pdf ou eps, usando as funções <code>save_pdf()</code> ou <code>save_eps()</code>), a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.</p>
+<p>Por limitações de licenciamento, o <strong>ipeaplot</strong> utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (<em>Frutiger</em>). Se as figuras forem salvas em formatos vetoriais editáveis (como <code>pdf</code> ou <code>eps</code>), usando a função <code><a href="reference/save_ipeaplot.html">save_ipeaplot()</a></code>, a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.</p>
 </div>
 <div class="section level1">
 <h1 id="equipe">Equipe<a class="anchor" aria-label="anchor" href="#equipe"></a>
@@ -126,9 +127,9 @@
 <h1 id="outros-pacotes-semelhantes">Outros pacotes semelhantes<a class="anchor" aria-label="anchor" href="#outros-pacotes-semelhantes"></a>
 </h1>
 <ul>
-<li>UNHCR’s <a href="https://github.com/unhcr-dataviz/unhcrthemes" class="external-link">unhcrthemes</a>
+<li>UNHCR's <a href="https://github.com/unhcr-dataviz/unhcrthemes" class="external-link">unhcrthemes</a>
 </li>
-<li>BBC’s <a href="https://github.com/bbc/bbplot" class="external-link">bbplot</a>
+<li>BBC's <a href="https://github.com/bbc/bbplot" class="external-link">bbplot</a>
 </li>
 </ul>
 </div>
