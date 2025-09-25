@@ -22,7 +22,7 @@ A versão em desenvolvimento está disponível no GitHub:
 
 ```
 # Versão em desenvolvimento (0.4.1.9000)
-utils::remove.packages('ipeaplot')
+utils::remove.packages("ipeaplot")
 remotes::install_github("ipeadata-lab/ipeaplot")
 ```
 # Visão geral do pacote
@@ -31,8 +31,7 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 
 1. `theme_ipea()` - para formatação de elementos estilísticos da figura (eixos, fontes, linhas, grid, etc.);
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
-3. `save_eps()` - salva a figura com a extensão `.eps`, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.
-3. `save_pdf()` - salva a figura com a extensão `.pdf`, um formato vetorial de alta resolução utilizado pela equipe da Coordenação do Editorial.
+3. `save_ipeaplot()` - uma função unificada para salvar gráficos em múltiplos formatos (vetoriais como `.eps` e `.pdf`, e raster como `.png` e `.jpg`), com padrões que facilitam o uso.
 
 
 # Demonstração do pacote
@@ -48,14 +47,17 @@ No painel abaixo, à direita, temos a representação de um gráfico no formato 
 # Figura ggplot original
 fig_raw <- ggplot(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               geom_point() +
-              labs(y='Consumo de Combustível',
-                   x ='Potência (Número de cavalos)',
-                   color='Cilindradas')
+              labs(y=\'Consumo de Combustível\',
+                   x =\'Potência (Número de cavalos)\',
+                   color=\'Cilindradas\')
 
 # Adicionando os padrões do Ipea
-fig_raw +
+fig_ipea <- fig_raw +
       scale_color_ipea() +
       theme_ipea()
+
+# Salvando o gráfico em múltiplos formatos com a nova função
+save_ipeaplot(fig_ipea, file.name = "meu_grafico_ipea", format = c("png", "pdf"))
 ```
 <img src="man/figures/figura_read_me.png" width="70%" style="display: block; margin: auto;" />
 
@@ -67,7 +69,7 @@ Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
 
 # Fontes
 
-Por limitações de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (*Frutiger*). Se as figuras forem salvas em formatos "editáveis" (pdf ou eps, usando as funções `save_pdf()` ou `save_eps()`), a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.
+Por limitações de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (*Frutiger*). Se as figuras forem salvas em formatos vetoriais editáveis (como `pdf` ou `eps`), usando a função `save_ipeaplot()`, a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.
 
 # Equipe 
 
@@ -76,5 +78,6 @@ Por limitações de licenciamento, o **ipeaplot** utiliza, em títulos e rótulo
 O pacote **ipeaplot** é desenvolvido pela equipe da Coordenação-Geral de Ciência de Dados e Tecnologia da Informação (CGDTI) do Instituto de Pesquisa Econômica Aplicada (Ipea).
 
 # Outros pacotes semelhantes
-- UNHCR's [unhcrthemes](https://github.com/unhcr-dataviz/unhcrthemes)
-- BBC's [bbplot](https://github.com/bbc/bbplot)
+- UNHCR\'s [unhcrthemes](https://github.com/unhcr-dataviz/unhcrthemes)
+- BBC\'s [bbplot](https://github.com/bbc/bbplot)
+

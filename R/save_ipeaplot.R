@@ -1,12 +1,12 @@
 #' @title Save ggplot in multiple formats
 #' @description Função unificada para salvar objetos ggplot em um ou mais formatos.
 #'
-#' @param gplot ggplot object.
+#' @param gplot ggplot object. Default: ggplot2::last_plot().
 #' @param file.name Base do arquivo (sem extensão). Ex.: "results/figs/meu_grafico".
 #' @param format Vetor com um ou mais entre: "eps","jpg","pdf","png".
 #'   Se NULL, usa getOption("ipea.plot.default_format", "eps").
 #' @param width,height Tamanho do gráfico (default 160 x 100).
-#' @param units Unidades: "mm","cm","in" (default "mm").
+#' @param units Unidades: "mm","cm","in","px" (default "in").
 #' @param dpi DPI para formatos raster (default 300).
 #' @param background Cor de fundo; use NA para PNG transparente.
 #'                  Para JPEG (sem transparência), NA vira "white".
@@ -24,8 +24,8 @@
 #' @return Vetor nomeado (invisível) com caminhos dos arquivos salvos.
 #' @export
 save_ipeaplot <- function(
-    gplot, file.name, format = NULL,
-    width = 160, height = 100, units = c("mm","cm","in"),
+    gplot = ggplot2::last_plot(), file.name, format = NULL,
+    width = 160, height = 100, units = c("in","mm","cm","px"),
     dpi = 300, background = "white", quality = 95,
     path = ".", scale = 1, overwrite = TRUE,
     include_date = FALSE, date_format = "%Y%m%d",
