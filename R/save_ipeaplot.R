@@ -25,7 +25,7 @@
 #' @export
 save_ipeaplot <- function(
     gplot = ggplot2::last_plot(), file.name, format = NULL,
-    width = 160, height = 100, units = c("in","mm","cm","px"),
+    width = 6.30, height = 3.94, units = c("in","mm","cm","px"),
     dpi = 300, background = "white", quality = 95,
     path = ".", scale = 1, overwrite = TRUE,
     include_date = FALSE, date_format = "%Y%m%d",
@@ -44,6 +44,17 @@ save_ipeaplot <- function(
 
   valid  <- c("eps","jpg","pdf","png")
   format <- unique(match.arg(format, choices = valid, several.ok = TRUE))
+
+
+  # Auto-conversão de "mm digitado como in" (ex.: width=160, height=100 com units="in")
+  if (units == "in" && (width >= 50 || height >= 50)) {
+    width  <- width  / 25.4
+    height <- height / 25.4
+    message(sprintf(
+      "Dimensões muito grandes em 'in'; interpretando como mm -> width=%.2f in, height=%.2f in.",
+      width, height
+    ))
+  }
 
   base_name <- sub("\\.[^.]+$", "", file.name)
   if (include_date) base_name <- paste0(base_name, "_", format(Sys.Date(), date_format))

@@ -49,12 +49,11 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 
 1. `theme_ipea()` - formatação de elementos estilísticos da figura (eixos, fontes, linhas, grid, etc.);
 2. `scale_color_ipea()` e `scale_fill_ipea()`- selecionam paleta de cores dentro de um conjunto de opções utilizadas pelo Ipea;
-3. `save_eps()` - salva a figura em formato `.eps`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
-4. `save_pdf()` - salva a figura em formato `.pdf`, um formato vetorial de alta resolução utilizado pela equipe do Editorial do Ipea.
+3. `save_ipeaplot()` - função unificada para salvar objetos ggplot em múltiplos formatos (`.eps`, `.pdf`, `.png`, `.jpg`), oferecendo flexibilidade e controle avançado sobre a exportação de figuras.
 
 # Fontes
 
-Por limitações de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (*Frutiger*). Se as figuras forem salvas em formatos "editáveis" (pdf ou eps, usando as funções `save_pdf()` ou `save_eps()`), a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.
+Por limitações de licenciamento, o **ipeaplot** utiliza, em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema operacional do usuário e não a tipografia recomendada pelo Editorial do Ipea (*Frutiger*). Se as figuras forem salvas em formatos "editáveis" (pdf ou eps, usando a função `save_ipeaplot()`), a equipe editorial poderá alterar a fonte no momento da edição de uma publicação.
 
 # Demonstração do pacote
 
@@ -239,14 +238,60 @@ ggplot() +
 
 ## Salvando figura
 
-Finalmente, o pacote **ipeaplot** traz as funções `save_eps()` e `save_pdf()` para facilitar a exportação da figura para um arquivo em formato `.eps`, um formato de imagem vetorial de alta resolução.
+Finalmente, o pacote **ipeaplot** traz a função `save_ipeaplot()` para facilitar a exportação da figura para múltiplos formatos de arquivo, incluindo formatos vetoriais de alta resolução como `.eps` e `.pdf`, além de formatos raster como `.png` e `.jpg`.
 
-Basta passar o objeto ggplot da figura que deseja salvar, o nome do arquivo `file.name` e as dimensões da figura `width` e `height` em centímetros:
+A função `save_ipeaplot()` oferece uma interface unificada e flexível para salvar gráficos, permitindo especificar múltiplos formatos simultaneamente, controlar dimensões, qualidade, e diversas outras opções avançadas.
+
+### Uso básico
+
+Para usar a função, basta passar o objeto ggplot da figura que deseja salvar, o nome base do arquivo `file.name` (sem extensão) e opcionalmente especificar os formatos desejados:
 
 ```{r, eval=FALSE, echo=TRUE}
-save_eps(fig2,
-         file.name = "figura_2.eps")
-save_pdf(fig2,
-         file.name = "figura_2.pdf")
+# Salvar apenas em EPS (formato padrão)
+save_ipeaplot(fig_base, file.name = "figura_exemplo")
 
+# Salvar em múltiplos formatos
+save_ipeaplot(fig_base, 
+              file.name = "figura_exemplo",
+              format = c("eps", "pdf", "png"))
 ```
+
+### Parâmetros principais
+
+A função `save_ipeaplot()` oferece diversos parâmetros para controle fino da exportação:
+
+- **`format`**: Vetor com formatos desejados (`"eps"`, `"pdf"`, `"png"`, `"jpg"`)
+- **`width`** e **`height`**: Dimensões da figura (padrão: 6.30 × 3.94 polegadas)
+- **`units`**: Unidades das dimensões (`"in"`, `"mm"`, `"cm"`, `"px"`)
+- **`dpi`**: Resolução para formatos raster (padrão: 300)
+- **`background`**: Cor de fundo (use `NA` para PNG transparente)
+- **`quality`**: Qualidade para JPEG (0-100, padrão: 95)
+- **`path`**: Diretório de saída (padrão: diretório atual)
+
+### Exemplos avançados
+
+```{r, eval=FALSE, echo=TRUE}
+# Exemplo com configurações personalizadas
+save_ipeaplot(fig_base,
+              file.name = "figura_personalizada",
+              format = c("eps", "png"),
+              width = 8, height = 5,
+              units = "in",
+              dpi = 600,
+              background = "white",
+              path = "figuras/")
+
+# Salvar com data no nome do arquivo
+save_ipeaplot(fig_base,
+              file.name = "figura_com_data",
+              format = "pdf",
+              include_date = TRUE)
+
+# Evitar sobrescrever arquivos existentes
+save_ipeaplot(fig_base,
+              file.name = "figura_segura",
+              format = "png",
+              overwrite = FALSE)
+```
+
+A função automaticamente cria o diretório de saída se necessário e oferece opções avançadas como uso de Cairo para melhor qualidade vetorial e ragg para renderização raster otimizada.
