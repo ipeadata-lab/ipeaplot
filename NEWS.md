@@ -1,7 +1,5 @@
 # ipeaplot (development version)
-  * `save_multi()`
-  * `save_png()`
-  * `save_jpg()`
+  * `save_ipeaplot()`
     
  # ipeaplot 0.4.1
   * Palette 'Pink'.
