@@ -59,7 +59,7 @@
 
       <h1>Introdução ao ipeaplot</h1>
             
-            <h4 data-toc-skip class="date">2025-09-25</h4>
+            <h4 data-toc-skip class="date">2025-09-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/intro_ipeaplot.Rmd" class="external-link"><code>vignettes/intro_ipeaplot.Rmd</code></a></small>
       <div class="d-none name"><code>intro_ipeaplot.Rmd</code></div>
@@ -101,13 +101,10 @@ figura (eixos, fontes, linhas, grid, etc.);</li>
 selecionam paleta de cores dentro de um conjunto de opções utilizadas
 pelo Ipea;</li>
 <li>
-<code>save_eps()</code> - salva a figura em formato
-<code>.eps</code>, um formato vetorial de alta resolução utilizado pela
-equipe do Editorial do Ipea.</li>
-<li>
-<code>save_pdf()</code> - salva a figura em formato
-<code>.pdf</code>, um formato vetorial de alta resolução utilizado pela
-equipe do Editorial do Ipea.</li>
+<code><a href="../reference/save_ipeaplot.html">save_ipeaplot()</a></code> - função unificada para salvar objetos
+ggplot em múltiplos formatos (<code>.eps</code>, <code>.pdf</code>,
+<code>.png</code>, <code>.jpg</code>), oferecendo flexibilidade e
+controle avançado sobre a exportação de figuras.</li>
 </ol>
 </div>
 <div class="section level2">
@@ -117,9 +114,9 @@ equipe do Editorial do Ipea.</li>
 em títulos e rótulos das figuras, a fonte sem serifa padrão do sistema
 operacional do usuário e não a tipografia recomendada pelo Editorial do
 Ipea (<em>Frutiger</em>). Se as figuras forem salvas em formatos
-“editáveis” (pdf ou eps, usando as funções <code>save_pdf()</code> ou
-<code>save_eps()</code>), a equipe editorial poderá alterar a fonte no
-momento da edição de uma publicação.</p>
+“editáveis” (pdf ou eps, usando a função <code><a href="../reference/save_ipeaplot.html">save_ipeaplot()</a></code>),
+a equipe editorial poderá alterar a fonte no momento da edição de uma
+publicação.</p>
 </div>
 <div class="section level2">
 <h2 id="demonstração-do-pacote">Demonstração do pacote<a class="anchor" aria-label="anchor" href="#demonstra%C3%A7%C3%A3o-do-pacote"></a>
@@ -292,18 +289,91 @@ códigos do municípios é a nossa chave para unir as duas bases.</p>
 <div class="section level3">
 <h3 id="salvando-figura">Salvando figura<a class="anchor" aria-label="anchor" href="#salvando-figura"></a>
 </h3>
-<p>Finalmente, o pacote <strong>ipeaplot</strong> traz as funções
-<code>save_eps()</code> e <code>save_pdf()</code> para facilitar a
-exportação da figura para um arquivo em formato <code>.eps</code>, um
-formato de imagem vetorial de alta resolução.</p>
-<p>Basta passar o objeto ggplot da figura que deseja salvar, o nome do
-arquivo <code>file.name</code> e as dimensões da figura
-<code>width</code> e <code>height</code> em centímetros:</p>
+<p>Finalmente, o pacote <strong>ipeaplot</strong> traz a função
+<code><a href="../reference/save_ipeaplot.html">save_ipeaplot()</a></code> para facilitar a exportação da figura para
+múltiplos formatos de arquivo, incluindo formatos vetoriais de alta
+resolução como <code>.eps</code> e <code>.pdf</code>, além de formatos
+raster como <code>.png</code> e <code>.jpg</code>.</p>
+<p>A função <code><a href="../reference/save_ipeaplot.html">save_ipeaplot()</a></code> oferece uma interface unificada
+e flexível para salvar gráficos, permitindo especificar múltiplos
+formatos simultaneamente, controlar dimensões, qualidade, e diversas
+outras opções avançadas.</p>
+<div class="section level4">
+<h4 id="uso-básico">Uso básico<a class="anchor" aria-label="anchor" href="#uso-b%C3%A1sico"></a>
+</h4>
+<p>Para usar a função, basta passar o objeto ggplot da figura que deseja
+salvar, o nome base do arquivo <code>file.name</code> (sem extensão) e
+opcionalmente especificar os formatos desejados:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">save_eps</span><span class="op">(</span><span class="va">fig2</span>,</span>
-<span>         file.name <span class="op">=</span> <span class="st">"figura_2.eps"</span><span class="op">)</span></span>
-<span><span class="fu">save_pdf</span><span class="op">(</span><span class="va">fig2</span>,</span>
-<span>         file.name <span class="op">=</span> <span class="st">"figura_2.pdf"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Salvar apenas em EPS (formato padrão)</span></span>
+<span><span class="fu"><a href="../reference/save_ipeaplot.html">save_ipeaplot</a></span><span class="op">(</span><span class="va">fig_base</span>, file.name <span class="op">=</span> <span class="st">"figura_exemplo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Salvar em múltiplos formatos</span></span>
+<span><span class="fu"><a href="../reference/save_ipeaplot.html">save_ipeaplot</a></span><span class="op">(</span><span class="va">fig_base</span>, </span>
+<span>              file.name <span class="op">=</span> <span class="st">"figura_exemplo"</span>,</span>
+<span>              format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"eps"</span>, <span class="st">"pdf"</span>, <span class="st">"png"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="parâmetros-principais">Parâmetros principais<a class="anchor" aria-label="anchor" href="#par%C3%A2metros-principais"></a>
+</h4>
+<p>A função <code><a href="../reference/save_ipeaplot.html">save_ipeaplot()</a></code> oferece diversos parâmetros
+para controle fino da exportação:</p>
+<ul>
+<li>
+<strong><code>format</code></strong>: Vetor com formatos desejados
+(<code>"eps"</code>, <code>"pdf"</code>, <code>"png"</code>,
+<code>"jpg"</code>)</li>
+<li>
+<strong><code>width</code></strong> e
+<strong><code>height</code></strong>: Dimensões da figura (padrão: 6.30
+× 3.94 polegadas)</li>
+<li>
+<strong><code>units</code></strong>: Unidades das dimensões
+(<code>"in"</code>, <code>"mm"</code>, <code>"cm"</code>,
+<code>"px"</code>)</li>
+<li>
+<strong><code>dpi</code></strong>: Resolução para formatos raster
+(padrão: 300)</li>
+<li>
+<strong><code>background</code></strong>: Cor de fundo (use
+<code>NA</code> para PNG transparente)</li>
+<li>
+<strong><code>quality</code></strong>: Qualidade para JPEG (0-100,
+padrão: 95)</li>
+<li>
+<strong><code>path</code></strong>: Diretório de saída (padrão:
+diretório atual)</li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="exemplos-avançados">Exemplos avançados<a class="anchor" aria-label="anchor" href="#exemplos-avan%C3%A7ados"></a>
+</h4>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Exemplo com configurações personalizadas</span></span>
+<span><span class="fu"><a href="../reference/save_ipeaplot.html">save_ipeaplot</a></span><span class="op">(</span><span class="va">fig_base</span>,</span>
+<span>              file.name <span class="op">=</span> <span class="st">"figura_personalizada"</span>,</span>
+<span>              format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"eps"</span>, <span class="st">"png"</span><span class="op">)</span>,</span>
+<span>              width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>              units <span class="op">=</span> <span class="st">"in"</span>,</span>
+<span>              dpi <span class="op">=</span> <span class="fl">600</span>,</span>
+<span>              background <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>              path <span class="op">=</span> <span class="st">"figuras/"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Salvar com data no nome do arquivo</span></span>
+<span><span class="fu"><a href="../reference/save_ipeaplot.html">save_ipeaplot</a></span><span class="op">(</span><span class="va">fig_base</span>,</span>
+<span>              file.name <span class="op">=</span> <span class="st">"figura_com_data"</span>,</span>
+<span>              format <span class="op">=</span> <span class="st">"pdf"</span>,</span>
+<span>              include_date <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Evitar sobrescrever arquivos existentes</span></span>
+<span><span class="fu"><a href="../reference/save_ipeaplot.html">save_ipeaplot</a></span><span class="op">(</span><span class="va">fig_base</span>,</span>
+<span>              file.name <span class="op">=</span> <span class="st">"figura_segura"</span>,</span>
+<span>              format <span class="op">=</span> <span class="st">"png"</span>,</span>
+<span>              overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p>A função automaticamente cria o diretório de saída se necessário e
+oferece opções avançadas como uso de Cairo para melhor qualidade
+vetorial e ragg para renderização raster otimizada.</p>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
