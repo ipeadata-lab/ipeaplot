@@ -47,9 +47,9 @@ No painel abaixo, à direita, temos a representação de um gráfico no formato 
 # Figura ggplot original
 fig_raw <- ggplot(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               geom_point() +
-              labs(y=\'Consumo de Combustível\',
-                   x =\'Potência (Número de cavalos)\',
-                   color=\'Cilindradas\')
+              labs(y='Consumo de Combustível',
+                   x ='Potência (Número de cavalos)',
+                   color='Cilindradas')
 
 # Adicionando os padrões do Ipea
 fig_ipea <- fig_raw +

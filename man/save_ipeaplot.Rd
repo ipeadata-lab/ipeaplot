@@ -5,12 +5,12 @@
 \title{Save ggplot in multiple formats}
 \usage{
 save_ipeaplot(
-  gplot,
+  gplot = ggplot2::last_plot(),
   file.name,
   format = NULL,
-  width = 160,
-  height = 100,
-  units = c("mm", "cm", "in"),
+  width = 6.3,
+  height = 3.94,
+  units = c("in", "mm", "cm", "px"),
   dpi = 300,
   background = "white",
   quality = 95,
@@ -26,7 +26,7 @@ save_ipeaplot(
 )
 }
 \arguments{
-\item{gplot}{ggplot object.}
+\item{gplot}{ggplot object. Default: ggplot2::last_plot().}
 
 \item{file.name}{Base do arquivo (sem extensão). Ex.: "results/figs/meu_grafico".}
 
@@ -35,7 +35,7 @@ Se NULL, usa getOption("ipea.plot.default_format", "eps").}
 
 \item{width, height}{Tamanho do gráfico (default 160 x 100).}
 
-\item{units}{Unidades: "mm","cm","in" (default "mm").}
+\item{units}{Unidades: "mm","cm","in","px" (default "in").}
 
 \item{dpi}{DPI para formatos raster (default 300).}
 
