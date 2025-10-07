@@ -28,43 +28,43 @@ save_ipeaplot(
 \arguments{
 \item{gplot}{ggplot object. Default: ggplot2::last_plot().}
 
-\item{file.name}{Base do arquivo (sem extensão). Ex.: "results/figs/meu_grafico".}
+\item{file.name}{Base name of the file (without extension). E.g., "results/figs/my_plot".}
 
-\item{format}{Vetor com um ou mais entre: "eps","jpg","pdf","png".
-Se NULL, usa getOption("ipea.plot.default_format", "eps").}
+\item{format}{Vector with one or more of: "eps", "jpg", "pdf", "png".
+If NULL, uses getOption("ipea.plot.default_format", "eps").}
 
-\item{width, height}{Tamanho do gráfico (default 160 x 100).}
+\item{width, height}{Plot dimensions (default 160 x 100).}
 
-\item{units}{Unidades: "mm","cm","in","px" (default "in").}
+\item{units}{Units: "mm", "cm", "in", "px" (default "in").}
 
-\item{dpi}{DPI para formatos raster (default 300).}
+\item{dpi}{DPI for raster formats (default 300).}
 
-\item{background}{Cor de fundo; use NA para PNG transparente.
-Para JPEG (sem transparência), NA vira "white".}
+\item{background}{Background color; use NA for transparent PNGs.
+For JPEG (no transparency), NA becomes "white".}
 
-\item{quality}{Qualidade do JPEG (0–100) (default 95).}
+\item{quality}{JPEG quality (0–100) (default 95).}
 
-\item{path}{Diretório de saída (default ".").}
+\item{path}{Output directory (default ".").}
 
-\item{scale}{Fator de escala passado ao ggsave (default 1).}
+\item{scale}{Scale factor passed to ggsave (default 1).}
 
-\item{overwrite}{Se FALSE, não sobrescreve: cria sufixo _1, _2, ... (default TRUE).}
+\item{overwrite}{If FALSE, does not overwrite existing files: creates suffixes _1, _2, ... (default TRUE).}
 
-\item{include_date}{Se TRUE, anexa data ao nome: _YYYYMMDD (default FALSE).}
+\item{include_date}{If TRUE, appends the date to the file name: _YYYYMMDD (default FALSE).}
 
-\item{date_format}{Formato da data (default "\%Y\%m\%d").}
+\item{date_format}{Date format (default "\%Y\%m\%d").}
 
-\item{use_cairo}{Preferir Cairo para PDF/EPS (default TRUE).}
+\item{use_cairo}{Prefer using Cairo for PDF/EPS (default TRUE).}
 
-\item{use_ragg}{Preferir ragg para PNG/JPG quando disponível (default TRUE).}
+\item{use_ragg}{Prefer using ragg for PNG/JPG when available (default TRUE).}
 
-\item{quiet}{Silencia mensagens do ggsave quando suportado (default TRUE).}
+\item{quiet}{Suppress messages from ggsave when supported (default TRUE).}
 
-\item{...}{Passado a ggplot2::ggsave() (e, portanto, aos devices quando aplicável).}
+\item{...}{Passed to ggplot2::ggsave() (and therefore to the underlying graphics devices when applicable).}
 }
 \value{
-Vetor nomeado (invisível) com caminhos dos arquivos salvos.
+Named (invisible) vector with the paths of the saved files.
 }
 \description{
-Função unificada para salvar objetos ggplot em um ou mais formatos.
+Unified function to save ggplot objects in one or more formats.
 }

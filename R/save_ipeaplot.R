@@ -1,29 +1,30 @@
 #' @title Save ggplot in multiple formats
-#' @description Função unificada para salvar objetos ggplot em um ou mais formatos.
+#' @description Unified function to save ggplot objects in one or more formats.
 #'
 #' @param gplot ggplot object. Default: ggplot2::last_plot().
-#' @param file.name Base do arquivo (sem extensão). Ex.: "results/figs/meu_grafico".
-#' @param format Vetor com um ou mais entre: "eps","jpg","pdf","png".
-#'   Se NULL, usa getOption("ipea.plot.default_format", "eps").
-#' @param width,height Tamanho do gráfico (default 160 x 100).
-#' @param units Unidades: "mm","cm","in","px" (default "in").
-#' @param dpi DPI para formatos raster (default 300).
-#' @param background Cor de fundo; use NA para PNG transparente.
-#'                  Para JPEG (sem transparência), NA vira "white".
-#' @param quality Qualidade do JPEG (0–100) (default 95).
-#' @param path Diretório de saída (default ".").
-#' @param scale Fator de escala passado ao ggsave (default 1).
-#' @param overwrite Se FALSE, não sobrescreve: cria sufixo _1, _2, ... (default TRUE).
-#' @param include_date Se TRUE, anexa data ao nome: _YYYYMMDD (default FALSE).
-#' @param date_format Formato da data (default "%Y%m%d").
-#' @param use_cairo Preferir Cairo para PDF/EPS (default TRUE).
-#' @param use_ragg Preferir ragg para PNG/JPG quando disponível (default TRUE).
-#' @param quiet Silencia mensagens do ggsave quando suportado (default TRUE).
-#' @param ... Passado a ggplot2::ggsave() (e, portanto, aos devices quando aplicável).
+#' @param file.name Base name of the file (without extension). E.g., "results/figs/my_plot".
+#' @param format Vector with one or more of: "eps", "jpg", "pdf", "png".
+#'   If NULL, uses getOption("ipea.plot.default_format", "eps").
+#' @param width,height Plot dimensions (default 160 x 100).
+#' @param units Units: "mm", "cm", "in", "px" (default "in").
+#' @param dpi DPI for raster formats (default 300).
+#' @param background Background color; use NA for transparent PNGs.
+#'                  For JPEG (no transparency), NA becomes "white".
+#' @param quality JPEG quality (0–100) (default 95).
+#' @param path Output directory (default ".").
+#' @param scale Scale factor passed to ggsave (default 1).
+#' @param overwrite If FALSE, does not overwrite existing files: creates suffixes _1, _2, ... (default TRUE).
+#' @param include_date If TRUE, appends the date to the file name: _YYYYMMDD (default FALSE).
+#' @param date_format Date format (default "%Y%m%d").
+#' @param use_cairo Prefer using Cairo for PDF/EPS (default TRUE).
+#' @param use_ragg Prefer using ragg for PNG/JPG when available (default TRUE).
+#' @param quiet Suppress messages from ggsave when supported (default TRUE).
+#' @param ... Passed to ggplot2::ggsave() (and therefore to the underlying graphics devices when applicable).
 #'
-#' @return Vetor nomeado (invisível) com caminhos dos arquivos salvos.
+#' @return Named (invisible) vector with the paths of the saved files.
 #' @import ragg
 #' @export
+
 save_ipeaplot <- function(
   gplot = ggplot2::last_plot(),
   file.name,
