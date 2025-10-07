@@ -21,7 +21,7 @@ install.packages("ipeaplot")
 A versão em desenvolvimento está disponível no GitHub:
 
 ```
-# Versão em desenvolvimento (0.4.1.9000)
+# Versão em desenvolvimento (0.5.0.9)
 utils::remove.packages("ipeaplot")
 remotes::install_github("ipeadata-lab/ipeaplot")
 ```
