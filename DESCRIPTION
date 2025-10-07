@@ -1,7 +1,7 @@
 Type: Package
 Package: ipeaplot
 Title: Add Ipea Editorial Standards to 'ggplot2' Graphics
-Version: 0.4.1.9000
+Version: 0.5.0
 Authors@R: c(
     person("Pedro", "Ferreira", role=c("aut","cre"), email="pedro.ferreira2@ipea.gov.br"),
     person("Pedro","Jorge", role=c("aut"), email="pedro.alves@ipea.gov.br"),
