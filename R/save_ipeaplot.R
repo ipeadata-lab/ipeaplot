@@ -22,18 +22,35 @@
 #' @param ... Passado a ggplot2::ggsave() (e, portanto, aos devices quando aplicável).
 #'
 #' @return Vetor nomeado (invisível) com caminhos dos arquivos salvos.
+#' @import ragg
 #' @export
 save_ipeaplot <- function(
-    gplot = ggplot2::last_plot(), file.name, format = NULL,
-    width = 6.30, height = 3.94, units = c("in","mm","cm","px"),
-    dpi = 300, background = "white", quality = 95,
-    path = ".", scale = 1, overwrite = TRUE,
-    include_date = FALSE, date_format = "%Y%m%d",
-    use_cairo = TRUE, use_ragg = TRUE, quiet = TRUE, ...
+  gplot = ggplot2::last_plot(),
+  file.name,
+  format = NULL,
+  width = 6.30,
+  height = 3.94,
+  units = c("in", "mm", "cm", "px"),
+  dpi = 300,
+  background = "white",
+  quality = 95,
+  path = ".",
+  scale = 1,
+  overwrite = TRUE,
+  include_date = FALSE,
+  date_format = "%Y%m%d",
+  use_cairo = TRUE,
+  use_ragg = TRUE,
+  quiet = TRUE,
+  ...
 ) {
   if (!inherits(gplot, "ggplot"))
     stop("gplot deve ser um objeto ggplot2.", call. = FALSE)
-  if (!is.character(file.name) || length(file.name) != 1L || nchar(file.name) == 0L)
+  if (
+    !is.character(file.name) ||
+      length(file.name) != 1L ||
+      nchar(file.name) == 0L
+  )
     stop("file.name deve ser uma string não vazia.", call. = FALSE)
 
   units <- match.arg(units)
@@ -42,33 +59,42 @@ save_ipeaplot <- function(
     format <- getOption("ipea.plot.default_format", "eps")
   }
 
-  valid  <- c("eps","jpg","pdf","png")
+  valid <- c("eps", "jpg", "pdf", "png")
   format <- unique(match.arg(format, choices = valid, several.ok = TRUE))
-
 
   # Auto-conversão de "mm digitado como in" (ex.: width=160, height=100 com units="in")
   if (units == "in" && (width >= 50 || height >= 50)) {
-    width  <- width  / 25.4
+    width <- width / 25.4
     height <- height / 25.4
     message(sprintf(
       "Dimensões muito grandes em 'in'; interpretando como mm -> width=%.2f in, height=%.2f in.",
-      width, height
+      width,
+      height
     ))
   }
 
   base_name <- sub("\\.[^.]+$", "", file.name)
-  if (include_date) base_name <- paste0(base_name, "_", format(Sys.Date(), date_format))
+  if (include_date)
+    base_name <- paste0(base_name, "_", format(Sys.Date(), date_format))
 
-  ext <- function(fmt) switch(fmt, eps=".eps", jpg=".jpg", pdf=".pdf", png=".png")
+  ext <- function(fmt)
+    switch(fmt, eps = ".eps", jpg = ".jpg", pdf = ".pdf", png = ".png")
 
   get_device <- function(fmt) {
-    if (fmt %in% c("png","jpg") && use_ragg && requireNamespace("ragg", quietly = TRUE)) {
+    if (
+      fmt %in%
+        c("png", "jpg") &&
+        use_ragg &&
+        requireNamespace("ragg", quietly = TRUE)
+    ) {
       return(if (fmt == "png") ragg::agg_png else ragg::agg_jpeg)
     }
     if (fmt == "png") return("png")
     if (fmt == "jpg") return("jpeg")
-    if (fmt == "pdf") return(if (use_cairo) grDevices::cairo_pdf else grDevices::pdf)
-    if (fmt == "eps") return(if (use_cairo) grDevices::cairo_ps  else grDevices::postscript)
+    if (fmt == "pdf")
+      return(if (use_cairo) grDevices::cairo_pdf else grDevices::pdf)
+    if (fmt == "eps")
+      return(if (use_cairo) grDevices::cairo_ps else grDevices::postscript)
   }
 
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
@@ -76,7 +102,7 @@ save_ipeaplot <- function(
   next_free_name <- function(fp) {
     if (!file.exists(fp)) return(fp)
     root <- sub("(\\.[^.]+)$", "", fp)
-    ex   <- sub("^.*(\\.[^.]+)$", "\\1", fp)
+    ex <- sub("^.*(\\.[^.]+)$", "\\1", fp)
     i <- 1L
     repeat {
       candidate <- paste0(root, "_", i, ex)
@@ -102,25 +128,27 @@ save_ipeaplot <- function(
 
     gargs <- list(
       filename = file_path,
-      plot     = gplot,
-      device   = dev,
-      width    = width,
-      height   = height,
-      units    = units,
-      scale    = scale
+      plot = gplot,
+      device = dev,
+      width = width,
+      height = height,
+      units = units,
+      scale = scale
     )
 
     # Raster
-    if (fmt %in% c("png","jpg")) {
+    if (fmt %in% c("png", "jpg")) {
       gargs$dpi <- dpi
-      gargs$bg  <- bg_use
+      gargs$bg <- bg_use
     }
 
     # Vetoriais:
     # - Em pdf()/postscript(): useDingbats = FALSE (evita fontes dingbat)
     # - Em todos vetoriais (inclui Cairo): fallback_resolution para rasterização
-    if (fmt %in% c("pdf","eps")) {
-      if (identical(dev, grDevices::pdf) || identical(dev, grDevices::postscript)) {
+    if (fmt %in% c("pdf", "eps")) {
+      if (
+        identical(dev, grDevices::pdf) || identical(dev, grDevices::postscript)
+      ) {
         gargs$useDingbats <- FALSE
       }
       gargs$fallback_resolution <- dpi
