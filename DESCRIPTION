@@ -27,7 +27,8 @@ Imports:
     paletteer,
     scales,
     rlang,
-    ggthemes
+    ggthemes,
+    ragg
 Suggests: 
     abjData,
     data.table,
