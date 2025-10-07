@@ -10,7 +10,7 @@
 #' @param dpi DPI for raster formats (default 300).
 #' @param background Background color; use NA for transparent PNGs.
 #'                  For JPEG (no transparency), NA becomes "white".
-#' @param quality JPEG quality (0–100) (default 95).
+#' @param quality JPEG quality (0 to 100) (default 95).
 #' @param path Output directory (default ".").
 #' @param scale Scale factor passed to ggsave (default 1).
 #' @param overwrite If FALSE, does not overwrite existing files: creates suffixes _1, _2, ... (default TRUE).
@@ -46,13 +46,13 @@ save_ipeaplot <- function(
   ...
 ) {
   if (!inherits(gplot, "ggplot"))
-    stop("gplot deve ser um objeto ggplot2.", call. = FALSE)
+    stop("gplot must be a ggplot2 object.", call. = FALSE)
   if (
     !is.character(file.name) ||
       length(file.name) != 1L ||
       nchar(file.name) == 0L
   )
-    stop("file.name deve ser uma string não vazia.", call. = FALSE)
+    stop("file.name must be a non-empty string.", call. = FALSE)
 
   units <- match.arg(units)
 
@@ -63,12 +63,12 @@ save_ipeaplot <- function(
   valid <- c("eps", "jpg", "pdf", "png")
   format <- unique(match.arg(format, choices = valid, several.ok = TRUE))
 
-  # Auto-conversão de "mm digitado como in" (ex.: width=160, height=100 com units="in")
+  # Auto-conversao de "mm digitado como in" (ex.: width=160, height=100 com units="in")
   if (units == "in" && (width >= 50 || height >= 50)) {
     width <- width / 25.4
     height <- height / 25.4
     message(sprintf(
-      "Dimensões muito grandes em 'in'; interpretando como mm -> width=%.2f in, height=%.2f in.",
+      "Dimensions too large in 'in'; interpreting as mm -> width=%.2f in, height=%.2f in.",
       width,
       height
     ))
@@ -124,7 +124,7 @@ save_ipeaplot <- function(
 
     dev <- get_device(fmt)
 
-    # JPEG não tem transparência: NA -> "white"
+    # JPEG nao tem transparencia: NA -> "white"
     bg_use <- if (fmt == "jpg" && is.na(background)) "white" else background
 
     gargs <- list(
@@ -145,7 +145,7 @@ save_ipeaplot <- function(
 
     # Vetoriais:
     # - Em pdf()/postscript(): useDingbats = FALSE (evita fontes dingbat)
-    # - Em todos vetoriais (inclui Cairo): fallback_resolution para rasterização
+    # - Em todos vetoriais (inclui Cairo): fallback_resolution para rasterizacao
     if (fmt %in% c("pdf", "eps")) {
       if (
         identical(dev, grDevices::pdf) || identical(dev, grDevices::postscript)

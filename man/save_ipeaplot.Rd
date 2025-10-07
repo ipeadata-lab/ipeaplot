@@ -42,7 +42,7 @@ If NULL, uses getOption("ipea.plot.default_format", "eps").}
 \item{background}{Background color; use NA for transparent PNGs.
 For JPEG (no transparency), NA becomes "white".}
 
-\item{quality}{JPEG quality (0–100) (default 95).}
+\item{quality}{JPEG quality (0 to 100) (default 95).}
 
 \item{path}{Output directory (default ".").}
 
