@@ -5,9 +5,9 @@
 \title{Scale color IPEA}
 \usage{
 scale_color_ipea(
-  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Green-Blue-White",
-    "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White", "Viridis",
-    "Inferno", "Magma", "Plasma", "Cividis"),
+  palette = c("Blue", "Green", "Orange", "Pink", "Pink-Deep", "Green-Blue",
+    "Green-Blue-White", "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White",
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
   palette_direction = 1,
   decimal.mark = ",",
   barheight = NULL,
@@ -20,7 +20,7 @@ scale_color_ipea(
 \arguments{
 \item{palette}{A character vector specifying the available palette for the
 color palette. The default palette are \code{"Blue"}, but we can also change
-to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Red-Blue'}, \code{'Orange-Blue'}, \code{'Green-Blue'},
+to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Pink-Deep'}, \code{'Red-Blue'}, \code{'Orange-Blue'}, \code{'Green-Blue'},
 \code{'Red-Blue-White'}, \code{'Orange-Blue-White'}, \code{'Green-Blue-White'},
 \code{'Viridis'}, \code{'Inferno'}, \code{'Magma'}, \code{'Plasma'}, \code{'Cividis'}.}
 

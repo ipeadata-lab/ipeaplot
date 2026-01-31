@@ -5,9 +5,9 @@
 \title{Ipea Color Palette and Scales}
 \usage{
 ipea_palette(
-  palette = c("Blue", "Green", "Orange", "Pink", "Green-Blue", "Green-Blue-White",
-    "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White", "Viridis",
-    "Inferno", "Magma", "Plasma", "Cividis"),
+  palette = c("Blue", "Green", "Orange", "Pink", "Pink-Deep", "Green-Blue",
+    "Green-Blue-White", "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White",
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
   n,
   alpha = 1,
   begin = 0,
@@ -17,7 +17,7 @@ ipea_palette(
 }
 \arguments{
 \item{palette}{A character string indicating the color map option to use.
-These options are available:'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
+These options are available:'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep', 'Red-Blue'
 'Orange-Blue', 'Green-Blue', 'Red-Blue-White', 'Orange-Blue-White',
 'Green-Blue-White', 'Viridis', 'Inferno', 'Magma', 'Plasma', 'Cividis'.}
 
@@ -48,7 +48,7 @@ along the selected color map.
 A 9-color Ipea palette.
 }
 \references{
-'Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
 'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
 }
