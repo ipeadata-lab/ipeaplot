@@ -19,5 +19,6 @@
 ^man/figures
 ^cran-comments\.md$
 ^docs$
+^results$
 ^CRAN-SUBMISSION$
 ^revdep$
