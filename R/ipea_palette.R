@@ -15,12 +15,12 @@
 #'        colors are ordered from darkest to lightest. If `-1`, the order of
 #'        colors is reversed.
 #' @param palette A character string indicating the color map option to use.
-#' These options are available:'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
+#' These options are available:'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep', 'Red-Blue'
 #' 'Orange-Blue', 'Green-Blue', 'Red-Blue-White', 'Orange-Blue-White',
 #' 'Green-Blue-White', 'Viridis', 'Inferno', 'Magma', 'Plasma', 'Cividis'.
 #'
 #' @references
-#' 'Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+#' 'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 #' 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
 #' 'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
 #'
@@ -28,7 +28,7 @@
 #' This vector can be utilized to establish a custom color scheme for future graphics using \code{palette(cv)},
 #' or it can be applied directly as a \code{col =} parameter in graphic functions or within \code{par}.
 #'
-ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                      'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
                          n,
                          alpha = 1,
@@ -38,23 +38,23 @@ ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue'
 
   palette <-  ifelse(missing(palette),'Blue',palette)
 
-   if (begin < 0 | begin > 1 | end < 0 | end > 1) {
-     stop("begin and end must be in a number between `0` and `1`")
-   }
+  if (begin < 0 | begin > 1 | end < 0 | end > 1) {
+    stop("begin and end must be in a number between `0` and `1`")
+  }
 
-   if (abs(palette_direction) != 1) {
-     stop("palette_direction must be 1 or -1")
-   }
+  if (abs(palette_direction) != 1) {
+    stop("palette_direction must be 1 or -1")
+  }
 
-   if (n == 0) {
-     return(character(0))
-   }
+  if (n == 0) {
+    return(character(0))
+  }
 
-   if (palette_direction == -1) {
-     tmp <- begin
-     begin <- end
-     end <- tmp
-   }
+  if (palette_direction == -1) {
+    tmp <- begin
+    begin <- end
+    end <- tmp
+  }
 
   if (palette ==  "Blue") {
     # Set colours to the Blue palette using manual_pal function
@@ -68,6 +68,9 @@ ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue'
   } else if (palette ==  "Pink") {
     # Set colours to the Pink palette using manual_pal function
     colours <- paletteer::paletteer_dynamic("cartography::pink.pal", n)
+  } else if (palette ==  "Pink-Deep") {
+    # Set colours to the Pink-Deep palette using manual_pal function
+    colours <- rev(paletteer::paletteer_d("RColorBrewer::RdPu", 9))
   } else if (palette ==  "Red-Blue") {
     # Set colours to the Red-Blue palette using manual_pal function
     colours <- paletteer::paletteer_c("ggthemes::Red-Blue Diverging", n)
@@ -103,14 +106,9 @@ ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue'
     colours <- paletteer::paletteer_c("viridis::cividis", n)
   } else {
     # Stop the execution and display an error message if palettes is none of the specified values
-    stop("Palette palettes must be 'Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+    stop("Palette palettes must be 'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                    'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'")
   }
-
-
-
-
-
 
   map_cols <- as.character(colours)
   map_cols <- paste0(substr(map_cols,1,6),"F")
@@ -131,11 +129,11 @@ force_all <- function(...) list(...)
 #'        colors are ordered from darkest to lightest. If -1, the order of
 #'        colors is reversed.
 #' @param palette A character string indicating the color map option to use.
-#'  These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Red-Blue'
+#'  These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep', 'Red-Blue'
 #'  'Orange-Blue', 'Green-Blue', 'Viridis', 'Inferno', 'Magma', 'Plasma'
 #'  'Cividis'.
 #' @references
-#'  'Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+#'  'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 #'  'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
 #'  'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
 #'
@@ -150,15 +148,11 @@ force_all <- function(...) list(...)
 #' scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
 #' scales::show_col(ipea_pal(palette = "Green")(6))
 
-ipea_pal <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+ipea_pal <- function(palette = c('Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                  'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
                      alpha = 1, begin = 0, end = 1, palette_direction = 1) {
-   force_all(palette, alpha, begin, end, palette_direction)
-   function(n) {
-     ipea_palette(palette, n, alpha, begin, end, palette_direction)
-   }
+  force_all(palette, alpha, begin, end, palette_direction)
+  function(n) {
+    ipea_palette(palette, n, alpha, begin, end, palette_direction)
+  }
 }
-
-
-
-

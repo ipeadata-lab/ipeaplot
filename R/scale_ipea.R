@@ -5,7 +5,7 @@
 #'              Research - Ipea.
 #' @param palette A character vector specifying the available palette for the
 #'        color palette. The default palette are `"Blue"`, but we can also change
-#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
+#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Pink-Deep'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
 #'        `'Red-Blue-White'`, `'Orange-Blue-White'`, `'Green-Blue-White'`,
 #'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
@@ -44,7 +44,7 @@
 #'   scale_color_ipea(palette = "Green")
 
 # Definition of the scale_color_ipea function
-scale_color_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+scale_color_ipea <- function(palette = c('Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                          'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
                              palette_direction = 1,
                              decimal.mark = ",",
@@ -156,10 +156,6 @@ ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
   }
 }
 
-
-
-
-
 #' @title Scale fill IPEA
 #'
 #' @description Generate a fill palette (continuous or discrete) in the
@@ -167,7 +163,7 @@ ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
 #'              Economic Research (IPEA)
 #' @param palette A character vector specifying the available palette for the
 #'        color palette. The default palette are `"Blue"`, but we can also change
-#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
+#'        to `'Green'`, `'Orange'`, `'Pink'`, `'Pink-Deep'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
 #'        `'Red-Blue-White'`, `'Orange-Blue-White'`, `'Green-Blue-White'`,
 #'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
@@ -205,13 +201,13 @@ ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
 #'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
 #'   scale_fill_ipea(palette = "Green")
 #'
-scale_fill_ipea <- function(palette = c('Blue','Green','Orange','Pink','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
+scale_fill_ipea <- function(palette = c('Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
                                         'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
-                             palette_direction = 1,
-                             decimal.mark = ",",
-                             barheight = NULL, barwidth = NULL,
-                             title.hjust = NULL, label.hjust = NULL,
-                             ...) {
+                            palette_direction = 1,
+                            decimal.mark = ",",
+                            barheight = NULL, barwidth = NULL,
+                            title.hjust = NULL, label.hjust = NULL,
+                            ...) {
 
   structure(list(palette = palette, palette_direction = palette_direction,
                  decimal.mark = decimal.mark, barheight = barheight, barwidth = barwidth,
