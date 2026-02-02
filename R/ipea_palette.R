@@ -70,7 +70,7 @@ ipea_palette <- function(palette = c('Blue','Green','Orange','Pink','Pink-Deep',
     colours <- paletteer::paletteer_dynamic("cartography::pink.pal", n)
   } else if (palette ==  "Pink-Deep") {
     # Set colours to the Pink-Deep palette using manual_pal function
-    colours <- rev(paletteer::paletteer_d("RColorBrewer::RdPu", 9))
+    colours <- rev(paletteer::paletteer_d("RColorBrewer::RdPu", n)[-(1:2)])
   } else if (palette ==  "Red-Blue") {
     # Set colours to the Red-Blue palette using manual_pal function
     colours <- paletteer::paletteer_c("ggthemes::Red-Blue Diverging", n)
