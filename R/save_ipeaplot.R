@@ -3,7 +3,7 @@
 #'
 #' @param gplot ggplot object. Default: ggplot2::last_plot().
 #' @param file.name Base name of the file (without extension). E.g., "results/figs/my_plot".
-#' @param format Vector with one or more of: "eps", "jpg", "pdf", "png".
+#' @param format Vector with one or more of: "eps", "jpg", "pdf", "png", "svg".
 #'   If NULL, uses getOption("ipea.plot.default_format", "eps").
 #' @param width,height Plot dimensions (default 160 x 100).
 #' @param units Units: "mm", "cm", "in", "px" (default "in").
@@ -24,33 +24,32 @@
 #' @return Named (invisible) vector with the paths of the saved files.
 #' @import ragg
 #' @export
-
 save_ipeaplot <- function(
-  gplot = ggplot2::last_plot(),
-  file.name,
-  format = NULL,
-  width = 6.30,
-  height = 3.94,
-  units = c("in", "mm", "cm", "px"),
-  dpi = 300,
-  background = "white",
-  quality = 95,
-  path = ".",
-  scale = 1,
-  overwrite = TRUE,
-  include_date = FALSE,
-  date_format = "%Y%m%d",
-  use_cairo = TRUE,
-  use_ragg = TRUE,
-  quiet = TRUE,
-  ...
+    gplot = ggplot2::last_plot(),
+    file.name,
+    format = NULL,
+    width = 6.30,
+    height = 3.94,
+    units = c("in", "mm", "cm", "px"),
+    dpi = 300,
+    background = "white",
+    quality = 95,
+    path = ".",
+    scale = 1,
+    overwrite = TRUE,
+    include_date = FALSE,
+    date_format = "%Y%m%d",
+    use_cairo = TRUE,
+    use_ragg = TRUE,
+    quiet = TRUE,
+    ...
 ) {
   if (!inherits(gplot, "ggplot"))
     stop("gplot must be a ggplot2 object.", call. = FALSE)
   if (
     !is.character(file.name) ||
-      length(file.name) != 1L ||
-      nchar(file.name) == 0L
+    length(file.name) != 1L ||
+    nchar(file.name) == 0L
   )
     stop("file.name must be a non-empty string.", call. = FALSE)
 
@@ -60,7 +59,7 @@ save_ipeaplot <- function(
     format <- getOption("ipea.plot.default_format", "eps")
   }
 
-  valid <- c("eps", "jpg", "pdf", "png")
+  valid <- c("eps", "jpg", "pdf", "png", "svg")
   format <- unique(match.arg(format, choices = valid, several.ok = TRUE))
 
   # Auto-conversao de "mm digitado como in" (ex.: width=160, height=100 com units="in")
@@ -79,14 +78,14 @@ save_ipeaplot <- function(
     base_name <- paste0(base_name, "_", format(Sys.Date(), date_format))
 
   ext <- function(fmt)
-    switch(fmt, eps = ".eps", jpg = ".jpg", pdf = ".pdf", png = ".png")
+    switch(fmt, eps = ".eps", jpg = ".jpg", pdf = ".pdf", png = ".png", svg = ".svg")
 
   get_device <- function(fmt) {
     if (
       fmt %in%
-        c("png", "jpg") &&
-        use_ragg &&
-        requireNamespace("ragg", quietly = TRUE)
+      c("png", "jpg") &&
+      use_ragg &&
+      requireNamespace("ragg", quietly = TRUE)
     ) {
       return(if (fmt == "png") ragg::agg_png else ragg::agg_jpeg)
     }
@@ -96,6 +95,11 @@ save_ipeaplot <- function(
       return(if (use_cairo) grDevices::cairo_pdf else grDevices::pdf)
     if (fmt == "eps")
       return(if (use_cairo) grDevices::cairo_ps else grDevices::postscript)
+    if (fmt == "svg") {
+      # Usa svglite se disponível; senão cai para o device base (grDevices::svg via "svg")
+      if (requireNamespace("svglite", quietly = TRUE)) return(svglite::svglite)
+      return("svg")
+    }
   }
 
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
@@ -146,7 +150,7 @@ save_ipeaplot <- function(
     # Vetoriais:
     # - Em pdf()/postscript(): useDingbats = FALSE (evita fontes dingbat)
     # - Em todos vetoriais (inclui Cairo): fallback_resolution para rasterizacao
-    if (fmt %in% c("pdf", "eps")) {
+    if (fmt %in% c("pdf", "eps", "svg")) {
       if (
         identical(dev, grDevices::pdf) || identical(dev, grDevices::postscript)
       ) {

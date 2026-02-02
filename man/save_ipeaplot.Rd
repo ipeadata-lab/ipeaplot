@@ -30,7 +30,7 @@ save_ipeaplot(
 
 \item{file.name}{Base name of the file (without extension). E.g., "results/figs/my_plot".}
 
-\item{format}{Vector with one or more of: "eps", "jpg", "pdf", "png".
+\item{format}{Vector with one or more of: "eps", "jpg", "pdf", "png", "svg".
 If NULL, uses getOption("ipea.plot.default_format", "eps").}
 
 \item{width, height}{Plot dimensions (default 160 x 100).}
