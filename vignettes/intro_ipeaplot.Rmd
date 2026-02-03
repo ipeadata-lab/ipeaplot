@@ -246,7 +246,7 @@ A função `save_ipeaplot()` oferece uma interface unificada e flexível para sa
 
 Para usar a função, basta passar o objeto ggplot da figura que deseja salvar, o nome base do arquivo `file.name` (sem extensão) e opcionalmente especificar os formatos desejados:
 
-```{r, eval=FALSE, echo=TRUE}
+```{r, eval=FALSE, echo=TRUE, eval = all(!is.null(mun), !is.null(uf))}
 # Salvar apenas em EPS (formato padrão)
 save_ipeaplot(fig_base, file.name = "figura_exemplo")
 
@@ -270,7 +270,7 @@ A função `save_ipeaplot()` oferece diversos parâmetros para controle fino da 
 
 ### Exemplos avançados
 
-```{r, eval=FALSE, echo=TRUE}
+```{r, eval=FALSE, echo=TRUE, eval = all(!is.null(mun), !is.null(uf))}
 # Exemplo com configurações personalizadas
 save_ipeaplot(fig_base,
               file.name = "figura_personalizada",
