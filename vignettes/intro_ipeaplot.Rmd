@@ -209,7 +209,7 @@ uf  <- geobr::read_state(year = 2010)
 
 Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados com as estimativas de anos de estudo. A variável com os códigos do municípios é a nossa chave para unir as duas bases.
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r eval=TRUE, message=FALSE, warning=FALSE, results='hide', eval = all(!is.null(mun), !is.null(uf))}
 # Load municipality and state spatial data
 mun = read_municipality()
 uf  = read_state()
@@ -226,7 +226,7 @@ df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
 
 Agora basta criar o mapa:
 
-```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%"}
+```{r, message=FALSE, warning=FALSE, fig.align="center", out.width = "100%", eval = all(!is.null(mun), !is.null(uf))}
 ggplot() +
   geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
   geom_sf(data = uf, color = "black", fill = NA) +
