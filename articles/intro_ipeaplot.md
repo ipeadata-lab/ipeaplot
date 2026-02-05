@@ -255,6 +255,8 @@ ggplot() +
   theme_ipea(axis_lines = 'none', include_ticks = F, axis_values = F)
 ```
 
+![](intro_ipeaplot_files/figure-html/unnamed-chunk-14-1.png)
+
 ### Salvando figura
 
 Finalmente, o pacote **ipeaplot** traz a função

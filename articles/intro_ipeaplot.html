@@ -59,7 +59,7 @@
 
       <h1>Introdução ao ipeaplot</h1>
             
-            <h4 data-toc-skip class="date">2026-02-03</h4>
+            <h4 data-toc-skip class="date">2026-02-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/intro_ipeaplot.Rmd" class="external-link"><code>vignettes/intro_ipeaplot.Rmd</code></a></small>
       <div class="d-none name"><code>intro_ipeaplot.Rmd</code></div>
@@ -212,7 +212,7 @@ em cada região do país a cada anos, e em seguida geramos o gráfico:</p>
 <code class="sourceCode R"><span><span class="co"># cria variavel identificando a regiao de cada municipio</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>regiao <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">uf</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span>             regiao <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">regiao</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">'Norte'</span>,</span>
+<span>             regiao <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html" class="external-link">case_when</a></span><span class="op">(</span><span class="va">regiao</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">~</span> <span class="st">'Norte'</span>,</span>
 <span>                                <span class="va">regiao</span> <span class="op">==</span> <span class="fl">2</span> <span class="op">~</span> <span class="st">'Nordeste'</span>,</span>
 <span>                                <span class="va">regiao</span> <span class="op">==</span> <span class="fl">3</span> <span class="op">~</span> <span class="st">'Sudeste'</span>,</span>
 <span>                                <span class="va">regiao</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">~</span> <span class="st">'Sul'</span>,</span>
@@ -283,6 +283,7 @@ códigos do municípios é a nossa chave para unir as duas bases.</p>
 <span>  <span class="fu"><a href="../reference/scale_fill_ipea.html">scale_fill_ipea</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">'Orange-Blue'</span>,</span>
 <span>                  name<span class="op">=</span><span class="st">'Anos de\nestudo'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/theme_ipea.html">theme_ipea</a></span><span class="op">(</span>axis_lines <span class="op">=</span> <span class="st">'none'</span>, include_ticks <span class="op">=</span> <span class="cn">F</span>, axis_values <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<p><img src="intro_ipeaplot_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="100%" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div class="section level3">
