@@ -28,6 +28,7 @@ Imports:
     scales,
     rlang,
     ggthemes,
+    svglite,
     ragg
 Suggests: 
     abjData,
