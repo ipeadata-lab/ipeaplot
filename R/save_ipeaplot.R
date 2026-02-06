@@ -44,12 +44,14 @@ save_ipeaplot <- function(
     quiet = TRUE,
     ...
 ) {
-  if (!inherits(gplot, "ggplot")) {
+  if (!inherits(gplot, "ggplot"))
     stop("gplot must be a ggplot2 object.", call. = FALSE)
-  }
-  if (!is.character(file.name) || length(file.name) != 1L || nchar(file.name) == 0L) {
+  if (
+    !is.character(file.name) ||
+    length(file.name) != 1L ||
+    nchar(file.name) == 0L
+  )
     stop("file.name must be a non-empty string.", call. = FALSE)
-  }
 
   units <- match.arg(units)
 
@@ -66,43 +68,33 @@ save_ipeaplot <- function(
     height <- height / 25.4
     message(sprintf(
       "Dimensions too large in 'in'; interpreting as mm -> width=%.2f in, height=%.2f in.",
-      width, height
+      width,
+      height
     ))
   }
 
   base_name <- sub("\\.[^.]+$", "", file.name)
-  if (include_date) {
+  if (include_date)
     base_name <- paste0(base_name, "_", format(Sys.Date(), date_format))
-  }
 
-  ext <- function(fmt) {
-    switch(fmt,
-           eps = ".eps",
-           jpg = ".jpg",
-           pdf = ".pdf",
-           png = ".png",
-           svg = ".svg"
-    )
-  }
-
-  # ---------------------------------------------------------------------------
-  # CORREÇÃO: evitar segfault do ragg no macOS em ambientes CI (GitHub Actions)
-  # - Se estiver em CI + macOS, cai para device base png/jpeg.
-  # - Permite forçar desligar via env var: IPEAPLOT_DISABLE_RAGG=1/true/yes
-  # ---------------------------------------------------------------------------
-  is_ci <- identical(Sys.getenv("GITHUB_ACTIONS"), "true") || identical(Sys.getenv("CI"), "true")
-  is_macos <- identical(Sys.info()[["sysname"]], "Darwin")
-  ragg_disabled <- tolower(Sys.getenv("IPEAPLOT_DISABLE_RAGG")) %in% c("1", "true", "yes")
-  use_ragg_eff <- isTRUE(use_ragg) && !ragg_disabled && !(is_ci && is_macos)
+  ext <- function(fmt)
+    switch(fmt, eps = ".eps", jpg = ".jpg", pdf = ".pdf", png = ".png", svg = ".svg")
 
   get_device <- function(fmt) {
-    if (fmt %in% c("png", "jpg") && use_ragg_eff && requireNamespace("ragg", quietly = TRUE)) {
+    if (
+      fmt %in%
+      c("png", "jpg") &&
+      use_ragg &&
+      requireNamespace("ragg", quietly = TRUE)
+    ) {
       return(if (fmt == "png") ragg::agg_png else ragg::agg_jpeg)
     }
     if (fmt == "png") return("png")
     if (fmt == "jpg") return("jpeg")
-    if (fmt == "pdf") return(if (use_cairo) grDevices::cairo_pdf else grDevices::pdf)
-    if (fmt == "eps") return(if (use_cairo) grDevices::cairo_ps else grDevices::postscript)
+    if (fmt == "pdf")
+      return(if (use_cairo) grDevices::cairo_pdf else grDevices::pdf)
+    if (fmt == "eps")
+      return(if (use_cairo) grDevices::cairo_ps else grDevices::postscript)
     if (fmt == "svg") {
       # Usa svglite se disponível; senão cai para o device base (grDevices::svg via "svg")
       if (requireNamespace("svglite", quietly = TRUE)) return(svglite::svglite)
@@ -159,7 +151,9 @@ save_ipeaplot <- function(
     # - Em pdf()/postscript(): useDingbats = FALSE (evita fontes dingbat)
     # - Em todos vetoriais (inclui Cairo): fallback_resolution para rasterizacao
     if (fmt %in% c("pdf", "eps", "svg")) {
-      if (identical(dev, grDevices::pdf) || identical(dev, grDevices::postscript)) {
+      if (
+        identical(dev, grDevices::pdf) || identical(dev, grDevices::postscript)
+      ) {
         gargs$useDingbats <- FALSE
       }
       gargs$fallback_resolution <- dpi
