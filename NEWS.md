@@ -1,6 +1,4 @@
 # ipeaplot 0.5.1
-
-# ipeaplot 0.5.1
   * Minor fixes
 
 # ipeaplot 0.5.0
