@@ -1,6 +1,8 @@
 # Changelog
 
-## ipeaplot (development version)
+## ipeaplot 0.5.1
+
+- Minor fixes
 
 ## ipeaplot 0.5.0
 
