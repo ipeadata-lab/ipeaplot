@@ -2,6 +2,8 @@
 
 ## ipeaplot 0.5.1
 
+CRAN release: 2026-02-06
+
 - Minor fixes
 
 ## ipeaplot 0.5.0

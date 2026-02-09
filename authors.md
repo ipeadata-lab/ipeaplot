@@ -22,7 +22,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/ipeadata-lab/ipeaplot/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/ipeadata-lab/ipeaplot/blob/v0.5.1/DESCRIPTION)
 
 Ferreira P, Jorge P, Lima D, Coelho G, Pereira R, Mation L (2026).
 *ipeaplot: Add Ipea Editorial Standards to 'ggplot2' Graphics*. R
