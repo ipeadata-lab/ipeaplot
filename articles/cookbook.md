@@ -21,18 +21,19 @@ possível, com o **ipeaplot** e algumas linhas de código adicionais,
 atingir o nível de padronização necessário às publicações do Ipea.
 
 ``` r
+
 # Leitura de bibliotecas
 library(ipeaplot)
 library(ggplot2)
 library(dplyr)
 library(data.table)
 library(abjData)
-library(geobr)
 library(reshape)
 library(knitr)
 ```
 
 ``` r
+
 # Leitura dos dados
 ## Gráfico 1
 Ano <- factor(c(2000,2005,2010,2015,2020,2025,2030,2035,2040,2045,2050))
@@ -148,6 +149,7 @@ base_graf8 <- data.table(pais = c("Nigéria", "Vietnã", "Índia", "Indonésia",
 ### Padrão ipea
 
 ``` r
+
 graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populacao)) +
   geom_bar(stat="identity", fill = '#015f96', width=2) +
   geom_rug(aes(x = as.numeric(as.character(Ano)) - 2.5),
@@ -164,6 +166,7 @@ graf1 <- ggplot(data=base_graf1, aes(x=as.numeric(as.character(Ano)), y=Populaca
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico1.png"),  width=724, height=546)
 print(graf1)
 dev.off()
@@ -180,6 +183,7 @@ dev.off()
 ### Padrão Ipea
 
 ``` r
+
 base_graf2$Ano <- as.numeric(as.character(base_graf2$Ano))
 ref <- (subset(base_graf2,substr(Ano,4,4) %in% c('5','0')))
 
@@ -197,6 +201,7 @@ graf2 <- ggplot(base_graf2, aes(x=Ano, y=Populacao, group = 1))+
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico2.png"),  width=724, height=546)
 print(graf2)
 dev.off()
@@ -213,6 +218,7 @@ dev.off()
 ### Padrão Ipea
 
 ``` r
+
 temp <- base_graf3 %>% distinct(pos, .keep_all = T)
 
 
@@ -234,6 +240,7 @@ graf3 <- ggplot(base_graf3, aes(x= as.character(pos), y=Gasto, fill=Pais,
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico3.png"),  width=724, height=546)
 print(graf3)
 dev.off()
@@ -250,6 +257,7 @@ dev.off()
 ### Padrão Ipea
 
 ``` r
+
 graf4 <- ggplot(base_graf4, aes(x=Ano)) +
   geom_ribbon(aes(ymin=0, ymax=Exabytes), fill = "#015f96")+
   labs(fill = "",
@@ -262,6 +270,7 @@ graf4 <- ggplot(base_graf4, aes(x=Ano)) +
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico4.png"),  width=724, height=546)
 print(graf4)
 dev.off()
@@ -278,6 +287,7 @@ dev.off()
 ### Padrão Ipea
 
 ``` r
+
 graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
   geom_line(linewidth=1)+
   geom_point(aes(shape=variable, fill = variable),
@@ -295,6 +305,7 @@ graf5 <- ggplot(base_graf5, aes(Ano, value, group=variable, color=variable))+
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico5.png"),  width=724, height=546)
 print(graf5)
 dev.off()
@@ -311,6 +322,7 @@ dev.off()
 ### Padrão Ipea
 
 ``` r
+
 base_graf6$pais<- factor(base_graf6$pais, levels=rev(sort(base_graf6$pais)))
 graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
   geom_bar(stat="identity", fill = '#015f96') +
@@ -324,6 +336,7 @@ graf6 <- ggplot(data=base_graf6, aes(x=pais, y=petroleo)) +
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico6.png"),  width=724, height=546)
 print(graf6)
 dev.off()
@@ -340,6 +353,7 @@ dev.off()
 ### Padrão Ipea
 
 ``` r
+
 base_graf7<- melt(base_graf7, id=c("pais"))
 
 graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=variable)) +
@@ -355,6 +369,7 @@ graf7 <- ggplot(data=base_graf7, aes(x=pais, y=value, group=variable, fill=varia
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico7.png"),  width=724, height=546)
 print(graf7)
 dev.off()
@@ -371,6 +386,7 @@ dev.off()
 ### Padrão Ipea
 
 ``` r
+
 ######## GRAFICO 8
 base_graf8_aux <- base_graf8[,c(1,4)]
 base_graf8_aux$n <- 1:nrow(base_graf8_aux)
@@ -398,6 +414,7 @@ ggplot() +
 ```
 
 ``` r
+
 png(paste0(getwd(),"/prints_ipeaplot/grafico8.png"),  width=724, height=546)
 print(graf8)
 dev.off()

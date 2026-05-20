@@ -13,6 +13,7 @@ Você pode instalar a versão em desenvolvimento do **ipeaplot** direto do
 Github:
 
 ``` r
+
 # Development version
 utils::remove.packages('ipeaplot')
 remotes::install_github("ipeadata-lab/ipeaplot")
@@ -57,6 +58,7 @@ usaremos para demonstrar o **ipeaplot**. Nos exemplos a seguir, vamos
 utilizar os dados `mtcars` do R.
 
 ``` r
+
 # Load packages
 library(ipeaplot)
 library(ggplot2)
@@ -79,6 +81,7 @@ instituto. Nas próximas seções, vamos explorar como usar as funções do
 **ipeaplot** editar as figuras seguindo essas diretrizes.
 
 ``` r
+
 fig_raw <- ggplot() +
               geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
               labs(y='Consumo de Combustível (milhas por galão)',
@@ -120,6 +123,7 @@ Para usar as paletas de cores, basta adicionar uma das funções na
 construção da sua figura com `ggplot2`:
 
 ``` r
+
 # paleta sequencial verde
 fig_base + scale_color_ipea(palette = "Green")
 ```
@@ -127,6 +131,7 @@ fig_base + scale_color_ipea(palette = "Green")
 ![](intro_ipeaplot_files/figure-html/unnamed-chunk-7-1.png)
 
 ``` r
+
 # paleta divergente de laranja a azul
 fig_base + scale_color_ipea(palette = "Orange-Blue")
 ```
@@ -156,6 +161,7 @@ Desenvolvimento Humano organizados em um projeto de parceria entre Ipea,
 FJP e PNUD). Para carregar os dados, basta rodar:
 
 ``` r
+
 df <- abjData::pnud_muni
 ```
 
@@ -165,6 +171,7 @@ calculamos qual a proporção de domicílios que possuia coleta de esgoto
 em cada região do país a cada anos, e em seguida geramos o gráfico:
 
 ``` r
+
 # cria variavel identificando a regiao de cada municipio
 df <- df |> 
       mutate(regiao = substring(uf, 1, 1),
@@ -197,6 +204,7 @@ Os mesmos dados também poderiam ser visualizados com um gráfico de
 colunas:
 
 ``` r
+
 ggplot() + 
   geom_col(data = df_fig1, aes(x=ano, y=t_lixo, fill= factor(ano))) +
   scale_fill_ipea(palette = 'Green') +
@@ -220,6 +228,7 @@ feito com o pacote [geobr](https://ipeagit.github.io/geobr/),
 desenvolvido pelo Ipea. Para baixar esses dados, basta rodar:
 
 ``` r
+
 # Load municipality and state spatial data
 mun <- geobr::read_municipality(year = 2010)
 uf  <- geobr::read_state(year = 2010)
@@ -230,9 +239,6 @@ com as estimativas de anos de estudo. A variável com os códigos do
 municípios é a nossa chave para unir as duas bases.
 
 ``` r
-# Load municipality and state spatial data
-mun = read_municipality()
-uf  = read_state()
 
 # Subset and select specific columns from the 'pnud_muni' dataset
 df_escola <- df |>
@@ -246,6 +252,7 @@ df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
 Agora basta criar o mapa:
 
 ``` r
+
 ggplot() +
   geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
   geom_sf(data = uf, color = "black", fill = NA) +
@@ -278,6 +285,7 @@ salvar, o nome base do arquivo `file.name` (sem extensão) e
 opcionalmente especificar os formatos desejados:
 
 ``` r
+
 # Salvar apenas em EPS (formato padrão)
 save_ipeaplot(fig_base, file.name = "figura_exemplo")
 
@@ -306,6 +314,7 @@ oferece diversos parâmetros para controle fino da exportação:
 #### Exemplos avançados
 
 ``` r
+
 # Exemplo com configurações personalizadas
 save_ipeaplot(fig_base,
               file.name = "figura_personalizada",
