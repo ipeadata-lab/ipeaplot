@@ -36,7 +36,6 @@ library(ggplot2)
 library(dplyr)
 library(data.table)
 library(abjData)
-library(geobr)
 library(reshape)
 library(knitr)
 
