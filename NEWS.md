@@ -1,6 +1,4 @@
 # ipeaplot 0.5.2
-
-# ipeaplot 0.5.2
   * Minor change to intro vignette to fix conflict with geobr v2.0.0
 
 # ipeaplot 0.5.1
