@@ -1,8 +1,6 @@
 # Changelog
 
-## ipeaplot 0.5.2
-
-CRAN release: 2026-05-20
+## ipeaplot 0.5.3
 
 - Minor fix for ipeaplot vignette build error
 
