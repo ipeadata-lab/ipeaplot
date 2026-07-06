@@ -22,6 +22,8 @@ Useful links:
 
 Authors:
 
+- Pedro Ferreira <pedro.ferreira2@ipea.gov.br>
+
 - Pedro Jorge <pedro.alves@ipea.gov.br>
 
 - Daniel Lima <daniel.viegas@ipea.gov.br>

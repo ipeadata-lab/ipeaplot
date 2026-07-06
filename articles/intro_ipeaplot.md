@@ -224,8 +224,8 @@ exemplo abaixo, nós vamos fazer um mapa choroplético que mostra a média
 de anos de estudo dos municípios do Brasil.
 
 O primeiro passo, é baixar a malha espacial de municípios. Isso pode ser
-feito com o pacote [geobr](https://ipeagit.github.io/geobr/),
-desenvolvido pelo Ipea. Para baixar esses dados, basta rodar:
+feito com o pacote [geobr](https://ipea.github.io/geobr/), desenvolvido
+pelo Ipea. Para baixar esses dados, basta rodar:
 
 ``` r
 

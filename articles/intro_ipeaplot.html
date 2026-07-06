@@ -59,7 +59,7 @@
 
       <h1>Introdução ao ipeaplot</h1>
             
-            <h4 data-toc-skip class="date">2026-05-20</h4>
+            <h4 data-toc-skip class="date">2026-07-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ipeadata-lab/ipeaplot/blob/master/vignettes/intro_ipeaplot.Rmd" class="external-link"><code>vignettes/intro_ipeaplot.Rmd</code></a></small>
       <div class="d-none name"><code>intro_ipeaplot.Rmd</code></div>
@@ -253,12 +253,12 @@ colunas:</p>
 de mapas. No exemplo abaixo, nós vamos fazer um mapa choroplético que
 mostra a média de anos de estudo dos municípios do Brasil.</p>
 <p>O primeiro passo, é baixar a malha espacial de municípios. Isso pode
-ser feito com o pacote <a href="https://ipeagit.github.io/geobr/" class="external-link">geobr</a>, desenvolvido pelo
-Ipea. Para baixar esses dados, basta rodar:</p>
+ser feito com o pacote <a href="https://ipea.github.io/geobr/" class="external-link">geobr</a>, desenvolvido pelo Ipea.
+Para baixar esses dados, basta rodar:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load municipality and state spatial data</span></span>
-<span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
-<span><span class="va">uf</span>  <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://ipeagit.github.io/geobr/reference/read_state.html" class="external-link">read_state</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">mun</span> <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geobr/man/read_municipality.html" class="external-link">read_municipality</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span>
+<span><span class="va">uf</span>  <span class="op">&lt;-</span> <span class="fu">geobr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geobr/man/read_state.html" class="external-link">read_state</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2010</span><span class="op">)</span></span></code></pre></div>
 <p>Agora nós precisamos fazer um <em>merge</em> dos dados espaciais e
 dos dados com as estimativas de anos de estudo. A variável com os
 códigos do municípios é a nossa chave para unir as duas bases.</p>
