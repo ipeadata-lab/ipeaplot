@@ -1,4 +1,4 @@
-# ipeaplot 0.5.2
+# ipeaplot 0.5.3
   * Minor fix for ipeaplot vignette build error
 
 # ipeaplot 0.5.2
