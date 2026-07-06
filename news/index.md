@@ -4,6 +4,12 @@
 
 CRAN release: 2026-05-20
 
+- Minor fix for ipeaplot vignette build error
+
+## ipeaplot 0.5.2
+
+CRAN release: 2026-05-20
+
 - Minor change to intro vignette to fix conflict with geobr v2.0.0
 
 ## ipeaplot 0.5.1
