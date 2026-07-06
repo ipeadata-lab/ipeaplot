@@ -1,5 +1,7 @@
 # Changelog
 
+## ipeaplot (development version)
+
 ## ipeaplot 0.5.3
 
 - Minor fix for ipeaplot vignette build error
