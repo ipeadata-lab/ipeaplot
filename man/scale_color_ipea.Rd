@@ -68,8 +68,8 @@ fig_raw <- ggplot() +
   scale_color_ipea(palette = "Green")
 }
 \seealso{
-Other ggplot2 theme functions: 
-\code{\link{scale_fill_ipea}()},
-\code{\link{theme_ipea}()}
+Other ggplot2 theme functions:
+\code{\link[=scale_fill_ipea]{scale_fill_ipea()}},
+\code{\link[=theme_ipea]{theme_ipea()}}
 }
 \concept{ggplot2 theme functions}

@@ -28,6 +28,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Pedro Ferreira \email{pedro.ferreira2@ipea.gov.br}
   \item Pedro Jorge \email{pedro.alves@ipea.gov.br}
   \item Daniel Lima \email{daniel.viegas@ipea.gov.br}
   \item Gustavo Coelho \email{gustavo.coelho@ipea.gov.br}

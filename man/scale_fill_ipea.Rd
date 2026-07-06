@@ -69,8 +69,8 @@ fig_raw <- ggplot() +
 
 }
 \seealso{
-Other ggplot2 theme functions: 
-\code{\link{scale_color_ipea}()},
-\code{\link{theme_ipea}()}
+Other ggplot2 theme functions:
+\code{\link[=scale_color_ipea]{scale_color_ipea()}},
+\code{\link[=theme_ipea]{theme_ipea()}}
 }
 \concept{ggplot2 theme functions}

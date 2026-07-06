@@ -76,8 +76,8 @@ fig_raw <- ggplot() +
 
 }
 \seealso{
-Other ggplot2 theme functions: 
-\code{\link{scale_color_ipea}()},
-\code{\link{scale_fill_ipea}()}
+Other ggplot2 theme functions:
+\code{\link[=scale_color_ipea]{scale_color_ipea()}},
+\code{\link[=scale_fill_ipea]{scale_fill_ipea()}}
 }
 \concept{ggplot2 theme functions}
