@@ -1,6 +1,8 @@
 # Changelog
 
-## ipeaplot (development version)
+## ipeaplot 0.5.4
+
+- Fixed the vignette to address issues with geobr.
 
 ## ipeaplot 0.5.3
 
