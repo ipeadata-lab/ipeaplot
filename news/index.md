@@ -2,6 +2,8 @@
 
 ## ipeaplot 0.5.4
 
+CRAN release: 2026-07-09
+
 - Fixed the vignette to address issues with geobr.
 
 ## ipeaplot 0.5.3
