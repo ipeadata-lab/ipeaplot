@@ -75,6 +75,7 @@ A list object be added to a ggplot object to change color pallete.
 ## See also
 
 Other ggplot2 theme functions:
+[`ipea_label_size()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_label_size.md),
 [`scale_color_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_color_ipea.md),
 [`theme_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/theme_ipea.md)
 

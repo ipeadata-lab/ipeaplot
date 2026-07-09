@@ -106,6 +106,8 @@ Pesquisa Econômica Aplicada (Ipea).
 
 ## All functions
 
+- [`ipea_label_size()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_label_size.md)
+  : Font size for data labels in Ipea graphics
 - [`ipea_pal()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_pal.md)
   : Ipea palette
 - [`ipea_palette()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_palette.md)
