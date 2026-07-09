@@ -2,6 +2,24 @@
 
 ## ipeaplot (development version)
 
+- [`theme_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/theme_ipea.md):
+  axis/tick/border/gridlines now render at exactly 0.5pt, axis and
+  legend text at exactly 7pt, and axis labels are spaced 1mm from ticks,
+  matching the Ipea Editorial Manual guidelines.
+- New function
+  [`ipea_label_size()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_label_size.md):
+  converts a point size (default 6pt) to the mm `size` used by
+  [`geom_text()`](https://ggplot2.tidyverse.org/reference/geom_text.html)/[`geom_label()`](https://ggplot2.tidyverse.org/reference/geom_text.html),
+  for labeling values on bars/lines per the editorial guidelines.
+- Fixed
+  [`save_ipeaplot()`](https://ipeadata-lab.github.io/ipeaplot/reference/save_ipeaplot.md)
+  errors (“unused argument”) when `use_cairo = FALSE` on `pdf`/`eps`
+  formats.
+- Fixed
+  [`save_ipeaplot()`](https://ipeadata-lab.github.io/ipeaplot/reference/save_ipeaplot.md)
+  silently reporting success when a Cairo-based device fails to write a
+  file; it now errors with a clear message.
+
 ## ipeaplot 0.5.4
 
 CRAN release: 2026-07-09

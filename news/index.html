@@ -39,7 +39,12 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ipeaplot-development-version">ipeaplot (development version)<a class="anchor" aria-label="anchor" href="#ipeaplot-development-version"></a></h2>
-</div>
+<ul><li>
+<code><a href="../reference/theme_ipea.html">theme_ipea()</a></code>: axis/tick/border/gridlines now render at exactly 0.5pt, axis and legend text at exactly 7pt, and axis labels are spaced 1mm from ticks, matching the Ipea Editorial Manual guidelines.</li>
+<li>New function <code><a href="../reference/ipea_label_size.html">ipea_label_size()</a></code>: converts a point size (default 6pt) to the mm <code>size</code> used by <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_text()</a></code>/<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">geom_label()</a></code>, for labeling values on bars/lines per the editorial guidelines.</li>
+<li>Fixed <code><a href="../reference/save_ipeaplot.html">save_ipeaplot()</a></code> errors (“unused argument”) when <code>use_cairo = FALSE</code> on <code>pdf</code>/<code>eps</code> formats.</li>
+<li>Fixed <code><a href="../reference/save_ipeaplot.html">save_ipeaplot()</a></code> silently reporting success when a Cairo-based device fails to write a file; it now errors with a clear message.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.4" id="ipeaplot-054">ipeaplot 0.5.4<a class="anchor" aria-label="anchor" href="#ipeaplot-054"></a></h2><p class="text-muted">CRAN release: 2026-07-09</p>
 <ul><li>Fixed the vignette to address issues with geobr.</li>
