@@ -8,7 +8,8 @@ Ipea palette
 ipea_pal(
   palette = c("Blue", "Green", "Orange", "Pink", "Pink-Deep", "Green-Blue",
     "Green-Blue-White", "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White",
-    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis", "NT", "NT-Categorical", "TD",
+    "TD-Categorical"),
   alpha = 1,
   begin = 0,
   end = 1,
@@ -23,7 +24,7 @@ ipea_pal(
   A character string indicating the color map option to use. These
   options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep',
   'Red-Blue' 'Orange-Blue', 'Green-Blue', 'Viridis', 'Inferno', 'Magma',
-  'Plasma' 'Cividis'.
+  'Plasma' 'Cividis', 'NT', 'NT-Categorical', 'TD', 'TD-Categorical'.
 
 - alpha:
 
@@ -57,6 +58,8 @@ as a `col =` parameter in graphic functions or within `par`.
 'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno', 'Magma','Plasma'
 and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
+'NT'/'TD' and their '-Categorical' variants: see
+[`ipea_palette()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_palette.md).
 
 ## Examples
 
@@ -68,4 +71,8 @@ scales::show_col(ipea_pal(palette_direction = -1)(6))
 scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
 
 scales::show_col(ipea_pal(palette = "Green")(6))
+
+scales::show_col(ipea_pal(palette = "NT")(10))
+
+scales::show_col(ipea_pal(palette = "TD-Categorical")(12))
 ```

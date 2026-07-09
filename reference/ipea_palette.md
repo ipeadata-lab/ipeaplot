@@ -9,7 +9,8 @@ selected color map.
 ipea_palette(
   palette = c("Blue", "Green", "Orange", "Pink", "Pink-Deep", "Green-Blue",
     "Green-Blue-White", "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White",
-    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis", "NT", "NT-Categorical", "TD",
+    "TD-Categorical"),
   n,
   alpha = 1,
   begin = 0,
@@ -26,7 +27,8 @@ ipea_palette(
   options are available:'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep',
   'Red-Blue' 'Orange-Blue', 'Green-Blue', 'Red-Blue-White',
   'Orange-Blue-White', 'Green-Blue-White', 'Viridis', 'Inferno',
-  'Magma', 'Plasma', 'Cividis'.
+  'Magma', 'Plasma', 'Cividis', 'NT', 'NT-Categorical', 'TD',
+  'TD-Categorical'.
 
 - n:
 
@@ -67,4 +69,14 @@ A 9-color Ipea palette.
 
 'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno', 'Magma','Plasma'
-and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
+and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/ 'NT' and
+'TD' are sequential palettes taken from the cover, section-title and
+chart colours of two Ipea editorial series (Nota Tecnica and Texto para
+Discussao, respectively). 'NT-Categorical' and 'TD-Categorical' are
+qualitative 12-colour sets built from the same two publications,
+interleaving 6 shades of each of their two hues so that adjacent
+categories stay visually distinct.
+[`scale_color_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_color_ipea.md)/[`scale_fill_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_fill_ipea.md)
+switch automatically from 'NT'/'TD' to their '-Categorical' variant when
+the mapped variable is discrete, so most users never need to type the
+'-Categorical' suffix themselves.

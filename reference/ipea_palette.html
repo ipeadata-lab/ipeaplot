@@ -50,7 +50,8 @@ along the selected color map.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ipea_palette</span><span class="op">(</span></span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Blue"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Pink"</span>, <span class="st">"Pink-Deep"</span>, <span class="st">"Green-Blue"</span>,</span>
 <span>    <span class="st">"Green-Blue-White"</span>, <span class="st">"Red-Blue"</span>, <span class="st">"Red-Blue-White"</span>, <span class="st">"Orange-Blue"</span>, <span class="st">"Orange-Blue-White"</span>,</span>
-<span>    <span class="st">"Viridis"</span>, <span class="st">"Inferno"</span>, <span class="st">"Magma"</span>, <span class="st">"Plasma"</span>, <span class="st">"Cividis"</span><span class="op">)</span>,</span>
+<span>    <span class="st">"Viridis"</span>, <span class="st">"Inferno"</span>, <span class="st">"Magma"</span>, <span class="st">"Plasma"</span>, <span class="st">"Cividis"</span>, <span class="st">"NT"</span>, <span class="st">"NT-Categorical"</span>, <span class="st">"TD"</span>,</span>
+<span>    <span class="st">"TD-Categorical"</span><span class="op">)</span>,</span>
 <span>  <span class="va">n</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  begin <span class="op">=</span> <span class="fl">0</span>,</span>
@@ -67,7 +68,8 @@ along the selected color map.</p>
 <dd><p>A character string indicating the color map option to use.
 These options are available:'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep', 'Red-Blue'
 'Orange-Blue', 'Green-Blue', 'Red-Blue-White', 'Orange-Blue-White',
-'Green-Blue-White', 'Viridis', 'Inferno', 'Magma', 'Plasma', 'Cividis'.</p></dd>
+'Green-Blue-White', 'Viridis', 'Inferno', 'Magma', 'Plasma', 'Cividis',
+'NT', 'NT-Categorical', 'TD', 'TD-Categorical'.</p></dd>
 
 
 <dt id="arg-n">n<a class="anchor" aria-label="anchor" href="#arg-n"></a></dt>
@@ -108,7 +110,15 @@ or it can be applied directly as a <code>col =</code> parameter in graphic funct
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
-'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/</p>
+'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
+'NT' and 'TD' are sequential palettes taken from the cover, section-title and
+chart colours of two Ipea editorial series (Nota Tecnica and Texto para
+Discussao, respectively). 'NT-Categorical' and 'TD-Categorical' are qualitative
+12-colour sets built from the same two publications, interleaving 6 shades of
+each of their two hues so that adjacent categories stay visually distinct.
+<code><a href="scale_color_ipea.html">scale_color_ipea()</a></code>/<code><a href="scale_fill_ipea.html">scale_fill_ipea()</a></code> switch automatically from 'NT'/'TD'
+to their '-Categorical' variant when the mapped variable is discrete, so most
+users never need to type the '-Categorical' suffix themselves.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -9,7 +9,8 @@ texts published by the Institute for Applied Economic Research (IPEA)
 scale_fill_ipea(
   palette = c("Blue", "Green", "Orange", "Pink", "Pink-Deep", "Green-Blue",
     "Green-Blue-White", "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White",
-    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis", "NT", "NT-Categorical", "TD",
+    "TD-Categorical"),
   palette_direction = 1,
   decimal.mark = ",",
   barheight = NULL,
@@ -29,7 +30,12 @@ scale_fill_ipea(
   `'Green'`, `'Orange'`, `'Pink'`, `'Pink-Deep'`, `'Red-Blue'`,
   `'Orange-Blue'`, `'Green-Blue'`, `'Red-Blue-White'`,
   `'Orange-Blue-White'`, `'Green-Blue-White'`, `'Viridis'`, `'Inferno'`,
-  `'Magma'`, `'Plasma'`, `'Cividis'`.
+  `'Magma'`, `'Plasma'`, `'Cividis'`, `'NT'`, `'TD'`. `'NT'` and `'TD'`
+  automatically switch from their sequential (continuous) colours to a
+  12-colour qualitative set when the mapped variable is discrete – there
+  is no need to request `'NT-Categorical'`/`'TD-Categorical'` directly,
+  though those names remain available for
+  [`ipea_pal()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_pal.md)/[`ipea_palette()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_palette.md).
 
 - palette_direction:
 
@@ -92,4 +98,10 @@ fig_raw <- ggplot() +
 fig_raw <- ggplot() +
   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
   scale_fill_ipea(palette = "Green")
+
+# "TD" uses the sequential blue ramp for a numeric variable, and the
+# 12-colour qualitative set for a discrete one, automatically
+fig_raw <- ggplot() +
+  geom_col(data = mtcars, aes(x = hp , y = mpg, fill = factor(cyl))) +
+  scale_fill_ipea(palette = "TD")
 ```

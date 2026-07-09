@@ -47,7 +47,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ipea_pal</span><span class="op">(</span></span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Blue"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Pink"</span>, <span class="st">"Pink-Deep"</span>, <span class="st">"Green-Blue"</span>,</span>
 <span>    <span class="st">"Green-Blue-White"</span>, <span class="st">"Red-Blue"</span>, <span class="st">"Red-Blue-White"</span>, <span class="st">"Orange-Blue"</span>, <span class="st">"Orange-Blue-White"</span>,</span>
-<span>    <span class="st">"Viridis"</span>, <span class="st">"Inferno"</span>, <span class="st">"Magma"</span>, <span class="st">"Plasma"</span>, <span class="st">"Cividis"</span><span class="op">)</span>,</span>
+<span>    <span class="st">"Viridis"</span>, <span class="st">"Inferno"</span>, <span class="st">"Magma"</span>, <span class="st">"Plasma"</span>, <span class="st">"Cividis"</span>, <span class="st">"NT"</span>, <span class="st">"NT-Categorical"</span>, <span class="st">"TD"</span>,</span>
+<span>    <span class="st">"TD-Categorical"</span><span class="op">)</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  begin <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  end <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -63,7 +64,7 @@
 <dd><p>A character string indicating the color map option to use.
 These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep', 'Red-Blue'
 'Orange-Blue', 'Green-Blue', 'Viridis', 'Inferno', 'Magma', 'Plasma'
-'Cividis'.</p></dd>
+'Cividis', 'NT', 'NT-Categorical', 'TD', 'TD-Categorical'.</p></dd>
 
 
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
@@ -94,7 +95,8 @@ or it can be applied directly as a <code>col =</code> parameter in graphic funct
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
-'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/</p>
+'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
+'NT'/'TD' and their '-Categorical' variants: see <code><a href="ipea_palette.html">ipea_palette()</a></code>.</p>
     </div>
 
     <div class="section level2">
@@ -107,6 +109,10 @@ or it can be applied directly as a <code>col =</code> parameter in graphic funct
 <span class="r-plt img"><img src="ipea_pal-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">ipea_pal</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Green"</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ipea_pal-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">ipea_pal</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"NT"</span><span class="op">)</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ipea_pal-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/show_col.html" class="external-link">show_col</a></span><span class="op">(</span><span class="fu">ipea_pal</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"TD-Categorical"</span><span class="op">)</span><span class="op">(</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ipea_pal-6.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

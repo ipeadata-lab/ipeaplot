@@ -19,6 +19,16 @@
   [`save_ipeaplot()`](https://ipeadata-lab.github.io/ipeaplot/reference/save_ipeaplot.md)
   silently reporting success when a Cairo-based device fails to write a
   file; it now errors with a clear message.
+- New palettes `"NT"` and `"TD"`, based on the cover, section-title and
+  chart colours of two Ipea editorial series (Nota Tecnica and Texto
+  para Discussao).
+  [`scale_color_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_color_ipea.md)/[`scale_fill_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_fill_ipea.md)
+  switch automatically to their qualitative 12-colour variant for
+  discrete data.
+- Fixed a color-accuracy bug in
+  [`ipea_palette()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_palette.md)
+  affecting every palette: an incorrect string offset silently forced
+  the low nibble of the blue channel to `F` in all generated colours.
 
 ## ipeaplot 0.5.4
 

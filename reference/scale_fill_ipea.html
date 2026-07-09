@@ -53,7 +53,8 @@ Economic Research (IPEA)</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scale_fill_ipea</span><span class="op">(</span></span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Blue"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Pink"</span>, <span class="st">"Pink-Deep"</span>, <span class="st">"Green-Blue"</span>,</span>
 <span>    <span class="st">"Green-Blue-White"</span>, <span class="st">"Red-Blue"</span>, <span class="st">"Red-Blue-White"</span>, <span class="st">"Orange-Blue"</span>, <span class="st">"Orange-Blue-White"</span>,</span>
-<span>    <span class="st">"Viridis"</span>, <span class="st">"Inferno"</span>, <span class="st">"Magma"</span>, <span class="st">"Plasma"</span>, <span class="st">"Cividis"</span><span class="op">)</span>,</span>
+<span>    <span class="st">"Viridis"</span>, <span class="st">"Inferno"</span>, <span class="st">"Magma"</span>, <span class="st">"Plasma"</span>, <span class="st">"Cividis"</span>, <span class="st">"NT"</span>, <span class="st">"NT-Categorical"</span>, <span class="st">"TD"</span>,</span>
+<span>    <span class="st">"TD-Categorical"</span><span class="op">)</span>,</span>
 <span>  palette_direction <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  decimal.mark <span class="op">=</span> <span class="st">","</span>,</span>
 <span>  barheight <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -73,7 +74,11 @@ Economic Research (IPEA)</p>
 color palette. The default palette are <code>"Blue"</code>, but we can also change
 to <code>'Green'</code>, <code>'Orange'</code>, <code>'Pink'</code>, <code>'Pink-Deep'</code>, <code>'Red-Blue'</code>, <code>'Orange-Blue'</code>, <code>'Green-Blue'</code>,
 <code>'Red-Blue-White'</code>, <code>'Orange-Blue-White'</code>, <code>'Green-Blue-White'</code>,
-<code>'Viridis'</code>, <code>'Inferno'</code>, <code>'Magma'</code>, <code>'Plasma'</code>, <code>'Cividis'</code>.</p></dd>
+<code>'Viridis'</code>, <code>'Inferno'</code>, <code>'Magma'</code>, <code>'Plasma'</code>, <code>'Cividis'</code>, <code>'NT'</code>, <code>'TD'</code>.
+<code>'NT'</code> and <code>'TD'</code> automatically switch from their sequential (continuous)
+colours to a 12-colour qualitative set when the mapped variable is
+discrete – there is no need to request <code>'NT-Categorical'</code>/<code>'TD-Categorical'</code>
+directly, though those names remain available for <code><a href="ipea_pal.html">ipea_pal()</a></code>/<code><a href="ipea_palette.html">ipea_palette()</a></code>.</p></dd>
 
 
 <dt id="arg-palette-direction">palette_direction<a class="anchor" aria-label="anchor" href="#arg-palette-direction"></a></dt>
@@ -138,6 +143,11 @@ function from the ggplot2 package</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span> , y <span class="op">=</span> <span class="va">mpg</span>, fill <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">scale_fill_ipea</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Green"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># "TD" uses the sequential blue ramp for a numeric variable, and the</span></span></span>
+<span class="r-in"><span><span class="co"># 12-colour qualitative set for a discrete one, automatically</span></span></span>
+<span class="r-in"><span><span class="va">fig_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span> , y <span class="op">=</span> <span class="va">mpg</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">scale_fill_ipea</span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"TD"</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
