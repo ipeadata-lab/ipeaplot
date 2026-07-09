@@ -167,8 +167,17 @@ a mesma lógica e parâmetros.</p>
 entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão
 da função é a paleta <code>"Blue"</code>, mas o parâmetro pode receber
 diversas outras opções. Isso inclui tanto paletas com cores sequenciais
-(<code>"Blue", "Green", "Orange", "Pink"</code>), quanto paletes com
-cores divergentes (<code>"Red-Blue", "Orange-Blue"</code>).</p>
+(<code>"Blue", "Green", "Orange", "Pink", "NT", "TD"</code>), quanto
+paletes com cores divergentes
+(<code>"Red-Blue", "Orange-Blue"</code>).</p>
+<p>As paletas <code>"NT"</code> e <code>"TD"</code> são baseadas nas
+cores de capa, título de seção e gráficos de duas séries editoriais do
+Ipea (Nota Técnica e Texto para Discussão, respectivamente). Quando
+usadas com uma variável discreta, <code><a href="../reference/scale_color_ipea.html">scale_color_ipea()</a></code> e
+<code><a href="../reference/scale_fill_ipea.html">scale_fill_ipea()</a></code> alternam automaticamente para as
+variantes qualitativas <code>"NT-Categorical"</code> e
+<code>"TD-Categorical"</code>, sem que seja necessário informar esse
+sufixo.</p>
 <p><strong>Cores sequenciais:</strong>
 <img src="intro_ipeaplot_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="50%" style="display: block; margin: auto;"></p>
 <p><strong>Cores divergentes:</strong>

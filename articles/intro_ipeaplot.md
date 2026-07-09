@@ -109,8 +109,19 @@ O parâmetro `palette` permite escolher uma paleta de cores entre as
 opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função
 é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras
 opções. Isso inclui tanto paletas com cores sequenciais
-(`"Blue", "Green", "Orange", "Pink"`), quanto paletes com cores
-divergentes (`"Red-Blue", "Orange-Blue"`).
+(`"Blue", "Green", "Orange", "Pink", "NT", "TD"`), quanto paletes com
+cores divergentes (`"Red-Blue", "Orange-Blue"`).
+
+As paletas `"NT"` e `"TD"` são baseadas nas cores de capa, título de
+seção e gráficos de duas séries editoriais do Ipea (Nota Técnica e Texto
+para Discussão, respectivamente). Quando usadas com uma variável
+discreta,
+[`scale_color_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_color_ipea.md)
+e
+[`scale_fill_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_fill_ipea.md)
+alternam automaticamente para as variantes qualitativas
+`"NT-Categorical"` e `"TD-Categorical"`, sem que seja necessário
+informar esse sufixo.
 
 **Cores sequenciais:**
 ![](intro_ipeaplot_files/figure-html/unnamed-chunk-5-1.png)
