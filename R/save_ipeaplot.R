@@ -147,16 +147,29 @@ save_ipeaplot <- function(
       gargs$bg <- bg_use
     }
 
-    # Vetoriais:
-    # - Em pdf()/postscript(): useDingbats = FALSE (evita fontes dingbat)
-    # - Em todos vetoriais (inclui Cairo): fallback_resolution para rasterizacao
-    if (fmt %in% c("pdf", "eps", "svg")) {
-      if (
-        identical(dev, grDevices::pdf) || identical(dev, grDevices::postscript)
-      ) {
+    # Vetoriais: alguns argumentos so existem em determinados dispositivos, e
+    # do.call() falha com "unused argument" se forem passados a um dispositivo
+    # que nao os declara em seus formals(). Por isso cada um e adicionado
+    # apenas quando o dispositivo realmente o aceita:
+    # - useDingbats: apenas grDevices::pdf() (evita fontes dingbat)
+    # - fallback_resolution: apenas dispositivos baseados em Cairo (cairo_pdf, cairo_ps)
+    if (fmt %in% c("pdf", "eps", "svg") && is.function(dev)) {
+      dev_formals <- names(formals(dev))
+      if ("useDingbats" %in% dev_formals) {
         gargs$useDingbats <- FALSE
       }
-      gargs$fallback_resolution <- dpi
+      if ("fallback_resolution" %in% dev_formals) {
+        gargs$fallback_resolution <- dpi
+      }
+      # grDevices::postscript() (fallback de "eps" quando use_cairo = FALSE),
+      # ao contrario de pdf()/cairo_pdf()/cairo_ps(), so reconhece uma familia
+      # de fonte por arquivo: a que for declarada no argumento `family` do
+      # dispositivo. Como theme_ipea() sempre desenha o texto com
+      # family = "sans", sem isso o ggsave() falha com
+      # "family 'sans' not included in postscript() device".
+      if (identical(dev, grDevices::postscript)) {
+        gargs$family <- "sans"
+      }
     }
 
     # JPEG: qualidade
@@ -171,6 +184,30 @@ save_ipeaplot <- function(
     if (length(dotlist)) gargs[names(dotlist)] <- dotlist
 
     do.call(ggplot2::ggsave, gargs)
+
+    # Em sistemas sem as bibliotecas Cairo/X11, os dispositivos cairo_pdf()/
+    # cairo_ps() podem falhar silenciosamente em C (sem lançar erro em R),
+    # de modo que ggsave() "termina" sem nunca ter gravado o arquivo. Sem essa
+    # checagem, save_ipeaplot() reportaria sucesso mesmo sem ter salvo nada.
+    if (!file.exists(file_path) || file.size(file_path) == 0) {
+      hint <- if (isTRUE(use_cairo) && fmt %in% c("pdf", "eps")) {
+        paste(
+          " O dispositivo Cairo pode ter falhado silenciosamente",
+          "(bibliotecas Cairo/X11 ausentes no sistema); tente novamente",
+          "com use_cairo = FALSE."
+        )
+      } else {
+        ""
+      }
+      stop(
+        sprintf(
+          "Falha ao salvar '%s': o arquivo nao foi criado ou ficou vazio.%s",
+          file_path, hint
+        ),
+        call. = FALSE
+      )
+    }
+
     out[i] <- file_path
   }
 

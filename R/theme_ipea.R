@@ -75,6 +75,15 @@ nicelimits <- function(x) {
   range(scales::extended_breaks(only.loose = TRUE)(x))
 }
 
+# `element_line(linewidth = x)` do ggplot2 nao produz uma linha de x pt no
+# arquivo vetorial final. O motor grafico do R interpreta 1 unidade de "lwd"
+# como 1/96 polegada, enquanto ggplot2 converte mm -> pt usando .pt = 72.27/25.4.
+# O resultado, validado empiricamente lendo o operador `w` (largura de traco)
+# do PDF/EPS gerado, e: largura_final_pt = linewidth * 2.133957.
+# Para atender a diretriz do Manual Editorial do Ipea (eixos, fechamento e
+# hastes com 0,5 pt): https://www.ipea.gov.br/manualeditorial/padroes/padroes-grafico-visuais/ilustracoes-pi.html
+ipea_lwd_from_pt <- function(pt) pt / 2.133957
+
 
 my_pretty_breaks <- function(x, n_breaks = NULL, sd = 0.05, ...) {
   if (is.null(n_breaks)) {
@@ -145,7 +154,9 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
 
 
   hjust <- ifelse(x_text_angle == 0,0.5, 0.8)
-  vjust <- ifelse(x_text_angle == 0,0, 0.5)
+  # Distancia entre hastes (ticks) e dados (rotulos dos eixos): 1mm, conforme
+  # o Manual Editorial do Ipea.
+  vjust <- ifelse(x_text_angle == 0,1, 1)
   vjust_angle <- ifelse(x_text_angle == 0,-1, 0.5)
 
 
@@ -157,31 +168,34 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
 
   color = "gray75"
 
+  # Eixos, fechamento e hastes: 0,5 pt (preto 100%). Grades internas: 0,5 pt (preto 25%).
+  lwd_05pt <- ipea_lwd_from_pt(0.5)
+
   if(grid.adjust == 'horizontal'){
     panel.grid.major.x = ggplot2::element_blank()
-    panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = 0.25)
+    panel.grid.major.y = ggplot2::element_line(colour = color, linewidth = lwd_05pt)
 
   } else if (grid.adjust == 'vertical'){
-    panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = 0.25)
+    panel.grid.major.x = ggplot2::element_line(colour = color, linewidth = lwd_05pt)
     panel.grid.major.y = ggplot2::element_blank()
   }
 
 
   if (axis_lines == "half") {
     # Define the axis line and panel border for "half" style
-    axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
+    axis.line.x = ggplot2::element_line(linewidth = lwd_05pt, linetype = "solid", colour = "black")
+    axis.line.y = ggplot2::element_line(linewidth = lwd_05pt, linetype = "solid", colour = "black")
+    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = lwd_05pt)
+    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = lwd_05pt)
     panel.border = ggplot2::element_blank()
 
   } else if (axis_lines == "full") {
     # Define the axis line and panel border for "full" style
-    axis.line.x = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.line.y = ggplot2::element_line(linewidth = 0.25, linetype = "solid", colour = "black")
-    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    panel.border = ggplot2::element_rect(linewidth = 0.25, colour = "black", fill = NA)
+    axis.line.x = ggplot2::element_line(linewidth = lwd_05pt, linetype = "solid", colour = "black")
+    axis.line.y = ggplot2::element_line(linewidth = lwd_05pt, linetype = "solid", colour = "black")
+    axis.ticks.x = ggplot2::element_line(colour = "black", linewidth = lwd_05pt)
+    axis.ticks.y = ggplot2::element_line(colour = "black", linewidth = lwd_05pt)
+    panel.border = ggplot2::element_rect(linewidth = lwd_05pt, colour = "black", fill = NA)
 
   } else if (axis_lines == "none") {
     # Define the axis line and panel border for other styles
@@ -209,9 +223,11 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
   }
 
   if(axis_values == T){
-    axis.text.y  = ggplot2::element_text()
+    # Dados externos (eixos): Frutiger LT Pro 55 roman, tamanho 7, preto 100%
+    axis.text.y  = ggplot2::element_text(family = "sans", size = 7, color = 'black',
+                                         margin = margin(r = vjust, unit = 'mm'))
     # axis.text.x  = ggplot2::element_text(angle = x_text_angle,  hjust= hjust, margin = margin(b = vjust,unit = 'mm'))
-    axis.text.x  = ggplot2::element_text(family = "sans", angle = x_text_angle,color = 'black',
+    axis.text.x  = ggplot2::element_text(family = "sans", size = 7, angle = x_text_angle,color = 'black',
                                          hjust = hjust, vjust = vjust_angle,margin = margin(b = vjust,unit = 'mm'))
   } else if(axis_values == F){
     axis.text.x  = ggplot2::element_blank()
@@ -222,7 +238,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
 
 
   if(include_x_text_title == T){
-    axis.title.x  = ggplot2::element_text(family = "sans",margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm'))
+    axis.title.x  = ggplot2::element_text(family = "sans", size = 7, color = 'black',margin = margin(t = 4, r = 0, b = 0, l = 0, unit = 'mm'))
   } else if(include_x_text_title == F){
     axis.title.x  = ggplot2::element_blank()
   } else {
@@ -230,25 +246,27 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
   }
 
   if(include_y_text_title == T){
-    axis.title.y  = ggplot2::element_text(family = "sans",margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm'))
+    axis.title.y  = ggplot2::element_text(family = "sans", size = 7, color = 'black',margin = margin(t = 0, r = 4, b = 0, l = 0, unit = 'mm'))
   } else if(include_y_text_title == F){
     axis.title.y  = ggplot2::element_blank()
   } else {
     stop("Argument include_y_text_title must be TRUE or FALSE")
   }
 
+  # Dados externos (legendas): Frutiger LT Pro 55 roman, tamanho 7, preto 100%
   if(legend.position == 'bottom'){
     # legend.box.spacing = unit(-1, "mm")
     # legend.box.margin=margin(r = -10,l = -10,b = -10,t = -10)
     # legend.text = ggplot2::element_text(margin = margin(r = 4, l = 1, b = 0, t = 0,  unit = 'mm'))
     legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
-    legend.text        = ggplot2::element_text(size = 10, color = "black")  # Valor padrão para legend.text
+    legend.text        = ggplot2::element_text(size = 7, color = "black")  # Valor padrão para legend.text
     legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
   } else{
     legend.box.spacing = unit(0.2, "cm")  # Valor padrão para legend.box.spacing
-    legend.text        = ggplot2::element_text(size = 10, color = "black")  # Valor padrão para legend.text
+    legend.text        = ggplot2::element_text(size = 7, color = "black")  # Valor padrão para legend.text
     legend.box.margin  = margin(0, 0, 0, 0)  # Valor padrão para legend.box.margin
   }
+  legend.title = ggplot2::element_text(size = 7, color = "black")
 
 
   # Define the strip background and text styles for other box options
@@ -285,7 +303,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
     axis.line.x = axis.line.x,
     # Sets the appearance of the y-axis line based on the previous assignment
     axis.line.y = axis.line.y,
-    axis.line.y.right = ggplot2::element_line(colour = color, linewidth = 0.25),
+    axis.line.y.right = ggplot2::element_line(colour = color, linewidth = lwd_05pt),
     # Sets the appearance of the axis text based on the previous assignment
     axis.text.x = axis.text.x,
     axis.text.y = axis.text.y,
@@ -332,6 +350,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
     # legend.spacing.x = unit(4, 'mm'),
     # legend.spacing.y = unit(4, 'mm'),
     legend.text = legend.text,
+    legend.title = legend.title,
     legend.key.size = unit(4,"mm","linewidth"),
     # Adjust haste length
     axis.ticks.length = unit(2, "mm"),

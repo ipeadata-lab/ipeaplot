@@ -77,6 +77,7 @@ fig_raw <- ggplot() +
 }
 \seealso{
 Other ggplot2 theme functions:
+\code{\link[=ipea_label_size]{ipea_label_size()}},
 \code{\link[=scale_color_ipea]{scale_color_ipea()}},
 \code{\link[=scale_fill_ipea]{scale_fill_ipea()}}
 }

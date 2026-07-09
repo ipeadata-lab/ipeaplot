@@ -80,4 +80,3 @@ O pacote **ipeaplot** é desenvolvido pela equipe da Coordenação-Geral de Ciê
 # Outros pacotes semelhantes
 - UNHCR\'s [unhcrthemes](https://github.com/unhcr-dataviz/unhcrthemes)
 - BBC\'s [bbplot](https://github.com/bbc/bbplot)
-
