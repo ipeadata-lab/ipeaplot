@@ -64,7 +64,6 @@ library(ipeaplot)
 library(ggplot2)
 library(dplyr)
 library(abjData)
-library(geobr)
 library(patchwork)
 
 # Load mtcars dataset
@@ -216,53 +215,6 @@ ggplot() +
 ```
 
 ![](intro_ipeaplot_files/figure-html/unnamed-chunk-11-1.png)
-
-#### Mapas
-
-As funções do **ipeaplot** também facilitam na criação de mapas. No
-exemplo abaixo, nós vamos fazer um mapa choroplético que mostra a média
-de anos de estudo dos municípios do Brasil.
-
-O primeiro passo, é baixar a malha espacial de municípios. Isso pode ser
-feito com o pacote [geobr](https://ipea.github.io/geobr/), desenvolvido
-pelo Ipea. Para baixar esses dados, basta rodar:
-
-``` r
-
-# Load municipality and state spatial data
-mun <- geobr::read_municipality(year = 2010)
-uf  <- geobr::read_state(year = 2010)
-```
-
-Agora nós precisamos fazer um *merge* dos dados espaciais e dos dados
-com as estimativas de anos de estudo. A variável com os códigos do
-municípios é a nossa chave para unir as duas bases.
-
-``` r
-
-# Subset and select specific columns from the 'pnud_muni' dataset
-df_escola <- df |>
-             subset(ano == 2010) %>%
-             select(ano, code_muni = codmun7, e_anosestudo)
-
-# Perform a left join between the 'mun' and 'pnud' data frames
-df3 <- dplyr::left_join(mun, df_escola, by = 'code_muni')
-```
-
-Agora basta criar o mapa:
-
-``` r
-
-ggplot() +
-  geom_sf(data = df3, aes(fill = e_anosestudo), color = NA) +
-  geom_sf(data = uf, color = "black", fill = NA) +
-  ggtitle("Média de anos de estudo") +
-  scale_fill_ipea(palette = 'Orange-Blue',
-                  name='Anos de\nestudo') +
-  theme_ipea(axis_lines = 'none', include_ticks = F, axis_values = F)
-```
-
-![](intro_ipeaplot_files/figure-html/unnamed-chunk-14-1.png)
 
 ### Salvando figura
 
