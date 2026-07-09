@@ -7,7 +7,8 @@
 scale_color_ipea(
   palette = c("Blue", "Green", "Orange", "Pink", "Pink-Deep", "Green-Blue",
     "Green-Blue-White", "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White",
-    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis", "NT", "NT-Categorical", "TD",
+    "TD-Categorical"),
   palette_direction = 1,
   decimal.mark = ",",
   barheight = NULL,
@@ -22,7 +23,11 @@ scale_color_ipea(
 color palette. The default palette are \code{"Blue"}, but we can also change
 to \code{'Green'}, \code{'Orange'}, \code{'Pink'}, \code{'Pink-Deep'}, \code{'Red-Blue'}, \code{'Orange-Blue'}, \code{'Green-Blue'},
 \code{'Red-Blue-White'}, \code{'Orange-Blue-White'}, \code{'Green-Blue-White'},
-\code{'Viridis'}, \code{'Inferno'}, \code{'Magma'}, \code{'Plasma'}, \code{'Cividis'}.}
+\code{'Viridis'}, \code{'Inferno'}, \code{'Magma'}, \code{'Plasma'}, \code{'Cividis'}, \code{'NT'}, \code{'TD'}.
+\code{'NT'} and \code{'TD'} automatically switch from their sequential (continuous)
+colours to a 12-colour qualitative set when the mapped variable is
+discrete -- there is no need to request \code{'NT-Categorical'}/\code{'TD-Categorical'}
+directly, though those names remain available for \code{ipea_pal()}/\code{ipea_palette()}.}
 
 \item{palette_direction}{A logical argument specifying if the ordering of the colors
 will follow the default of the palette (when the argument is 1) or if it will
@@ -66,6 +71,12 @@ fig_raw <- ggplot() +
 fig_raw <- ggplot() +
   geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
   scale_color_ipea(palette = "Green")
+
+# "NT" uses the sequential magenta ramp for a numeric variable, and the
+# 12-colour qualitative set for a discrete one, automatically
+fig_raw <- ggplot() +
+  geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
+  scale_color_ipea(palette = "NT")
 }
 \seealso{
 Other ggplot2 theme functions:

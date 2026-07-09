@@ -7,7 +7,11 @@
 #'        color palette. The default palette are `"Blue"`, but we can also change
 #'        to `'Green'`, `'Orange'`, `'Pink'`, `'Pink-Deep'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
 #'        `'Red-Blue-White'`, `'Orange-Blue-White'`, `'Green-Blue-White'`,
-#'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
+#'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`, `'NT'`, `'TD'`.
+#'        `'NT'` and `'TD'` automatically switch from their sequential (continuous)
+#'        colours to a 12-colour qualitative set when the mapped variable is
+#'        discrete -- there is no need to request `'NT-Categorical'`/`'TD-Categorical'`
+#'        directly, though those names remain available for `ipea_pal()`/`ipea_palette()`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is -1).
@@ -42,10 +46,17 @@
 #' fig_raw <- ggplot() +
 #'   geom_point(data = mtcars, aes(x = hp , y = mpg, color = cyl)) +
 #'   scale_color_ipea(palette = "Green")
+#'
+#' # "NT" uses the sequential magenta ramp for a numeric variable, and the
+#' # 12-colour qualitative set for a discrete one, automatically
+#' fig_raw <- ggplot() +
+#'   geom_point(data = mtcars, aes(x = hp , y = mpg, color = factor(cyl))) +
+#'   scale_color_ipea(palette = "NT")
 
 # Definition of the scale_color_ipea function
 scale_color_ipea <- function(palette = c('Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
-                                         'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
+                                         'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis',
+                                         'NT','NT-Categorical','TD','TD-Categorical'),
                              palette_direction = 1,
                              decimal.mark = ",",
                              barheight = NULL, barwidth = NULL,
@@ -132,6 +143,13 @@ ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
   # Based on this criterion, we will select whether the palette will be discrete or continuous.
   auto_discrete_choose <- !is.numeric(var_evaluated)
 
+  # 'NT' and 'TD' have a dedicated qualitative variant ('NT-Categorical',
+  # 'TD-Categorical'); switch to it automatically for discrete variables so
+  # users don't need to know the suffix exists.
+  if (auto_discrete_choose && palette %in% c("NT", "TD")) {
+    palette <- paste0(palette, "-Categorical")
+  }
+
   # Choose the correct scale
   if (auto_discrete_choose) {
 
@@ -165,7 +183,11 @@ ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
 #'        color palette. The default palette are `"Blue"`, but we can also change
 #'        to `'Green'`, `'Orange'`, `'Pink'`, `'Pink-Deep'`, `'Red-Blue'`, `'Orange-Blue'`, `'Green-Blue'`,
 #'        `'Red-Blue-White'`, `'Orange-Blue-White'`, `'Green-Blue-White'`,
-#'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`.
+#'        `'Viridis'`, `'Inferno'`, `'Magma'`, `'Plasma'`, `'Cividis'`, `'NT'`, `'TD'`.
+#'        `'NT'` and `'TD'` automatically switch from their sequential (continuous)
+#'        colours to a 12-colour qualitative set when the mapped variable is
+#'        discrete -- there is no need to request `'NT-Categorical'`/`'TD-Categorical'`
+#'        directly, though those names remain available for `ipea_pal()`/`ipea_palette()`.
 #' @param palette_direction A logical argument specifying if the ordering of the colors
 #'        will follow the default of the palette (when the argument is 1) or if it will
 #'        have an inverted ordering (for cases where it is 0).
@@ -201,8 +223,14 @@ ggplot_add.scale_ipea_color <- function(object, plot, object_name, ...){
 #'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = cyl)) +
 #'   scale_fill_ipea(palette = "Green")
 #'
+#' # "TD" uses the sequential blue ramp for a numeric variable, and the
+#' # 12-colour qualitative set for a discrete one, automatically
+#' fig_raw <- ggplot() +
+#'   geom_col(data = mtcars, aes(x = hp , y = mpg, fill = factor(cyl))) +
+#'   scale_fill_ipea(palette = "TD")
 scale_fill_ipea <- function(palette = c('Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
-                                        'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis'),
+                                        'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno','Magma','Plasma','Cividis',
+                                        'NT','NT-Categorical','TD','TD-Categorical'),
                             palette_direction = 1,
                             decimal.mark = ",",
                             barheight = NULL, barwidth = NULL,
@@ -288,6 +316,13 @@ ggplot_add.scale_ipea_fill <- function(object, plot, object_name, ...){
   # Evaluates whether the variable is numeric.
   # Based on this criterion, we will select whether the palette will be discrete or continuous.
   auto_discrete_choose <- !is.numeric(var_evaluated)
+
+  # 'NT' and 'TD' have a dedicated qualitative variant ('NT-Categorical',
+  # 'TD-Categorical'); switch to it automatically for discrete variables so
+  # users don't need to know the suffix exists.
+  if (auto_discrete_choose && palette %in% c("NT", "TD")) {
+    palette <- paste0(palette, "-Categorical")
+  }
 
   # Choose the correct scale
   if (auto_discrete_choose) {

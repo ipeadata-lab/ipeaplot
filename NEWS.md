@@ -3,6 +3,8 @@
   * New function `ipea_label_size()`: converts a point size (default 6pt) to the mm `size` used by `geom_text()`/`geom_label()`, for labeling values on bars/lines per the editorial guidelines.
   * Fixed `save_ipeaplot()` errors ("unused argument") when `use_cairo = FALSE` on `pdf`/`eps` formats.
   * Fixed `save_ipeaplot()` silently reporting success when a Cairo-based device fails to write a file; it now errors with a clear message.
+  * New palettes `"NT"` and `"TD"`, based on the cover, section-title and chart colours of two Ipea editorial series (Nota Tecnica and Texto para Discussao). `scale_color_ipea()`/`scale_fill_ipea()` switch automatically to their qualitative 12-colour variant for discrete data.
+  * Fixed a color-accuracy bug in `ipea_palette()` affecting every palette: an incorrect string offset silently forced the low nibble of the blue channel to `F` in all generated colours.
 
 # ipeaplot 0.5.4
   * Fixed the vignette to address issues with geobr.

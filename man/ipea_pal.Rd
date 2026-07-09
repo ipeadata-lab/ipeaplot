@@ -7,7 +7,8 @@
 ipea_pal(
   palette = c("Blue", "Green", "Orange", "Pink", "Pink-Deep", "Green-Blue",
     "Green-Blue-White", "Red-Blue", "Red-Blue-White", "Orange-Blue", "Orange-Blue-White",
-    "Viridis", "Inferno", "Magma", "Plasma", "Cividis"),
+    "Viridis", "Inferno", "Magma", "Plasma", "Cividis", "NT", "NT-Categorical", "TD",
+    "TD-Categorical"),
   alpha = 1,
   begin = 0,
   end = 1,
@@ -18,7 +19,7 @@ ipea_pal(
 \item{palette}{A character string indicating the color map option to use.
 These options are available: 'Blue', 'Green', 'Orange', 'Pink', 'Pink-Deep', 'Red-Blue'
 'Orange-Blue', 'Green-Blue', 'Viridis', 'Inferno', 'Magma', 'Plasma'
-'Cividis'.}
+'Cividis', 'NT', 'NT-Categorical', 'TD', 'TD-Categorical'.}
 
 \item{alpha}{The alpha transparency in a number between \code{0} and \code{1}.}
 
@@ -43,9 +44,12 @@ scales::show_col(ipea_pal()(10))
 scales::show_col(ipea_pal(palette_direction = -1)(6))
 scales::show_col(ipea_pal(begin = 0.2, end = 0.8)(4))
 scales::show_col(ipea_pal(palette = "Green")(6))
+scales::show_col(ipea_pal(palette = "NT")(10))
+scales::show_col(ipea_pal(palette = "TD-Categorical")(12))
 }
 \references{
 'Blue','Green','Orange','Pink','Pink-Deep','Green-Blue','Green-Blue-White','Red-Blue','Red-Blue-White',
 'Orange-Blue','Orange-Blue-White', 'Viridis','Inferno',
 'Magma','Plasma' and 'Cividis': https://pmassicotte.github.io/paletteer_gallery/
+'NT'/'TD' and their '-Categorical' variants: see \code{ipea_palette()}.
 }

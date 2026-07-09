@@ -29,3 +29,4 @@ vignettes/*.pdf
 .Renviron
 docs
 CRAN-SUBMISSION
+tests/examples/paletas_nt_td.R
