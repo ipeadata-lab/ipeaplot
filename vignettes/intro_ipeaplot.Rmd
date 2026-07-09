@@ -92,7 +92,9 @@ fig_base
 
 Existem duas funções básicas para selecionar a paleta de cores da figura: `scale_color_ipea()` e `scale_fill_ipea()`. O funcionamento de ambas funções seguem a mesma lógica e parâmetros.
 
-O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange", "Pink"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
+O parâmetro `palette` permite escolher uma paleta de cores entre as opções de paletas utilizadas pelo Editorial do Ipea. O padrão da função é a paleta `"Blue"`, mas o parâmetro pode receber diversas outras opções. Isso inclui tanto paletas com cores sequenciais (`"Blue", "Green", "Orange", "Pink", "NT", "TD"`), quanto paletes com cores divergentes (`"Red-Blue", "Orange-Blue"`).
+
+As paletas `"NT"` e `"TD"` são baseadas nas cores de capa, título de seção e gráficos de duas séries editoriais do Ipea (Nota Técnica e Texto para Discussão, respectivamente). Quando usadas com uma variável discreta, `scale_color_ipea()` e `scale_fill_ipea()` alternam automaticamente para as variantes qualitativas `"NT-Categorical"` e `"TD-Categorical"`, sem que seja necessário informar esse sufixo.
 
 **Cores sequenciais:**
 ```{r eval=TRUE, echo=FALSE, fig.dim = c(5, 4),fig.align = "center", out.width = "50%"}
@@ -100,10 +102,12 @@ O parâmetro `palette` permite escolher uma paleta de cores entre as opções de
 old.par <- par(no.readonly = TRUE)
 
 # Modificar as configurações conforme necessário
-par(mfrow = c(3, 1), mar = c(1, 0, 2, 0))
+par(mfrow = c(5, 1), mar = c(1, 0, 2, 0))
 pal(ipea_pal(palette = "Blue")(9)); mtext("Blue")
 pal(ipea_pal(palette = "Green")(9)); mtext("Green")
 pal(ipea_pal(palette = "Orange")(9)); mtext("Orange")
+pal(ipea_pal(palette = "NT")(9)); mtext("NT")
+pal(ipea_pal(palette = "TD")(9)); mtext("TD")
 
 # Restaurar as configurações originais
 par(old.par)
