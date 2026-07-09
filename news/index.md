@@ -1,5 +1,7 @@
 # Changelog
 
+## ipeaplot (development version)
+
 ## ipeaplot 0.5.4
 
 CRAN release: 2026-07-09
