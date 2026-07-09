@@ -35,7 +35,6 @@ Suggests:
     data.table,
     dplyr,
     forcats,
-    geobr (>= 2.0.0),
     knitr,
     patchwork,
     purrr,
