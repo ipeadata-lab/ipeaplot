@@ -40,6 +40,7 @@ O pacote **ipeaplot** foi desenhado para ser usado em conjunto com o pacote [ggp
 # Carregue os pacotes
 library(ipeaplot)
 library(ggplot2)
+library(patchwork)
 ```
 No painel abaixo, à direita, temos a representação de um gráfico no formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado obtido após a aplicação de linhas de código com as funções theme_ipea() e scale_color_ipea().
 
@@ -56,8 +57,11 @@ fig_ipea <- fig_raw +
       scale_color_ipea() +
       theme_ipea()
 
+# Painel lado a lado: com (esquerda) e sem (direita) o ipeaplot
+fig_panel <- fig_ipea | fig_raw
+
 # Salvando o gráfico em múltiplos formatos com a nova função
-save_ipeaplot(fig_ipea, file.name = "meu_grafico_ipea", format = c("png", "pdf"))
+save_ipeaplot(fig_panel, file.name = "meu_grafico_ipea", format = c("png", "pdf"))
 ```
 <img src="man/figures/figura_read_me.png" width="70%" style="display: block; margin: auto;" />
 
