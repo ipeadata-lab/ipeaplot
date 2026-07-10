@@ -1,4 +1,8 @@
 url: https://ipeadata-lab.github.io/ipeaplot/
 template:
   bootstrap: 5
+articles:
+- title: Articles
+  contents:
+  - intro_ipeaplot
 

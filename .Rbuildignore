@@ -8,6 +8,7 @@
 ^doc$
 ^Meta$
 ^_pkgdown\.yml$
+^vignettes/cookbook\.Rmd$
 ^codecov\.yml$
 ^pkgdown$
 ^index.md$
