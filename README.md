@@ -65,7 +65,7 @@ save_ipeaplot(fig_panel, file.name = "meu_grafico_ipea", format = c("png", "pdf"
 ```
 <img src="man/figures/figura_read_me.png" width="70%" style="display: block; margin: auto;" />
 
-Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
+Mais detalhes sobre a utilização do **ipeaplot** na vinheta:
 
 - [Introdução ao ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
 
