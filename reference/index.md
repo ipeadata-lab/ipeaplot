@@ -2,6 +2,8 @@
 
 ## All functions
 
+- [`ipea_contrast_color()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_contrast_color.md)
+  : Contrasting text colour for labels drawn over a fill colour
 - [`ipea_label_size()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_label_size.md)
   : Font size for data labels in Ipea graphics
 - [`ipea_pal()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_pal.md)

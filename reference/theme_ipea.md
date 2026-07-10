@@ -11,7 +11,7 @@ text,
 theme_ipea(
   axis_lines = "full",
   axis_values = TRUE,
-  legend.position = "right",
+  legend.position = "bottom",
   grid.adjust = "horizontal",
   x_breaks = NULL,
   y_breaks = NULL,
@@ -41,7 +41,8 @@ theme_ipea(
 - legend.position:
 
   A character vector specifying the position of the legend. Valid
-  options are `"right"` (default), `"left"`, `"top"`, and `"bottom"`.
+  options are `"bottom"` (default, matching the Ipea editorial
+  guidelines), `"right"`, `"left"`, and `"top"`.
 
 - grid.adjust:
 
@@ -96,6 +97,7 @@ A custom theme for IPEA graphics.
 ## See also
 
 Other ggplot2 theme functions:
+[`ipea_contrast_color()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_contrast_color.md),
 [`ipea_label_size()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_label_size.md),
 [`scale_color_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_color_ipea.md),
 [`scale_fill_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_fill_ipea.md)

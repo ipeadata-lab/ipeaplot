@@ -35,6 +35,7 @@ or similar geoms.
 ## See also
 
 Other ggplot2 theme functions:
+[`ipea_contrast_color()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_contrast_color.md),
 [`scale_color_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_color_ipea.md),
 [`scale_fill_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/scale_fill_ipea.md),
 [`theme_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/theme_ipea.md)

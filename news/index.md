@@ -29,6 +29,21 @@
   [`ipea_palette()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_palette.md)
   affecting every palette: an incorrect string offset silently forced
   the low nibble of the blue channel to `F` in all generated colours.
+- [`theme_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/theme_ipea.md):
+  default `legend.position` changed from `"right"` to `"bottom"`,
+  matching the Ipea Editorial Manual guidelines.
+- [`theme_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/theme_ipea.md):
+  [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
+  layers in line charts (i.e. plots that also have a
+  [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)/[`geom_path()`](https://ggplot2.tidyverse.org/reference/geom_path.html)/[`geom_step()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
+  layer) now default to a solid square marker (`shape = 15`), per the
+  Ipea Editorial Manual guidelines. Does not affect scatter plots or a
+  shape already set by the user.
+- New function
+  [`ipea_contrast_color()`](https://ipeadata-lab.github.io/ipeaplot/reference/ipea_contrast_color.md):
+  given one or more fill/background colours, returns `"white"` or
+  `"black"`, whichever is more readable, for labels drawn over
+  bars/points per the editorial guidelines.
 
 ## ipeaplot 0.5.4
 

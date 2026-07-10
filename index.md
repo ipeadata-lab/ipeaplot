@@ -64,7 +64,7 @@ e scale_color_ipea().
     # Adicionando os padrões do Ipea
     fig_ipea <- fig_raw +
           scale_color_ipea() +
-          theme_ipea()
+          theme_ipea(legend.position = "right")
 
     # Painel lado a lado: com (esquerda) e sem (direita) o ipeaplot
     fig_panel <- fig_ipea | fig_raw
