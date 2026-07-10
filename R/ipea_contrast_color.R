@@ -29,7 +29,9 @@
 #'   scale_color_identity() +
 #'   theme_ipea()
 ipea_contrast_color <- function(background) {
-  rgb_mat <- grDevices::col2rgb(background) / 255
+  # unname() evita que os rownames "red"/"green"/"blue" de col2rgb() vazem
+  # como names() do vetor de saida (acontece via apply() quando length(background) == 1).
+  rgb_mat <- unname(grDevices::col2rgb(background) / 255)
 
   # Luminancia relativa (WCAG): converte cada canal sRGB para linear antes de
   # ponderar pela sensibilidade do olho humano a cada cor.

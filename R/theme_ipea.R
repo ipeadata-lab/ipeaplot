@@ -521,7 +521,8 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
   # mapeado) pelo usuario.
   layer_fn_name <- function(layer) {
     call_str <- paste(deparse(layer$constructor), collapse = " ")
-    sub("\\s*\\(.*$", "", trimws(call_str))
+    fn_name <- sub("\\s*\\(.*$", "", trimws(call_str))
+    sub("^.*::", "", fn_name) # remove um eventual prefixo de namespace (ex.: "ggplot2::geom_point")
   }
   layer_fns <- vapply(plot$layers, layer_fn_name, character(1))
   has_line_layer <- any(layer_fns %in% c("geom_line", "geom_path", "geom_step"))
