@@ -47,6 +47,7 @@ quatro funções principais:
     # Carregue os pacotes
     library(ipeaplot)
     library(ggplot2)
+    library(patchwork)
 
 No painel abaixo, à direita, temos a representação de um gráfico no
 formato padrão do *ggplot2*. Já à esquerda, destacamos o resultado
@@ -65,8 +66,11 @@ e scale_color_ipea().
           scale_color_ipea() +
           theme_ipea()
 
+    # Painel lado a lado: com (esquerda) e sem (direita) o ipeaplot
+    fig_panel <- fig_ipea | fig_raw
+
     # Salvando o gráfico em múltiplos formatos com a nova função
-    save_ipeaplot(fig_ipea, file.name = "meu_grafico_ipea", format = c("png", "pdf"))
+    save_ipeaplot(fig_panel, file.name = "meu_grafico_ipea", format = c("png", "pdf"))
 
 ![](reference/figures/figura_read_me.png)
 
