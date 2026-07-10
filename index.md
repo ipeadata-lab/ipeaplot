@@ -74,13 +74,10 @@ e scale_color_ipea().
 
 ![](reference/figures/figura_read_me.png)
 
-Mais detalhes sobre a utilização do **ipeaplot** nas vinhetas:
+Mais detalhes sobre a utilização do **ipeaplot** na vinheta:
 
 - [Introdução ao
   ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/intro_ipeaplot.html)
-
-- [Cookbook
-  ipeaplot](https://ipeadata-lab.github.io/ipeaplot/articles/cookbook.html)
 
 # Fontes
 
