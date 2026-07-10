@@ -7,7 +7,7 @@
 theme_ipea(
   axis_lines = "full",
   axis_values = TRUE,
-  legend.position = "right",
+  legend.position = "bottom",
   grid.adjust = "horizontal",
   x_breaks = NULL,
   y_breaks = NULL,
@@ -30,8 +30,8 @@ axis text will be displayed in black; otherwise, they will
 be hidden.}
 
 \item{legend.position}{A character vector specifying the position of the
-legend. Valid options are \code{"right"} (default), \code{"left"}, \code{"top"}, and
-\code{"bottom"}.}
+legend. Valid options are \code{"bottom"} (default, matching the Ipea
+editorial guidelines), \code{"right"}, \code{"left"}, and \code{"top"}.}
 
 \item{grid.adjust}{Defines whether the grid lines should be \code{"horizontal"}
 (default) or \code{"vertical"}.}
@@ -77,6 +77,7 @@ fig_raw <- ggplot() +
 }
 \seealso{
 Other ggplot2 theme functions:
+\code{\link[=ipea_contrast_color]{ipea_contrast_color()}},
 \code{\link[=ipea_label_size]{ipea_label_size()}},
 \code{\link[=scale_color_ipea]{scale_color_ipea()}},
 \code{\link[=scale_fill_ipea]{scale_fill_ipea()}}

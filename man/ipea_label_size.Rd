@@ -34,6 +34,7 @@ ggplot(mtcars[1:5, ], aes(hp, mpg, label = round(mpg))) +
 }
 \seealso{
 Other ggplot2 theme functions:
+\code{\link[=ipea_contrast_color]{ipea_contrast_color()}},
 \code{\link[=scale_color_ipea]{scale_color_ipea()}},
 \code{\link[=scale_fill_ipea]{scale_fill_ipea()}},
 \code{\link[=theme_ipea]{theme_ipea()}}

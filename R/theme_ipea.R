@@ -11,8 +11,8 @@
 #'        axis text will be displayed in black; otherwise, they will
 #'        be hidden.
 #' @param legend.position A character vector specifying the position of the
-#'        legend. Valid options are `"right"` (default), `"left"`, `"top"`, and
-#'        `"bottom"`.
+#'        legend. Valid options are `"bottom"` (default, matching the Ipea
+#'        editorial guidelines), `"right"`, `"left"`, and `"top"`.
 #' @param grid.adjust Defines whether the grid lines should be `"horizontal"`
 #'       (default) or `"vertical"`.
 #' @param x_breaks Numeric. The number of breaks on the x-axis
@@ -48,7 +48,7 @@
 
 theme_ipea <- function(axis_lines = 'full',
                        axis_values = TRUE,
-                       legend.position = 'right',
+                       legend.position = 'bottom',
                        grid.adjust = 'horizontal',
                        x_breaks = NULL, # Valor padrão definido como NULL
                        y_breaks = NULL, # Valor padrão definido como NULL
@@ -507,6 +507,31 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
     )
   } else {
 
+  }
+
+  # Marcadores quadrados: o Manual Editorial do Ipea usa marcador quadrado
+  # solido nos pontos de graficos de linha (ver referencia no topo do
+  # arquivo). Só aplicado quando o plot tem uma camada de linha (geom_line/
+  # geom_path/geom_step) junto com a de pontos, para não afetar graficos de
+  # dispersao (scatter) puros. Não sobrescreve um shape ja definido (fixo ou
+  # mapeado) pelo usuario.
+  layer_fn_name <- function(layer) {
+    call_str <- paste(deparse(layer$constructor), collapse = " ")
+    sub("\\s*\\(.*$", "", trimws(call_str))
+  }
+  layer_fns <- vapply(plot$layers, layer_fn_name, character(1))
+  has_line_layer <- any(layer_fns %in% c("geom_line", "geom_path", "geom_step"))
+
+  if (has_line_layer) {
+    for (i in seq_along(plot$layers)) {
+      is_point_layer <- layer_fns[i] == "geom_point"
+      shape_already_set <- "shape" %in% names(c(plot$mapping, plot$layers[[i]]$mapping)) ||
+        !is.null(plot$layers[[i]]$aes_params$shape)
+
+      if (is_point_layer && !shape_already_set) {
+        plot$layers[[i]]$aes_params$shape <- 15
+      }
+    }
   }
 
   plot <- plot + theme

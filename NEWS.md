@@ -5,6 +5,9 @@
   * Fixed `save_ipeaplot()` silently reporting success when a Cairo-based device fails to write a file; it now errors with a clear message.
   * New palettes `"NT"` and `"TD"`, based on the cover, section-title and chart colours of two Ipea editorial series (Nota Tecnica and Texto para Discussao). `scale_color_ipea()`/`scale_fill_ipea()` switch automatically to their qualitative 12-colour variant for discrete data.
   * Fixed a color-accuracy bug in `ipea_palette()` affecting every palette: an incorrect string offset silently forced the low nibble of the blue channel to `F` in all generated colours.
+  * `theme_ipea()`: default `legend.position` changed from `"right"` to `"bottom"`, matching the Ipea Editorial Manual guidelines.
+  * `theme_ipea()`: `geom_point()` layers in line charts (i.e. plots that also have a `geom_line()`/`geom_path()`/`geom_step()` layer) now default to a solid square marker (`shape = 15`), per the Ipea Editorial Manual guidelines. Does not affect scatter plots or a shape already set by the user.
+  * New function `ipea_contrast_color()`: given one or more fill/background colours, returns `"white"` or `"black"`, whichever is more readable, for labels drawn over bars/points per the editorial guidelines.
 
 # ipeaplot 0.5.4
   * Fixed the vignette to address issues with geobr.

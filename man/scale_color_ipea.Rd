@@ -80,6 +80,7 @@ fig_raw <- ggplot() +
 }
 \seealso{
 Other ggplot2 theme functions:
+\code{\link[=ipea_contrast_color]{ipea_contrast_color()}},
 \code{\link[=ipea_label_size]{ipea_label_size()}},
 \code{\link[=scale_fill_ipea]{scale_fill_ipea()}},
 \code{\link[=theme_ipea]{theme_ipea()}}
