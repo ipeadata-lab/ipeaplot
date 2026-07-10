@@ -8,6 +8,7 @@
   * `theme_ipea()`: default `legend.position` changed from `"right"` to `"bottom"`, matching the Ipea Editorial Manual guidelines.
   * `theme_ipea()`: `geom_point()` layers in line charts (i.e. plots that also have a `geom_line()`/`geom_path()`/`geom_step()` layer) now default to a solid square marker (`shape = 15`), per the Ipea Editorial Manual guidelines. Does not affect scatter plots or a shape already set by the user.
   * New function `ipea_contrast_color()`: given one or more fill/background colours, returns `"white"` or `"black"`, whichever is more readable, for labels drawn over bars/points per the editorial guidelines.
+  * Fixed `theme_ipea()`: x-axis category labels could collide with the x-axis title whenever some categories wrapped onto two lines (via `"\n"`) and others didn't (a mix of single- and multi-line labels on the same axis) — a stray `vjust = -1` on `axis.text.x` misaligned single-line labels.
 
 # ipeaplot 0.5.4
   * Fixed the vignette to address issues with geobr.

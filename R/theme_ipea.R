@@ -157,7 +157,11 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
   # Distancia entre hastes (ticks) e dados (rotulos dos eixos): 1mm, conforme
   # o Manual Editorial do Ipea.
   vjust <- ifelse(x_text_angle == 0,1, 1)
-  vjust_angle <- ifelse(x_text_angle == 0,-1, 0.5)
+  # vjust = 1 ancora o topo do texto logo abaixo da haste; com vjust = -1
+  # (usado antes) rotulos de uma linha ficavam desalinhados e podiam colidir
+  # com o titulo do eixo sempre que outras categorias do mesmo eixo tivessem
+  # rotulos com "\n" (mais de uma linha).
+  vjust_angle <- ifelse(x_text_angle == 0,1, 0.5)
 
 
   ### check inputs
@@ -219,7 +223,7 @@ ggplot_add.scale_auto_ipea <- function(object, plot, object_name, ...) {
     axis.ticks.y = ggplot2::element_blank()
     hjust <- ifelse(x_text_angle == 0,0.5, 0.8)
     vjust <- ifelse(x_text_angle == 0,3, 0.5)
-    vjust_angle <- ifelse(x_text_angle == 0,-1, 0)
+    vjust_angle <- ifelse(x_text_angle == 0,1, 0)
   }
 
   if(axis_values == T){
