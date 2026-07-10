@@ -6,7 +6,6 @@ articles:
   contents:
   - intro_ipeaplot
 - title: internal
-  navbar: ~
   contents:
   - cookbook
 
