@@ -44,6 +44,12 @@
   given one or more fill/background colours, returns `"white"` or
   `"black"`, whichever is more readable, for labels drawn over
   bars/points per the editorial guidelines.
+- Fixed
+  [`theme_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/theme_ipea.md):
+  x-axis category labels could collide with the x-axis title whenever
+  some categories wrapped onto two lines (via `"\n"`) and others didn’t
+  (a mix of single- and multi-line labels on the same axis) — a stray
+  `vjust = -1` on `axis.text.x` misaligned single-line labels.
 
 ## ipeaplot 0.5.4
 
