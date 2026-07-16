@@ -18,7 +18,7 @@ Você pode instalar o **ipeaplot** direto CRAN:
 
 A versão em desenvolvimento está disponível no GitHub:
 
-    # Versão em desenvolvimento (0.5.0.9)
+    # Versão em desenvolvimento
     utils::remove.packages("ipeaplot")
     remotes::install_github("ipeadata-lab/ipeaplot")
 
