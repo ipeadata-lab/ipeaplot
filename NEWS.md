@@ -1,4 +1,4 @@
-# ipeaplot (development version)
+# ipeaplot 1.0.0
   * `theme_ipea()`: axis/tick/border/gridlines now render at exactly 0.5pt, axis and legend text at exactly 7pt, and axis labels are spaced 1mm from ticks, matching the Ipea Editorial Manual guidelines.
   * New function `ipea_label_size()`: converts a point size (default 6pt) to the mm `size` used by `geom_text()`/`geom_label()`, for labeling values on bars/lines per the editorial guidelines.
   * Fixed `save_ipeaplot()` errors ("unused argument") when `use_cairo = FALSE` on `pdf`/`eps` formats.
