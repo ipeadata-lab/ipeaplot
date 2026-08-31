@@ -1,5 +1,7 @@
 # Changelog
 
+## ipeaplot (development version)
+
 ## ipeaplot 1.0.0
 
 - [`theme_ipea()`](https://ipeadata-lab.github.io/ipeaplot/reference/theme_ipea.md):
